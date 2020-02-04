@@ -1,0 +1,182 @@
+﻿@model RatingApp.Models.shopviewmodel
+@{
+    ViewBag.Title = "Adtocart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/movieshopcss/StyleSheet1.css" rel="stylesheet" />
+<h2>Adtocart</h2>
+
+@*@using (@Html.BeginForm())
+    {*@
+
+<form id="myform">
+
+    @Html.HiddenFor(x => x.movieitems.movie_id)
+    <div class="product_image_area section_padding">
+        <div class="container">
+            <div class="row s_product_inner">
+                <div class="col-lg-5">
+                    <div class="product_slider_img">
+                        <div id="vertical">
+                            <div data-thumb="@Url.Content(Model.movieitems.imgpath)">
+                                <img style="min-height:200px; width:200px;" src="@Url.Content(Model.movieitems.imgpath)" />
+                            </div>
+                            @*<div data-thumb="img/product_details/prodect_details_2.png">
+                                    <img src="img/product_details/prodect_details_2.png" />
+                                </div>
+                                <div data-thumb="img/product_details/prodect_details_3.png">
+                                    <img src="img/product_details/prodect_details_3.png" />
+                                </div>
+                                <div data-thumb="img/product_details/prodect_details_4.png">
+                                    <img src="img/product_details/prodect_details_4.png" />
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="s_product_text">
+                        <h3>
+                            <span class="badge badge-pill badge-light">Movie Name</span>
+                            @Html.DisplayFor(Model => Model.movieitems.Movie_name)
+                        </h3>
+                        <h2> <span class="badge badge-pill badge-light">Price</span>  @Html.DisplayFor(Model => Model.cart.price)</h2>
+                        @Html.HiddenFor(x => x.movieitems.Movie_name)
+                        @Html.HiddenFor(x => x.cart.price)
+                        <ul class="list">
+                            <li>
+                                <a class="active" href="#">
+                                    <span>Category</span> : Household
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"> <span>Availibility</span> : In Stock</a>
+                            </li>
+                        </ul>
+                        <p>
+                            Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for something that can make your interior look awesome, and at the same time.
+                        </p>
+                        <div class="card_area">
+                            <div class="product_count d-inline-block">
+                                <span class="badge badge-pill badge-light">Quantity</span>
+                                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                                <input type="number" name="qty" value="0" id="qty" min="1" />
+                                <span class="number-increment"> <i class="ti-plus"></i></span>
+                            </div>
+                            <div class="add_to_cart">
+                                <input type="button" value="Submit" class="btn_3" id="bt1" />
+                                @*<a href="#" class="btn_3">add to cart</a>
+                                    <a href="#" class="like_us"> <i class="ti-heart"></i> </a>*@
+                            </div>
+                            <div class="social_icon">
+                                <a href="#" class="fb"><i class="ti-facebook"></i></a>
+                                <a href="#" class="tw"><i class="ti-twitter-alt"></i></a>
+                                <a href="#" class="li"><i class="ti-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+@Html.Partial("~/Views/Shop/commentsload.cshtml", Model.cm)
+
+@*<form id="myform">
+
+        @Html.HiddenFor(x => x.movieitems.movie_id)
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+
+                    <img style="min-height:200px; width:200px;" src="@Url.Content(Model.movieitems.imgpath)" />
+
+
+                </div>
+
+
+
+                <div class="col-lg-8 col-md-8 col-sm-8">
+
+                    <h1>Product Name: @Model.movieitems.Movie_name</h1>
+                    @Html.DisplayFor(Model => Model.movieitems.Movie_name)
+                    <h2>Price: @Model.cart.price</h2>
+                    @Html.DisplayFor(Model => Model.cart.price)
+                    @Session["price"]
+                    <h6>Description: </h6>
+                    @Html.HiddenFor(x => x.movieitems.Movie_name)
+                    @Html.HiddenFor(x => x.cart.price)
+                    <input type="number" name="qty" value="0" id="qty" min="1" />
+
+                    <input type="button" value="Submit" class="btn btn-default" id="bt1" />
+
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </form>*@
+
+@*}*@
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    //$(function () {
+    //    $("#bt1").click(function () {
+
+    //        debugger;
+    //        var Movie_Item = { movie_id: $("#movie_id").val, imgpath: "imgpath", Movie_name: "Movie_name" }
+    //        var shoppingcart = { price: 'price' }
+    //        var qty=$(this).data('qty');
+
+    //    $.ajax(
+    //        {
+    //            type: "post",
+    //            data: "{Movie_Item:" + JSON.stringify(Movie_Item) + "}",
+    //            url: "/Shop/getdata",
+    //            contentType: "application/json; charset=utf-8",
+    //            processData: false,
+    //            success: function (data) {
+
+
+    //                alert("item name:" + data);
+
+    //            }
+
+    //        })
+
+
+    //    //
+    //});
+
+    //})
+
+    $(document).ready(function () {
+        $("#bt1").click(function () {
+
+
+            var data = $("#myform").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/Shop/getdata",
+                data: data,
+                success: function (response) {
+                    window.location = "Index";
+
+                }
+
+            })
+
+        })
+    })
+
+</script>

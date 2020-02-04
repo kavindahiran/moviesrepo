@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="castphotogallery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="castTableid" Type="int" />
+    <Property Name="castIpath" Type="varchar(max)" />
+    <Property Name="imageC" Type="image" />
+    <Property Name="castimagename" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="comments">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="commentline" Type="varchar" MaxLength="100" />
+    <Property Name="userid" Type="int" />
+    <Property Name="like" Type="bit" />
+    <Property Name="movieid" Type="int" />
+    <Property Name="commentdate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="heroarenatable">
+    <Key>
+      <PropertyRef Name="arenaid" />
+    </Key>
+    <Property Name="arenaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="ratings" Type="int" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="imagepath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="inovice">
+    <Key>
+      <PropertyRef Name="invoiceid" />
+    </Key>
+    <Property Name="invoiceid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderid" Type="int" />
+    <Property Name="userTblid" Type="int" />
+    <Property Name="orderdate" Type="date" />
+    <Property Name="totalbill" Type="float" />
+  </EntityType>
+  <EntityType Name="Landmark121">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LandmarkName" Type="varchar" MaxLength="100" />
+    <Property Name="Location" Type="varchar" MaxLength="50" />
+    <Property Name="Latitude" Type="float" />
+    <Property Name="Longitude" Type="float" />
+    <Property Name="GeoLocation" Type="geography" />
+  </EntityType>
+  <EntityType Name="Movie_Item">
+    <Key>
+      <PropertyRef Name="movie_id" />
+    </Key>
+    <Property Name="movie_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Movie_name" Type="varchar" MaxLength="100" />
+    <Property Name="Movie_release" Type="date" />
+    <Property Name="Movie_director" Type="varchar" MaxLength="100" />
+    <Property Name="imgpath" Type="varchar(max)" />
+    <Property Name="imageCover" Type="image" />
+    <Property Name="Posted_date" Type="date" />
+    <Property Name="movieDis" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="movieCastcrew">
+    <Key>
+      <PropertyRef Name="cast_id" />
+    </Key>
+    <Property Name="cast_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="movie_id" Type="int" />
+    <Property Name="cast_name" Type="varchar" MaxLength="100" />
+    <Property Name="cast_profile" Type="varchar(max)" />
+    <Property Name="crew_details" Type="varchar(max)" />
+    <Property Name="castDiscription" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="newsforum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="100" />
+    <Property Name="discription" Type="varchar" MaxLength="100" />
+    <Property Name="date" Type="date" />
+    <Property Name="imagepath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ordertable">
+    <Key>
+      <PropertyRef Name="orderid" />
+    </Key>
+    <Property Name="orderid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="prodid" Type="int" />
+    <Property Name="invoiceid" Type="int" />
+    <Property Name="orderDate" Type="datetime" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="bill" Type="float" />
+    <Property Name="unitprice" Type="int" />
+  </EntityType>
+  <EntityType Name="PhotoGallery">
+    <Key>
+      <PropertyRef Name="photoID" />
+    </Key>
+    <Property Name="photoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="moviPhotoId" Type="int" />
+    <Property Name="ipath" Type="varchar(max)" />
+    <Property Name="binary" Type="image" />
+    <Property Name="movietitle" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="replies">
+    <Key>
+      <PropertyRef Name="replyid" />
+    </Key>
+    <Property Name="replyid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="commentid" Type="int" />
+    <Property Name="replystatus" Type="varchar(max)" />
+    <Property Name="replytime" Type="datetime" />
+    <Property Name="useridR" Type="int" />
+  </EntityType>
+  <EntityType Name="Review_Table">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="varchar" MaxLength="100" />
+    <Property Name="rating" Type="float" />
+    <Property Name="DatePost" Type="datetime" />
+    <Property Name="movieT_ID" Type="int" />
+    <Property Name="userID" Type="int" />
+    <Property Name="cast_ratings" Type="float" />
+    <Property Name="castC_id" Type="int" />
+  </EntityType>
+  <EntityType Name="shoppingcart">
+    <Key>
+      <PropertyRef Name="shopid" />
+    </Key>
+    <Property Name="shopid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="movieItemDis" Type="int" />
+    <Property Name="price" Type="float" />
+    <Property Name="isavailable" Type="bit" />
+    <Property Name="PreviousPrice" Type="float" />
+    <Property Name="quantityavail" Type="int" />
+    <Property Name="coverphotopath" Type="varchar(max)" />
+    <Property Name="publishdate" Type="date" />
+  </EntityType>
+  <EntityType Name="trailertb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coverimage" Type="nvarchar(max)" />
+    <Property Name="trailerN" Type="nchar" MaxLength="100" />
+    <Property Name="path" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="usertbl">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nchar" MaxLength="100" />
+    <Property Name="email" Type="nchar" MaxLength="100" />
+    <Property Name="password" Type="nchar" MaxLength="100" />
+    <Property Name="roleid" Type="bit" />
+    <Property Name="user_ratings" Type="float" />
+    <Property Name="profile_pic" Type="nvarchar(max)" />
+    <Property Name="registeredDate" Type="date" />
+  </EntityType>
+  <Association Name="FK_castphotogallery_castphotogallery">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="castphotogallery" Type="Self.castphotogallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="castphotogallery">
+        <PropertyRef Name="castTableid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comments_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="comments" Type="Self.comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="comments">
+        <PropertyRef Name="movieid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_comments_usertbl">
+    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
+    <End Role="comments" Type="Self.comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="comments">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inovice_shoppingcart">
+    <End Role="shoppingcart" Type="Self.shoppingcart" Multiplicity="0..1" />
+    <End Role="inovice" Type="Self.inovice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="shoppingcart">
+        <PropertyRef Name="shopid" />
+      </Principal>
+      <Dependent Role="inovice">
+        <PropertyRef Name="orderid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_inovice_usertbl">
+    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
+    <End Role="inovice" Type="Self.inovice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="inovice">
+        <PropertyRef Name="userTblid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_movieCastcrew_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="movieCastcrew" Type="Self.movieCastcrew" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="movieCastcrew">
+        <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ordertable_inovice">
+    <End Role="inovice" Type="Self.inovice" Multiplicity="0..1" />
+    <End Role="ordertable" Type="Self.ordertable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="inovice">
+        <PropertyRef Name="invoiceid" />
+      </Principal>
+      <Dependent Role="ordertable">
+        <PropertyRef Name="invoiceid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ordertable_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="ordertable" Type="Self.ordertable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="ordertable">
+        <PropertyRef Name="prodid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhotoGallery_PhotoGallery">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="PhotoGallery" Type="Self.PhotoGallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="PhotoGallery">
+        <PropertyRef Name="moviPhotoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_replies_comments">
+    <End Role="comments" Type="Self.comments" Multiplicity="0..1" />
+    <End Role="replies" Type="Self.replies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comments">
+        <PropertyRef Name="cid" />
+      </Principal>
+      <Dependent Role="replies">
+        <PropertyRef Name="commentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_replies_usertbl">
+    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
+    <End Role="replies" Type="Self.replies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="replies">
+        <PropertyRef Name="useridR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="movieT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_movieCastcrew">
+    <End Role="movieCastcrew" Type="Self.movieCastcrew" Multiplicity="0..1" />
+    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movieCastcrew">
+        <PropertyRef Name="cast_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="castC_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_usertbl">
+    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
+    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_shoppingcart_shoppingcart">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="shoppingcart" Type="Self.shoppingcart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="shoppingcart">
+        <PropertyRef Name="movieItemDis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="castphotogallery" EntityType="Self.castphotogallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="heroarenatable" EntityType="Self.heroarenatable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="inovice" EntityType="Self.inovice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Landmark121" EntityType="Self.Landmark121" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movie_Item" EntityType="Self.Movie_Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="movieCastcrew" EntityType="Self.movieCastcrew" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="newsforum" EntityType="Self.newsforum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ordertable" EntityType="Self.ordertable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhotoGallery" EntityType="Self.PhotoGallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="replies" EntityType="Self.replies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Review_Table" EntityType="Self.Review_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="shoppingcart" EntityType="Self.shoppingcart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="trailertb" EntityType="Self.trailertb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usertbl" EntityType="Self.usertbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_castphotogallery_castphotogallery" Association="Self.FK_castphotogallery_castphotogallery">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="castphotogallery" EntitySet="castphotogallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comments_Movie_Item" Association="Self.FK_comments_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="comments" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_comments_usertbl" Association="Self.FK_comments_usertbl">
+      <End Role="usertbl" EntitySet="usertbl" />
+      <End Role="comments" EntitySet="comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inovice_shoppingcart" Association="Self.FK_inovice_shoppingcart">
+      <End Role="shoppingcart" EntitySet="shoppingcart" />
+      <End Role="inovice" EntitySet="inovice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_inovice_usertbl" Association="Self.FK_inovice_usertbl">
+      <End Role="usertbl" EntitySet="usertbl" />
+      <End Role="inovice" EntitySet="inovice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_movieCastcrew_Movie_Item" Association="Self.FK_movieCastcrew_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="movieCastcrew" EntitySet="movieCastcrew" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ordertable_inovice" Association="Self.FK_ordertable_inovice">
+      <End Role="inovice" EntitySet="inovice" />
+      <End Role="ordertable" EntitySet="ordertable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ordertable_Movie_Item" Association="Self.FK_ordertable_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="ordertable" EntitySet="ordertable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhotoGallery_PhotoGallery" Association="Self.FK_PhotoGallery_PhotoGallery">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="PhotoGallery" EntitySet="PhotoGallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_replies_comments" Association="Self.FK_replies_comments">
+      <End Role="comments" EntitySet="comments" />
+      <End Role="replies" EntitySet="replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_replies_usertbl" Association="Self.FK_replies_usertbl">
+      <End Role="usertbl" EntitySet="usertbl" />
+      <End Role="replies" EntitySet="replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_Movie_Item" Association="Self.FK_Review_Table_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_movieCastcrew" Association="Self.FK_Review_Table_movieCastcrew">
+      <End Role="movieCastcrew" EntitySet="movieCastcrew" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_usertbl" Association="Self.FK_Review_Table_usertbl">
+      <End Role="usertbl" EntitySet="usertbl" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK_shoppingcart_shoppingcart" Association="Self.FK_shoppingcart_shoppingcart">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="shoppingcart" EntitySet="shoppingcart" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

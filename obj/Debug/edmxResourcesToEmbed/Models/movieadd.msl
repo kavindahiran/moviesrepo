@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="moviesdb">
+    <EntitySetMapping Name="movietbl1">
+      <EntityTypeMapping TypeName="Models.movietbl1">
+        <MappingFragment StoreEntitySet="movietbl1">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ratings" ColumnName="ratings" />
+          <ScalarProperty Name="imgpath" ColumnName="imgpath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="heroarenatables">
+      <EntityTypeMapping TypeName="Models.heroarenatable">
+        <MappingFragment StoreEntitySet="heroarenatable">
+          <ScalarProperty Name="imagepath" ColumnName="imagepath" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="ratings" ColumnName="ratings" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="arenaid" ColumnName="arenaid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="newsforums">
+      <EntityTypeMapping TypeName="Models.newsforum">
+        <MappingFragment StoreEntitySet="newsforum">
+          <ScalarProperty Name="imagepath" ColumnName="imagepath" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="discription" ColumnName="discription" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trailertbs">
+      <EntityTypeMapping TypeName="Models.trailertb">
+        <MappingFragment StoreEntitySet="trailertb">
+          <ScalarProperty Name="coverimage" ColumnName="coverimage" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="trailerN" ColumnName="trailerN" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

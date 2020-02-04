@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="heroarenatable">
+    <Key>
+      <PropertyRef Name="arenaid" />
+    </Key>
+    <Property Name="arenaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ratings" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Movie_Item">
+    <Key>
+      <PropertyRef Name="movie_id" />
+    </Key>
+    <Property Name="movie_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Movie_name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Movie_release" Type="DateTime" />
+    <Property Name="Movie_director" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="imgpath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="imageCover" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Posted_date" Type="DateTime" />
+    <NavigationProperty Name="movieCastcrews" Relationship="Self.FK_movieCastcrew_Movie_Item" FromRole="Movie_Item" ToRole="movieCastcrew" />
+    <NavigationProperty Name="Review_Table" Relationship="Self.FK_Review_Table_Movie_Item" FromRole="Movie_Item" ToRole="Review_Table" />
+  </EntityType>
+  <EntityType Name="movieCastcrew">
+    <Key>
+      <PropertyRef Name="cast_id" />
+    </Key>
+    <Property Name="cast_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="movie_id" Type="Int32" />
+    <Property Name="cast_name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="cast_profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Movie_Item" Relationship="Self.FK_movieCastcrew_Movie_Item" FromRole="movieCastcrew" ToRole="Movie_Item" />
+  </EntityType>
+  <EntityType Name="newsforum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="discription" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="date" Type="DateTime" />
+    <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Review_Table">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="rating" Type="Double" />
+    <Property Name="DatePost" Type="DateTime" />
+    <Property Name="movieT_ID" Type="Int32" />
+    <Property Name="userID" Type="Int32" />
+    <NavigationProperty Name="Movie_Item" Relationship="Self.FK_Review_Table_Movie_Item" FromRole="Review_Table" ToRole="Movie_Item" />
+    <NavigationProperty Name="usertbl" Relationship="Self.FK_Review_Table_usertbl" FromRole="Review_Table" ToRole="usertbl" />
+  </EntityType>
+  <EntityType Name="trailertb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="coverimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="trailerN" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="usertbl">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="roleid" Type="Boolean" />
+    <Property Name="user_ratings" Type="Double" />
+    <Property Name="profile_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Review_Table" Relationship="Self.FK_Review_Table_usertbl" FromRole="usertbl" ToRole="Review_Table" />
+  </EntityType>
+  <Association Name="FK_movieCastcrew_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="movieCastcrew" Type="Self.movieCastcrew" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="movieCastcrew">
+        <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="movieT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_usertbl">
+    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
+    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="moviesdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="heroarenatables" EntityType="Self.heroarenatable" />
+    <EntitySet Name="Movie_Item" EntityType="Self.Movie_Item" />
+    <EntitySet Name="movieCastcrews" EntityType="Self.movieCastcrew" />
+    <EntitySet Name="newsforums" EntityType="Self.newsforum" />
+    <EntitySet Name="Review_Table" EntityType="Self.Review_Table" />
+    <EntitySet Name="trailertbs" EntityType="Self.trailertb" />
+    <EntitySet Name="usertbls" EntityType="Self.usertbl" />
+    <AssociationSet Name="FK_movieCastcrew_Movie_Item" Association="Self.FK_movieCastcrew_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="movieCastcrew" EntitySet="movieCastcrews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_Movie_Item" Association="Self.FK_Review_Table_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_usertbl" Association="Self.FK_Review_Table_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

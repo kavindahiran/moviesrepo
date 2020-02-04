@@ -1,0 +1,435 @@
+﻿@model RatingApp.Models.IndexPageViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<header class="header">
+    <div class="container">
+        <div class="header-area">
+            <div class="logo">
+                <a href="index-2.html"><img src="assets/img/molog.png" alt="logo" style="opacity: 0.2;filter: alpha(opacity=50);" /></a>
+            </div>
+            <div class="header-right">
+
+
+                @Html.Partial("~/Views/Home/movietitles.cshtml", Model.movietblList)
+
+                @if (Session["id"] == null)
+                {
+                    <ul>
+                        <li><a href="#">Welcome Guest!</a></li>
+                        <li><a class="login-popup" href="#">Login</a></li>
+
+                    </ul>
+                }
+                else if (Session["id"] != null)
+                {
+                    <ul>
+                        <li><a href="#">welcome @Session["regname"]</a></li>
+                        <li><a href="/Home/logout">logout</a></li>
+
+                    </ul>
+                }
+
+            </div>
+
+
+
+
+            <div class="login-area">
+                <div class="login-box">
+                    <a href="#"><i class="icofont icofont-close"></i></a>
+                    <h2>LOGIN</h2>
+                    <form action="Home/Login" method="post" id="myfrm">
+                        <h6>USERNAME OR EMAIL ADDRESS</h6>
+                        <input type="text" name="email" style="color:black" ; />
+                        <h6>PASSWORD</h6>
+                        <input type="text" name="password" style="color:black" ; />
+                        @*<div class="login-remember">
+                                <input type="checkbox" />
+                                <span>Remember Me</span>
+                            </div>*@
+                        <div class="login-signup">
+                            <input type="submit" value="Login" class="btn btn-default" />
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                @Html.ActionLink("register here", "register")
+
+                            </div>
+
+
+                        </div>
+                        @ViewBag.message
+                        <span>Or Via Social</span>
+                        <div class="login-social">
+                            <a href="#"><i class="icofont icofont-social-facebook"></i></a>
+                            <a href="#"><i class="icofont icofont-social-twitter"></i></a>
+                            <a href="#"><i class="icofont icofont-social-linkedin"></i></a>
+                            <a href="#"><i class="icofont icofont-social-google-plus"></i></a>
+                            <a href="#"><i class="icofont icofont-camera"></i></a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+
+            <div class="menu-area">
+                <div class="responsive-menu"></div>
+                <div class="mainmenu">
+                    <ul id="primary-menu">
+                        <li><a class="active" href="index-2.html">Home</a></li>
+                        <li><a href="@Url.Action("mydash","dashboard")">My Dashboard</a></li>
+                        <li><a href="@Url.Action("Index","charts")">My charts</a></li>
+                        <li><a href="@Url.Action("Index","Shop")">Movie Shop</a></li>
+                        @*<li><a href="celebrities.html">CelebritiesList</a></li>
+        <li><a href="top-movies.html">Top Movies</a></li>
+        <li><a href="blog.html">News</a></li>*@
+                        @*<li>
+            <a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
+            <ul>
+                <li><a href="blog-details.html">Blog Details</a></li>
+                <li><a href="movie-details.html">Movie Details</a></li>
+            </ul>
+        </li>*@
+                        @*<li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- hero area start -->
+<section class="hero-area" id="home">
+
+    @Html.Partial("~/Views/Home/heroArea.cshtml", Model.heroarenatableList)
+
+</section><!-- hero area end -->
+
+
+<section class="portfolio-area pt-60">
+
+    <div class="container">
+        <div class="row flexbox-center">
+            <div class="col-lg-6 text-center text-lg-left">
+                <div class="section-title">
+                    <h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+                <div class="portfolio-menu">
+                    <ul>
+                        <li data-filter="*" class="active">Latest</li>
+                        <li data-filter=".soon">Comming Soon</li>
+                        <li data-filter=".top">Top Rated</li>
+                        <li data-filter=".released">Recently Released</li>
+                        <li>
+
+                            @*@using (@Html.BeginForm("Index", "Home", FormMethod.Post))
+                            {*@
+
+
+                            <input type="text" id="name" onclick="SearchText()"/> <button><i class="icofont icofont-search"></i></button>
+
+
+                            @*}*@
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+
+
+
+            <div class="col-lg-9">
+
+                <div class="row portfolio-item" id="emp">
+
+
+                    @Html.Partial("~/Views/Shared/movietile.cshtml", Model.movietblList)
+
+                    @if (Model.movietblList.Count() == 0)
+                    {
+                        <br /><br />
+                        @*<h3>  No Movies found related to the following search</h3>*@
+
+                         Html.Partial("~/Views/Shared/movietile.cshtml", Model.movietblList);
+
+                    }
+                    else
+                    {
+
+                        //foreach (var item in Model)
+                        //{
+
+                        if (Model.movietblList != null)
+                        {
+                            Html.Partial("~/Views/Shared/movietile.cshtml", Model.movietblList);
+
+                        }
+                        @*}*@
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    @*<div class="col-md-4 col-sm-6 top">
+            <div class="single-portfolio">
+                <div class="single-portfolio-img">
+                    <img src="assets/img/portfolio/portfolio2.png" alt="portfolio" />
+                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                        <i class="icofont icofont-ui-play"></i>
+                    </a>
+                </div>
+                <div class="portfolio-content">
+                    <h2>Tale of Revemge</h2>
+                    <div class="review">
+                        <div class="author-review">
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                        </div>
+                        <h4>180k voters</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 soon">
+            <div class="single-portfolio">
+                <div class="single-portfolio-img">
+                    <img src="assets/img/portfolio/portfolio3.png" alt="portfolio" />
+                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                        <i class="icofont icofont-ui-play"></i>
+                    </a>
+                </div>
+                <div class="portfolio-content">
+                    <h2>The Lost City of Z</h2>
+                    <div class="review">
+                        <div class="author-review">
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                        </div>
+                        <h4>180k voters</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 top released">
+            <div class="single-portfolio">
+                <div class="single-portfolio-img">
+                    <img src="assets/img/portfolio/portfolio4.png" alt="portfolio" />
+                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                        <i class="icofont icofont-ui-play"></i>
+                    </a>
+                </div>
+                <div class="portfolio-content">
+                    <h2>Beast Beauty</h2>
+                    <div class="review">
+                        <div class="author-review">
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                        </div>
+                        <h4>180k voters</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 released">
+            <div class="single-portfolio">
+                <div class="single-portfolio-img">
+                    <img src="assets/img/portfolio/portfolio5.png" alt="portfolio" />
+                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                        <i class="icofont icofont-ui-play"></i>
+                    </a>
+                </div>
+                <div class="portfolio-content">
+                    <h2>In The Fade</h2>
+                    <div class="review">
+                        <div class="author-review">
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                        </div>
+                        <h4>180k voters</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6 soon top">
+            <div class="single-portfolio">
+                <div class="single-portfolio-img">
+                    <img src="assets/img/portfolio/portfolio6.png" alt="portfolio" />
+                    <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                        <i class="icofont icofont-ui-play"></i>
+                    </a>
+                </div>
+                <div class="portfolio-content">
+                    <h2>Last Hero</h2>
+                    <div class="review">
+                        <div class="author-review">
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                            <i class="icofont icofont-star"></i>
+                        </div>
+                        <h4>180k voters</h4>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 text-center text-lg-left">
+                <h3 style="padding-top:10px; color:red; margin-left:40px; padding-bottom:0px;margin-bottom:0px;">Advertising<br />Section</h3>
+                <div class="portfolio-sidebar">
+                    <img src="assets/img/sidebar/sidebar1.png" alt="sidebar" />
+                        <img src="assets/img/sidebar/sidebar2.png" alt="sidebar" />
+                        <img src="assets/img/sidebar/sidebar3.png" alt="sidebar" />
+                        <img src="assets/img/sidebar/sidebar4.png" alt="sidebar" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- video section start -->
+<section class="video ptb-90">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="section-title pb-20">
+                    <h1><i class="icofont icofont-film"></i> Trailers & Videos</h1>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+
+        @Html.Partial("~/Views/Home/showtrailer.cshtml", Model.trailertbList)
+
+    </div>
+</section><!-- video section end -->
+
+
+
+
+
+
+
+<script>
+    
+
+    function SearchText() { 
+    
+        $("#name").autocomplete({
+            source: function (request, response) {
+                var stext = $("#name").val();
+                
+                $.ajax({
+                    type: "POST",
+                    //contentType: "application/json; charset=utf-8",
+                    url: '/Home/Index?search=' + stext,
+                    //data: "{'searchterm':'" + stext + "'}",
+                    //dataType: "json",
+                    success: function (data) {
+                        $("#emp").html(data);
+                    },
+                    error: function (result) {
+                        alert("No Match");
+                    }
+                });
+            }
+        });
+    }
+
+
+
+    var loginhere = function () {
+        debugger
+        var data = $("#myfrm").serialize()
+
+        $.ajax(
+
+            {
+                type: "post",
+                url: "/Home/Login",
+                data: data,
+                success: function (response) {
+                    debugger
+                    if (response == "fail") {
+                        window.location.href = "/Home/Index"
+                        alert("invalid login")
+                    }
+                    else if (response == "general user") {
+                        window.location.href = "/Home/Index"
+                    }
+                    else if (response == "admin") {
+                        window.location.href = "/Home/Index"
+                    }
+
+                }
+
+
+
+            })
+    }
+
+
+
+
+
+    
+
+</script>

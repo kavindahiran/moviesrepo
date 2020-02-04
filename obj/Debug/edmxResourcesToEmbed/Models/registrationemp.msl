@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="regdb">
+    <EntitySetMapping Name="regemps">
+      <EntityTypeMapping TypeName="Models.regemp">
+        <MappingFragment StoreEntitySet="regemp">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="regname" ColumnName="regname" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="roleid" ColumnName="roleid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

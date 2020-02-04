@@ -1,0 +1,85 @@
+﻿@model IEnumerable<RatingApp.Models.shopviewmodel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Movie_Shop.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <h3 class="h3">shopping Demo-1 </h3>
+
+
+    <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-10">
+            @if (TempData["total"] == null)
+            {
+
+                <h3>
+                    Total Bill: 0 Rs
+                </h3>
+            }
+            else
+            {
+                <h3> Total Bill: @TempData["total"] Rs</h3>
+
+            }
+
+        </div>
+
+
+        <div class="col-lg-2 col-md-2 col-sm-2">
+            <h3 style="color:#808080; font-family:'Arial Rounded MT';text-align:center"> <span class="btn btn-info">@Html.ActionLink("Check Out", "checkout", "Shop")</span></h3>
+        </div>
+
+
+
+
+    </div>
+
+
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="#">
+                            <img class="pic-1" src="@Url.Content(item.movieitems.imgpath)">
+
+                            <img class="pic-2" src="@Url.Content(item.cart.coverphotopath)">
+                        </a>
+                        <ul class="social">
+                            <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                            <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                        <span class="product-new-label">Sale</span>
+                        <span class="product-discount-label">20%</span>
+                    </div>
+                    <ul class="rating">
+                        <li class="fa fa-star"></li>
+                        <li class="fa fa-star"></li>
+                        <li class="fa fa-star"></li>
+                        <li class="fa fa-star"></li>
+                        <li class="fa fa-star disable"></li>
+                    </ul>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">@item.movieitems.Movie_name</a></h3>
+                        <div class="price">
+                            $16.00
+                            <span>@item.cart.price</span>
+                        </div>
+                        <a class="add-to-cart" href="">@Html.ActionLink("add-to-cart", "Adtocart", new { movie_id = item.movieitems.movie_id })</a>
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+
+</div>
+<hr>
+
+

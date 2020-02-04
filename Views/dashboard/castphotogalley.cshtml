@@ -1,0 +1,178 @@
+﻿@model RatingApp.Models.customizableCastAndMovie
+@{
+    ViewBag.Title = "castphotogalley";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/content1.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+
+<div class="row">
+    <div class="col-md-3 register-left">
+        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+        <h3>Welcome</h3>
+        <p>You are 30 seconds away from earning your own money!</p>
+        @*<input type="submit" name="" value="Login" /><br />*@
+    </div>
+    <div class="col-md-9 register-right">
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3 class="register-heading">Apply as a Employee</h3>
+
+                <div class="row register-form">
+                    <div class="col-md-9">
+                        <br /><br />  <br /><br />  <br /><br />  <br /><br />
+
+
+
+                        <div class="form-horizontal" style="margin-left:50px">
+                            @*<div class="col-md-3">
+
+                                    @{ Html.RenderAction("SideMenu", "Test");}                           new { htmlAttributes = new { @class = "form-control" }    , id = "onc"
+
+                                </div>*@
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.cast_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-9">
+                                    @Html.DropDownListFor(model => model.cast_id, ViewBag.DepartmentList as SelectList, "--select--", new { htmlAttributes = new { @class = "form-control" }, id = "onc" })
+                                </div>
+                            </div>
+
+                            @Html.LabelFor(model => model.castIpath, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="form-group">
+                                <div class="panel panel-body" style="min-height:256px">
+
+                                    <div class="col-md-7">
+                                        <div class="btn btn-primary">
+                                            <input type="file" id="imageBrowes" />
+                                        </div>
+                                        <hr />
+
+                                        <div id="imgPreview" class="thumbnail" style="display:none">
+                                            <img class="img-responsive" id="targetImg" />
+                                            <div class="caption">
+                                                <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                                <span id="description"></span>
+                                            </div>
+                                            <a href="#" class="btn btn-default" onclick="Uploadimage()">Upload</a>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-2 thumbnail" id="uploadedImage">
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#imageBrowes").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+
+        })
+
+    })
+
+
+    var ReadImage = function (file) {
+
+        var reader = new FileReader;
+        var image = new Image;
+
+        reader.readAsDataURL(file);
+        reader.onload = function (_file) {
+
+            image.src = _file.target.result;
+            image.onload = function () {
+
+                var height = this.height;
+                var width = this.width;
+                var type = file.type;
+                var size = ~~(file.size / 1024) + "KB";
+
+                $("#targetImg").attr('src', _file.target.result);
+                $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                $("#imgPreview").show();
+
+            }
+
+        }
+
+    }
+
+    var ClearPreview = function () {
+        $("#imageBrowes").val('');
+        $("#description").text('');
+        $("#imgPreview").hide();
+
+    }
+    var a
+    $("#onc").change(function () {
+
+        a = $("#onc Option:Selected").text();
+        $("#span1").text(a);
+    })
+    var Uploadimage = function () {
+        debugger;
+
+
+        var file = $("#imageBrowes").get(0).files;
+
+        var data = new FormData;
+        data.append("ImageFile", file[0]);
+        data.append("ProductName", "SamsungA8");
+        data.append("cast_id", a);
+
+
+        $.ajax({
+
+            type: "Post",
+            url: "/dashboard/castgalleysendimage/",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (id) {
+                ClearPreview();
+                $("#uploadedImage").append('<img src="/dashboard/castgalleyretrieve?photoID=' + id + '" class="img-responsive thumbnail"/>');
+                // $("#uploadedImage").append('<img src="/UploadedImage/' + response + '" class="img-responsive thumbnail"/>');
+
+
+            }
+
+        })
+
+
+        //
+    }
+
+</script>
+

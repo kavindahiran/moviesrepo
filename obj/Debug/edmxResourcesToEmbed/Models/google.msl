@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="mapgoodb">
+    <EntitySetMapping Name="Landmarks1">
+      <EntityTypeMapping TypeName="Models.Landmarks1">
+        <MappingFragment StoreEntitySet="Landmarks1">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LandmarkName" ColumnName="LandmarkName" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="GeoLocation" ColumnName="GeoLocation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

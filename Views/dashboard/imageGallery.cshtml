@@ -1,0 +1,134 @@
+﻿@model RatingApp.Models.customimagemodel
+@{
+    ViewBag.Title = "imageGallery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-body" style="min-height:256px">
+
+    @*<div class="col-md-3">
+
+            @{ Html.RenderAction("SideMenu", "Test");}
+
+        </div>*@
+    <div class="col-md-9">
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.movie_id, ViewBag.DepartmentList as SelectList, "--select--", new { @class = "form-control",id = "onc"})
+        <span id="span1"></span>
+        </div>
+      <br /><br />
+        <div class="col-md-4">
+            <div class="btn btn-primary">
+                <input type="file" id="imageBrowes" />
+            </div>
+            <hr />
+
+            <div id="imgPreview" class="thumbnail" style="display:none">
+                <img class="img-responsive" id="targetImg" />
+                <div class="caption">
+                    <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                    <span id="description"></span>
+                </div>
+                <a href="#" class="btn btn-default" onclick="Uploadimage()">Upload</a>
+            </div>
+
+        </div>
+        <div class="col-md-2 thumbnail" id="uploadedImage">
+
+
+        </div>
+    </div>
+
+
+    </div>
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#imageBrowes").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+
+        })
+
+    })
+
+
+    var ReadImage = function (file) {
+
+        var reader = new FileReader;
+        var image = new Image;
+
+        reader.readAsDataURL(file);
+        reader.onload = function (_file) {
+
+            image.src = _file.target.result;
+            image.onload = function () {
+
+                var height = this.height;
+                var width = this.width;
+                var type = file.type;
+                var size = ~~(file.size / 1024) + "KB";
+
+                $("#targetImg").attr('src', _file.target.result);
+                $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                $("#imgPreview").show();
+
+            }
+
+        }
+
+    }
+
+    var ClearPreview = function () {
+        $("#imageBrowes").val('');
+        $("#description").text('');
+        $("#imgPreview").hide();
+
+    }
+     var a
+     $("#onc").change(function () {
+
+            a = $("#onc Option:Selected").text();
+            $("#span1").text(a);
+        })
+    var Uploadimage = function () {
+        debugger;
+        
+       
+        var file = $("#imageBrowes").get(0).files;
+
+        var data = new FormData;
+        data.append("ImageFile", file[0]);
+        data.append("ProductName", "SamsungA8");
+        data.append("movie_id", a);
+
+       
+        $.ajax({
+            
+            type: "Post",
+            url: "/dashboard/imau/",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (photoID) {
+                ClearPreview();
+                 $("#uploadedImage").append('<img src="/Home/ImageRetrieve?photoID=' + photoID + '" class="img-responsive thumbnail"/>');
+               // $("#uploadedImage").append('<img src="/UploadedImage/' + response + '" class="img-responsive thumbnail"/>');
+
+
+            }
+
+        })
+
+
+        //
+    }
+
+</script>

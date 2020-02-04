@@ -1,0 +1,372 @@
+﻿@model RatingApp.Models.Review_Table
+@{
+    ViewBag.Title = "details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/assets/js/jquery.min.js"></script>
+<link href="~/assets/js/jquery.rateyo.min.css" rel="stylesheet" />
+<script src="~/assets/js/jquery.rateyo.js"></script>
+<link href="~/assets/css/rating css/ratingcss.css" rel="stylesheet" />
+<link href="~/Content/movie details view/ratingdetail.css" rel="stylesheet" />
+<script>
+
+    $(function () {
+
+        $("#rateYo").rateYo({
+            starWidth: "40px",
+            normalFill: "#A0A0A0",
+            numStars: 5,
+            maxValue: 5,
+            halfStar: true,
+            onChange: function (rating, rateYoInstance) {
+                $('#rating').val(rating);
+
+            }
+
+
+        });
+
+    });
+
+
+</script>
+
+
+
+
+
+    <section class="our_offer single_page_offer">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-xl-5">
+                    <div class="section_tittle">
+                        <p>best Courses</p>
+                        <h2>Why you Join with us</h2>
+                        <span>Stars fowl deep she greater bearing to seed dont is let you're appear first thing saying it years abundantly fowl tree you shall also</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-lg-12">
+                    @if (ViewBag.gall != null)
+                    {
+                        foreach (var item in ViewBag.gall)
+                        {
+
+
+                            <div class="single_offer_part">
+                                <div class="single_offer">
+                                    <img src="@Url.Content(item.ipath)" alt="portfolio" />
+                                    <div class="hover_text">
+                                        <h2>Fitness Training</h2>
+                                        <p>Fly replenish dominion evening make veriety of </p>
+                                        <a href="#" class="offer_btn"><span class="flaticon-slim-right"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+<br /><br />
+
+    <section class="ftco-section work-single ftco-no-pt ftco-no-pb">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-stretch">
+
+                    <div class=" img-responsive img-circle w-100" style="background-image: url('@Url.Content(ViewBag.product.imgpath)');"></div>
+                </div>
+                <div class="col-md-6 py-md-5">
+                    <div class="text pl-md-5 py-5">
+                        <h2><a href="work-single.html">Beautiful Work</a></h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                        <blockquote class="blockquote mt-5">
+                            <p class="mb-2">"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia.."</p>
+                            <span>&mdash; Lucy Lee</span>
+                        </blockquote>
+
+                        <div class="work-info mb-4">
+                            <span>Project Name</span>
+                            <h3>Beautiful Girl</h3>
+                        </div>
+
+                        <div class="work-info mb-4">
+                            <span>My Role</span>
+                            <h3>Experimental</h3>
+                        </div>
+
+                        <div class="work-info mb-4">
+                            <span>Project Name</span>
+                            <h3><span class="mr-2">Agency</span> <span class="mr-2">Fashion</span> <span class="mr-2">Model</span> <span class="mr-2">Photo</span></h3>
+                        </div>
+
+                        <ul class="ftco-footer-social p-0">
+                            <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    @*<div>
+
+            <table border="1">
+               @{int i = 1; }
+                @foreach (var rev in ViewBag.product.Review_Table)
+                {
+                    <tr>
+                            <td>username</td>
+                            <td>@rev.account.username</td>
+                        </tr>
+                    <tr>
+                        <td>ratingRatio</td>
+                        <td>
+                            <script>
+                               $(function(){
+                                   $('#@("rating" +i)').rateYo({
+                                       rating:@rev.rating,
+                                       readOnly: true
+                                   });
+                               });
+                            </script>
+                            <div id="@("rating" +i)"></div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>content</td>
+                        <td>
+                            @rev.Content
+                            <br />
+                        </td>
+                    </tr>
+
+                    //i++;
+                }
+            </table>
+        </div>*@
+<div class="container-contact100">
+    <section>
+        <div class="wrap-contact100">
+
+            <span class="contact100-form-title">
+                add your ratings and comments
+            </span>
+            @if (Session["regname"] == null)
+            {
+                <span class="contact100-form">
+                    <a href="@Url.Action("index", "Home")">Login here to add ratings</a>
+                </span>
+                
+            }
+            else
+            {
+                using (Html.BeginForm("sendReview", "dashboard", FormMethod.Post, htmlAttributes: new { @class = "contact100-form validate-form" }))
+                {
+                    @*<label class="label-input100" for="first-name">Tell us your name *</label>*@
+                    @Html.LabelFor(model => model.rating, htmlAttributes: new { @class = "label-input100" })
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        @*<input id="first-name" class="input100" type="text" name="first-name" placeholder="First name">*@
+                        <div id="rateYo"></div>
+                        <input type="hidden" id="rating" name="rating" class="form-control" />
+                        <span class="focus-input100"></span>
+                    </div>
+                    @*<div class="wrap-input100 rs2-wrap-input100 validate-input" data-validate="Type last name">
+                            <input class="input100" type="text" name="last-name" placeholder="Last name">
+                            <span class="focus-input100"></span>
+                        </div>*@
+
+                    @*<label class="label-input100" for="email">Enter your email *</label>*@
+                    @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "label-input100" })
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        @*<input id="email" class="input100" type="text" name="email" placeholder="Eg. example@email.com">*@
+                        @Html.TextAreaFor(model => model.Content,@*new { cols = 20, rows = 5 }*@ new { htmlAttributes = new { @class = "form-control", cols = 20, rows = 5 } })
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    @Html.HiddenFor(model => model.userID);
+                    @Html.HiddenFor(model => model.movieT_ID);
+
+                    @Html.DisplayFor(model => model.userID)
+                    @Html.DisplayFor(model => model.movieT_ID)
+                    @*<label class="label-input100" for="phone">Enter phone number</label>
+                        <div class="wrap-input100">
+                            <input id="phone" class="input100" type="text" name="phone" placeholder="Eg. +1 800 000000">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <label class="label-input100" for="message">Message *</label>
+                        <div class="wrap-input100 validate-input" data-validate="Message is required">
+                            <textarea id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
+                            <span class="focus-input100"></span>
+                        </div>*@
+
+                    <div class="container-contact100-form-btn">
+                        @*<button class="contact100-form-btn">
+                                Send Message
+                            </button>*@
+                        <input type="submit" value="submit" name="bt2" class="contact100-form-btn" />
+                        @Html.HiddenFor(model => model.movieT_ID)
+                    </div>
+                }
+            }
+            @*</form>*@
+
+
+            <div class="contact100-more flex-col-c-m" style="background-image: url('@Url.Content(ViewBag.product.imgpath)');">
+
+                <div class="flex-w size1 p-b-47">
+                    <div class="txt1 p-r-25">
+                        <span class="lnr lnr-map-marker"></span>
+                    </div>
+
+                    <div class="flex-col size2">
+                        <span class="txt1 p-b-20">
+                            Movie Name
+                        </span>
+
+                        <span class="txt2">
+                            @ViewBag.product.Movie_name
+                        </span>
+                    </div>
+                </div>
+
+                <div class="dis-flex size1 p-b-47">
+                    <div class="txt1 p-r-25">
+                        <span class="lnr lnr-phone-handset"></span>
+                    </div>
+
+                    <div class="flex-col size2">
+                        <span class="txt1 p-b-20">
+                            Movie Realaase Date
+                        </span>
+
+                        <span class="txt3">
+                            @ViewBag.product.Movie_release
+                        </span>
+                    </div>
+                </div>
+
+                <div class="dis-flex size1 p-b-47">
+                    <div class="txt1 p-r-25">
+                        <span class="lnr lnr-envelope"></span>
+                    </div>
+
+                    <div class="flex-col size2">
+                        <span class="txt1 p-b-20">
+                            Movie Ratings
+                        </span>
+                        @{int i = 1; }
+                        @foreach (var rev in ViewBag.product.Review_Table)
+                        {
+
+
+
+                            @*<tr>
+                                    <td>username</td>
+                                    <td>@rev.account.username</td>
+                                </tr>*@
+
+                            <script>
+                       $(function(){
+                           $('#@("rating" +i)').rateYo({
+                               rating:@rev.rating,
+                               readOnly: true
+                           });
+                       });
+                            </script>
+                            <div id="@("rating" +i)"></div>
+
+
+
+
+
+                            i++;
+
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+@*<div>
+        <h1>product details</h1>
+        <table border="1">
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td>@ViewBag.product.movie_id</td>
+                </tr>
+                <tr>
+                    <td>name</td>
+                    <td>@ViewBag.product.Movie_name</td>
+                </tr>
+                <tr>
+                    <td>photo</td>
+                    <td><img src="@Url.Content(ViewBag.product.imgpath)" alt="portfolio" /></td>
+                </tr>
+                <tr>
+                    <td>quantity</td>
+                    <td>@ViewBag.product.Movie_release</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><a href="@Url.Action("Index","Product")">back  tom list</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>*@
+
+
+@*@if (Session["regname"] == null)
+    {
+        <a href="@Url.Action("index","Home")">Login here to add ratings</a>
+    }
+    else
+    {*@
+@*using (Html.BeginForm("sendReview", "dashboard", FormMethod.Post))
+    {*@
+@*<table cellpadding="10" , cellspacing="10">
+
+        <tr>
+            <td>@Html.LabelFor(model => model.rating)</td>
+            <td>
+                <div id="rateYo"></div>
+                <input type="hidden" id="rating" name="rating" />
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="top">@Html.LabelFor(model => model.Content)</td>
+            <td>@Html.TextAreaFor(model => model.Content, new { cols = 20, rows = 5 })</td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="submit" name="bt2" />
+                @Html.HiddenFor(model => model.movieT_ID)
+            </td>
+        </tr>
+
+
+    </table>
+                }
+            }*@
+

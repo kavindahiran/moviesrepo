@@ -1,0 +1,15 @@
+﻿#sidebar-container {
+    min-height: 200vh;
+    background-color: #132644;
+    padding: 0;
+    /* flex: unset; */
+}
+
+.sidebar-expanded {
+    width: 230px;
+}
+
+.sidebar-collapsed {
+    /*width: 60px;*/
+    width: 100px;
+}

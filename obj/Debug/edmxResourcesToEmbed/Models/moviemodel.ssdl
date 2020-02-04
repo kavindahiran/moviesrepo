@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="heroarenatable">
+    <Key>
+      <PropertyRef Name="arenaid" />
+    </Key>
+    <Property Name="arenaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="ratings" Type="int" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="imagepath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Movie_Item">
+    <Key>
+      <PropertyRef Name="movie_id" />
+    </Key>
+    <Property Name="movie_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Movie_name" Type="nchar" MaxLength="100" />
+    <Property Name="Movie_release" Type="date" />
+    <Property Name="Movie_director" Type="nchar" MaxLength="100" />
+    <Property Name="imgpath" Type="varchar(max)" />
+    <Property Name="imageCover" Type="image" />
+    <Property Name="Posted_date" Type="date" />
+  </EntityType>
+  <EntityType Name="movieCastcrew">
+    <Key>
+      <PropertyRef Name="cast_id" />
+    </Key>
+    <Property Name="cast_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="movie_id" Type="int" />
+    <Property Name="cast_name" Type="nchar" MaxLength="100" />
+    <Property Name="cast_profile" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="newsforum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nchar" MaxLength="100" />
+    <Property Name="discription" Type="nchar" MaxLength="100" />
+    <Property Name="date" Type="date" />
+    <Property Name="imagepath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Review_Table">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="review_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nchar" MaxLength="100" />
+    <Property Name="rating" Type="float" />
+    <Property Name="DatePost" Type="datetime" />
+    <Property Name="movieT_ID" Type="int" />
+    <Property Name="userID" Type="int" />
+  </EntityType>
+  <EntityType Name="trailertb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coverimage" Type="nvarchar(max)" />
+    <Property Name="trailerN" Type="nchar" MaxLength="100" />
+    <Property Name="path" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="usertbl">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nchar" MaxLength="100" />
+    <Property Name="email" Type="nchar" MaxLength="100" />
+    <Property Name="password" Type="nchar" MaxLength="100" />
+    <Property Name="roleid" Type="bit" />
+    <Property Name="user_ratings" Type="float" />
+    <Property Name="profile_pic" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_movieCastcrew_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="movieCastcrew" Type="Self.movieCastcrew" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="movieCastcrew">
+        <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="movieT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_usertbl">
+    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
+    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="heroarenatable" EntityType="Self.heroarenatable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movie_Item" EntityType="Self.Movie_Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="movieCastcrew" EntityType="Self.movieCastcrew" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="newsforum" EntityType="Self.newsforum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Review_Table" EntityType="Self.Review_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="trailertb" EntityType="Self.trailertb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usertbl" EntityType="Self.usertbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_movieCastcrew_Movie_Item" Association="Self.FK_movieCastcrew_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="movieCastcrew" EntitySet="movieCastcrew" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_Movie_Item" Association="Self.FK_Review_Table_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_usertbl" Association="Self.FK_Review_Table_usertbl">
+      <End Role="usertbl" EntitySet="usertbl" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

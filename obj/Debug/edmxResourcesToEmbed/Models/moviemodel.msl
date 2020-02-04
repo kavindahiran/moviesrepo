@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="moviesdbEntities">
+    <EntitySetMapping Name="heroarenatables">
+      <EntityTypeMapping TypeName="Models.heroarenatable">
+        <MappingFragment StoreEntitySet="heroarenatable">
+          <ScalarProperty Name="arenaid" ColumnName="arenaid" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ratings" ColumnName="ratings" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="imagepath" ColumnName="imagepath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movie_Item">
+      <EntityTypeMapping TypeName="Models.Movie_Item">
+        <MappingFragment StoreEntitySet="Movie_Item">
+          <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+          <ScalarProperty Name="Movie_name" ColumnName="Movie_name" />
+          <ScalarProperty Name="Movie_release" ColumnName="Movie_release" />
+          <ScalarProperty Name="Movie_director" ColumnName="Movie_director" />
+          <ScalarProperty Name="imgpath" ColumnName="imgpath" />
+          <ScalarProperty Name="imageCover" ColumnName="imageCover" />
+          <ScalarProperty Name="Posted_date" ColumnName="Posted_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="movieCastcrews">
+      <EntityTypeMapping TypeName="Models.movieCastcrew">
+        <MappingFragment StoreEntitySet="movieCastcrew">
+          <ScalarProperty Name="cast_id" ColumnName="cast_id" />
+          <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+          <ScalarProperty Name="cast_name" ColumnName="cast_name" />
+          <ScalarProperty Name="cast_profile" ColumnName="cast_profile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="newsforums">
+      <EntityTypeMapping TypeName="Models.newsforum">
+        <MappingFragment StoreEntitySet="newsforum">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="discription" ColumnName="discription" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="imagepath" ColumnName="imagepath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review_Table">
+      <EntityTypeMapping TypeName="Models.Review_Table">
+        <MappingFragment StoreEntitySet="Review_Table">
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="DatePost" ColumnName="DatePost" />
+          <ScalarProperty Name="movieT_ID" ColumnName="movieT_ID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trailertbs">
+      <EntityTypeMapping TypeName="Models.trailertb">
+        <MappingFragment StoreEntitySet="trailertb">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="coverimage" ColumnName="coverimage" />
+          <ScalarProperty Name="trailerN" ColumnName="trailerN" />
+          <ScalarProperty Name="path" ColumnName="path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usertbls">
+      <EntityTypeMapping TypeName="Models.usertbl">
+        <MappingFragment StoreEntitySet="usertbl">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="roleid" ColumnName="roleid" />
+          <ScalarProperty Name="user_ratings" ColumnName="user_ratings" />
+          <ScalarProperty Name="profile_pic" ColumnName="profile_pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

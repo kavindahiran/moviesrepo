@@ -1,0 +1,395 @@
+﻿
+.container-contact100 {
+    background-color: white;
+}
+
+.wrap-contact100 {
+    background-color: #7f7f7f;
+}
+
+#sidebar-container {
+    min-height: 270vh;
+}
+
+.about_us .amitated_icon_5 {
+    position: absolute;
+    right: 1%;
+    top: 5%;
+}
+
+img w-100
+.aside-stretch {
+    background: #191a1c !important;
+}
+
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+figure-img {
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.card-img {
+    width: 100%;
+    border-radius: calc(0.25rem - 1px);
+}
+.ftco-about .img-about {
+    width: 100%;
+    z-index: 0;
+    position: relative;
+}
+
+    .ftco-about .img-about .img {
+        display: block;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+    }
+@media (max-width: 767.98px) {
+    .work-single .img {
+        height: 600px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .ftco-about .img-about .img {
+        height: 400px;
+        margin-bottom: 20px;
+    }
+}
+
+.ftco-about .img-about-2 {
+    height: 300px;
+    width: 100%;
+}
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+}
+
+.card-img-bottom {
+    width: 100%;
+    border-bottom-right-radius: calc(0.25rem - 1px);
+    border-bottom-left-radius: calc(0.25rem - 1px);
+}
+
+
+
+.card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+}
+
+.img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    max-width: 100%;
+    height: auto;
+}
+
+
+.aside-stretch:after {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    bottom: 0;
+    content: '';
+    width: 360%;
+    background: #191a1c;
+}
+
+.our_offer .single_offer_part:hover .single_offer:after {
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+}
+
+/* line 42, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+.our_offer .single_offer_part:hover .single_offer .hover_text {
+    opacity: 1;
+}
+
+/* line 48, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+.our_offer .single_offer_part {
+    width: 25%;
+    float: left;
+}
+
+
+
+    /* line 67, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+    .our_offer .single_offer_part .single_offer {
+        position: relative;
+        z-index: 1;
+    }
+
+        /* line 70, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+        .our_offer .single_offer_part .single_offer:after {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 20%;
+            height: 20%;
+            opacity: 0.5;
+            background-color: #0c1028;
+            content: "";
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        /* line 82, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+        .our_offer .single_offer_part .single_offer img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* line 86, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+        .our_offer .single_offer_part .single_offer .hover_text {
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            margin: 0 auto;
+            top: 40%;
+            z-index: 2;
+            opacity: 0;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+        }
+
+            /* line 96, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text h2 {
+                color: #fff;
+                font-size: 30px;
+            }
+
+            /* line 100, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text p {
+                color: #fff;
+                margin-bottom: 9px;
+            }
+
+            /* line 104, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn {
+                position: relative;
+                z-index: 1;
+            }
+
+                /* line 107, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+                .our_offer .single_offer_part .single_offer .hover_text .offer_btn:after {
+                    position: absolute;
+                    left: -20px;
+                    top: -24px;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50px;
+                    content: "";
+                    z-index: -1;
+                    box-shadow: 0px 10px 20px 0px rgba(250, 22, 61, 0.3);
+                    -webkit-transition: 0.5s;
+                    transition: 0.5s;
+                }
+
+                /* line 121, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+                .our_offer .single_offer_part .single_offer .hover_text .offer_btn:hover:after {
+                    width: 60px;
+                }
+
+                /* line 124, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+                .our_offer .single_offer_part .single_offer .hover_text .offer_btn:hover span {
+                    padding-left: 5%;
+                }
+
+                /* line 128, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+                .our_offer .single_offer_part .single_offer .hover_text .offer_btn span {
+                    color: #fff;
+                    font-size: 50px;
+                    padding-left: 0%;
+                    -webkit-transition: 0.5s;
+                    transition: 0.5s;
+                }
+
+
+    .our_offer .single_offer_part:hover .single_offer:after {
+        width: 100%;
+        height: 100%;
+        opacity: .5;
+    }
+
+    /* line 42, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+    .our_offer .single_offer_part:hover .single_offer .hover_text {
+        opacity: 1;
+    }
+
+    .our_offer .single_offer_part:hover .single_offer .hover_text {
+        opacity: 1;
+    }
+
+    .our_offer .single_offer_part .single_offer .hover_text {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: 0 auto;
+        top: 40%;
+        z-index: 2;
+        opacity: 0;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+        /* line 96, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+        .our_offer .single_offer_part .single_offer .hover_text h2 {
+            color: #fff;
+            font-size: 30px;
+        }
+
+        /* line 100, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+        .our_offer .single_offer_part .single_offer .hover_text p {
+            color: #fff;
+            margin-bottom: 9px;
+        }
+
+        /* line 104, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+        .our_offer .single_offer_part .single_offer .hover_text .offer_btn {
+            position: relative;
+            z-index: 1;
+        }
+
+            /* line 107, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn:after {
+                position: absolute;
+                left: -20px;
+                top: -24px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50px;
+                content: "";
+                z-index: -1;
+                box-shadow: 0px 10px 20px 0px rgba(250, 22, 61, 0.3);
+                -webkit-transition: 0.5s;
+                transition: 0.5s;
+            }
+.w-100 {
+    width: 100% !important;
+}
+
+
+            /* line 121, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn:hover:after {
+                width: 60px;
+            }
+
+            /* line 124, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn:hover span {
+                padding-left: 5%;
+            }
+
+            /* line 128, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn span {
+                color: #fff;
+                font-size: 50px;
+                padding-left: 0%;
+                -webkit-transition: 0.5s;
+                transition: 0.5s;
+            }
+
+        .our_offer .single_offer_part .single_offer .hover_text .offer_btn {
+            position: relative;
+            z-index: 1;
+        }
+
+            /* line 107, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn:after {
+                position: absolute;
+                left: -20px;
+                top: -24px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50px;
+                content: "";
+                z-index: -1;
+                box-shadow: 0px 10px 20px 0px rgba(250, 22, 61, 0.3);
+                -webkit-transition: 0.5s;
+                transition: 0.5s;
+            }
+
+            /* line 121, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn:hover:after {
+                width: 60px;
+            }
+
+            /* line 124, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn:hover span {
+                padding-left: 5%;
+            }
+
+            /* line 128, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_our_offer.scss */
+            .our_offer .single_offer_part .single_offer .hover_text .offer_btn span {
+                color: #fff;
+                font-size: 50px;
+                padding-left: 0%;
+                -webkit-transition: 0.5s;
+                transition: 0.5s;
+            }
+
+blockquote {
+    border: 1px solid #adb5bd;
+    page-break-inside: avoid;
+}
+
+.work-single .work-info h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* line 117, E:/171 Fitzone Fitness/171_ Fitzone_Fitness_html/sass/_about_us.scss */
+.about_us .rotated_icon span {
+    transform: rotate(45deg);
+}
+
+.ftco-section {
+    padding: 7em 0;
+}
+
+.ftco-no-pt {
+    padding-top: 0;
+}
+
+.ftco-no-pb {
+    padding-bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+

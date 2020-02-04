@@ -1,0 +1,194 @@
+﻿@model RatingApp.Models.customizableshopmoviemodal
+@{
+    ViewBag.Title = "addShopitem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>addShopitem</h2>
+@using (Html.BeginForm("addShopitem", "dashboard", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal" style="margin-left:30px;">
+    <hr />
+    <div class="form-group">
+        @Html.LabelFor(model => model.Movie_name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(model => model.movie_id, ViewBag.itemlist as SelectList, "--select--", new { htmlAttributes = new { @class = "form-control" }, id = "onc", name="drop" })
+        </div>
+    </div>
+    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PreviousPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.PreviousPrice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PreviousPrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.quantityavail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.quantityavail, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.quantityavail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.Movie_Ratigs, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Movie_Ratigs, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Movie_Ratigs, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+
+    @Html.LabelFor(model => model.coverphotopath, htmlAttributes: new { @class = "control-label col-md-2" })
+    @*<div class="col-md-10">
+            <input type="file" name="ImageFile" required>
+        </div>*@
+
+    <div class="panel panel-body" style="min-height:256px">
+
+
+
+        <div class="col-md-7">
+            <div class="btn btn-primary">
+                <input type="file" id="imageBrowes" name="ImageFile" />
+            </div>
+            <hr />
+
+            <div id="imgPreview" class="thumbnail" style="display:none">
+                <img class="img-responsive" id="targetImg" />
+                <div class="caption">
+                    <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                    <span id="description"></span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3 thumbnail" id="uploadedImage">
+
+        </div>
+    </div>
+    @*<div class="form-group">
+            <div class="col-md-offset-2 col-md-9">
+                <a href="#"><i class="glyphicon glyphicon-eye-open" onclick="Uploadimage()"></i>Preview</a>
+            </div>
+        </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-9">
+            <input type="submit" value="Create" class="btn btn-primary btn-lg active" aria-pressed="true" style="margin-left:10px;" />
+        </div>
+    </div>
+
+
+    @ViewBag.message
+</div>
+}
+
+
+
+
+
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#imageBrowes").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+
+        })
+
+
+    })
+
+
+    var ReadImage = function (file) {
+
+        var reader = new FileReader;
+        var image = new Image;
+
+        reader.readAsDataURL(file);
+        reader.onload = function (_file) {
+
+            image.src = _file.target.result;
+            image.onload = function () {
+
+                var height = this.height;
+                var width = this.width;
+                var type = file.type;
+                var size = ~~(file.size / 1024) + "KB";
+
+                $("#targetImg").attr('src', _file.target.result);
+                $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                $("#imgPreview").show();
+
+            }
+
+        }
+
+    }
+
+    var ClearPreview = function () {
+        $("#imageBrowes").val('');
+        $("#description").text('');
+        $("#imgPreview").hide();
+
+    }
+     var a
+    $("#onc").change(function () {
+
+        a = $("#onc Option:Selected").text();
+        $("#span1").text(a);
+    })
+
+    var Uploadimage = function () {
+
+        var file = $("#imageBrowes").get(0).files;
+
+        var data = new FormData;
+        data.append("ImageFile", file[0]);
+        data.append("name", "");
+         data.append("movie_id", a);
+        $.ajax(
+            {
+
+                type: "post",
+                url: "/dashboard/addShopitem",
+                data: data,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    ClearPreview();
+
+                    $("#uploadedImage").append('<img src="/movieIcons/' + response + '" class="img-responsive thumbnail"/>');
+
+
+                }
+
+            })
+
+
+        //
+    }
+</script>
+

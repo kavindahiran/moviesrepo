@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="all" />
+    <!-- Slick nav CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/slicknav.min.css" media="all" />
+    <!-- Iconfont CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/icofont.css" media="all" />
+    <!-- Owl carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.css">
+    <!-- Popup CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css">
+    <link href="~/Content/charts/chartist-bundle/chartist.css" rel="stylesheet" />
+    <link href="~/Content/charts/morris-bundle/morris.css" rel="stylesheet" />
+    <link href="~/Content/charts/c3charts/c3.css" rel="stylesheet" />
+    <link href="~/Content/horizontal nav bar/horizontal.css" rel="stylesheet" />
+    <link href="~/Content/dashboardstyles.css" rel="stylesheet" />
+
+
+
+
+
+
+</head>
+<body>
+
+  
+      
+    
+    <div class="dashboard-main-wrapper">
+        @Html.Partial("dashboardheader")
+        @Html.Partial("Dashboardleftnavbar")
+
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="page-header">
+                                <h2 class="pageheader-title">E-commerce Dashboard Template </h2>
+                                <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
+                                <div class="page-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">E-Commerce Dashboard Template</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="~/Content/charts/sparkline/jquery.sparkline.js"></script>
+    <script src="~/Content/charts/chartist-bundle/chartist.min.js"></script>
+    <script src="~/Content/charts/morris-bundle/Morrisjs.js"></script>
+</body>
+</html>

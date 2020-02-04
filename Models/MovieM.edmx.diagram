@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="53662190922649e29f10fe99a74e4bfd" Name="Diagram1" ZoomLevel="81">
+        <EntityTypeShape EntityType="Models.heroarenatable" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.Movie_Item" Width="1.5" PointX="0.875" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.movieCastcrew" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.newsforum" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.Review_Table" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.trailertb" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.usertbl" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="Models.FK_movieCastcrew_Movie_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_Review_Table_Movie_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_Review_Table_usertbl" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Models.PhotoGallery" Width="1.5" PointX="3" PointY="10.5" />
+        <AssociationConnector Association="Models.FK_PhotoGallery_PhotoGallery" />
+        <AssociationConnector Association="Models.FK_Review_Table_movieCastcrew" />
+        <EntityTypeShape EntityType="Models.shoppingcart" Width="1.5" PointX="3" PointY="14" />
+        <AssociationConnector Association="Models.FK_shoppingcart_shoppingcart" />
+        <EntityTypeShape EntityType="Models.castphotogallery" Width="1.5" PointX="3" PointY="17.25" />
+        <EntityTypeShape EntityType="Models.Landmark121" Width="1.5" PointX="7.375" PointY="7.75" />
+        <AssociationConnector Association="Models.FK_castphotogallery_castphotogallery" />
+        <EntityTypeShape EntityType="Models.inovice" Width="1.5" PointX="5.25" PointY="11" />
+        <AssociationConnector Association="Models.FK_inovice_shoppingcart" />
+        <AssociationConnector Association="Models.FK_inovice_usertbl" />
+        <EntityTypeShape EntityType="Models.ordertable" Width="1.5" PointX="8.5" PointY="4.25" />
+        <AssociationConnector Association="Models.FK_ordertable_inovice" />
+        <AssociationConnector Association="Models.FK_ordertable_Movie_Item" />
+        <EntityTypeShape EntityType="Models.comment" Width="1.5" PointX="8.125" PointY="0.75" />
+        <EntityTypeShape EntityType="Models.reply" Width="1.5" PointX="11.375" PointY="4.625" />
+        <AssociationConnector Association="Models.FK_comments_Movie_Item" />
+        <AssociationConnector Association="Models.FK_comments_usertbl" />
+        <AssociationConnector Association="Models.FK_replies_comments" />
+        <AssociationConnector Association="Models.FK_replies_usertbl" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

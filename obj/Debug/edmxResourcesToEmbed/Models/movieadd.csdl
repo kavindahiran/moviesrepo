@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="movietbl1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="ratings" Type="Int32" />
+    <Property Name="imgpath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="moviesdb" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="movietbl1" EntityType="Self.movietbl1" />
+    <EntitySet Name="heroarenatables" EntityType="Models.heroarenatable" />
+    <EntitySet Name="newsforums" EntityType="Models.newsforum" />
+    <EntitySet Name="trailertbs" EntityType="Models.trailertb" />
+  </EntityContainer>
+  <EntityType Name="heroarenatable">
+    <Key>
+      <PropertyRef Name="arenaid" />
+    </Key>
+    <Property Name="arenaid" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ratings" Type="Int32" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="newsforum">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="discription" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="trailertb">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="trailerN" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="coverimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

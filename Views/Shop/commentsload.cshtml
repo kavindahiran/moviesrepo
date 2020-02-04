@@ -1,0 +1,48 @@
+﻿@model IEnumerable<RatingApp.Models.comment>
+
+    @using (Html.BeginForm("postcomment", "Shop", FormMethod.Post))
+    {
+        <input type="text" class="pull-right" name="cmtbox" placeholder="Add new Comment"
+               style="width:200px; height:40px; font-size:20px; margin-top:10px;" />
+        <br />
+        
+        <input name="movieid"  value="@ViewBag.MovieId"/>
+      
+        
+        <input type="submit" value="Post Comment" class="btn btn-success pull-right" style="margin-bottom:10px;" />
+
+    }
+
+
+
+<table class="table text-center">
+    @foreach (var com in Model)
+    {
+        <tr style="border:1px solid black">
+            <td>
+
+                <span style="margin-right:15px; font-size:16px; color:green;">@com.usertbl.username</span><span style="font-size:20px">@Html.DisplayFor(model => com.commentline)</span>
+                <span style="margin-left:10px">@com.commentdate</span>
+                @foreach (var rep in com.replies)
+                {
+                    <br />
+
+                    <span style="margin-right:20px; font-size:16px; color:green;"><span style=" font-size:12px; color:black">Replied by</span> : @rep.usertbl.username</span>
+                    <span>@rep.replystatus</span>
+                }
+
+                <br />
+                @using (Html.BeginForm("postreply", "Shop", FormMethod.Post))
+                {
+                    <input type="hidden" name="cid" value="@com.cid" />
+                    <input type="hidden" name="movieid" value="@com.movieid" />
+                    <input type="hidden" name="userid" value="@com.userid" />
+                    <input type="text" name="reply" style="width:30%; height:50%; font-size:18px; margin-top:10px;" />
+                    <br />
+                    <input type="submit" value="Post" class="btn btn-success" style="margin-top:10px;" />
+                }
+            </td>
+        </tr>
+    }
+
+</table>
