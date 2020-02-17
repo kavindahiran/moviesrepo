@@ -137,17 +137,35 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BookticketsController.cs" />
     <Compile Include="Controllers\chartsController.cs" />
     <Compile Include="Controllers\dashboardController.cs" />
+    <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\loadfaceapiController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
+    <Compile Include="Controllers\TEMPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\PagedData.cs" />
+    <Compile Include="Helper\Pagination.cs" />
+    <Compile Include="Models\billviewmodel\billVM.cs" />
+    <Compile Include="Models\billviewmodel\invoiceVM.cs" />
+    <Compile Include="Models\billviewmodel\orderVM.cs" />
+    <Compile Include="Models\castComment.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\castphotogallery.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\castphtogalleymodel.cs" />
+    <Compile Include="Models\castratingsT.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\castreply.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\comment.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -155,8 +173,10 @@
     <Compile Include="Models\customimagemodel.cs" />
     <Compile Include="Models\customizablecast.cs" />
     <Compile Include="Models\customizableCastAndMovie.cs" />
+    <Compile Include="Models\customizablenowshowing.cs" />
     <Compile Include="Models\customizableshopmoviemodal.cs" />
     <Compile Include="Models\customizableviewmodel.cs" />
+    <Compile Include="Models\customshowmodel.cs" />
     <Compile Include="Models\google.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -171,6 +191,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>google.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\hallLocation.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\halltable.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\heroarenatable.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
@@ -232,6 +258,9 @@
     <Compile Include="Models\newsforum.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\nowshowing.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ordertable.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -269,7 +298,14 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\shopviewmodel.cs" />
+    <Compile Include="Models\showingmodelcollection.cs" />
+    <Compile Include="Models\showtime.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tempcart.cs" />
+    <Compile Include="Models\tickettbl.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\trailertb.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -278,6 +314,10 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usertbls.cs" />
+    <Compile Include="Models\ViewModels\ChartVM.cs" />
+    <Compile Include="Models\ViewModels\DashboardVM.cs" />
+    <Compile Include="Models\ViewModels\MovieVM.cs" />
+    <Compile Include="Models\ViewModels\ReviewVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -285,14 +325,130 @@
     <Content Include="assets\js\jquery-ui.min.js" />
     <Content Include="assets\js\jquery.rateyo.js" />
     <Content Include="assets\js\jquery.rateyo.min.css" />
+    <Content Include="castImageFolder\273323.jpg" />
+    <Content Include="castImageFolder\99-993825_airbus-a380-wallpapers-worlds-largest-airplane-airbus-a380.jpg" />
+    <Content Include="castImageFolder\blank-picture-holder.png" />
+    <Content Include="castImageFolder\Harry-Potter-Philiosophers-stone.jpg" />
     <Content Include="Content\addmovie\bg-01.jpg" />
     <Content Include="Content\addmovie\favicon.ico" />
     <Content Include="Content\addmovie\font-awesome.min.css" />
     <Content Include="Content\addmovie\main.css" />
+    <Content Include="Content\billingF\billing.css" />
+    <Content Include="Content\billingF\paypal_logo.jpg" />
+    <Content Include="Content\billingF\verified.png" />
+    <Content Include="Content\blockbuster\celeb-hero-single.jpg" />
+    <Content Include="Content\blockbuster\hero-bg.jpg" />
+    <Content Include="Content\blockbuster\swiper.min.css" />
+    <Content Include="Content\blockbuster\swiper.min.js" />
+    <Content Include="Content\book seat\banner.jpg" />
+    <Content Include="Content\book seat\bookseat.css" />
+    <Content Include="Content\book seat\font-awesome.css" />
+    <Content Include="Content\book seat\style.css" />
+    <Content Include="Content\bookhall\ab.jpg" />
+    <Content Include="Content\bookhall\jquery-ui.min.css" />
+    <Content Include="Content\bookhall\jquery-ui.min.js" />
+    <Content Include="Content\bookhall\main.js" />
+    <Content Include="Content\bookhall\material-design-iconic-font.min.css" />
+    <Content Include="Content\bookhall\x.css" />
+    <Content Include="Content\booktickets\css\base.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fa-brands.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fa-brands.min.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fa-regular.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fa-regular.min.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fa-solid.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fa-solid.min.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fontawesome-all.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fontawesome-all.min.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fontawesome.css" />
+    <Content Include="Content\booktickets\css\font-awesome\css\fontawesome.min.css" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\booktickets\css\fonts.css" />
+    <Content Include="Content\booktickets\css\main.css" />
+    <Content Include="Content\booktickets\css\micons\fonts\icomoon.svg" />
+    <Content Include="Content\booktickets\css\micons\micons.css" />
+    <Content Include="Content\booktickets\css\vendor.css" />
+    <Content Include="Content\registrationtemplate\additional-methods.min.js" />
+    <Content Include="Content\registrationtemplate\form-img.jpg" />
+    <Content Include="Content\registrationtemplate\jquery-ui.min.js" />
+    <Content Include="Content\registrationtemplate\jquery.validate.min.js" />
+    <Content Include="Content\registrationtemplate\main.js" />
+    <Content Include="Content\registrationtemplate\material-design-iconic-font.min.css" />
+    <Content Include="Content\registrationtemplate\nouislider.min.css" />
+    <Content Include="Content\registrationtemplate\nouislider.min.js" />
+    <Content Include="Content\registrationtemplate\style.css" />
+    <Content Include="Content\registrationtemplate\wNumb.js" />
+    <Content Include="Content\time selector\timeplan.css" />
+    <Content Include="facerecodnision\face-api.min.js" />
+    <Content Include="facerecodnision\labeled_images\Black Widow\1.jpg" />
+    <Content Include="facerecodnision\labeled_images\Black Widow\2.jpg" />
+    <Content Include="facerecodnision\labeled_images\Captain America\1.jpg" />
+    <Content Include="facerecodnision\labeled_images\Captain America\2.jpg" />
+    <Content Include="facerecodnision\labeled_images\Captain Marvel\1.jpg" />
+    <Content Include="facerecodnision\labeled_images\Captain Marvel\2.jpg" />
+    <Content Include="facerecodnision\labeled_images\Hawkeye\1.jpg" />
+    <Content Include="facerecodnision\labeled_images\Hawkeye\2.jpg" />
+    <Content Include="facerecodnision\labeled_images\Jim Rhodes\1.jpg" />
+    <Content Include="facerecodnision\labeled_images\Jim Rhodes\2.jpg" />
+    <Content Include="facerecodnision\labeled_images\Thor\1.jpg" />
+    <Content Include="facerecodnision\labeled_images\Thor\2.jpg" />
+    <Content Include="facerecodnision\labeled_images\Tony Stark\1.jpg" />
+    <Content Include="facerecodnision\labeled_images\Tony Stark\2.jpg" />
+    <Content Include="facerecodnision\script.js" />
+    <Content Include="facerecodnision\test_images\1.png" />
+    <Content Include="facerecodnision\test_images\2.jpg" />
+    <Content Include="facerecodnision\test_images\3.jpg" />
+    <Content Include="images\avatars\user-01.jpg" />
+    <Content Include="images\avatars\user-02.jpg" />
+    <Content Include="images\avatars\user-03.jpg" />
+    <Content Include="images\avatars\user-04.jpg" />
+    <Content Include="images\avatars\user-05.jpg" />
+    <Content Include="images\hero-bg.jpg" />
+    <Content Include="images\icons\icon-arrow-down.svg" />
+    <Content Include="images\icons\icon-mail.svg" />
+    <Content Include="images\icons\png\icon-arrow-down.png" />
+    <Content Include="images\icons\png\icon-mail.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo.svg" />
+    <Content Include="images\photoswipe\default-skin.png" />
+    <Content Include="images\photoswipe\default-skin.svg" />
+    <Content Include="images\photoswipe\preloader.gif" />
+    <Content Include="images\portfolio\ab.jpg" />
+    <Content Include="images\portfolio\fuji%402x.jpg" />
+    <Content Include="images\portfolio\fuji.jpg" />
+    <Content Include="images\portfolio\gallery\g-fuji.jpg" />
+    <Content Include="images\portfolio\gallery\g-lamp.jpg" />
+    <Content Include="images\portfolio\gallery\g-liberty.jpg" />
+    <Content Include="images\portfolio\gallery\g-salad.jpg" />
+    <Content Include="images\portfolio\gallery\g-shutterbug.jpg" />
+    <Content Include="images\portfolio\gallery\g-woodcraft.jpg" />
+    <Content Include="images\portfolio\lamp%402x.jpg" />
+    <Content Include="images\portfolio\lamp.jpg" />
+    <Content Include="images\portfolio\liberty%402x.jpg" />
+    <Content Include="images\portfolio\liberty.jpg" />
+    <Content Include="images\portfolio\salad%402x.jpg" />
+    <Content Include="images\portfolio\salad.jpg" />
+    <Content Include="images\portfolio\shutterbug%402x.jpg" />
+    <Content Include="images\portfolio\shutterbug.jpg" />
+    <Content Include="images\portfolio\woodcraft%402x.jpg" />
+    <Content Include="images\portfolio\woodcraft.jpg" />
+    <Content Include="images\sample-image.jpg" />
+    <Content Include="images\stats-bg.jpg" />
+    <Content Include="images\wheel-1000.jpg" />
+    <Content Include="images\wheel-2000.jpg" />
+    <Content Include="images\wheel-500.jpg" />
+    <Content Include="Content\booktickets\js\jquery-3.2.1.min.js" />
+    <Content Include="Content\booktickets\js\main.js" />
+    <Content Include="Content\booktickets\js\modernizr.js" />
+    <Content Include="Content\booktickets\js\pace.min.js" />
+    <Content Include="Content\booktickets\js\plugins.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cast rating details\castR.css" />
+    <Content Include="Content\cast rating details\celeb-hero-single.jpg" />
     <Content Include="Content\charts\c3charts\c3.css" />
     <Content Include="Content\charts\c3charts\c3.min.js" />
     <Content Include="Content\charts\c3charts\C3chartjs.js" />
@@ -310,8 +466,54 @@
     <Content Include="Content\charts\morris-bundle\raphael.min.js" />
     <Content Include="Content\charts\sparkline\jquery.sparkline.js" />
     <Content Include="Content\charts\sparkline\spark-js.js" />
+    <Content Include="Content\comment\commentcss.css" />
     <Content Include="Content\content1.css" />
     <Content Include="Content\dashboardstyles.css" />
+    <Content Include="Content\download page\css\animate.css" />
+    <Content Include="Content\download page\css\bootstrap.min.css" />
+    <Content Include="Content\download page\css\font-awesome.css" />
+    <Content Include="Content\download page\css\font-awesome.min.css" />
+    <Content Include="Content\download page\css\mystyling.css" />
+    <Content Include="Content\download page\css\nivo-lightbox\close.png" />
+    <Content Include="Content\download page\css\nivo-lightbox\next.png" />
+    <Content Include="Content\download page\css\nivo-lightbox\nivo-lightbox-theme.css" />
+    <Content Include="Content\download page\css\nivo-lightbox\nivo-lightbox.css" />
+    <Content Include="Content\download page\css\nivo-lightbox\prev.png" />
+    <Content Include="Content\download page\css\nivo-lightbox\Wings.gif" />
+    <Content Include="Content\download page\css\owl.carousel.css" />
+    <Content Include="Content\download page\css\owl.theme.css" />
+    <Content Include="Content\download page\css\style.css" />
+    <Content Include="Content\download page\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\download page\img\1.jpg" />
+    <Content Include="Content\download page\img\2.jpg" />
+    <Content Include="Content\download page\img\3.jpg" />
+    <Content Include="Content\download page\img\4.jpg" />
+    <Content Include="Content\download page\img\cross.png" />
+    <Content Include="Content\download page\img\feature.png" />
+    <Content Include="Content\download page\img\front.png" />
+    <Content Include="Content\download page\img\icon-m.png" />
+    <Content Include="Content\download page\img\icon-p.png" />
+    <Content Include="Content\download page\img\Internet.gif" />
+    <Content Include="Content\download page\img\Intersection.gif" />
+    <Content Include="Content\download page\img\LUCY2.png" />
+    <Content Include="Content\download page\img\mb2.png" />
+    <Content Include="Content\download page\img\mb2v.png" />
+    <Content Include="Content\download page\img\spark.png" />
+    <Content Include="Content\download page\img\team1.png" />
+    <Content Include="Content\download page\img\team2.png" />
+    <Content Include="Content\download page\img\team3.png" />
+    <Content Include="Content\download page\img\test1.png" />
+    <Content Include="Content\download page\img\test2.png" />
+    <Content Include="Content\download page\img\test3.png" />
+    <Content Include="Content\download page\js\bootstrap.min.js" />
+    <Content Include="Content\download page\js\classie.js" />
+    <Content Include="Content\download page\js\jquery-1.11.2.min.js" />
+    <Content Include="Content\download page\js\modernizr.custom.js" />
+    <Content Include="Content\download page\js\nivo-lightbox.min.js" />
+    <Content Include="Content\download page\js\owl-carousel.js" />
+    <Content Include="Content\download page\js\script.js" />
+    <Content Include="Content\download page\js\smoothscroll.js" />
+    <Content Include="Content\download page\js\wow.min.js" />
     <Content Include="Content\filmtem\bootstrap-grid.min.css" />
     <Content Include="Content\filmtem\bootstrap-reboot.min.css" />
     <Content Include="Content\filmtem\default-skin.css" />
@@ -339,6 +541,7 @@
     <Content Include="Content\homesectionload\images\slide3.png" />
     <Content Include="Content\homesectionload\style.css" />
     <Content Include="Content\horizontal nav bar\horizontal.css" />
+    <Content Include="Content\invoice bill\invoice1.css" />
     <Content Include="Content\layouthomeimages\bootstrap.min.css" />
     <Content Include="Content\layouthomeimages\icofont.css" />
     <Content Include="Content\layouthomeimages\images\author.png" />
@@ -391,18 +594,24 @@
     <Content Include="Content\layouthomeimages\scriptshome\owl.carousel.min.js" />
     <Content Include="Content\layouthomeimages\slicknav.min.css" />
     <Content Include="Content\layouthomeimages\style.css" />
+    <Content Include="Content\movie details view\details2.css" />
     <Content Include="Content\movie details view\ratingdetail.css" />
+    <Content Include="Content\movie details view\responsive.css" />
+    <Content Include="Content\movie details view\yummycs.css" />
     <Content Include="Content\movieshopcss\3-15.jpg" />
     <Content Include="Content\movieshopcss\bannercs.css" />
     <Content Include="Content\movieshopcss\cartcheck.css" />
     <Content Include="Content\movieshopcss\shopM.css" />
     <Content Include="Content\movieshopcss\StyleSheet1.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\productcastcss\cast.css" />
     <Content Include="Content\registration page css\bg-heading-03.jpg" />
     <Content Include="Content\registration page css\daterangepicker.css" />
     <Content Include="Content\registration page css\select2.min.css" />
     <Content Include="Content\registration page css\style1.css" />
     <Content Include="Content\vertical nav bar\vertical.css" />
+    <Content Include="coverphotoes\a.png" />
+    <Content Include="face-api.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -452,6 +661,8 @@
     <Content Include="movieIcons\heroarena\9bdb7df9bc721a1fd58f5b78cbd0d391192850681.jpg" />
     <Content Include="movieIcons\heroarena\Harry-Potter-Philiosophers-stone193301507.jpg" />
     <Content Include="movieIcons\heroarena\harry_potter_and_the_deathly_hallows_movie_poster_daniel_radcliffe_hi-res_01193222774.jpg" />
+    <Content Include="script.js" />
+    <Content Include="Scripts\active.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\movieadd.edmx">
@@ -483,6 +694,88 @@
       <DependentUpon>google.edmx</DependentUpon>
     </Content>
     <Content Include="Content\movieshopcss\av.webp" />
+    <Content Include="Content\download page\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\download page\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\download page\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\download page\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\download page\fonts\FontAwesome.otf" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\booktickets\css\font-awesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\booktickets\css\micons\fonts\icomoon.eot" />
+    <Content Include="Content\booktickets\css\micons\fonts\icomoon.ttf" />
+    <Content Include="Content\booktickets\css\micons\fonts\icomoon.woff" />
+    <Content Include="Content\booktickets\fonts\domine\domine-bold-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\domine\domine-bold-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\domine\domine-regular-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\domine\domine-regular-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\domine\domine-regular-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-black-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-black-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-black-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-blackitalic-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-blackitalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-blackitalic-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-bold-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-bold-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-bold-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-bolditalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-bolditalic-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extrabold-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extrabold-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extrabolditalic-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extrabolditalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extrabolditalic-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extralight-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extralight-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extralight-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extralightitalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-extralightitalic-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-light-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-light-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-lightitalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-lightitalic-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-medium-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-medium-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-medium-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-mediumitalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-mediumitalic-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-regular-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-regular-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-regular-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-regularitalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-regularitalic-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-semibold-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-semibold-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-semibold-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-semibolditalic-webfont.ttf" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-semibolditalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-semibolditalic-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-thin-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-thin-webfont.woff2" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-thinitalic-webfont.woff" />
+    <Content Include="Content\booktickets\fonts\metropolis\metropolis-thinitalic-webfont.woff2" />
+    <Content Include="facerecodnision\models12\face_landmark_68_model-shard1" />
+    <Content Include="facerecodnision\models12\face_landmark_68_model-weights_manifest.json" />
+    <Content Include="facerecodnision\models12\face_recognition_model-shard1" />
+    <Content Include="facerecodnision\models12\face_recognition_model-shard2" />
+    <Content Include="facerecodnision\models12\face_recognition_model-weights_manifest.json" />
+    <Content Include="facerecodnision\models12\mtcnn_model-shard1" />
+    <Content Include="facerecodnision\models12\mtcnn_model-weights_manifest.json" />
+    <Content Include="facerecodnision\models12\ssd_mobilenetv1_model-shard1" />
+    <Content Include="facerecodnision\models12\ssd_mobilenetv1_model-shard2" />
+    <Content Include="facerecodnision\models12\ssd_mobilenetv1_model-weights_manifest.json" />
+    <Content Include="facerecodnision\models12\tiny_face_detector_model-shard1" />
+    <Content Include="facerecodnision\models12\tiny_face_detector_model-weights_manifest.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -551,8 +844,55 @@
     <Content Include="assets\js\main.js" />
     <Content Include="assets\js\owl.carousel.min.js" />
     <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\plugins.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Views\TEMP\img\about-img\1.jpg" />
+    <Content Include="Views\TEMP\img\bg-img\bg-pattern.jpg" />
+    <Content Include="Views\TEMP\img\bg-img\breadcumb.jpg" />
+    <Content Include="Views\TEMP\img\bg-img\contact.jpg" />
+    <Content Include="Views\TEMP\img\bg-img\slide-1.jpg" />
+    <Content Include="Views\TEMP\img\bg-img\slide-2.jpg" />
+    <Content Include="Views\TEMP\img\bg-img\slide-3.jpg" />
+    <Content Include="Views\TEMP\img\bg-img\slide-4.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\1.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\10.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\11.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\12.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\13.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\14.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\15.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\16.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\17.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\18.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\19.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\2.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\3.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\4.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\5.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\6.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\7.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\8.jpg" />
+    <Content Include="Views\TEMP\img\blog-img\9.jpg" />
+    <Content Include="Views\TEMP\img\catagory-img\1.jpg" />
+    <Content Include="Views\TEMP\img\catagory-img\2.jpg" />
+    <Content Include="Views\TEMP\img\catagory-img\3.jpg" />
+    <Content Include="Views\TEMP\img\core-img\back.png" />
+    <Content Include="Views\TEMP\img\core-img\favicon.ico" />
+    <Content Include="Views\TEMP\img\core-img\map.png" />
+    <Content Include="Views\TEMP\img\core-img\next.png" />
+    <Content Include="Views\TEMP\img\instagram-img\1.jpg" />
+    <Content Include="Views\TEMP\img\instagram-img\2.jpg" />
+    <Content Include="Views\TEMP\img\instagram-img\3.jpg" />
+    <Content Include="Views\TEMP\img\instagram-img\4.jpg" />
+    <Content Include="Views\TEMP\img\instagram-img\5.jpg" />
+    <Content Include="Views\TEMP\img\instagram-img\6.jpg" />
+    <Content Include="Views\TEMP\img\sidebar-img\1.jpg" />
+    <Content Include="Views\TEMP\img\sidebar-img\2.jpg" />
+    <Content Include="Views\TEMP\img\sidebar-img\3.jpg" />
+    <Content Include="Views\TEMP\img\sidebar-img\4.jpg" />
+    <Content Include="Views\TEMP\img\sidebar-img\5.jpg" />
+    <Content Include="Views\TEMP\img\sidebar-img\6.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -605,12 +945,39 @@
     <Content Include="Views\Shared\Dashboardleftnavbar.cshtml" />
     <Content Include="Views\charts\Index.cshtml" />
     <Content Include="Views\Shared\dashboardheader.cshtml" />
+    <Content Include="Views\Shared\crewtile.cshtml" />
+    <Content Include="Views\dashboard\castdetails.cshtml" />
+    <Content Include="Views\dashboard\newview.cshtml" />
+    <Content Include="Views\Shop\billing.cshtml" />
+    <Content Include="Views\Shop\invoiceprint.cshtml" />
+    <Content Include="Views\Shop\testdemo.cshtml" />
+    <Content Include="Views\Shop\mapLocation.cshtml" />
+    <Content Include="Views\Shop\testimo.cshtml" />
+    <Content Include="Views\Shop\done.cshtml" />
+    <Content Include="Views\TEMP\Index.cshtml" />
+    <Content Include="Views\Shared\sliderview.cshtml" />
+    <Content Include="Views\Home\sliderLoad.cshtml" />
+    <Content Include="Views\Shared\castslider.cshtml" />
+    <Content Include="Views\dashboard\identifyA.cshtml" />
+    <Content Include="Views\Shared\downloadpage.cshtml" />
+    <Content Include="Views\Download\Index.cshtml" />
+    <Content Include="Views\Shared\ticketbooking.cshtml" />
+    <Content Include="Views\Booktickets\Index.cshtml" />
+    <Content Include="Views\dashboard\addnewmovieshow.cshtml" />
+    <Content Include="Views\Booktickets\selecthall.cshtml" />
+    <Content Include="Views\Shared\addhall.cshtml" />
+    <Content Include="Views\Booktickets\loadimage.cshtml" />
+    <Content Include="Views\Booktickets\bookhall.cshtml" />
+    <Content Include="Views\Booktickets\selectseats.cshtml" />
+    <Content Include="Views\Booktickets\selectTime.cshtml" />
+    <Content Include="Views\Shared\registrationpage.cshtml" />
+    <Content Include="Views\Home\register2.cshtml" />
+    <Content Include="Views\loadfaceapi\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="castImageFolder\" />
     <Folder Include="castImage\" />
-    <Folder Include="coverphotoes\" />
+    <Folder Include="nowShowing\" />
     <Folder Include="UploadedImage\" />
     <Folder Include="videofiles\" />
   </ItemGroup>

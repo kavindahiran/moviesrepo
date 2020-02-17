@@ -1,0 +1,27 @@
+﻿@model List<RatingApp.Models.ordertable>
+@{
+    ViewBag.Title = "testdemo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>testdemo</h2>
+
+@foreach (var item in ViewBag.invoices)
+{
+    @*<h1>@item.fullname</h1>*@
+    <div>@item.address1</div>
+    <div>@item.inovice.city</div>
+    <div>@item.usertbl.email</div>
+    foreach (var z in Model)
+    {
+
+        @*<img src="@Url.Content(temp.Ipath)" alt="portfolio" />*@
+
+
+
+
+
+        <div> @z.orderDate</div>
+        <div>@z.Movie_Item.Movie_name</div>
+    }
+}

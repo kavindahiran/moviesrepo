@@ -20,11 +20,9 @@ namespace RatingApp.Models
         public Nullable<System.DateTime> DatePost { get; set; }
         public Nullable<int> movieT_ID { get; set; }
         public Nullable<int> userID { get; set; }
-        public Nullable<double> cast_ratings { get; set; }
-        public Nullable<int> castC_id { get; set; }
+        public Nullable<int> movielikes { get; set; }
     
         public virtual Movie_Item Movie_Item { get; set; }
         public virtual usertbl usertbl { get; set; }
-        public virtual movieCastcrew movieCastcrew { get; set; }
     }
 }

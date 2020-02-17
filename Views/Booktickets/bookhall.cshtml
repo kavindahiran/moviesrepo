@@ -1,0 +1,58 @@
+﻿@model RatingApp.Models.showingmodelcollection
+
+<div class="container" style="margin-top:50px;">
+
+    @using (Html.BeginForm("", "Booktickets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <div class="form-destination">
+                <label for="destination">Movie Name</label>
+                @*<input type="text" id="destination" name="destination" placeholder="EG. HAWAII" />*@
+                @Html.DropDownListFor(model => model.cm.id, ViewBag.movielists as SelectList, "--select--", new { @class = "form-control" })
+
+            </div>
+            <div class="form-date-from form-icon">
+                <label for="date_from">Hall Name</label>
+                @*<input type="text" id="date_from" class="date_from" placeholder="Pick a date" />*@
+                @Html.DropDownListFor(model => model.cm.hallid, ViewBag.hallname as SelectList, "--select--", new { @class = "form-control",  @onchange="FillCity()"})
+                <!-- <span class="icon"><i class="zmdi zmdi-calendar-alt"></i></span> -->
+            </div>
+            <div class="form-date-to form-icon">
+                <label for="date_to">Hall Location</label>
+                <input type="text" id="date_to" class="date_to" placeholder="Pick a date" />
+                @Html.DropDownListFor(model => model.cm.locationid, ViewBag.hallLocation as SelectList, "--select--", new { @class = "form-control" })
+                <!-- <span class="icon"><i class="zmdi zmdi-calendar-alt"></i></span> -->
+            </div>
+            <div class="form-quantity">
+                <label for="quantity">Quantity</label>
+                <span class="modify-qty plus" onClick="Tang()"><i class="zmdi zmdi-chevron-up"></i></span>
+                <input type="number" name="quantity" id="quantity" value="0" min="0" class="nput-text qty text">
+                <span class="modify-qty minus" onClick="Giam()"><i class="zmdi zmdi-chevron-down"></i></span>
+            </div>
+            <div class="form-submit">
+                <input type="submit" id="submit" class="submit" value="Book now" />
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<script>
+function FillCity() {
+    var stateId = $('#locationid').val();
+    $.ajax({
+        url: '/Booktickets/getdrop',
+        type: "GET",
+        dataType: "JSON",
+        data: { locationid: stateId},
+        success: function (cities) {                    
+            $("#City").html(""); // clear before appending new list 
+            $.each(cities, function (i, city) {
+                $("#City").append(
+                    $('<option></option>').val(city.CityId).html(city.CityName));
+            });
+        }
+    });
+  }
+</script>

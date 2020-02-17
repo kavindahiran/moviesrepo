@@ -17,13 +17,14 @@ namespace RatingApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Movie_Item()
         {
-            this.movieCastcrews = new HashSet<movieCastcrew>();
-            this.Review_Table = new HashSet<Review_Table>();
             this.PhotoGalleries = new HashSet<PhotoGallery>();
             this.shoppingcarts = new HashSet<shoppingcart>();
             this.castphotogalleries = new HashSet<castphotogallery>();
             this.ordertables = new HashSet<ordertable>();
             this.comments = new HashSet<comment>();
+            this.movieCastcrews = new HashSet<movieCastcrew>();
+            this.Review_Table = new HashSet<Review_Table>();
+            this.Landmark121 = new HashSet<Landmark121>();
         }
     
         public int movie_id { get; set; }
@@ -34,11 +35,10 @@ namespace RatingApp.Models
         public byte[] imageCover { get; set; }
        // public Nullable<System.DateTime> Posted_date { get; set; }
         public string movieDis { get; set; }
+        public string category { get; set; }
+        public Nullable<bool> awardnominated { get; set; }
+        public Nullable<bool> banned { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<movieCastcrew> movieCastcrews { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review_Table> Review_Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhotoGallery> PhotoGalleries { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -49,5 +49,11 @@ namespace RatingApp.Models
         public virtual ICollection<ordertable> ordertables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<comment> comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<movieCastcrew> movieCastcrews { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review_Table> Review_Table { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Landmark121> Landmark121 { get; set; }
     }
 }

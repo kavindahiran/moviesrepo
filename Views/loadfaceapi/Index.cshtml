@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/registrationpage.cshtml";
+}
+<script src="~/facerecodnision/face-api.min.js"></script>
+<script src="~/facerecodnision/script.js"></script>
+
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column
+    }
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+
+<input type="file" id="imageUpload">

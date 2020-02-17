@@ -17,7 +17,7 @@ namespace RatingApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public movieCastcrew()
         {
-            this.Review_Table = new HashSet<Review_Table>();
+            this.castComments = new HashSet<castComment>();
         }
     
         public int cast_id { get; set; }
@@ -29,6 +29,6 @@ namespace RatingApp.Models
     
         public virtual Movie_Item Movie_Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review_Table> Review_Table { get; set; }
+        public virtual ICollection<castComment> castComments { get; set; }
     }
 }

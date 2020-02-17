@@ -13,19 +13,21 @@ namespace RatingApp.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, int? page2)
         {
             IndexPageViewModel model = new IndexPageViewModel();
             moviedetailsdb1 db = new moviedetailsdb1();
             model.heroarenatableList = db.heroarenatables.ToList();
             model.movietblList = db.Movie_Item.ToList().ToPagedList(page ?? 1,6);
             model.reviewtbl = db.Review_Table.ToList();
+            model.castlist = db.movieCastcrews.ToList().ToPagedList(page2 ?? 1, 6);
             List<Movie_Item> mv = db.Movie_Item.ToList();
             List<Review_Table> rv = db.Review_Table.ToList();
 
             //ViewBag.sh= from movie in mv
             //            join rev in rv on movie.movie_id equals rev.movieT_ID         
             //            select new shopviewmodel { movieitems = movie,reve=rev};
+            
             model.reviewtbl = db.Review_Table.Where(x => x.movieT_ID == x.Movie_Item.movie_id).ToList();
             return View(model);
 
@@ -45,6 +47,17 @@ namespace RatingApp.Controllers
             model.movietblList = db.Movie_Item.Where(x => x.Movie_name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 6);
             return PartialView("movietile", model.movietblList);
             /* return View(model);*/
+        }
+
+
+        [HttpPost]
+        public ActionResult crewsearch(string search, int? page)
+        {
+            IndexPageViewModel model = new IndexPageViewModel();
+
+            moviedetailsdb1 db = new moviedetailsdb1();
+            model.castlist = db.movieCastcrews.Where(x => x.cast_name.StartsWith(search)).ToList().ToPagedList(page ?? 1, 6);
+            return PartialView("crewtile", model.castlist);
         }
 
             public ActionResult About()
@@ -92,6 +105,8 @@ namespace RatingApp.Controllers
             {
                 Session["id"] = emp.user_id;
                 Session["regname"] = emp.username;
+                Session["profpic"] = emp.profile_pic;
+                Session["roleid"] = emp.roleid;
 
                 if (emp.roleid == true)
                 {
@@ -133,13 +148,16 @@ namespace RatingApp.Controllers
         {
             // regdb rdb = new regdb();
             moviedetailsdb1 db = new moviedetailsdb1();
-           usertbl reg = new usertbl();
+            byte[] imagebyte = null;
+            usertbl reg = new usertbl();
             reg.ImageFile = ImageFile;
             string fileName = Path.GetFileNameWithoutExtension(reg.ImageFile.FileName);
             string extension = Path.GetExtension(reg.ImageFile.FileName);
             fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
             reg.profile_pic = "~/movieIcons/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/movieIcons/"), fileName);
+            BinaryReader reader = new BinaryReader(ImageFile.InputStream);
+            imagebyte = reader.ReadBytes(ImageFile.ContentLength);
             reg.ImageFile.SaveAs(fileName);
 
             MailMessage mm = new MailMessage();
@@ -169,13 +187,71 @@ namespace RatingApp.Controllers
             reg.username = regname;
             reg.password = password;
             reg.email = email;
-            
+            reg.imagebyte = imagebyte;
             reg.roleid = false;
             db.usertbls.Add(reg);
             db.SaveChanges();
 
             ModelState.Clear();
             // return RedirectToAction("Index");
+            return View();
+        }
+
+
+        [HttpGet]
+        public ActionResult register2()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult register2(string regname, string password, string email, HttpPostedFileBase ImageFile)
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            byte[] imagebyte = null;
+            usertbl reg = new usertbl();
+            reg.ImageFile = ImageFile;
+            string fileName = Path.GetFileNameWithoutExtension(reg.ImageFile.FileName);
+            string extension = Path.GetExtension(reg.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            reg.profile_pic = "~/movieIcons/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/movieIcons/"), fileName);
+            BinaryReader reader = new BinaryReader(ImageFile.InputStream);
+            imagebyte = reader.ReadBytes(ImageFile.ContentLength);
+            reg.ImageFile.SaveAs(fileName);
+
+            MailMessage mm = new MailMessage();
+            mm.From = new MailAddress("kavindahiran619@gmail.com");
+            mm.To.Add(new MailAddress(email));
+            mm.Subject = "Registration to LankanMovies";
+            mm.Body = "We highly appreciate on your registration";
+            mm.IsBodyHtml = true;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+
+            smtp.Port = 587;
+
+
+            /* NetworkCredential nc = new NetworkCredential("kavindahiran619@gmail.com", "lordbuddha", "smtp.gmail.com");*/
+            smtp.Credentials = new System.Net.NetworkCredential("kavindahiran619@gmail.com", "hyqgqtrjhlecwdmo");
+            smtp.EnableSsl = true;
+            // smtp.UseDefaultCredentials = true;
+            //smtp.Credentials = nc;
+
+            smtp.Send(mm);
+            ViewBag.mesage = "message sent successfully";
+
+
+            //regemp reg = new regemp();
+            reg.username = regname;
+            reg.password = password;
+            reg.email = email;
+            reg.imagebyte = imagebyte;
+            reg.roleid = false;
+            db.usertbls.Add(reg);
+            db.SaveChanges();
+
+            ModelState.Clear();
             return View();
         }
 

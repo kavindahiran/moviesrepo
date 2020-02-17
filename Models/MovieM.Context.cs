@@ -27,9 +27,7 @@ namespace RatingApp.Models
     
         public virtual DbSet<heroarenatable> heroarenatables { get; set; }
         public virtual DbSet<Movie_Item> Movie_Item { get; set; }
-        public virtual DbSet<movieCastcrew> movieCastcrews { get; set; }
         public virtual DbSet<newsforum> newsforums { get; set; }
-        public virtual DbSet<Review_Table> Review_Table { get; set; }
         public virtual DbSet<trailertb> trailertbs { get; set; }
         public virtual DbSet<usertbl> usertbls { get; set; }
         public virtual DbSet<PhotoGallery> PhotoGalleries { get; set; }
@@ -40,5 +38,15 @@ namespace RatingApp.Models
         public virtual DbSet<ordertable> ordertables { get; set; }
         public virtual DbSet<comment> comments { get; set; }
         public virtual DbSet<reply> replies { get; set; }
+        public virtual DbSet<castratingsT> castratingsTs { get; set; }
+        public virtual DbSet<movieCastcrew> movieCastcrews { get; set; }
+        public virtual DbSet<Review_Table> Review_Table { get; set; }
+        public virtual DbSet<castComment> castComments { get; set; }
+        public virtual DbSet<castreply> castreplies { get; set; }
+        public virtual DbSet<hallLocation> hallLocations { get; set; }
+        public virtual DbSet<nowshowing> nowshowings { get; set; }
+        public virtual DbSet<showtime> showtimes { get; set; }
+        public virtual DbSet<halltable> halltables { get; set; }
+        public virtual DbSet<tickettbl> tickettbls { get; set; }
     }
 }

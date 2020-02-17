@@ -10,12 +10,13 @@
         <div class="single-portfolio">
             <div class="single-portfolio-img">
                 <img src="@Url.Content(obj.imgpath)" alt="portfolio" />
+
                 <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
                     <i class="icofont icofont-ui-play"></i>
                 </a>
             </div>
             <div class="portfolio-content">
-                <a href="@Url.Action("details","dashboard",new { id=obj.movie_id})">     <h2>@obj.Movie_name</h2></a>
+                <a href="@Url.Action("newview","dashboard",new { id=obj.movie_id})">     <h2>@obj.Movie_name</h2></a>
                 <div class="review">
                     <div class="author-review">
                         <i class="icofont icofont-star"></i>

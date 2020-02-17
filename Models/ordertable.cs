@@ -21,6 +21,10 @@ namespace RatingApp.Models
         public Nullable<int> quantity { get; set; }
         public Nullable<int> bill { get; set; }
         public Nullable<int> unitprice { get; set; }
+        public string cardnumber { get; set; }
+        public Nullable<System.DateTime> expiredate { get; set; }
+        public Nullable<int> cardcode { get; set; }
+        public Nullable<bool> moviesordered { get; set; }
     
         public virtual inovice inovice { get; set; }
         public virtual Movie_Item Movie_Item { get; set; }

@@ -28,6 +28,7 @@ namespace RatingApp.Models
         public Nullable<int> quantityavail { get; set; }
         public string coverphotopath { get; set; }
        // public Nullable<System.DateTime> publishdate { get; set; }
+        public Nullable<bool> discountavail { get; set; }
     
         public virtual Movie_Item Movie_Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

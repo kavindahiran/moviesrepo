@@ -20,5 +20,8 @@ namespace RatingApp.Models
         public Nullable<double> Latitude { get; set; }
         public Nullable<double> Longitude { get; set; }
         public System.Data.Entity.Spatial.DbGeography GeoLocation { get; set; }
+        public Nullable<int> MovieId { get; set; }
+    
+        public virtual Movie_Item Movie_Item { get; set; }
     }
 }

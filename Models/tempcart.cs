@@ -16,5 +16,7 @@ namespace RatingApp.Models
         public int qty { get; set; }
 
         public float bill { get; set; }
+
+        public string Ipath { get; set; }
     }
 }

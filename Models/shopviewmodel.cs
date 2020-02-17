@@ -14,6 +14,8 @@ namespace RatingApp.Models
         public PhotoGallery photogallery { get; set; }
 
         public shoppingcart cart { get; set; }
+
+        public Review_Table rv { get; set; }
       
       //  public Review_Table reve { get; set; }
 

@@ -1,17 +1,22 @@
 ﻿@model IEnumerable<RatingApp.Models.comment>
 
-    @using (Html.BeginForm("postcomment", "Shop", FormMethod.Post))
-    {
-        <input type="text" class="pull-right" name="cmtbox" placeholder="Add new Comment"
-               style="width:200px; height:40px; font-size:20px; margin-top:10px;" />
-        <br />
-        
-        <input name="movieid"  value="@ViewBag.MovieId"/>
-      
-        
-        <input type="submit" value="Post Comment" class="btn btn-success pull-right" style="margin-bottom:10px;" />
 
-    }
+    <link href="~/Content/comment/commentcss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+@*@using (Html.BeginForm("postcomment", "Shop", FormMethod.Post))
+{
+    <input type="text" class="pull-right" name="cmtbox" placeholder="Add new Comment"
+           style="width:200px; height:40px; font-size:20px; margin-top:10px;" />
+    <br />
+
+    <input name="movieid" value="@ViewBag.MovieId" />
+
+
+    <input type="submit" value="Post Comment" class="btn btn-success pull-right" style="margin-bottom:10px;" />
+
+}
 
 
 
@@ -45,4 +50,144 @@
         </tr>
     }
 
-</table>
+</table>*@
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1" id="logout">
+            <div class="page-header">
+                <h3 class="reviews">Leave your comment</h3>
+                <div class="logout">
+                    <button class="btn btn-default btn-circle text-uppercase" type="button" onclick="$('#logout').hide(); $('#login').show()">
+                        <span class="glyphicon glyphicon-off"></span> Logout
+                    </button>
+                </div>
+            </div>
+            <div class="comment-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#comments-logout" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Comments</h4></a></li>
+                    <li><a href="#add-comment" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add comment</h4></a></li>
+                    <li><a href="#account-settings" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Account settings</h4></a></li>
+                </ul>
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="comments-logout">
+                        @foreach (var com in Model)
+                        {
+                            <ul class="media-list">
+                                <li class="media">
+                                    @*@if(com.usertbl.profile_pic.Length > 0)
+                                    {*@
+
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object img-circle" src="~/coverphotoes/a.png" alt="profile">
+                                        </a>
+                                    @*}
+                                    else
+                                    {
+                                        <img class="media-object img-circle" src="~/coverphotoes/a.png" alt="profile">
+                                    }*@
+                                    <div class="media-body">
+                                        <div class="well well-lg">
+                                            <h4 class="media-heading text-uppercase reviews">@com.usertbl.username </h4>
+                                            <ul class="media-date text-uppercase reviews list-inline">
+                                                <li class="dd">@com.commentdate</li>
+                                                @*<li class="mm">09</li>
+                    <li class="aaaa">2014</li>*@
+                                            </ul>
+                                            <p class="media-comment">
+                                                @Html.DisplayFor(model => com.commentline)
+                                            </p>
+                                            <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                            <a class="btn btn-warning btn-circle text-uppercase" data-toggle="collapse" href="#@com.cid"><span class="glyphicon glyphicon-comment"></span> 2 comments</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="collapse" id="@com.cid">
+                                        <br /><br /><br /><br /><br /><br /><br />
+                                        <ul class="media-list">
+                                            @foreach (var rep in com.replies)
+                                            {
+                                                <li class="media media-replied">
+
+                                                    <a class="pull-left" href="#">
+                                                        <img class="media-object img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/ManikRathee/128.jpg" alt="profile">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <div class="well well-lg">
+                                                            <h4 class="media-heading text-uppercase reviews"><span class="glyphicon glyphicon-share-alt"></span> @rep.usertbl.username</h4>
+                                                            <ul class="media-date text-uppercase reviews list-inline">
+                                                                <li class="dd">22</li>
+                                                                <li class="mm">09</li>
+                                                                <li class="aaaa">2014</li>
+                                                            </ul>
+                                                            <p class="media-comment">
+                                                                @rep.replystatus
+                                                            </p>
+                                                            <a class="btn btn-info btn-circle text-uppercase" href="#" id="reply"><span class="glyphicon glyphicon-share-alt"></span> Reply</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            }
+
+
+                                        </ul>
+                                        @using (Html.BeginForm("postreply", "Shop", FormMethod.Post))
+                                        {
+                                            <input type="hidden" name="cid" value="@com.cid" />
+                                            <input type="hidden" name="movieid" value="@com.movieid" />
+                                            <input type="hidden" name="userid" value="@com.userid" />
+                                            <input type="text" name="reply" style="width:30%; height:50%; font-size:18px; margin-top:10px;" />
+                                            <br />
+                                            <input type="submit" value="Post" class="btn btn-success" style="margin-top:10px;" />
+                                        }
+
+                                    </div>
+
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                   
+                    <div class="tab-pane" id="add-comment">
+                        @using (Html.BeginForm("postcomment", "Shop", FormMethod.Post))
+                        {
+                            <form action="#" method="post" class="form-horizontal" id="commentForm" role="form">
+                                <div class="form-group">
+                                    <label for="email" class="col-sm-2 control-label">Comment</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" name="cmtbox" id="addComment" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <input name="movieid" value="@ViewBag.MovieId" />
+                                @*<div class="form-group">
+                    <label for="uploadMedia" class="col-sm-2 control-label">Upload media</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <div class="input-group-addon">http://</div>
+                            <input type="text" class="form-control" name="uploadMedia" id="uploadMedia">
+                        </div>
+                    </div>
+                </div>*@
+                                <div class="form-group">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit comment</button>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                   
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+

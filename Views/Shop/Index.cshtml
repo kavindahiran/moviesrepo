@@ -3,8 +3,69 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Movie_Shop.cshtml";
 }
+<link href="~/Content/movie details view/yummycs.css" rel="stylesheet" />
 
-<h2>Index</h2>
+<link href="~/Content/movie details view/responsive.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Content/blockbuster/swiper.min.js"></script>
+
+
+
+
+
+@Html.Partial("~/Views/Shared/sliderview.cshtml")
+
+
+@*@foreach (var x in Model)
+    {
+
+        <div class="col-md-12 text-center"><h3>Product Carousel</h3></div>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+
+                <div class="carousel-inner">
+
+                    <div class="item active">
+                        <div class="col-md-2 col-sm-4 col-xs-5"><a href="#"><img src="@Url.Content(x.movieitems.imgpath)" class="img-responsive"></a></div>
+                    </div>
+
+                </div>
+
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>
+        </div>
+    }*@
+
+
+
+
+
+@*<div class="instargram_area owl-carousel section_padding_100_0 clearfix" id="portfolio" style="margin-top:20px">
+
+        Instagram Item
+        <div class="instagram_gallery_item">
+            @foreach (var x in Model)
+            {
+
+                <img style="width:300px; height:300px;" src="@Url.Content(x.movieitems.imgpath)" alt="">
+
+                <div class="hover_overlay">
+                    <div class="yummy-table">
+                        <div class="yummy-table-cell">
+                            <div class="follow-me text-center">
+                                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i> Follow me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>*@
+
+
 
 <div class="container">
     <h3 class="h3">shopping Demo-1 </h3>
@@ -39,6 +100,8 @@
 
 
 
+
+
     <div class="row">
         @foreach (var item in Model)
         {
@@ -54,9 +117,10 @@
                             <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
                             <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                             <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a href="@Url.Action("mapLocation", "Shop", new { movieId = item.movieitems.movie_id })" data-tip="Map"><i class="fa fa-map-marker"></i></a></li>
                         </ul>
                         <span class="product-new-label">Sale</span>
-                        <span class="product-discount-label">20%</span>
+                        <span class="product-discount-label">@ViewBag.title1</span>
                     </div>
                     <ul class="rating">
                         <li class="fa fa-star"></li>
@@ -83,3 +147,24 @@
 <hr>
 
 
+
+
+
+<script>
+    $('.carousel[data-type="multi"] .item').each(function () {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (var i = 0; i < 2; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+
+</script>

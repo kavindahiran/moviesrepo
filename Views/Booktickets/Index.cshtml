@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/ticketbooking.cshtml";
+}
+@*<style type="text/css" media="screen">
+    .s-styles {
+        background: white;
+        padding-top: 15rem;
+        padding-bottom: 12rem;
+    }
+</style>*@
+
+
+<section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="https://wallpaperaccess.com/full/1076854.jpg"  data-natural-width=3000 data-natural-height=2000 data-position-y=top>
+    
+    <div class="shadow-overlay"></div>
+
+    <div class="home-content">
+
+        <div class="row home-content__main">
+            <h1>
+                Hello folks, we are <br>
+                Transcend Studio.
+            </h1>
+
+            <p>
+                We create stunning digital experiences <br>
+                that will help your business stand out.
+            </p>
+        </div> <!-- end home-content__main -->
+
+    </div> <!-- end home-content -->
+
+    <ul class="home-sidelinks">
+        <li><a href="index.html#about">About<span>who we are</span></a></li>
+        <li><a href="index.html#services">Services<span>what we do</span></a></li>
+        <li><a href="index.html#contact">Contact<span>get in touch</span></a></li>
+    </ul> <!-- end home-sidelinks -->
+
+
+    <a href="@Url.Action("selecthall","Booktickets")" class="home-scroll smoothscroll">
+        <span class="home-scroll__text">Scroll Down</span>
+        <span class="home-scroll__icon"></span>
+    </a> <!-- end home-scroll -->
+
+</section> <!-- end s-home -->

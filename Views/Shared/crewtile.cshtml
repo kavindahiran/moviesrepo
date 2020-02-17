@@ -1,0 +1,37 @@
+﻿
+@using PagedList;
+@using PagedList.Mvc;
+@model  IPagedList<RatingApp.Models.movieCastcrew>
+
+
+
+@foreach(var obj in Model)
+{
+    <div class="col-md-4 col-sm-6 soon released">
+        <div class="single-portfolio">
+            <div class="single-portfolio-img">
+                <img src="@Url.Content(obj.cast_profile)" alt="portfolio" />
+                <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+                    <i class="icofont icofont-ui-play"></i>
+                </a>
+            </div>
+            <div class="portfolio-content">
+                <a href="@Url.Action("castdetails","dashboard",new { id=obj.cast_id})">     <h2>@obj.cast_name</h2></a>
+                <div class="review">
+                    <div class="author-review">
+                        <i class="icofont icofont-star"></i>
+                        <i class="icofont icofont-star"></i>
+                        <i class="icofont icofont-star"></i>
+                        <i class="icofont icofont-star"></i>
+                        <i class="icofont icofont-star"></i>
+                    </div>
+                    <h4>@obj.crew_details</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="">
+    @Html.PagedListPager(Model, page2 => Url.Action("Index", new { page2 }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+</div>

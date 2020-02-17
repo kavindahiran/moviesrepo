@@ -17,10 +17,14 @@ namespace RatingApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public usertbl()
         {
-            this.Review_Table = new HashSet<Review_Table>();
             this.inovices = new HashSet<inovice>();
             this.comments = new HashSet<comment>();
             this.replies = new HashSet<reply>();
+            this.castratingsTs = new HashSet<castratingsT>();
+            this.Review_Table = new HashSet<Review_Table>();
+            this.castComments = new HashSet<castComment>();
+            this.castreplies = new HashSet<castreply>();
+            this.tickettbls = new HashSet<tickettbl>();
         }
     
         public int user_id { get; set; }
@@ -31,14 +35,24 @@ namespace RatingApp.Models
         public Nullable<double> user_ratings { get; set; }
         public string profile_pic { get; set; }
         public Nullable<System.DateTime> registeredDate { get; set; }
+        public Nullable<bool> premiumuser { get; set; }
+        public byte[] imagebyte { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review_Table> Review_Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inovice> inovices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<comment> comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<reply> replies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<castratingsT> castratingsTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review_Table> Review_Table { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<castComment> castComments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<castreply> castreplies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tickettbl> tickettbls { get; set; }
     }
 }

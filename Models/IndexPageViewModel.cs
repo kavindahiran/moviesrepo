@@ -15,16 +15,17 @@ namespace RatingApp.Models
 
         public List<Review_Table> reviewtbl { get; set; }
 
-        
+        public IPagedList<movieCastcrew> castlist { get; set; }
 
-        public List<movieCastcrew> castcrew { get; set; }
+        //public List<movieCastcrew> castcrew { get; set; }
         public IndexPageViewModel()
         {
             heroarenatableList = new List<heroarenatable>();
             //movietblList = new PagedList<Movie_Item>(1,2);
             trailertbList = new List<trailertb>();
             reviewtbl = new List<Review_Table>();
-            castcrew = new List<movieCastcrew>();
+            //castcrew = new List<movieCastcrew>();
+            
         }
     }
 }

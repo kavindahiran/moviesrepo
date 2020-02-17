@@ -1,0 +1,449 @@
+﻿@model RatingApp.Models.Review_Table
+
+@{
+    ViewBag.Title = "newview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+<link href="~/Content/movie details view/details2.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/assets/js/jquery.rateyo.min.css" rel="stylesheet" />
+<script src="~/assets/js/jquery.rateyo.js"></script>
+<link href="~/assets/css/rating css/ratingcss.css" rel="stylesheet" />
+<link href="~/Content/movie details view/ratingdetail.css" rel="stylesheet" />
+<style>
+    body {
+        margin-top: 20px;
+    }
+
+    .glyphicon {
+        margin-right: 5px;
+    }
+
+    .rating .glyphicon {
+        font-size: 22px;
+    }
+
+    .rating-num {
+        margin-top: 0px;
+        font-size: 54px;
+    }
+
+    .progress {
+        margin-bottom: 5px;
+    }
+
+    .progress-bar {
+        text-align: left;
+    }
+
+    .rating-desc .col-md-3 {
+        padding-right: 0px;
+    }
+
+    .sr-only {
+        margin-left: 5px;
+        overflow: visible;
+        clip: auto;
+    }
+</style>
+<script>
+
+    $(function () {
+
+        $("#rateYo").rateYo({
+            starWidth: "40px",
+            normalFill: "#A0A0A0",
+            numStars: 5,
+            maxValue: 5,
+            halfStar: true,
+            onChange: function (rating, rateYoInstance) {
+                $('#rating').val(rating);
+
+            }
+
+
+        });
+
+    });
+
+
+
+    $(function () {
+
+        $("#rateYo1").rateYo({
+            starWidth: "40px",
+            normalFill: "#A0A0A0",
+            numStars: 5,
+            maxValue: 5,
+            halfStar: true,
+            onChange: function (rating, rateYoInstance) {
+                $('#rating').val(rating);
+
+            }
+
+
+        });
+
+    });
+
+
+
+</script>
+
+<!--end of preloading-->
+<!--login form popup-->
+<!-- END | Header -->
+
+<div class="buster-light">
+    <div class="hero mv-single-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <h1> movie listing - list</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-single movie-single movie_single">
+        <div class="container">
+            <div class="row ipad-width2">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="movie-img sticky-sb">
+                        <img src="@Url.Content(ViewBag.product.imgpath)" alt="">
+                        <div class="movie-btn">
+                            <div class="btn-transform transform-vertical red">
+                                <div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
+                                <div><a href="https://www.youtube.com/embed/o-0hcF97wy0" class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+                            </div>
+                            <div class="btn-transform transform-vertical">
+                                <div><a href="#" class="item item-1 yellowbtn"> <i class="ion-card"></i> Buy ticket</a></div>
+                                <div><a href="#" class="item item-2 yellowbtn"><i class="ion-card"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <div class="movie-single-ct main-content">
+                        <h1 class="bd-hd"> @ViewBag.product.Movie_name <span>   @ViewBag.product.Movie_release</span></h1>
+                        <div class="social-btn">
+                            <a href="#" class="parent-btn"><i class="ion-heart"></i> Add to Favorite</a>
+                            <div class="hover-bnt">
+                                <a href="#" class="parent-btn"><i class="ion-android-share-alt"></i>share</a>
+
+                            </div>
+                        </div>
+                        <div class="movie-rate">
+                            <div class="rate">
+                                <i class="ion-android-star"></i>
+                                <p>
+                                    <span>8.1</span> /10<br>
+                                    <span class="rv">56 Reviews</span>
+                                </p>
+                            </div>
+                            <div class="rate-star">
+                                <p>Rate This Movie:  </p>
+                                @{int i = 1; }
+                                @foreach (var rev in ViewBag.test)
+                                {
+
+
+
+                                    @*<tr>
+                                            <td>username</td>
+                                            <td>@rev.account.username</td>
+                                        </tr>*@
+
+                                    <script>
+                       $(function(){
+                           $('#@("rating" +i)').rateYo({
+                               rating:@rev.rating,
+                               readOnly: true
+                           });
+                       });
+                                    </script>
+                                    <div id="@("rating" +i)"></div>
+
+
+
+
+
+                                    i++;
+
+
+
+                                }
+                            </div>
+                        </div>
+                        <div class="movie-tabs">
+                            <div class="tabs">
+                                <ul class="tab-links tabs-mv">
+                                    <li class="active"><a href="#overview">Overview</a></li>
+
+                                </ul>
+                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                    <p>Tony Stark creates the Ultron Program to protect the world, but when the peacekeeping program becomes hostile, The Avengers go into action to try and defeat a virtually impossible enemy together. Earth's mightiest heroes must come together once again to protect the world from global extinction.</p>
+                                    <div class="title-hd-sm">
+                                        <h4>Videos & Photos</h4>
+                                        <a href="#" class="time">All 5 Videos & 245 Photos <i class="ion-ios-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="our_offer single_page_offer">
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-xl-5">
+                <div class="section_tittle">
+                    <p>best Courses</p>
+                    <h2>Why you Join with us</h2>
+                    <span>Stars fowl deep she greater bearing to seed dont is let you're appear first thing saying it years abundantly fowl tree you shall also</span>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-between">
+            <div class="col-lg-12">
+                @if (ViewBag.gall != null)
+                {
+                    foreach (var item in ViewBag.gall)
+                    {
+
+
+                        <div class="single_offer_part">
+                            <div class="single_offer">
+                                <img src="@Url.Content(item.ipath)" alt="portfolio" />
+                                <div class="hover_text">
+                                    <h2>Fitness Training</h2>
+                                    <p>Fly replenish dominion evening make veriety of </p>
+                                    <a href="#" class="offer_btn"><span class="flaticon-slim-right"></span></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                }
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<div class="container" id="container1" style="margin-top:50px;">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+
+            <img src="@Url.Content(ViewBag.product.imgpath)" class="img-thumbnail" alt="Responsive image" style="height:430px;">
+
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+
+
+            <div class="row">
+                <div class="col-xs-12 col-md-6 text-center">
+                    <h1 class="rating-num">
+                        4.0
+                    </h1>
+                    <div class="rating">
+                        <span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                        </span><span class="glyphicon glyphicon-star"></span><span class="glyphicon glyphicon-star">
+                        </span><span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
+                    <div>
+                        <span class="glyphicon glyphicon-user"></span>1,050,008 total
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="row rating-desc">
+                        <div class="col-xs-3 col-md-3 text-right">
+                            <span class="glyphicon glyphicon-star"></span>5
+                        </div>
+                        <div class="col-xs-8 col-md-9">
+                            <div class="progress progress-striped">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <span class="sr-only">80%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end 5 -->
+                        <div class="col-xs-3 col-md-3 text-right">
+                            <span class="glyphicon glyphicon-star"></span>4
+                        </div>
+                        <div class="col-xs-8 col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                    <span class="sr-only">60%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end 4 -->
+                        <div class="col-xs-3 col-md-3 text-right">
+                            <span class="glyphicon glyphicon-star"></span>3
+                        </div>
+                        <div class="col-xs-8 col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                    <span class="sr-only">40%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end 3 -->
+                        <div class="col-xs-3 col-md-3 text-right">
+                            <span class="glyphicon glyphicon-star"></span>2
+                        </div>
+                        <div class="col-xs-8 col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                    <span class="sr-only">20%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end 2 -->
+                        <div class="col-xs-3 col-md-3 text-right">
+                            <span class="glyphicon glyphicon-star"></span>1
+                        </div>
+                        <div class="col-xs-8 col-md-9">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 15%">
+                                    <span class="sr-only">15%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end 1 -->
+                    </div>
+                    <!-- end row -->
+                </div>
+            </div>
+
+            <div class="panel-heading">
+                <h4 class="text-center">Skills<span class="glyphicon glyphicon-saved pull-right"></span></h4>
+            </div>
+            <div class="panel-body text-center">
+                <p class="lead">
+                    <strong>Technology Overview</strong>
+                </p>
+            </div>
+            <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item">
+                    <div class="skillLineDefault">
+                        <div class="skill pull-left text-center">Ratings</div>
+                        <div class="" style="margin-left:100px;">
+                            @{int x = 1; }
+                            @foreach (var rev in ViewBag.test)
+                            {
+
+
+
+
+
+                                <script>
+                           $(function(){
+                               $('#@("rating" +x)').rateYo({
+                                   rating:@rev.rating,
+                                   readOnly: true
+                               });
+                           });
+                                </script>
+                                <div id="@("rating" +x)"></div>
+
+
+
+
+
+                                x++;
+
+
+
+                            }
+                        </div>
+                    </div>
+                    @Html.HiddenFor(model => model.userID)
+                    @Html.HiddenFor(model => model.movieT_ID)
+                </li>
+
+
+                <li class="list-group-item text-center">
+                    <div class="skillLineDefault">
+                        <div class="skill pull-left text-center"> Cast Name</div>
+                        <h3> @ViewBag.product.Movie_name</h3>
+                    </div>
+                </li>
+                <li class="list-group-item text-center">
+                    <div class="skillLineDefault">
+                        <div class="skill pull-left text-center">Status</div>
+                        <h3> @ViewBag.product.Movie_director</h3>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            @if (Session["regname"] == null)
+            {
+                <span class="contact100-form">
+                    <a href="@Url.Action("index", "Home")">Login here to add ratings</a>
+                </span>
+
+            }
+            else
+            {
+                using (Html.BeginForm("sendReview", "dashboard", FormMethod.Post, htmlAttributes: new { @class = "contact100-form validate-form" }))
+                {
+
+                    <form>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.rating, htmlAttributes: new { @class = "label-input100" })
+                            <div id="rateYo"></div>
+                            <input type="hidden" id="rating" name="rating" class="form-control" />
+                            <span class="focus-input100"></span>
+                            @*<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>*@
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "label-input100" })
+                            @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", cols = 20, rows = 5 } })
+                        </div>
+                        @Html.HiddenFor(model => model.userID);
+                        @Html.HiddenFor(model => model.movieT_ID);
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+                    </form>
+
+                }
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

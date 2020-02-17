@@ -25,6 +25,12 @@ namespace RatingApp.Models
         public Nullable<int> userTblid { get; set; }
         public Nullable<System.DateTime> orderdate { get; set; }
         public Nullable<int> totalbill { get; set; }
+        public string fullname { get; set; }
+        public string address1 { get; set; }
+        public string address2 { get; set; }
+        public Nullable<int> zipcode { get; set; }
+        public string city { get; set; }
+        public string country { get; set; }
     
         public virtual shoppingcart shoppingcart { get; set; }
         public virtual usertbl usertbl { get; set; }
