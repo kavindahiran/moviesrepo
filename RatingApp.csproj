@@ -449,6 +449,10 @@
     <Content Include="Content\booktickets\css\micons\fonts\icomoon.svg" />
     <Content Include="Content\booktickets\css\micons\micons.css" />
     <Content Include="Content\booktickets\css\vendor.css" />
+    <Content Include="Content\DataTable\dataTables.bootstrap.min.js" />
+    <Content Include="Content\DataTable\dataTables.dataTables.js" />
+    <Content Include="Content\DataTable\jquery.dataTables.css" />
+    <Content Include="Content\DataTable\jquery.dataTables.js" />
     <Content Include="Content\fooditemorder\about-bg.jpg" />
     <Content Include="Content\fooditemorder\animate-3.7.0.css" />
     <Content Include="Content\fooditemorder\banner-bg.jpg" />
@@ -467,6 +471,7 @@
     <Content Include="Content\registrationtemplate\style.css" />
     <Content Include="Content\registrationtemplate\wNumb.js" />
     <Content Include="Content\time selector\timeplan.css" />
+    <Content Include="Content\vertical nav bar\jquery-ui.min.css" />
     <Content Include="facerecodnision\face-api.min.js" />
     <Content Include="facerecodnision\labeled_images\Black Widow\1.jpg" />
     <Content Include="facerecodnision\labeled_images\Black Widow\2.jpg" />
@@ -881,6 +886,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.magnific-popup.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

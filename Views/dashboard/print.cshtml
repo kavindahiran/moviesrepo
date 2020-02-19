@@ -1,17 +1,59 @@
-﻿
+﻿@model List<RatingApp.Models.Movie_Item>
 @{
     ViewBag.Title = "print";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Content/vertical nav bar/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTable/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.js"></script>
+
+<div class="container" style="margin:20px; padding:0px;">
+    <table class="display" id="MyDataTable" width="90%">
+        <thead>
+            <tr>
+                <th>
+                    Movie Name
+                </th>
+                <th>
+                    Release Date
+                </th>
+                <th>
+                    Director
+                </th>
+                <th>
+                    Category
+                </th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Movie_name</td>
+                    <td>@item.Movie_release</td>
+                    <td>@item.Movie_director</td>
+                    <td>@item.category</td>
+                </tr>
+            }
+
+
+        </tbody>
+
+    </table>
+</div>
+
 
 <div class="container" style="margin:50px; padding:50px;">
     @using (Html.BeginForm("Generate", "dashboard", FormMethod.Post))
     {
         <div class="row">
             <div class="col-lg-6">
-                <input type="text" name="prodectId" class="form-control" value="@ViewBag.prodectId" placeholder="Prodect Id" />
+                <input type="text" name="prodectId" class="form-control" value="@ViewBag.prodectId" placeholder="Prodect Id" id="id1" />
             </div>
             <div class="col-lg-3"><input type="submit" class="btn btn-primary" value="Generate" /></div>
             <div class="col-lg-3"></div>
@@ -46,12 +88,28 @@
 </div>
 
 <script>
+
+
+
+    $(document).ready(function () {
+
+        $("#MyDataTable").DataTable();
+    })
+
+
+
     $('a.printPage').click(function () {
         window.print();
         return false;
     });
-    Copy
+    
 
-
+    var MyDataTable = document.getElementById('MyDataTable'), rIndex;
+    for (var i = 0; i < MyDataTable.rows.length; i++) {
+        MyDataTable.rows[i].onclick = function () {
+            rIndex = this.rowIndex;
+            document.getElementById('id1').value = this.cells[0].innerHTML;
+        };
+    }
 
 </script>

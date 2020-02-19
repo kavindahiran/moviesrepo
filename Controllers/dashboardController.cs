@@ -766,7 +766,9 @@ namespace RatingApp.Controllers
 
         public ActionResult print()
         {
-            return View();
+            moviedetailsdb1 db = new moviedetailsdb1();
+           List<Movie_Item> x = db.Movie_Item.ToList();
+            return View(x);
         }
 
         [HttpPost]
@@ -832,7 +834,10 @@ namespace RatingApp.Controllers
                 }
             }
             ViewBag.prodectId = prodectId;
-            return View("print");
+
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<Movie_Item> x = db.Movie_Item.ToList();
+            return View("print",x);
         }
 
 
