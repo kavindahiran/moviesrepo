@@ -9,6 +9,7 @@
     <Property Name="ratings" Type="Int32" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="specialnotes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Movie_Item">
     <Key>
@@ -21,27 +22,18 @@
     <Property Name="imgpath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="imageCover" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Posted_date" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="movieCastcrews" Relationship="Self.FK_movieCastcrew_Movie_Item" FromRole="Movie_Item" ToRole="movieCastcrew" />
-    <NavigationProperty Name="Review_Table" Relationship="Self.FK_Review_Table_Movie_Item" FromRole="Movie_Item" ToRole="Review_Table" />
     <NavigationProperty Name="PhotoGalleries" Relationship="Models.FK_PhotoGallery_PhotoGallery" FromRole="Movie_Item" ToRole="PhotoGallery" />
     <NavigationProperty Name="shoppingcarts" Relationship="Models.FK_shoppingcart_shoppingcart" FromRole="Movie_Item" ToRole="shoppingcart" />
     <Property Name="movieDis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="castphotogalleries" Relationship="Models.FK_castphotogallery_castphotogallery" FromRole="Movie_Item" ToRole="castphotogallery" />
     <NavigationProperty Name="ordertables" Relationship="Models.FK_ordertable_Movie_Item" FromRole="Movie_Item" ToRole="ordertable" />
     <NavigationProperty Name="comments" Relationship="Models.FK_comments_Movie_Item" FromRole="Movie_Item" ToRole="comment" />
-  </EntityType>
-  <EntityType Name="movieCastcrew">
-    <Key>
-      <PropertyRef Name="cast_id" />
-    </Key>
-    <Property Name="cast_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="movie_id" Type="Int32" />
-    <Property Name="cast_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="cast_profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Movie_Item" Relationship="Self.FK_movieCastcrew_Movie_Item" FromRole="movieCastcrew" ToRole="Movie_Item" />
-    <Property Name="crew_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Review_Table" Relationship="Models.FK_Review_Table_movieCastcrew" FromRole="movieCastcrew" ToRole="Review_Table" />
-    <Property Name="castDiscription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Landmark121" Relationship="Models.FK_Landmark121_Movie_Item" FromRole="Movie_Item" ToRole="Landmark121" />
+    <Property Name="awardnominated" Type="Boolean" />
+    <Property Name="banned" Type="Boolean" />
+    <NavigationProperty Name="movieCastcrews" Relationship="Models.FK_movieCastcrew_Movie_Item" FromRole="Movie_Item" ToRole="movieCastcrew" />
+    <NavigationProperty Name="Review_Table" Relationship="Models.FK_Review_Table_Movie_Item" FromRole="Movie_Item" ToRole="Review_Table" />
   </EntityType>
   <EntityType Name="newsforum">
     <Key>
@@ -53,112 +45,54 @@
     <Property Name="date" Type="DateTime" Precision="0" />
     <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="Review_Table">
-    <Key>
-      <PropertyRef Name="review_id" />
-    </Key>
-    <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Content" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="rating" Type="Double" />
-    <Property Name="DatePost" Type="DateTime" Precision="3" />
-    <Property Name="movieT_ID" Type="Int32" />
-    <Property Name="userID" Type="Int32" />
-    <NavigationProperty Name="Movie_Item" Relationship="Self.FK_Review_Table_Movie_Item" FromRole="Review_Table" ToRole="Movie_Item" />
-    <NavigationProperty Name="usertbl" Relationship="Self.FK_Review_Table_usertbl" FromRole="Review_Table" ToRole="usertbl" />
-    <Property Name="cast_ratings" Type="Double" />
-    <Property Name="castC_id" Type="Int32" />
-    <NavigationProperty Name="movieCastcrew" Relationship="Models.FK_Review_Table_movieCastcrew" FromRole="Review_Table" ToRole="movieCastcrew" />
-  </EntityType>
   <EntityType Name="trailertb">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="coverimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="trailerN" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-    <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="coverimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="trailerN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="usertbl">
     <Key>
       <PropertyRef Name="user_id" />
     </Key>
     <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="username" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-    <Property Name="email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-    <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="roleid" Type="Boolean" />
     <Property Name="user_ratings" Type="Double" />
     <Property Name="profile_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Review_Table" Relationship="Self.FK_Review_Table_usertbl" FromRole="usertbl" ToRole="Review_Table" />
     <Property Name="registeredDate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="inovices" Relationship="Models.FK_inovice_usertbl" FromRole="usertbl" ToRole="inovice" />
     <NavigationProperty Name="comments" Relationship="Models.FK_comments_usertbl" FromRole="usertbl" ToRole="comment" />
     <NavigationProperty Name="replies" Relationship="Models.FK_replies_usertbl" FromRole="usertbl" ToRole="reply" />
+    <NavigationProperty Name="castratingsTs" Relationship="Models.FK_castratingsT_usertbl" FromRole="usertbl" ToRole="castratingsT" />
+    <NavigationProperty Name="castComments" Relationship="Models.FK_castComments_usertbl" FromRole="usertbl" ToRole="castComment" />
+    <NavigationProperty Name="castreplies" Relationship="Models.FK_castreply_usertbl" FromRole="usertbl" ToRole="castreply" />
+    <Property Name="premiumuser" Type="Boolean" />
+    <Property Name="imagebyte" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_usertbl" FromRole="usertbl" ToRole="tickettbl" />
+    <NavigationProperty Name="Review_Table" Relationship="Models.FK_Review_Table_usertbl" FromRole="usertbl" ToRole="Review_Table" />
+    <Property Name="phonenumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="gender" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="confirmpass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
-  <Association Name="FK_movieCastcrew_Movie_Item">
-    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
-    <End Role="movieCastcrew" Type="Self.movieCastcrew" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Movie_Item">
-        <PropertyRef Name="movie_id" />
-      </Principal>
-      <Dependent Role="movieCastcrew">
-        <PropertyRef Name="movie_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Review_Table_Movie_Item">
-    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
-    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Movie_Item">
-        <PropertyRef Name="movie_id" />
-      </Principal>
-      <Dependent Role="Review_Table">
-        <PropertyRef Name="movieT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Review_Table_usertbl">
-    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
-    <End Role="Review_Table" Type="Self.Review_Table" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="usertbl">
-        <PropertyRef Name="user_id" />
-      </Principal>
-      <Dependent Role="Review_Table">
-        <PropertyRef Name="userID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="moviedetailsdb1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="heroarenatables" EntityType="Self.heroarenatable" />
     <EntitySet Name="Movie_Item" EntityType="Self.Movie_Item" />
-    <EntitySet Name="movieCastcrews" EntityType="Self.movieCastcrew" />
     <EntitySet Name="newsforums" EntityType="Self.newsforum" />
-    <EntitySet Name="Review_Table" EntityType="Self.Review_Table" />
     <EntitySet Name="trailertbs" EntityType="Self.trailertb" />
     <EntitySet Name="usertbls" EntityType="Self.usertbl" />
-    <AssociationSet Name="FK_movieCastcrew_Movie_Item" Association="Self.FK_movieCastcrew_Movie_Item">
-      <End Role="Movie_Item" EntitySet="Movie_Item" />
-      <End Role="movieCastcrew" EntitySet="movieCastcrews" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Review_Table_Movie_Item" Association="Self.FK_Review_Table_Movie_Item">
-      <End Role="Movie_Item" EntitySet="Movie_Item" />
-      <End Role="Review_Table" EntitySet="Review_Table" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Review_Table_usertbl" Association="Self.FK_Review_Table_usertbl">
-      <End Role="usertbl" EntitySet="usertbls" />
-      <End Role="Review_Table" EntitySet="Review_Table" />
-    </AssociationSet>
     <EntitySet Name="PhotoGalleries" EntityType="Models.PhotoGallery" />
     <AssociationSet Name="FK_PhotoGallery_PhotoGallery" Association="Models.FK_PhotoGallery_PhotoGallery">
       <End Role="Movie_Item" EntitySet="Movie_Item" />
       <End Role="PhotoGallery" EntitySet="PhotoGalleries" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Review_Table_movieCastcrew" Association="Models.FK_Review_Table_movieCastcrew">
-      <End Role="movieCastcrew" EntitySet="movieCastcrews" />
-      <End Role="Review_Table" EntitySet="Review_Table" />
     </AssociationSet>
     <EntitySet Name="shoppingcarts" EntityType="Models.shoppingcart" />
     <AssociationSet Name="FK_shoppingcart_shoppingcart" Association="Models.FK_shoppingcart_shoppingcart">
@@ -207,6 +141,92 @@
       <End Role="usertbl" EntitySet="usertbls" />
       <End Role="reply" EntitySet="replies" />
     </AssociationSet>
+    <EntitySet Name="castratingsTs" EntityType="Models.castratingsT" />
+    <AssociationSet Name="FK_castratingsT_castratingsT" Association="Models.FK_castratingsT_castratingsT">
+      <End Role="castratingsT" EntitySet="castratingsTs" />
+      <End Role="castratingsT1" EntitySet="castratingsTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_castratingsT_usertbl" Association="Models.FK_castratingsT_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="castratingsT" EntitySet="castratingsTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Landmark121_Movie_Item" Association="Models.FK_Landmark121_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="Landmark121" EntitySet="Landmark121" />
+    </AssociationSet>
+    <EntitySet Name="castComments" EntityType="Models.castComment" />
+    <EntitySet Name="castreplies" EntityType="Models.castreply" />
+    <AssociationSet Name="FK_castComments_castratingsT" Association="Models.FK_castComments_castratingsT">
+      <End Role="castratingsT" EntitySet="castratingsTs" />
+      <End Role="castComment" EntitySet="castComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_castComments_usertbl" Association="Models.FK_castComments_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="castComment" EntitySet="castComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_castreply_castComments" Association="Models.FK_castreply_castComments">
+      <End Role="castComment" EntitySet="castComments" />
+      <End Role="castreply" EntitySet="castreplies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_castreply_usertbl" Association="Models.FK_castreply_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="castreply" EntitySet="castreplies" />
+    </AssociationSet>
+    <EntitySet Name="hallLocations" EntityType="Models.hallLocation" />
+    <EntitySet Name="nowshowings" EntityType="Models.nowshowing" />
+    <EntitySet Name="showtimes" EntityType="Models.showtime" />
+    <EntitySet Name="halltables" EntityType="Models.halltable" />
+    <AssociationSet Name="FK_hallLocation_halltable" Association="Models.FK_hallLocation_halltable">
+      <End Role="halltable" EntitySet="halltables" />
+      <End Role="hallLocation" EntitySet="hallLocations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_halltable_nowshowing" Association="Models.FK_halltable_nowshowing">
+      <End Role="nowshowing" EntitySet="nowshowings" />
+      <End Role="halltable" EntitySet="halltables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_showtimes_halltable" Association="Models.FK_showtimes_halltable">
+      <End Role="halltable" EntitySet="halltables" />
+      <End Role="showtime" EntitySet="showtimes" />
+    </AssociationSet>
+    <EntitySet Name="tickettbls" EntityType="Models.tickettbl" />
+    <AssociationSet Name="FK_tickettbl_hallLocation" Association="Models.FK_tickettbl_hallLocation">
+      <End Role="hallLocation" EntitySet="hallLocations" />
+      <End Role="tickettbl" EntitySet="tickettbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tickettbl_halltable" Association="Models.FK_tickettbl_halltable">
+      <End Role="halltable" EntitySet="halltables" />
+      <End Role="tickettbl" EntitySet="tickettbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tickettbl_nowshowing" Association="Models.FK_tickettbl_nowshowing">
+      <End Role="nowshowing" EntitySet="nowshowings" />
+      <End Role="tickettbl" EntitySet="tickettbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tickettbl_showtimes" Association="Models.FK_tickettbl_showtimes">
+      <End Role="showtime" EntitySet="showtimes" />
+      <End Role="tickettbl" EntitySet="tickettbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tickettbl_usertbl" Association="Models.FK_tickettbl_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="tickettbl" EntitySet="tickettbls" />
+    </AssociationSet>
+    <EntitySet Name="movieCastcrews" EntityType="Models.movieCastcrew" />
+    <EntitySet Name="Review_Table" EntityType="Models.Review_Table" />
+    <AssociationSet Name="FK_castComments_movieCastcrew" Association="Models.FK_castComments_movieCastcrew">
+      <End Role="movieCastcrew" EntitySet="movieCastcrews" />
+      <End Role="castComment" EntitySet="castComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_movieCastcrew_Movie_Item" Association="Models.FK_movieCastcrew_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="movieCastcrew" EntitySet="movieCastcrews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_Movie_Item" Association="Models.FK_Review_Table_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Table_usertbl" Association="Models.FK_Review_Table_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="Review_Table" EntitySet="Review_Table" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="PhotoGallery">
     <Key>
@@ -231,18 +251,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Review_Table_movieCastcrew">
-    <End Type="Models.movieCastcrew" Role="movieCastcrew" Multiplicity="0..1" />
-    <End Type="Models.Review_Table" Role="Review_Table" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="movieCastcrew">
-        <PropertyRef Name="cast_id" />
-      </Principal>
-      <Dependent Role="Review_Table">
-        <PropertyRef Name="castC_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="shoppingcart">
     <Key>
       <PropertyRef Name="shopid" />
@@ -257,6 +265,7 @@
     <Property Name="coverphotopath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="publishdate" Type="DateTime" Precision="0" />
     <NavigationProperty Name="inovices" Relationship="Models.FK_inovice_shoppingcart" FromRole="shoppingcart" ToRole="inovice" />
+    <Property Name="discountavail" Type="Boolean" />
   </EntityType>
   <Association Name="FK_shoppingcart_shoppingcart">
     <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
@@ -280,6 +289,7 @@
     <Property Name="imageC" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="castimagename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Movie_Item" Relationship="Models.FK_castphotogallery_castphotogallery" FromRole="castphotogallery" ToRole="Movie_Item" />
+    <Property Name="Lstatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Landmark121">
     <Key>
@@ -291,6 +301,8 @@
     <Property Name="Latitude" Type="Double" />
     <Property Name="Longitude" Type="Double" />
     <Property Name="GeoLocation" Type="Geography" />
+    <Property Name="MovieId" Type="Int32" />
+    <NavigationProperty Name="Movie_Item" Relationship="Models.FK_Landmark121_Movie_Item" FromRole="Landmark121" ToRole="Movie_Item" />
   </EntityType>
   <Association Name="FK_castphotogallery_castphotogallery">
     <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
@@ -316,6 +328,12 @@
     <NavigationProperty Name="shoppingcart" Relationship="Models.FK_inovice_shoppingcart" FromRole="inovice" ToRole="shoppingcart" />
     <NavigationProperty Name="usertbl" Relationship="Models.FK_inovice_usertbl" FromRole="inovice" ToRole="usertbl" />
     <NavigationProperty Name="ordertables" Relationship="Models.FK_ordertable_inovice" FromRole="inovice" ToRole="ordertable" />
+    <Property Name="fullname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="zipcode" Type="Int32" />
+    <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_inovice_shoppingcart">
     <End Type="Models.shoppingcart" Role="shoppingcart" Multiplicity="0..1" />
@@ -354,6 +372,10 @@
     <Property Name="unitprice" Type="Int32" />
     <NavigationProperty Name="inovice" Relationship="Models.FK_ordertable_inovice" FromRole="ordertable" ToRole="inovice" />
     <NavigationProperty Name="Movie_Item" Relationship="Models.FK_ordertable_Movie_Item" FromRole="ordertable" ToRole="Movie_Item" />
+    <Property Name="cardnumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="expiredate" Type="DateTime" Precision="3" />
+    <Property Name="cardcode" Type="Int32" />
+    <Property Name="moviesordered" Type="Boolean" />
   </EntityType>
   <Association Name="FK_ordertable_inovice">
     <End Type="Models.inovice" Role="inovice" Multiplicity="0..1" />
@@ -450,6 +472,372 @@
       </Principal>
       <Dependent Role="reply">
         <PropertyRef Name="useridR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="castratingsT">
+    <Key>
+      <PropertyRef Name="castRid" />
+    </Key>
+    <Property Name="castRid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="castid" Type="Int32" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="castratings" Type="Double" />
+    <Property Name="comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="dateposted" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="castratingsT1" Relationship="Models.FK_castratingsT_castratingsT" FromRole="castratingsT" ToRole="castratingsT1" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_castratingsT_usertbl" FromRole="castratingsT" ToRole="usertbl" />
+    <NavigationProperty Name="castComments" Relationship="Models.FK_castComments_castratingsT" FromRole="castratingsT" ToRole="castComment" />
+  </EntityType>
+  <Association Name="FK_castratingsT_castratingsT">
+    <End Type="Models.castratingsT" Role="castratingsT" Multiplicity="1" />
+    <End Type="Models.castratingsT" Role="castratingsT1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="castratingsT">
+        <PropertyRef Name="castRid" />
+      </Principal>
+      <Dependent Role="castratingsT1">
+        <PropertyRef Name="castRid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_castratingsT_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.castratingsT" Role="castratingsT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="castratingsT">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Landmark121_Movie_Item">
+    <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
+    <End Type="Models.Landmark121" Role="Landmark121" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="Landmark121">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="castComment">
+    <Key>
+      <PropertyRef Name="ccid" />
+    </Key>
+    <Property Name="ccid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="castrid" Type="Int32" />
+    <Property Name="comments" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="comdate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="castratingsT" Relationship="Models.FK_castComments_castratingsT" FromRole="castComment" ToRole="castratingsT" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_castComments_usertbl" FromRole="castComment" ToRole="usertbl" />
+    <NavigationProperty Name="castreplies" Relationship="Models.FK_castreply_castComments" FromRole="castComment" ToRole="castreply" />
+    <NavigationProperty Name="movieCastcrew" Relationship="Models.FK_castComments_movieCastcrew" FromRole="castComment" ToRole="movieCastcrew" />
+  </EntityType>
+  <EntityType Name="castreply">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Castcomid" Type="Int32" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="replys" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="replydate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="castComment" Relationship="Models.FK_castreply_castComments" FromRole="castreply" ToRole="castComment" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_castreply_usertbl" FromRole="castreply" ToRole="usertbl" />
+  </EntityType>
+  <Association Name="FK_castComments_castratingsT">
+    <End Type="Models.castratingsT" Role="castratingsT" Multiplicity="0..1" />
+    <End Type="Models.castComment" Role="castComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="castratingsT">
+        <PropertyRef Name="castRid" />
+      </Principal>
+      <Dependent Role="castComment">
+        <PropertyRef Name="castrid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_castComments_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.castComment" Role="castComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="castComment">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_castreply_castComments">
+    <End Type="Models.castComment" Role="castComment" Multiplicity="0..1" />
+    <End Type="Models.castreply" Role="castreply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="castComment">
+        <PropertyRef Name="ccid" />
+      </Principal>
+      <Dependent Role="castreply">
+        <PropertyRef Name="Castcomid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_castreply_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.castreply" Role="castreply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="castreply">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="hallLocation">
+    <Key>
+      <PropertyRef Name="locationid" />
+    </Key>
+    <Property Name="locationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="locationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="hallid" Type="Int32" />
+    <NavigationProperty Name="halltable" Relationship="Models.FK_hallLocation_halltable" FromRole="hallLocation" ToRole="halltable" />
+    <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_hallLocation" FromRole="hallLocation" ToRole="tickettbl" />
+  </EntityType>
+  <EntityType Name="nowshowing">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="availableDate" Type="DateTime" Precision="3" />
+    <Property Name="expireDate" Type="DateTime" Precision="3" />
+    <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="moviename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="halltables" Relationship="Models.FK_halltable_nowshowing" FromRole="nowshowing" ToRole="halltable" />
+    <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_nowshowing" FromRole="nowshowing" ToRole="tickettbl" />
+  </EntityType>
+  <EntityType Name="showtime">
+    <Key>
+      <PropertyRef Name="showid" />
+    </Key>
+    <Property Name="showid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hallid" Type="Int32" />
+    <Property Name="showtime1" Type="Time" Precision="7" />
+    <NavigationProperty Name="halltable" Relationship="Models.FK_showtimes_halltable" FromRole="showtime" ToRole="halltable" />
+    <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_showtimes" FromRole="showtime" ToRole="tickettbl" />
+  </EntityType>
+  <EntityType Name="halltable">
+    <Key>
+      <PropertyRef Name="hallid" />
+    </Key>
+    <Property Name="hallid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hallname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="movieShid" Type="Int32" />
+    <NavigationProperty Name="hallLocations" Relationship="Models.FK_hallLocation_halltable" FromRole="halltable" ToRole="hallLocation" />
+    <NavigationProperty Name="nowshowing" Relationship="Models.FK_halltable_nowshowing" FromRole="halltable" ToRole="nowshowing" />
+    <NavigationProperty Name="showtimes" Relationship="Models.FK_showtimes_halltable" FromRole="halltable" ToRole="showtime" />
+    <Property Name="ticketprice" Type="Double" />
+    <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_halltable" FromRole="halltable" ToRole="tickettbl" />
+  </EntityType>
+  <Association Name="FK_hallLocation_halltable">
+    <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
+    <End Type="Models.hallLocation" Role="hallLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="halltable">
+        <PropertyRef Name="hallid" />
+      </Principal>
+      <Dependent Role="hallLocation">
+        <PropertyRef Name="hallid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_halltable_nowshowing">
+    <End Type="Models.nowshowing" Role="nowshowing" Multiplicity="0..1" />
+    <End Type="Models.halltable" Role="halltable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nowshowing">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="halltable">
+        <PropertyRef Name="movieShid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_showtimes_halltable">
+    <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
+    <End Type="Models.showtime" Role="showtime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="halltable">
+        <PropertyRef Name="hallid" />
+      </Principal>
+      <Dependent Role="showtime">
+        <PropertyRef Name="hallid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tickettbl">
+    <Key>
+      <PropertyRef Name="ticketid" />
+    </Key>
+    <Property Name="ticketid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="movieid" Type="Int32" />
+    <Property Name="hallid" Type="Int32" />
+    <Property Name="showid" Type="Int32" />
+    <Property Name="halllocationid" Type="Int32" />
+    <Property Name="seatnobooked" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="seatsbooked" Type="Int32" />
+    <Property Name="ticketcount" Type="Int32" />
+    <Property Name="bookedprice" Type="Double" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="registredname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="hallLocation" Relationship="Models.FK_tickettbl_hallLocation" FromRole="tickettbl" ToRole="hallLocation" />
+    <NavigationProperty Name="halltable" Relationship="Models.FK_tickettbl_halltable" FromRole="tickettbl" ToRole="halltable" />
+    <NavigationProperty Name="nowshowing" Relationship="Models.FK_tickettbl_nowshowing" FromRole="tickettbl" ToRole="nowshowing" />
+    <NavigationProperty Name="showtime" Relationship="Models.FK_tickettbl_showtimes" FromRole="tickettbl" ToRole="showtime" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_tickettbl_usertbl" FromRole="tickettbl" ToRole="usertbl" />
+  </EntityType>
+  <Association Name="FK_tickettbl_hallLocation">
+    <End Type="Models.hallLocation" Role="hallLocation" Multiplicity="0..1" />
+    <End Type="Models.tickettbl" Role="tickettbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hallLocation">
+        <PropertyRef Name="locationid" />
+      </Principal>
+      <Dependent Role="tickettbl">
+        <PropertyRef Name="halllocationid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tickettbl_halltable">
+    <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
+    <End Type="Models.tickettbl" Role="tickettbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="halltable">
+        <PropertyRef Name="hallid" />
+      </Principal>
+      <Dependent Role="tickettbl">
+        <PropertyRef Name="hallid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tickettbl_nowshowing">
+    <End Type="Models.nowshowing" Role="nowshowing" Multiplicity="0..1" />
+    <End Type="Models.tickettbl" Role="tickettbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nowshowing">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tickettbl">
+        <PropertyRef Name="movieid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tickettbl_showtimes">
+    <End Type="Models.showtime" Role="showtime" Multiplicity="0..1" />
+    <End Type="Models.tickettbl" Role="tickettbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="showtime">
+        <PropertyRef Name="showid" />
+      </Principal>
+      <Dependent Role="tickettbl">
+        <PropertyRef Name="showid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tickettbl_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.tickettbl" Role="tickettbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="tickettbl">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="movieCastcrew">
+    <Key>
+      <PropertyRef Name="cast_id" />
+    </Key>
+    <Property Name="cast_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="movie_id" Type="Int32" />
+    <Property Name="cast_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cast_profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="crew_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="castDiscription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="castComments" Relationship="Models.FK_castComments_movieCastcrew" FromRole="movieCastcrew" ToRole="castComment" />
+    <NavigationProperty Name="Movie_Item" Relationship="Models.FK_movieCastcrew_Movie_Item" FromRole="movieCastcrew" ToRole="Movie_Item" />
+    <Property Name="castawardsnominated" Type="Boolean" />
+    <Property Name="died" Type="Boolean" />
+    <Property Name="nickname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Review_Table">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="review_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="rating" Type="Double" />
+    <Property Name="DatePost" Type="DateTime" Precision="3" />
+    <Property Name="movieT_ID" Type="Int32" />
+    <Property Name="userID" Type="Int32" />
+    <Property Name="movielikes" Type="Int32" />
+    <NavigationProperty Name="Movie_Item" Relationship="Models.FK_Review_Table_Movie_Item" FromRole="Review_Table" ToRole="Movie_Item" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_Review_Table_usertbl" FromRole="Review_Table" ToRole="usertbl" />
+  </EntityType>
+  <Association Name="FK_castComments_movieCastcrew">
+    <End Type="Models.movieCastcrew" Role="movieCastcrew" Multiplicity="0..1" />
+    <End Type="Models.castComment" Role="castComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movieCastcrew">
+        <PropertyRef Name="cast_id" />
+      </Principal>
+      <Dependent Role="castComment">
+        <PropertyRef Name="castrid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_movieCastcrew_Movie_Item">
+    <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
+    <End Type="Models.movieCastcrew" Role="movieCastcrew" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="movieCastcrew">
+        <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_Movie_Item">
+    <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
+    <End Type="Models.Review_Table" Role="Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="movieT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Table_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.Review_Table" Role="Review_Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Review_Table">
+        <PropertyRef Name="userID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

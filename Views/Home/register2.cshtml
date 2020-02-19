@@ -6,8 +6,11 @@
 <link href="~/Content/registrationtemplate/nouislider.min.css" rel="stylesheet" />
 <link href="~/Content/registrationtemplate/style.css" rel="stylesheet" />
 <script src="~/Content/registrationtemplate/additional-methods.min.js"></script>
-<script src="~/Content/registrationtemplate/jquery-ui.min.js"></script>
-<script src="~/Content/registrationtemplate/jquery.validate.min.js"></script>
+@*<script src="~/Content/registrationtemplate/jquery-ui.min.js"></script>
+    <script src="~/Content/registrationtemplate/jquery.validate.min.js"></script>*@
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/Content/registrationtemplate/main.js"></script>
 <script src="~/Content/registrationtemplate/nouislider.min.js"></script>
 <script src="~/Content/registrationtemplate/wNumb.js"></script>
@@ -26,97 +29,127 @@
                 </div>
             </div>
             <div class="signup-form">
-                <form action="register2" method="POST" class="register-form" id="frm2">
+                <form action="register2" method="POST" id="frm2" new { enctype="multipart/form-data" }>
                     <div class="form-row">
                         <div class="form-group">
                             <div class="form-input">
-                                <label for="first_name" class="required">First name</label>
-                                <input type="text" name="regname" id="first_name" />
+                                <label for="first_name" class="required">User Name</label>
+                                @*<input type="text" name="regname" id="first_name" value="@Request["username"]" />*@
+                                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-input">
-                                <label for="last_name" class="required">Last name</label>
-                                <input type="text" name="password" id="last_name" />
+                                <label for="last_name" class="required">Password</label>
+                                @*<input type="password" name="password" id="last_name" />*@
+                                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-input">
+                                <label for="phone_number" class="required">Confirm Password</label>
+                                @*<input type="password" name="cpass" id="phone_number" />*@
+                                @Html.EditorFor(model => model.confirmpass, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.confirmpass, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-input">
-                                <label for="company" class="required">Company</label>
-                                <input type="text" name="email" id="company" />
+                                <label for="company" class="required">Email</label>
+                                @*<input type="text" name="email" id="company" value="@Request["email"]" />*@
+                                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-input">
-                                <label for="email" class="required">Email</label>
-                                <input type="text" name="email" id="email" />
+                                <label for="email" class="required">First Name</label>
+                               
+                                @Html.EditorFor(model => model.firstname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.firstname, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-input">
-                                <label for="phone_number" class="required">Phone number</label>
-                                <input type="text" name="phone_number" id="phone_number" />
+                                <label for="email" class="required">Last Name</label>
+                              
+                                @Html.EditorFor(model => model.lastname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.lastname, "", new { @class = "text-danger" })
                             </div>
+
                         </div>
                         <div class="form-group">
-                            <div class="form-select">
-                                <div class="label-flex">
-                                    <label for="meal_preference">meal preference</label>
-                                    <a href="#" class="form-link">Lunch detail</a>
-                                </div>
-                                <div class="select-list">
-                                    <select name="meal_preference" id="meal_preference">
-                                        <option value="Vegetarian">Vegetarian</option>
-                                        <option value="Kosher">Kosher</option>
-                                        <option value="Asian Vegetarian">Asian Vegetarian</option>
-                                    </select>
-                                </div>
-                            </div>
+                            @*<div class="form-select">
+                                    <div class="label-flex">
+                                        <label for="meal_preference">meal preference</label>
+                                        <a href="#" class="form-link">Lunch detail</a>
+                                    </div>
+                                    <div class="select-list">
+                                        <select name="meal_preference" id="meal_preference">
+                                            <option value="Vegetarian">Vegetarian</option>
+                                            <option value="Kosher">Kosher</option>
+                                            <option value="Asian Vegetarian">Asian Vegetarian</option>
+                                        </select>
+                                    </div>
+                                </div>*@
                             <div class="form-radio">
                                 <div class="label-flex">
                                     <label for="payment">Payment Mode</label>
-                                    <a href="#" class="form-link">Payment Detail</a>
+                                  
                                 </div>
                                 <div class="form-radio-group">
                                     <div class="form-radio-item">
-                                        <input type="radio" name="payment" id="cash" checked>
-                                        <label for="cash">Cash</label>
+                                        <input type="radio" name="Gender" id="cash" checked value="Male">
+                                        <label for="cash">Male</label>
                                         <span class="check"></span>
                                     </div>
                                     <div class="form-radio-item">
-                                        <input type="radio" name="payment" id="cheque">
-                                        <label for="cheque">Cheque</label>
+                                        <input type="radio" name="Gender" id="cheque" value="Female">
+                                        <label for="cheque">Female</label>
                                         <span class="check"></span>
                                     </div>
-                                    <div class="form-radio-item">
-                                        <input type="radio" name="payment" id="demand">
-                                        <label for="demand">Demand Draf</label>
-                                        <span class="check"></span>
-                                    </div>
+                                    @*<div class="form-radio-item">
+                                            <input type="radio" name="payment" id="demand">
+                                            <label for="demand">Demand Draf</label>
+                                            <span class="check"></span>
+                                        </div>*@
                                 </div>
                             </div>
+
                             <div class="form-input">
-                                <label for="chequeno">DD / Cheque No.</label>
-                                <input type="text" name="chequeno" id="chequeno" />
+                                <label for="phone_number" class="required">Phone number</label>
+                                
+                                @Html.EditorFor(model => model.phonenumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.phonenumber, "", new { @class = "text-danger" })
                             </div>
                             <div class="form-input">
-                                <label for="blank_name">Drawn on ( Bank Name)</label>
-                                <input type="text" name="blank_name" id="blank_name" />
+                                <label for="chequeno">Date Of Birth</label>
+                                <input type="date" name="DOB" id="phone_number" />
+                                @*@Html.da(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
-                            <div class="form-input">
-                                <label for="payable">Payable at</label>
-                                <input type="text" name="payable" id="payable" />
-                            </div>
-                            <div class="form-input">
-                                <div class="btn btn-primary">
-                                    <input type="file" name="ImageFile" />
+                            @*<div class="form-input">
+                                    <label for="blank_name">Drawn on ( Bank Name)</label>
+                                    <input type="text" name="blank_name" id="blank_name" />
                                 </div>
+                                <div class="form-input">
+                                    <label for="payable">Payable at</label>
+                                    <input type="text" name="payable" id="payable" />
+                                </div>*@
+                        <div class="form-input">
+                            <div class="btn btn-primary">
+                                <input type="file" name="ImageFile" />
                             </div>
+                            @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
+                        </div>
                         </div>
                     </div>
-                    <div class="donate-us">
-                        <label>Donate us</label>
-                        <div class="price_slider ui-slider ui-slider-horizontal">
-                            <div id="slider-margin"></div>
-                            <span class="donate-value" id="value-lower"></span>
-                        </div>
-                    </div>
-                    <div class="form-submit">
-                        <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
-                        <input type="submit" value="Reset" class="submit" id="reset" name="reset" />
-                    </div>
+                    <input type="submit" value="Submit" class="submit" id="submit" name="submit" style="margin-left:10px;" />
+                    @*<div class="donate-us">
+                            <label>Donate us</label>
+                            <div class="price_slider ui-slider ui-slider-horizontal">
+                                <div id="slider-margin"></div>
+                                <span class="donate-value" id="value-lower"></span>
+                            </div>
+                        </div>*@
+                    @*<div class="form-submit">*@
+
+                    @*<button class="btn btn--pill btn--green" type="submit">Submit</button>*@
+                    @*<input type="submit" value="Reset" class="submit" id="reset" name="reset" />*@
+                    @*</div>*@
                 </form>
                 <h1> @ViewBag.mesage</h1>
             </div>

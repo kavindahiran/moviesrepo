@@ -39,8 +39,6 @@ namespace RatingApp.Models
         public virtual DbSet<comment> comments { get; set; }
         public virtual DbSet<reply> replies { get; set; }
         public virtual DbSet<castratingsT> castratingsTs { get; set; }
-        public virtual DbSet<movieCastcrew> movieCastcrews { get; set; }
-        public virtual DbSet<Review_Table> Review_Table { get; set; }
         public virtual DbSet<castComment> castComments { get; set; }
         public virtual DbSet<castreply> castreplies { get; set; }
         public virtual DbSet<hallLocation> hallLocations { get; set; }
@@ -48,5 +46,7 @@ namespace RatingApp.Models
         public virtual DbSet<showtime> showtimes { get; set; }
         public virtual DbSet<halltable> halltables { get; set; }
         public virtual DbSet<tickettbl> tickettbls { get; set; }
+        public virtual DbSet<movieCastcrew> movieCastcrews { get; set; }
+        public virtual DbSet<Review_Table> Review_Table { get; set; }
     }
 }

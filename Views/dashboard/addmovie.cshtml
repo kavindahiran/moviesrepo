@@ -62,14 +62,52 @@
                                 @Html.ValidationMessageFor(model => model.Movie_release, "", new { @class = "text-danger" })
                             </div>
                         </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.movieDis, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.movieDis, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.movieDis, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.category, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.awardnominated, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+
+                                <select id='ddlTrueFalse' name='awardnominated'  class="form-control" style="height:40px;">
+                                    <option value='1'>True</option>
+                                    <option value='0'>False</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.banned, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+
+                                <select id='ddlTrueFalse' name='banned' class="form-control" style="height:40px;">
+                                    <option value='1'>True</option>
+                                    <option value='0'>False</option>
+                                </select>
+
+                            </div>
+                        </div>
 
                         @*<div class="form-group">
-                            @Html.LabelFor(model => model.Movie_Ratigs, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.Movie_Ratigs, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Movie_Ratigs, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
+            @Html.LabelFor(model => model.Movie_Ratigs, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.EditorFor(model => model.Movie_Ratigs, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Movie_Ratigs, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
 
 
 

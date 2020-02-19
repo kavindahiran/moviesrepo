@@ -24,7 +24,7 @@ namespace RatingApp.Models
         public class Movie_ItemMetaData
         {
 
-            [Display(Name = "Date of Birth")]
+            [Display(Name = "Movie Released Date")]
             [DataType(DataType.Date)]
             public Nullable<System.DateTime> Movie_release { get; set; }
             //public DateTime? dateCreated;

@@ -21,6 +21,7 @@ namespace RatingApp.Controllers
             model.movietblList = db.Movie_Item.ToList().ToPagedList(page ?? 1,6);
             model.reviewtbl = db.Review_Table.ToList();
             model.castlist = db.movieCastcrews.ToList().ToPagedList(page2 ?? 1, 6);
+            model.trailertbList = db.trailertbs.ToList();
             List<Movie_Item> mv = db.Movie_Item.ToList();
             List<Review_Table> rv = db.Review_Table.ToList();
 
@@ -99,7 +100,7 @@ namespace RatingApp.Controllers
         {
             moviedetailsdb1 rdb = new moviedetailsdb1();
 
-            usertbl emp = rdb.usertbls.SingleOrDefault(x => x.email == email && x.password == password);
+            usertbl emp = rdb.usertbls.FirstOrDefault(x => x.email == email && x.password == password);
             string result = "fail";
             if (emp != null)
             {
@@ -204,53 +205,85 @@ namespace RatingApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult register2(string regname, string password, string email, HttpPostedFileBase ImageFile)
+        public ActionResult register2(usertbl us, HttpPostedFileBase ImageFile, string Gender, DateTime DOB)
         {
             moviedetailsdb1 db = new moviedetailsdb1();
             byte[] imagebyte = null;
             usertbl reg = new usertbl();
             reg.ImageFile = ImageFile;
-            string fileName = Path.GetFileNameWithoutExtension(reg.ImageFile.FileName);
-            string extension = Path.GetExtension(reg.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            reg.profile_pic = "~/movieIcons/" + fileName;
-            fileName = Path.Combine(Server.MapPath("~/movieIcons/"), fileName);
-            BinaryReader reader = new BinaryReader(ImageFile.InputStream);
-            imagebyte = reader.ReadBytes(ImageFile.ContentLength);
-            reg.ImageFile.SaveAs(fileName);
+          
+                string fileName = Path.GetFileNameWithoutExtension(reg.ImageFile.FileName);
+                string extension = Path.GetExtension(reg.ImageFile.FileName);
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                reg.profile_pic = "~/movieIcons/" + fileName;
+                fileName = Path.Combine(Server.MapPath("~/movieIcons/"), fileName);
+                BinaryReader reader = new BinaryReader(ImageFile.InputStream);
+                imagebyte = reader.ReadBytes(ImageFile.ContentLength);
+                reg.ImageFile.SaveAs(fileName);
+            
+           
+                MailMessage mm = new MailMessage();
+                mm.From = new MailAddress("kavindahiran619@gmail.com");
+                mm.To.Add(new MailAddress(us.email));
+                mm.Subject = "Registration to LankanMovies";
+                mm.Body = "We highly appreciate on your registration";
+                mm.IsBodyHtml = true;
 
-            MailMessage mm = new MailMessage();
-            mm.From = new MailAddress("kavindahiran619@gmail.com");
-            mm.To.Add(new MailAddress(email));
-            mm.Subject = "Registration to LankanMovies";
-            mm.Body = "We highly appreciate on your registration";
-            mm.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
 
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp.gmail.com";
-
-            smtp.Port = 587;
-
-
-            /* NetworkCredential nc = new NetworkCredential("kavindahiran619@gmail.com", "lordbuddha", "smtp.gmail.com");*/
-            smtp.Credentials = new System.Net.NetworkCredential("kavindahiran619@gmail.com", "hyqgqtrjhlecwdmo");
-            smtp.EnableSsl = true;
-            // smtp.UseDefaultCredentials = true;
-            //smtp.Credentials = nc;
-
-            smtp.Send(mm);
-            ViewBag.mesage = "message sent successfully";
+                smtp.Port = 587;
 
 
-            //regemp reg = new regemp();
-            reg.username = regname;
-            reg.password = password;
-            reg.email = email;
-            reg.imagebyte = imagebyte;
-            reg.roleid = false;
-            db.usertbls.Add(reg);
-            db.SaveChanges();
+                /* NetworkCredential nc = new NetworkCredential("kavindahiran619@gmail.com", "lordbuddha", "smtp.gmail.com");*/
+                smtp.Credentials = new System.Net.NetworkCredential("kavindahiran619@gmail.com", "hyqgqtrjhlecwdmo");
+                smtp.EnableSsl = true;
+                // smtp.UseDefaultCredentials = true;
+                //smtp.Credentials = nc;
 
+                smtp.Send(mm);
+                ViewBag.mesage = "message sent successfully";
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    //regemp reg = new regemp();
+                    reg.username = us.username;
+                    reg.password = us.password;
+                    reg.email = us.email;
+                    reg.firstname = us.firstname;
+                    reg.lastname = us.lastname;
+                    reg.DOB = DOB;
+                    reg.gender = us.gender;
+                    reg.confirmpass = us.confirmpass;
+
+                    reg.imagebyte = imagebyte;
+                    reg.roleid = false;
+                    reg.premiumuser = false;
+                    reg.registeredDate = DateTime.Now;
+                    db.usertbls.Add(reg);
+                    db.SaveChanges();
+
+                }
+            }
+             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)  
+    {  
+        Exception raise = dbEx;  
+        foreach (var validationErrors in dbEx.EntityValidationErrors)  
+        {  
+            foreach (var validationError in validationErrors.ValidationErrors)  
+            {  
+                string message = string.Format("{0}:{1}",  
+                    validationErrors.Entry.Entity.ToString(),  
+                    validationError.ErrorMessage);  
+                // raise a new exception nesting  
+                // the current instance as InnerException  
+                raise = new InvalidOperationException(message, raise);  
+            }  
+        }  
+        throw raise;  
+    }  
             ModelState.Clear();
             return View();
         }
@@ -269,9 +302,10 @@ namespace RatingApp.Controllers
 
         public ActionResult shownews()
         {
-            moviesdb db = new moviesdb();
+            moviedetailsdb1 db = new moviedetailsdb1();
 
-
+            Movie_Item it = new Movie_Item();
+          
             var data = (from x in db.newsforums select x).ToList();
 
 

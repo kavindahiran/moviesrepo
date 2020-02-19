@@ -64,6 +64,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Drawing.Common.4.7.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -126,6 +129,12 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>packages\ZXing.Net.0.16.5\lib\net47\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>packages\ZXing.Net.0.16.5\lib\net47\zxing.presentation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +215,7 @@
     <Compile Include="Models\inovice.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\invoicemetaclass.cs" />
     <Compile Include="Models\Landmark121.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -261,6 +271,7 @@
     <Compile Include="Models\nowshowing.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ordermetaclass.cs" />
     <Compile Include="Models\ordertable.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -310,6 +321,7 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\trailertbs.cs" />
+    <Compile Include="Models\truefalse.cs" />
     <Compile Include="Models\usertbl.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -325,6 +337,74 @@
     <Content Include="assets\js\jquery-ui.min.js" />
     <Content Include="assets\js\jquery.rateyo.js" />
     <Content Include="assets\js\jquery.rateyo.min.css" />
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PagedList.dll" />
+    <Content Include="bin\PagedList.Mvc.dll" />
+    <Content Include="bin\PagedList.Mvc.xml" />
+    <Content Include="bin\PagedList.xml" />
+    <Content Include="bin\RatingApp.dll" />
+    <Content Include="bin\RatingApp.pdb" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\csi.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="bin\roslyn\System.AppContext.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Console.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="bin\roslyn\System.IO.Pipes.AccessControl.dll" />
+    <Content Include="bin\roslyn\System.IO.Pipes.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\System.Security.AccessControl.dll" />
+    <Content Include="bin\roslyn\System.Security.Claims.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="bin\roslyn\System.Security.Principal.Windows.dll" />
+    <Content Include="bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="castImageFolder\273323.jpg" />
     <Content Include="castImageFolder\99-993825_airbus-a380-wallpapers-worlds-largest-airplane-airbus-a380.jpg" />
     <Content Include="castImageFolder\blank-picture-holder.png" />
@@ -369,6 +449,13 @@
     <Content Include="Content\booktickets\css\micons\fonts\icomoon.svg" />
     <Content Include="Content\booktickets\css\micons\micons.css" />
     <Content Include="Content\booktickets\css\vendor.css" />
+    <Content Include="Content\fooditemorder\about-bg.jpg" />
+    <Content Include="Content\fooditemorder\animate-3.7.0.css" />
+    <Content Include="Content\fooditemorder\banner-bg.jpg" />
+    <Content Include="Content\fooditemorder\font-awesome-4.7.0.min.css" />
+    <Content Include="Content\fooditemorder\food-bg.png" />
+    <Content Include="Content\fooditemorder\food1.css" />
+    <Content Include="Content\fooditemorder\menu-bg.jpg" />
     <Content Include="Content\registrationtemplate\additional-methods.min.js" />
     <Content Include="Content\registrationtemplate\form-img.jpg" />
     <Content Include="Content\registrationtemplate\jquery-ui.min.js" />
@@ -776,6 +863,17 @@
     <Content Include="facerecodnision\models12\ssd_mobilenetv1_model-weights_manifest.json" />
     <Content Include="facerecodnision\models12\tiny_face_detector_model-shard1" />
     <Content Include="facerecodnision\models12\tiny_face_detector_model-weights_manifest.json" />
+    <Content Include="bin\RatingApp.dll.config" />
+    <Content Include="bin\roslyn\csc.exe.config" />
+    <Content Include="bin\roslyn\csc.rsp" />
+    <Content Include="bin\roslyn\csi.exe.config" />
+    <Content Include="bin\roslyn\csi.rsp" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\vbc.exe.config" />
+    <Content Include="bin\roslyn\vbc.rsp" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\daterangepicker.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -847,6 +945,13 @@
     <Content Include="Scripts\plugins.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="videofiles\00f348fcc8c0492bb3bd3a083fdcc162110309193448257.jpg" />
+    <Content Include="videofiles\202867193336793.jpg" />
+    <Content Include="videofiles\giphy190428158.mp4" />
+    <Content Include="videofiles\stock-footage-happy-smiling-woman-dancing-and-having-fun-on-a-green-screen-chroma-key193114842.webm" />
+    <Content Include="videofiles\stock-footage-happy-smiling-woman-dancing-and-having-fun-on-a-green-screen-chroma-key193336770.webm" />
+    <Content Include="videofiles\stock-footage-happy-smiling-woman-dancing-and-having-fun-on-a-green-screen-chroma-key193448249.webm" />
+    <Content Include="videofiles\stock-footage-happy-smiling-woman-dancing-and-having-fun-on-a-green-screen-chroma-key195011141.webm" />
     <Content Include="Views\TEMP\img\about-img\1.jpg" />
     <Content Include="Views\TEMP\img\bg-img\bg-pattern.jpg" />
     <Content Include="Views\TEMP\img\bg-img\breadcumb.jpg" />
@@ -973,13 +1078,14 @@
     <Content Include="Views\Shared\registrationpage.cshtml" />
     <Content Include="Views\Home\register2.cshtml" />
     <Content Include="Views\loadfaceapi\Index.cshtml" />
+    <Content Include="Views\Booktickets\addfooditems.cshtml" />
+    <Content Include="Views\dashboard\print.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="castImage\" />
     <Folder Include="nowShowing\" />
     <Folder Include="UploadedImage\" />
-    <Folder Include="videofiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="heroarenatables">
       <EntityTypeMapping TypeName="Models.heroarenatable">
         <MappingFragment StoreEntitySet="heroarenatable">
+          <ScalarProperty Name="specialnotes" ColumnName="specialnotes" />
           <ScalarProperty Name="arenaid" ColumnName="arenaid" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="ratings" ColumnName="ratings" />
@@ -15,6 +16,9 @@
     <EntitySetMapping Name="Movie_Item">
       <EntityTypeMapping TypeName="Models.Movie_Item">
         <MappingFragment StoreEntitySet="Movie_Item">
+          <ScalarProperty Name="banned" ColumnName="banned" />
+          <ScalarProperty Name="awardnominated" ColumnName="awardnominated" />
+          <ScalarProperty Name="category" ColumnName="category" />
           <ScalarProperty Name="movieDis" ColumnName="movieDis" />
           <ScalarProperty Name="movie_id" ColumnName="movie_id" />
           <ScalarProperty Name="Movie_name" ColumnName="Movie_name" />
@@ -26,18 +30,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="movieCastcrews">
-      <EntityTypeMapping TypeName="Models.movieCastcrew">
-        <MappingFragment StoreEntitySet="movieCastcrew">
-          <ScalarProperty Name="castDiscription" ColumnName="castDiscription" />
-          <ScalarProperty Name="crew_details" ColumnName="crew_details" />
-          <ScalarProperty Name="cast_id" ColumnName="cast_id" />
-          <ScalarProperty Name="movie_id" ColumnName="movie_id" />
-          <ScalarProperty Name="cast_name" ColumnName="cast_name" />
-          <ScalarProperty Name="cast_profile" ColumnName="cast_profile" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="newsforums">
       <EntityTypeMapping TypeName="Models.newsforum">
         <MappingFragment StoreEntitySet="newsforum">
@@ -46,20 +38,6 @@
           <ScalarProperty Name="discription" ColumnName="discription" />
           <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="imagepath" ColumnName="imagepath" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Review_Table">
-      <EntityTypeMapping TypeName="Models.Review_Table">
-        <MappingFragment StoreEntitySet="Review_Table">
-          <ScalarProperty Name="castC_id" ColumnName="castC_id" />
-          <ScalarProperty Name="cast_ratings" ColumnName="cast_ratings" />
-          <ScalarProperty Name="review_id" ColumnName="review_id" />
-          <ScalarProperty Name="Content" ColumnName="Content" />
-          <ScalarProperty Name="rating" ColumnName="rating" />
-          <ScalarProperty Name="DatePost" ColumnName="DatePost" />
-          <ScalarProperty Name="movieT_ID" ColumnName="movieT_ID" />
-          <ScalarProperty Name="userID" ColumnName="userID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -76,6 +54,14 @@
     <EntitySetMapping Name="usertbls">
       <EntityTypeMapping TypeName="Models.usertbl">
         <MappingFragment StoreEntitySet="usertbl">
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="confirmpass" ColumnName="confirmpass" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+          <ScalarProperty Name="imagebyte" ColumnName="imagebyte" />
+          <ScalarProperty Name="premiumuser" ColumnName="premiumuser" />
           <ScalarProperty Name="registeredDate" ColumnName="registeredDate" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="username" ColumnName="username" />
@@ -101,6 +87,7 @@
     <EntitySetMapping Name="shoppingcarts">
       <EntityTypeMapping TypeName="Models.shoppingcart">
         <MappingFragment StoreEntitySet="shoppingcart">
+          <ScalarProperty Name="discountavail" ColumnName="discountavail" />
           <ScalarProperty Name="publishdate" ColumnName="publishdate" />
           <ScalarProperty Name="coverphotopath" ColumnName="coverphotopath" />
           <ScalarProperty Name="quantityavail" ColumnName="quantityavail" />
@@ -115,6 +102,7 @@
     <EntitySetMapping Name="castphotogalleries">
       <EntityTypeMapping TypeName="Models.castphotogallery">
         <MappingFragment StoreEntitySet="castphotogallery">
+          <ScalarProperty Name="Lstatus" ColumnName="Lstatus" />
           <ScalarProperty Name="castimagename" ColumnName="castimagename" />
           <ScalarProperty Name="imageC" ColumnName="imageC" />
           <ScalarProperty Name="castIpath" ColumnName="castIpath" />
@@ -126,6 +114,7 @@
     <EntitySetMapping Name="Landmark121">
       <EntityTypeMapping TypeName="Models.Landmark121">
         <MappingFragment StoreEntitySet="Landmark121">
+          <ScalarProperty Name="MovieId" ColumnName="MovieId" />
           <ScalarProperty Name="GeoLocation" ColumnName="GeoLocation" />
           <ScalarProperty Name="Longitude" ColumnName="Longitude" />
           <ScalarProperty Name="Latitude" ColumnName="Latitude" />
@@ -138,6 +127,12 @@
     <EntitySetMapping Name="inovices">
       <EntityTypeMapping TypeName="Models.inovice">
         <MappingFragment StoreEntitySet="inovice">
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="fullname" ColumnName="fullname" />
           <ScalarProperty Name="totalbill" ColumnName="totalbill" />
           <ScalarProperty Name="orderdate" ColumnName="orderdate" />
           <ScalarProperty Name="userTblid" ColumnName="userTblid" />
@@ -149,6 +144,10 @@
     <EntitySetMapping Name="ordertables">
       <EntityTypeMapping TypeName="Models.ordertable">
         <MappingFragment StoreEntitySet="ordertable">
+          <ScalarProperty Name="moviesordered" ColumnName="moviesordered" />
+          <ScalarProperty Name="cardcode" ColumnName="cardcode" />
+          <ScalarProperty Name="expiredate" ColumnName="expiredate" />
+          <ScalarProperty Name="cardnumber" ColumnName="cardnumber" />
           <ScalarProperty Name="unitprice" ColumnName="unitprice" />
           <ScalarProperty Name="bill" ColumnName="bill" />
           <ScalarProperty Name="quantity" ColumnName="quantity" />
@@ -179,6 +178,126 @@
           <ScalarProperty Name="replystatus" ColumnName="replystatus" />
           <ScalarProperty Name="commentid" ColumnName="commentid" />
           <ScalarProperty Name="replyid" ColumnName="replyid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="castratingsTs">
+      <EntityTypeMapping TypeName="Models.castratingsT">
+        <MappingFragment StoreEntitySet="castratingsT">
+          <ScalarProperty Name="dateposted" ColumnName="dateposted" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="castratings" ColumnName="castratings" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="castid" ColumnName="castid" />
+          <ScalarProperty Name="castRid" ColumnName="castRid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="castComments">
+      <EntityTypeMapping TypeName="Models.castComment">
+        <MappingFragment StoreEntitySet="castComments">
+          <ScalarProperty Name="comdate" ColumnName="comdate" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="castrid" ColumnName="castrid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="ccid" ColumnName="ccid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="castreplies">
+      <EntityTypeMapping TypeName="Models.castreply">
+        <MappingFragment StoreEntitySet="castreply">
+          <ScalarProperty Name="replydate" ColumnName="replydate" />
+          <ScalarProperty Name="replys" ColumnName="replys" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="Castcomid" ColumnName="Castcomid" />
+          <ScalarProperty Name="rid" ColumnName="rid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hallLocations">
+      <EntityTypeMapping TypeName="Models.hallLocation">
+        <MappingFragment StoreEntitySet="hallLocation">
+          <ScalarProperty Name="hallid" ColumnName="hallid" />
+          <ScalarProperty Name="locationname" ColumnName="locationname" />
+          <ScalarProperty Name="locationid" ColumnName="locationid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nowshowings">
+      <EntityTypeMapping TypeName="Models.nowshowing">
+        <MappingFragment StoreEntitySet="nowshowing">
+          <ScalarProperty Name="moviename" ColumnName="moviename" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="imagepath" ColumnName="imagepath" />
+          <ScalarProperty Name="expireDate" ColumnName="expireDate" />
+          <ScalarProperty Name="availableDate" ColumnName="availableDate" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="showtimes">
+      <EntityTypeMapping TypeName="Models.showtime">
+        <MappingFragment StoreEntitySet="showtimes">
+          <ScalarProperty Name="showtime1" ColumnName="showtime" />
+          <ScalarProperty Name="hallid" ColumnName="hallid" />
+          <ScalarProperty Name="showid" ColumnName="showid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="halltables">
+      <EntityTypeMapping TypeName="Models.halltable">
+        <MappingFragment StoreEntitySet="halltable">
+          <ScalarProperty Name="ticketprice" ColumnName="ticketprice" />
+          <ScalarProperty Name="movieShid" ColumnName="movieShid" />
+          <ScalarProperty Name="hallname" ColumnName="hallname" />
+          <ScalarProperty Name="hallid" ColumnName="hallid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tickettbls">
+      <EntityTypeMapping TypeName="Models.tickettbl">
+        <MappingFragment StoreEntitySet="tickettbl">
+          <ScalarProperty Name="registredname" ColumnName="registredname" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="bookedprice" ColumnName="bookedprice" />
+          <ScalarProperty Name="ticketcount" ColumnName="ticketcount" />
+          <ScalarProperty Name="seatsbooked" ColumnName="seatsbooked" />
+          <ScalarProperty Name="seatnobooked" ColumnName="seatnobooked" />
+          <ScalarProperty Name="halllocationid" ColumnName="halllocationid" />
+          <ScalarProperty Name="showid" ColumnName="showid" />
+          <ScalarProperty Name="hallid" ColumnName="hallid" />
+          <ScalarProperty Name="movieid" ColumnName="movieid" />
+          <ScalarProperty Name="ticketid" ColumnName="ticketid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="movieCastcrews">
+      <EntityTypeMapping TypeName="Models.movieCastcrew">
+        <MappingFragment StoreEntitySet="movieCastcrew">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="nickname" ColumnName="nickname" />
+          <ScalarProperty Name="died" ColumnName="died" />
+          <ScalarProperty Name="castawardsnominated" ColumnName="castawardsnominated" />
+          <ScalarProperty Name="castDiscription" ColumnName="castDiscription" />
+          <ScalarProperty Name="crew_details" ColumnName="crew_details" />
+          <ScalarProperty Name="cast_profile" ColumnName="cast_profile" />
+          <ScalarProperty Name="cast_name" ColumnName="cast_name" />
+          <ScalarProperty Name="movie_id" ColumnName="movie_id" />
+          <ScalarProperty Name="cast_id" ColumnName="cast_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review_Table">
+      <EntityTypeMapping TypeName="Models.Review_Table">
+        <MappingFragment StoreEntitySet="Review_Table">
+          <ScalarProperty Name="movielikes" ColumnName="movielikes" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="movieT_ID" ColumnName="movieT_ID" />
+          <ScalarProperty Name="DatePost" ColumnName="DatePost" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

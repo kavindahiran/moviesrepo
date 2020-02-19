@@ -26,9 +26,13 @@ namespace RatingApp.Models
         public string cast_profile { get; set; }
         public string crew_details { get; set; }
         public string castDiscription { get; set; }
+        public Nullable<bool> castawardsnominated { get; set; }
+        public Nullable<bool> died { get; set; }
+        public string nickname { get; set; }
+        public string status { get; set; }
     
-        public virtual Movie_Item Movie_Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<castComment> castComments { get; set; }
+        public virtual Movie_Item Movie_Item { get; set; }
     }
 }

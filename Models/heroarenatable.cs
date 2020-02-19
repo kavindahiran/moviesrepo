@@ -19,5 +19,6 @@ namespace RatingApp.Models
         public Nullable<int> ratings { get; set; }
         public string description { get; set; }
         public string imagepath { get; set; }
+        public string specialnotes { get; set; }
     }
 }

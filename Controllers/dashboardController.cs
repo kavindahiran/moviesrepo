@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Spatial;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -9,6 +11,8 @@ using System.Web.Mvc;
 using PagedList;
 using RatingApp.Helper;
 using RatingApp.Models;
+using ZXing;
+
 namespace RatingApp.Controllers
 {
     public class dashboardController : Controller
@@ -26,20 +30,39 @@ namespace RatingApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult addmovie(Movie_Item imageModel)
+        public ActionResult addmovie(Movie_Item imageModel, string awardnominated, string banned)
         {
-
+            byte[] imagebyte = null;
             // var file = imageModel.ImageFile;
             string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
             string extension = Path.GetExtension(imageModel.ImageFile.FileName);
             fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
             imageModel.imgpath = "~/movieIcons/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/movieIcons/"), fileName);
+            BinaryReader reader = new BinaryReader(imageModel.ImageFile.InputStream);
+            imagebyte = reader.ReadBytes(imageModel.ImageFile.ContentLength);
             imageModel.ImageFile.SaveAs(fileName);
 
             //file.SaveAs(Server.MapPath("~/movieIcons/" + file.FileName));
             using (moviedetailsdb1 db = new moviedetailsdb1())
             {
+                if (awardnominated == "1")
+                {
+                    imageModel.awardnominated = true;
+                }
+                else
+                {
+                    imageModel.awardnominated = false;
+                }
+                if (banned == "1")
+                {
+                    imageModel.banned = true;
+                }
+                else
+                {
+                    imageModel.banned = false;
+                }
+                imageModel.imageCover = imagebyte;
                 db.Movie_Item.Add(imageModel);
                 db.SaveChanges();
                 string mess = "submitted successfully";
@@ -322,12 +345,15 @@ namespace RatingApp.Controllers
 
             List<castphotogallery> ph = db.castphotogalleries.Where(x => x.castTableid == id).Take(4).ToList();
             var moviegallery = db.castphotogalleries.FirstOrDefault(x => x.castTableid == id);
-
+            List<movieCastcrew> mvc = new List<movieCastcrew>();
          
 
             ViewBag.gall = ph;
             ViewBag.product = movieI;
 
+            var cstatus = db.movieCastcrews.Where(x => x.cast_id == id).Select(x => x.cast_name).First();
+
+            ViewBag.gallerycastname = cstatus;
             
             int userid = Convert.ToInt32(Session["id"]);
             if (userid == 0)
@@ -519,11 +545,13 @@ namespace RatingApp.Controllers
 
 
             ViewBag.list1 = new SelectList(list, "movie_id", "Movie_name");
+
+           
             return View();
         }
 
         [HttpPost]
-        public ActionResult addActor(movieCastcrew cast)
+        public ActionResult addActor(movieCastcrew cast, string castawardsnominated, string died)
         {
 
             // var file = imageModel.ImageFile;
@@ -533,10 +561,27 @@ namespace RatingApp.Controllers
             cast.cast_profile = "~/castImage/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/castImage/"), fileName);
             cast.ImageFile.SaveAs(fileName);
-
+          
             //file.SaveAs(Server.MapPath("~/movieIcons/" + file.FileName));
             using (moviedetailsdb1 db = new moviedetailsdb1())
             {
+                if (castawardsnominated == "1")
+                {
+                    cast.castawardsnominated = true;
+                }
+                else
+                {
+                    cast.castawardsnominated = false;
+                }
+                if (died == "1")
+                {
+                    cast.died = true;
+                }
+                else
+                {
+                    cast.died = false;
+                }
+               
                 db.movieCastcrews.Add(cast);
                 db.SaveChanges();
                 string mess = "submitted successfully";
@@ -717,6 +762,77 @@ namespace RatingApp.Controllers
             }
             ModelState.Clear();
             return RedirectToAction("addnewmovieshow");
+        }
+
+        public ActionResult print()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Generate(string prodectId)
+        {
+            var barcodeWriterPixelData = new BarcodeWriterPixelData
+            {
+                Format = ZXing.BarcodeFormat.QR_CODE,
+                Options = new ZXing.Common.EncodingOptions
+                {
+                    Height = 200,
+                    Width = 200,
+                    Margin = 0
+                }
+            };
+            var pixelData = barcodeWriterPixelData.Write(prodectId);
+            using (Bitmap bitmap = new Bitmap(pixelData.Width, pixelData.Height, PixelFormat.Format32bppRgb))
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    var bitmapData = bitmap.LockBits(new Rectangle(0, 0, pixelData.Width, pixelData.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
+                    try
+                    {
+                        System.Runtime.InteropServices.Marshal.Copy(
+                            pixelData.Pixels, 0, bitmapData.Scan0, pixelData.Pixels.Length);
+                    }
+                    finally
+                    {
+                        bitmap.UnlockBits(bitmapData);
+                    }
+                    bitmap.Save(memoryStream, ImageFormat.Png);
+                    ViewBag.BarcodeImage = "data:image/png;base64," + Convert.ToBase64String(memoryStream.ToArray());
+                }
+            }
+
+            var barcodeWriterPixelData1 = new BarcodeWriterPixelData
+            {
+                Format = ZXing.BarcodeFormat.CODE_128,
+                Options = new ZXing.Common.EncodingOptions
+                {
+                    Height = 200,
+                    Width = 200,
+                    Margin = 0
+                }
+            };
+            var pixelData1 = barcodeWriterPixelData1.Write(prodectId);
+            using (Bitmap bitmap = new Bitmap(pixelData1.Width, pixelData1.Height, PixelFormat.Format32bppRgb))
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    var bitmapData = bitmap.LockBits(new Rectangle(0, 0, pixelData1.Width, pixelData1.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppRgb);
+                    try
+                    {
+                        System.Runtime.InteropServices.Marshal.Copy(
+                            pixelData1.Pixels, 0, bitmapData.Scan0, pixelData1.Pixels.Length);
+                    }
+                    finally
+                    {
+                        bitmap.UnlockBits(bitmapData);
+                    }
+                    bitmap.Save(memoryStream, ImageFormat.Png);
+                    ViewBag.barcode = "data:image/png;base64," + Convert.ToBase64String(memoryStream.ToArray());
+                }
+            }
+            ViewBag.prodectId = prodectId;
+            return View("print");
         }
 
 

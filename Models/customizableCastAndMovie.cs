@@ -20,7 +20,11 @@ namespace RatingApp.Models
 
         public int movie_id { get; set; }
 
-
+        public string castDiscription { get; set; }
+        public Nullable<bool> castawardsnominated { get; set; }
+        public Nullable<bool> died { get; set; }
+        public string nickname { get; set; }
+        public string status { get; set; }
         //castphotgallery
 
         public int id { get; set; }

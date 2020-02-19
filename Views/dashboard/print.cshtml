@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "print";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<div class="container" style="margin:50px; padding:50px;">
+    @using (Html.BeginForm("Generate", "dashboard", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-lg-6">
+                <input type="text" name="prodectId" class="form-control" value="@ViewBag.prodectId" placeholder="Prodect Id" />
+            </div>
+            <div class="col-lg-3"><input type="submit" class="btn btn-primary" value="Generate" /></div>
+            <div class="col-lg-3"></div>
+        </div>
+    }
+
+    <hr />
+    <div class="row">
+
+
+        <div class="col-sm-6">
+
+
+            @if (ViewBag.BarcodeImage != null)
+            {
+                <img src="@ViewBag.BarcodeImage" width="200" height="200" alt="" />
+            }
+        </div>
+        <div class="col-sm-6">
+
+            @if (ViewBag.barcode != null)
+            {
+                <img src="@ViewBag.barcode" width="200" height="200" alt="" />
+            }
+        </div>
+    </div>
+
+    <div>
+        <a class="printPage" href="#">Print</a>
+    </div>
+
+</div>
+
+<script>
+    $('a.printPage').click(function () {
+        window.print();
+        return false;
+    });
+    Copy
+
+
+
+</script>

@@ -19,6 +19,7 @@ namespace RatingApp.Models
         public string castIpath { get; set; }
         public byte[] imageC { get; set; }
         public string castimagename { get; set; }
+        public string Lstatus { get; set; }
     
         public virtual Movie_Item Movie_Item { get; set; }
     }

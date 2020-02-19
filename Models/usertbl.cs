@@ -21,10 +21,10 @@ namespace RatingApp.Models
             this.comments = new HashSet<comment>();
             this.replies = new HashSet<reply>();
             this.castratingsTs = new HashSet<castratingsT>();
-            this.Review_Table = new HashSet<Review_Table>();
             this.castComments = new HashSet<castComment>();
             this.castreplies = new HashSet<castreply>();
             this.tickettbls = new HashSet<tickettbl>();
+            this.Review_Table = new HashSet<Review_Table>();
         }
     
         public int user_id { get; set; }
@@ -37,6 +37,12 @@ namespace RatingApp.Models
         public Nullable<System.DateTime> registeredDate { get; set; }
         public Nullable<bool> premiumuser { get; set; }
         public byte[] imagebyte { get; set; }
+        public string phonenumber { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
+        public string gender { get; set; }
+        public string confirmpass { get; set; }
+        public string firstname { get; set; }
+        public string lastname { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<inovice> inovices { get; set; }
@@ -47,12 +53,12 @@ namespace RatingApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<castratingsT> castratingsTs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review_Table> Review_Table { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<castComment> castComments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<castreply> castreplies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tickettbl> tickettbls { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review_Table> Review_Table { get; set; }
     }
 }

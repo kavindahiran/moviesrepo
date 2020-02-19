@@ -4,13 +4,16 @@
 
 
     <div class="row">
+        
+      @*  @foreach (var item in Model)*@
 
+        @for (int x=0; x < Model.Count(); x++ )
+            {
+                var item = Model[x];
+                <div class="col-md-9">
+                <div class="video-area">
 
-        <div class="col-md-9">
-            <div class="video-area">
-                @foreach (var item in Model)
-                {
-
+                    
                     <img src="@Url.Content(item.coverimage)" alt="video" />
                     <a href="@Url.Content(item.path)" class="popup-youtube">
                         @*<img src="@Url.Content(item.path)" alt="portfolio" />*@
@@ -30,30 +33,38 @@
                             <h4>180k voters</h4>
                         </div>
                     </div>
-                }
-            </div>
-        </div>
 
-        <div class="col-md-3">
-            <div class="row">
-                <div class="col-md-12 col-sm-6">
-                    <div class="video-area">
-                        <img src="assets/img/video/video2.png" alt="video" />
-                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-                            <i class="icofont icofont-ui-play"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-6">
-                    <div class="video-area">
-                        <img src="assets/img/video/video3.png" alt="video" />
-                        <a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-                            <i class="icofont icofont-ui-play"></i>
-                        </a>
-                    </div>
                 </div>
             </div>
-        </div>
-
+            if (Model.Count() > x+1)
+            {
+                item = Model[x + 1];
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6">
+                        <div class="video-area">
+                            <img src="@Url.Content(item.coverimage)" alt="video" />
+                            <a href="@Url.Content(item.path)" class="popup-youtube">
+                                <i class="icofont icofont-ui-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                    @if (Model.Count() > x + 1)
+                    {
+                        item = Model[x + 2];
+                    <div class="col-md-12 col-sm-6">
+                        <div class="video-area">
+                            <img src="@Url.Content(item.coverimage)" alt="video" />
+                            <a href="@Url.Content(item.path)" class="popup-youtube">
+                                <i class="icofont icofont-ui-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+            }
+            break;
+        }
     </div>
 

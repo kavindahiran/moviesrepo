@@ -14,7 +14,12 @@
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
-
+<style>
+    .form-control
+    {
+        height:40px;
+    }
+</style>
 
 
 
@@ -56,9 +61,9 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Movie_name, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-9">
-                             
+
                                 @Html.DropDownListFor(model => model.movie_id, ViewBag.list1 as SelectList, "--select--", new { @class = "form-control" })
-                                
+
                             </div>
                         </div>
 
@@ -68,6 +73,54 @@
                             <div class="col-md-9">
                                 @Html.EditorFor(model => model.crew_details, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.crew_details, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.castDiscription, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.castDiscription, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.castDiscription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nickname, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.nickname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.nickname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.status, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.status, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.castawardsnominated, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+
+                                <select id='ddlTrueFalse' name='castawardsnominated'  class="form-control" style="height:40px;">
+                                    <option value='1'>True</option>
+                                    <option value='0'>False</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.died, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-9">
+
+                                <select id='ddlTrueFalse' name='died'  class="form-control" style="height:40px;">
+                                    <option value='1'>True</option>
+                                    <option value='0'>False</option>
+                                </select>
+
                             </div>
                         </div>
                         @*<div class="form-group">

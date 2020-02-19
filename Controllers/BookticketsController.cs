@@ -60,5 +60,10 @@ namespace RatingApp.Controllers
         {
             return View();
         }
+
+        public ActionResult addfooditems()
+        {
+            return View();
+        }
     }
 }

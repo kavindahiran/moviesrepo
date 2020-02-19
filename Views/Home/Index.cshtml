@@ -56,7 +56,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                @Html.ActionLink("register here", "register")
+                                @Html.ActionLink("register here", "register2")
 
                             </div>
 
@@ -85,7 +85,7 @@
 
                         @if (Session["roleid"] != null)
                         {
-                            <li><a href="@Url.Action("mydash", "dashboard")">My Dashboard</a></li>
+                            <li><a href="@Url.Action("Index", "charts")">My Dashboard</a></li>
                         }
                         @if (Session["roleid"] != null)
                         {
