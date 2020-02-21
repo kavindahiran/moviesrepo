@@ -16,7 +16,7 @@
                 </a>
             </div>
             <div class="portfolio-content">
-                <a href="@Url.Action("newview","dashboard",new { id=obj.movie_id})">     <h2>@obj.Movie_name</h2></a>
+                <a href="@Url.Action("newview", "dashboard", new { id = obj.movie_id })">     <h2>@obj.Movie_name</h2></a>
                 <div class="review">
                     <div class="author-review">
                         <i class="icofont icofont-star"></i>
@@ -25,7 +25,7 @@
                         <i class="icofont icofont-star"></i>
                         <i class="icofont icofont-star"></i>
                     </div>
-                    <h4>@ViewBag.sh</h4>
+                    <h4>@obj.Review_Table.Average(e => e.rating)</h4>
                 </div>
             </div>
         </div>

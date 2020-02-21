@@ -18,6 +18,7 @@ namespace RatingApp.Models
         public movieCastcrew()
         {
             this.castComments = new HashSet<castComment>();
+            this.castratingsTs = new HashSet<castratingsT>();
         }
     
         public int cast_id { get; set; }
@@ -34,5 +35,7 @@ namespace RatingApp.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<castComment> castComments { get; set; }
         public virtual Movie_Item Movie_Item { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<castratingsT> castratingsTs { get; set; }
     }
 }

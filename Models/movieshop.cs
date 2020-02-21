@@ -12,25 +12,21 @@ namespace RatingApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class castratingsT
+    public partial class movieshop
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public castratingsT()
+        public movieshop()
         {
-            this.castComments = new HashSet<castComment>();
+            this.Landmark121 = new HashSet<Landmark121>();
         }
     
-        public int castRid { get; set; }
-        public Nullable<int> castid { get; set; }
-        public Nullable<int> userid { get; set; }
-        public Nullable<double> castratings { get; set; }
-        public string comments { get; set; }
-        public Nullable<System.DateTime> dateposted { get; set; }
+        public int shopid { get; set; }
+        public string shopname { get; set; }
+        public string ownername { get; set; }
+        public Nullable<System.DateTime> registredDate { get; set; }
+        public Nullable<System.DateTime> establisheddate { get; set; }
     
-        public virtual castratingsT castratingsT1 { get; set; }
-        public virtual usertbl usertbl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<castComment> castComments { get; set; }
-        public virtual movieCastcrew movieCastcrew { get; set; }
+        public virtual ICollection<Landmark121> Landmark121 { get; set; }
     }
 }

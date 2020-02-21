@@ -48,5 +48,7 @@ namespace RatingApp.Models
         public virtual DbSet<tickettbl> tickettbls { get; set; }
         public virtual DbSet<movieCastcrew> movieCastcrews { get; set; }
         public virtual DbSet<Review_Table> Review_Table { get; set; }
+        public virtual DbSet<barcodeT> barcodeTs { get; set; }
+        public virtual DbSet<movieshop> movieshops { get; set; }
     }
 }

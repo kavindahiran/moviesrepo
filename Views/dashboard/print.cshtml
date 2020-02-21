@@ -15,6 +15,9 @@
         <thead>
             <tr>
                 <th>
+                    Movie ID
+                </th>
+                <th>
                     Movie Name
                 </th>
                 <th>
@@ -33,12 +36,13 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.Movie_name</td>
-                    <td>@item.Movie_release</td>
-                    <td>@item.Movie_director</td>
-                    <td>@item.category</td>
-                </tr>
+            <tr>
+                <td>@item.movie_id</td>
+                <td>@item.Movie_name</td>
+                <td>@item.Movie_release</td>
+                <td>@item.Movie_director</td>
+                <td>@item.category</td>
+            </tr>
             }
 
 
@@ -57,6 +61,7 @@
             </div>
             <div class="col-lg-3"><input type="submit" class="btn btn-primary" value="Generate" /></div>
             <div class="col-lg-3"></div>
+           <input type="hidden" name="movieid" id="movieid"/>
         </div>
     }
 
@@ -108,7 +113,9 @@
     for (var i = 0; i < MyDataTable.rows.length; i++) {
         MyDataTable.rows[i].onclick = function () {
             rIndex = this.rowIndex;
-            document.getElementById('id1').value = this.cells[0].innerHTML;
+             document.getElementById('movieid').value = this.cells[0].innerHTML;
+            document.getElementById('id1').value = this.cells[1].innerHTML;
+            
         };
     }
 

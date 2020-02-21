@@ -23,5 +23,7 @@ namespace RatingApp.Models
         }
 
         public double? Distance { get; set; }
+
+
     }
 }

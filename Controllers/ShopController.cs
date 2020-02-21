@@ -405,7 +405,17 @@ namespace RatingApp.Controllers
             using (var context = new moviedetailsdb1())
             {
                 ViewBag.MovieName = context.Movie_Item.Where(m => m.movie_id == movieId).Select(m => m.Movie_name).FirstOrDefault();
+
             }
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<movieshop> ms = new List<movieshop>();
+            var shopdata = from l in db.Landmark121
+                           join mms in ms on l.shopid equals mms.shopid
+                           where l.MovieId == movieId
+                           select new { shopname = mms.shopname };
+
+            /*  ViewBag.shopdata = shopdata.ToList();*/
+            ViewBag.shopdata = db.Landmark121.Where(x => x.MovieId == movieId).Select(y => new customshopmodel{ shopname =y.movieshop.shopname,ownername= y.movieshop.ownername ,registredDate=y.movieshop.registredDate}).ToList();
             return View();
         }
 
@@ -420,8 +430,16 @@ namespace RatingApp.Controllers
                 var places = (from u in context.Landmark121
                               orderby u.GeoLocation.Distance(currentLocation)
                               where u.MovieId == movieId
-                              select u).Take(4).Select(x => new RatingApp.Models.Landmark() { Name = x.LandmarkName, lat = x.GeoLocation.Latitude, lng = x.GeoLocation.Longitude, Distance = x.GeoLocation.Distance(currentLocation) });
+                              select u).Take(4).Select(x => new RatingApp.Models.Landmark() {Name = x.LandmarkName, lat = x.GeoLocation.Latitude, lng = x.GeoLocation.Longitude, Distance = x.GeoLocation.Distance(currentLocation) });
                 var nearschools = places.ToList();
+
+                List<movieshop> ms = new List<movieshop>();
+                var shopdata=from l in context.Landmark121
+                             join mms in ms on l.shopid equals mms.shopid
+                             where l.MovieId== movieId
+                             select new {shopname=mms.shopname};
+                             
+                ViewBag.shopdata=shopdata.ToList();
 
                 return Json(nearschools, JsonRequestBehavior.AllowGet);
             }

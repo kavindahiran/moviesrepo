@@ -55,13 +55,24 @@ namespace RatingApp.Controllers
         {
             return View();
         }
-
+        public ActionResult newtime()
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<showtime> sh = db.showtimes.ToList();
+           
+            return View(sh);
+        }
         public ActionResult selectseats()
         {
             return View();
         }
 
         public ActionResult addfooditems()
+        {
+            return View();
+        }
+
+        public ActionResult registershops()
         {
             return View();
         }

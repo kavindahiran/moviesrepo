@@ -25,6 +25,7 @@ namespace RatingApp.Models
             this.Landmark121 = new HashSet<Landmark121>();
             this.movieCastcrews = new HashSet<movieCastcrew>();
             this.Review_Table = new HashSet<Review_Table>();
+            this.barcodeTs = new HashSet<barcodeT>();
         }
     
         public int movie_id { get; set; }
@@ -55,5 +56,7 @@ namespace RatingApp.Models
         public virtual ICollection<movieCastcrew> movieCastcrews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review_Table> Review_Table { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<barcodeT> barcodeTs { get; set; }
     }
 }

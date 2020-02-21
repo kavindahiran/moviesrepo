@@ -4,8 +4,50 @@
     ViewBag.Title = "mapLocation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Content/vertical nav bar/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTable/jquery.dataTables.css" rel="stylesheet" />
+<script src="~/Content/DataTable/jquery.dataTables.js"></script>
 
 <h2>Map Location for the Movie: @ViewBag.MovieName</h2>
+
+<div class="container" style="margin:20px; padding:0px;">
+    <table class="display" id="MyDataTable" width="90%">
+        <thead>
+            <tr>
+                <th>
+                    Shop Name
+                </th>
+                <th>
+                    Owner Name
+                </th>
+                <th>
+                    Registred Name
+                </th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var shop in ViewBag.shopdata)
+            {
+                <tr>
+                    <td>@shop.shopname</td>
+                    <td>@shop.ownername</td>
+                    <td>@shop.registredDate</td>
+                    @*<td>@item.category</td>*@
+                </tr>
+            }
+
+
+        </tbody>
+
+    </table>
+</div>
+
+
+
 <style>
     /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -201,6 +243,12 @@
         }
 
         // Google maper - starting point
-        google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+
+        $(document).ready(function () {
+
+        $("#MyDataTable").DataTable();
+    })
 </script>
 

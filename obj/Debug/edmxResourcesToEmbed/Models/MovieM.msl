@@ -114,6 +114,7 @@
     <EntitySetMapping Name="Landmark121">
       <EntityTypeMapping TypeName="Models.Landmark121">
         <MappingFragment StoreEntitySet="Landmark121">
+          <ScalarProperty Name="shopid" ColumnName="shopid" />
           <ScalarProperty Name="MovieId" ColumnName="MovieId" />
           <ScalarProperty Name="GeoLocation" ColumnName="GeoLocation" />
           <ScalarProperty Name="Longitude" ColumnName="Longitude" />
@@ -298,6 +299,26 @@
           <ScalarProperty Name="rating" ColumnName="rating" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="review_id" ColumnName="review_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="barcodeTs">
+      <EntityTypeMapping TypeName="Models.barcodeT">
+        <MappingFragment StoreEntitySet="barcodeT">
+          <ScalarProperty Name="movieid" ColumnName="movieid" />
+          <ScalarProperty Name="barcode" ColumnName="barcode" />
+          <ScalarProperty Name="barcodeid" ColumnName="barcodeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="movieshops">
+      <EntityTypeMapping TypeName="Models.movieshop">
+        <MappingFragment StoreEntitySet="movieshop">
+          <ScalarProperty Name="establisheddate" ColumnName="establisheddate" />
+          <ScalarProperty Name="registredDate" ColumnName="registredDate" />
+          <ScalarProperty Name="ownername" ColumnName="ownername" />
+          <ScalarProperty Name="shopname" ColumnName="shopname" />
+          <ScalarProperty Name="shopid" ColumnName="shopid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

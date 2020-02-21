@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="barcodeT">
+          <Key>
+            <PropertyRef Name="barcodeid" />
+          </Key>
+          <Property Name="barcodeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="barcode" Type="varchar(max)" />
+          <Property Name="movieid" Type="int" />
+        </EntityType>
         <EntityType Name="castComments">
           <Key>
             <PropertyRef Name="ccid" />
@@ -113,6 +121,7 @@
           <Property Name="Longitude" Type="float" />
           <Property Name="GeoLocation" Type="geography" />
           <Property Name="MovieId" Type="int" />
+          <Property Name="shopid" Type="int" />
         </EntityType>
         <EntityType Name="Movie_Item">
           <Key>
@@ -144,6 +153,16 @@
           <Property Name="died" Type="bit" />
           <Property Name="nickname" Type="varchar" MaxLength="100" />
           <Property Name="status" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="movieshop">
+          <Key>
+            <PropertyRef Name="shopid" />
+          </Key>
+          <Property Name="shopid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shopname" Type="varchar" MaxLength="100" />
+          <Property Name="ownername" Type="nchar" MaxLength="100" />
+          <Property Name="registredDate" Type="datetime" />
+          <Property Name="establisheddate" Type="datetime" />
         </EntityType>
         <EntityType Name="newsforum">
           <Key>
@@ -272,7 +291,7 @@
           <Property Name="roleid" Type="bit" />
           <Property Name="user_ratings" Type="float" />
           <Property Name="profile_pic" Type="nvarchar(max)" />
-          <Property Name="registeredDate" Type="date" />
+          <Property Name="registeredDate" Type="datetime" />
           <Property Name="premiumuser" Type="bit" />
           <Property Name="imagebyte" Type="image" />
           <Property Name="phonenumber" Type="varchar" MaxLength="100" />
@@ -282,6 +301,18 @@
           <Property Name="firstname" Type="varchar" MaxLength="100" />
           <Property Name="lastname" Type="varchar" MaxLength="100" />
         </EntityType>
+        <Association Name="FK_barcodeT_Movie_Item">
+          <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+          <End Role="barcodeT" Type="Self.barcodeT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie_Item">
+              <PropertyRef Name="movie_id" />
+            </Principal>
+            <Dependent Role="barcodeT">
+              <PropertyRef Name="movieid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_castComments_movieCastcrew">
           <End Role="movieCastcrew" Type="Self.movieCastcrew" Multiplicity="0..1" />
           <End Role="castComments" Type="Self.castComments" Multiplicity="*" />
@@ -319,14 +350,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_castratingsT_castratingsT">
-          <End Role="castratingsT" Type="Self.castratingsT" Multiplicity="1" />
-          <End Role="castratingsT1" Type="Self.castratingsT" Multiplicity="0..1" />
+          <End Role="movieCastcrew" Type="Self.movieCastcrew" Multiplicity="0..1" />
+          <End Role="castratingsT" Type="Self.castratingsT" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="castratingsT">
-              <PropertyRef Name="castRid" />
+            <Principal Role="movieCastcrew">
+              <PropertyRef Name="cast_id" />
             </Principal>
-            <Dependent Role="castratingsT1">
-              <PropertyRef Name="castRid" />
+            <Dependent Role="castratingsT">
+              <PropertyRef Name="castid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -447,6 +478,18 @@
             </Principal>
             <Dependent Role="Landmark121">
               <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Landmark121_movieshop">
+          <End Role="movieshop" Type="Self.movieshop" Multiplicity="0..1" />
+          <End Role="Landmark121" Type="Self.Landmark121" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movieshop">
+              <PropertyRef Name="shopid" />
+            </Principal>
+            <Dependent Role="Landmark121">
+              <PropertyRef Name="shopid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -631,6 +674,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelsStoreContainer">
+          <EntitySet Name="barcodeT" EntityType="Self.barcodeT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="castComments" EntityType="Self.castComments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="castphotogallery" EntityType="Self.castphotogallery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="castratingsT" EntityType="Self.castratingsT" Schema="dbo" store:Type="Tables" />
@@ -643,6 +687,7 @@
           <EntitySet Name="Landmark121" EntityType="Self.Landmark121" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Movie_Item" EntityType="Self.Movie_Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="movieCastcrew" EntityType="Self.movieCastcrew" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="movieshop" EntityType="Self.movieshop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="newsforum" EntityType="Self.newsforum" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nowshowing" EntityType="Self.nowshowing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ordertable" EntityType="Self.ordertable" Schema="dbo" store:Type="Tables" />
@@ -654,6 +699,10 @@
           <EntitySet Name="tickettbl" EntityType="Self.tickettbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trailertb" EntityType="Self.trailertb" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usertbl" EntityType="Self.usertbl" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_barcodeT_Movie_Item" Association="Self.FK_barcodeT_Movie_Item">
+            <End Role="Movie_Item" EntitySet="Movie_Item" />
+            <End Role="barcodeT" EntitySet="barcodeT" />
+          </AssociationSet>
           <AssociationSet Name="FK_castComments_movieCastcrew" Association="Self.FK_castComments_movieCastcrew">
             <End Role="movieCastcrew" EntitySet="movieCastcrew" />
             <End Role="castComments" EntitySet="castComments" />
@@ -667,8 +716,8 @@
             <End Role="castphotogallery" EntitySet="castphotogallery" />
           </AssociationSet>
           <AssociationSet Name="FK_castratingsT_castratingsT" Association="Self.FK_castratingsT_castratingsT">
+            <End Role="movieCastcrew" EntitySet="movieCastcrew" />
             <End Role="castratingsT" EntitySet="castratingsT" />
-            <End Role="castratingsT1" EntitySet="castratingsT" />
           </AssociationSet>
           <AssociationSet Name="FK_castratingsT_usertbl" Association="Self.FK_castratingsT_usertbl">
             <End Role="usertbl" EntitySet="usertbl" />
@@ -708,6 +757,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Landmark121_Movie_Item" Association="Self.FK_Landmark121_Movie_Item">
             <End Role="Movie_Item" EntitySet="Movie_Item" />
+            <End Role="Landmark121" EntitySet="Landmark121" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Landmark121_movieshop" Association="Self.FK_Landmark121_movieshop">
+            <End Role="movieshop" EntitySet="movieshop" />
             <End Role="Landmark121" EntitySet="Landmark121" />
           </AssociationSet>
           <AssociationSet Name="FK_movieCastcrew_Movie_Item" Association="Self.FK_movieCastcrew_Movie_Item">
@@ -809,6 +862,7 @@
           <Property Name="banned" Type="Boolean" />
           <NavigationProperty Name="movieCastcrews" Relationship="Models.FK_movieCastcrew_Movie_Item" FromRole="Movie_Item" ToRole="movieCastcrew" />
           <NavigationProperty Name="Review_Table" Relationship="Models.FK_Review_Table_Movie_Item" FromRole="Movie_Item" ToRole="Review_Table" />
+          <NavigationProperty Name="barcodeTs" Relationship="Models.FK_barcodeT_Movie_Item" FromRole="Movie_Item" ToRole="barcodeT" />
         </EntityType>
         <EntityType Name="newsforum">
           <Key>
@@ -840,7 +894,7 @@
           <Property Name="roleid" Type="Boolean" />
           <Property Name="user_ratings" Type="Double" />
           <Property Name="profile_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="registeredDate" Type="DateTime" Precision="0" />
+          <Property Name="registeredDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="inovices" Relationship="Models.FK_inovice_usertbl" FromRole="usertbl" ToRole="inovice" />
           <NavigationProperty Name="comments" Relationship="Models.FK_comments_usertbl" FromRole="usertbl" ToRole="comment" />
           <NavigationProperty Name="replies" Relationship="Models.FK_replies_usertbl" FromRole="usertbl" ToRole="reply" />
@@ -1002,6 +1056,20 @@
             <End Role="usertbl" EntitySet="usertbls" />
             <End Role="Review_Table" EntitySet="Review_Table" />
           </AssociationSet>
+          <EntitySet Name="barcodeTs" EntityType="Models.barcodeT" />
+          <EntitySet Name="movieshops" EntityType="Models.movieshop" />
+          <AssociationSet Name="FK_barcodeT_Movie_Item" Association="Models.FK_barcodeT_Movie_Item">
+            <End Role="Movie_Item" EntitySet="Movie_Item" />
+            <End Role="barcodeT" EntitySet="barcodeTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Landmark121_movieshop" Association="Models.FK_Landmark121_movieshop">
+            <End Role="movieshop" EntitySet="movieshops" />
+            <End Role="Landmark121" EntitySet="Landmark121" />
+          </AssociationSet>
+          <AssociationSet Name="FK_castratingsT_castratingsT1" Association="Models.FK_castratingsT_castratingsT1">
+            <End Role="movieCastcrew" EntitySet="movieCastcrews" />
+            <End Role="castratingsT" EntitySet="castratingsTs" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="PhotoGallery">
           <Key>
@@ -1078,6 +1146,8 @@
           <Property Name="GeoLocation" Type="Geography" />
           <Property Name="MovieId" Type="Int32" />
           <NavigationProperty Name="Movie_Item" Relationship="Models.FK_Landmark121_Movie_Item" FromRole="Landmark121" ToRole="Movie_Item" />
+          <Property Name="shopid" Type="Int32" />
+          <NavigationProperty Name="movieshop" Relationship="Models.FK_Landmark121_movieshop" FromRole="Landmark121" ToRole="movieshop" />
         </EntityType>
         <Association Name="FK_castphotogallery_castphotogallery">
           <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
@@ -1263,6 +1333,7 @@
           <NavigationProperty Name="castratingsT1" Relationship="Models.FK_castratingsT_castratingsT" FromRole="castratingsT" ToRole="castratingsT1" />
           <NavigationProperty Name="usertbl" Relationship="Models.FK_castratingsT_usertbl" FromRole="castratingsT" ToRole="usertbl" />
           <NavigationProperty Name="castComments" Relationship="Models.FK_castComments_castratingsT" FromRole="castratingsT" ToRole="castComment" />
+          <NavigationProperty Name="movieCastcrew" Relationship="Models.FK_castratingsT_castratingsT1" FromRole="castratingsT" ToRole="movieCastcrew" />
         </EntityType>
         <Association Name="FK_castratingsT_castratingsT">
           <End Type="Models.castratingsT" Role="castratingsT" Multiplicity="1" />
@@ -1553,6 +1624,7 @@
           <Property Name="died" Type="Boolean" />
           <Property Name="nickname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="castratingsTs" Relationship="Models.FK_castratingsT_castratingsT1" FromRole="movieCastcrew" ToRole="castratingsT" />
         </EntityType>
         <EntityType Name="Review_Table">
           <Key>
@@ -1613,6 +1685,62 @@
             </Principal>
             <Dependent Role="Review_Table">
               <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="barcodeT">
+          <Key>
+            <PropertyRef Name="barcodeid" />
+          </Key>
+          <Property Name="barcodeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="barcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="movieid" Type="Int32" />
+          <NavigationProperty Name="Movie_Item" Relationship="Models.FK_barcodeT_Movie_Item" FromRole="barcodeT" ToRole="Movie_Item" />
+        </EntityType>
+        <EntityType Name="movieshop">
+          <Key>
+            <PropertyRef Name="shopid" />
+          </Key>
+          <Property Name="shopid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shopname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ownername" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="registredDate" Type="DateTime" Precision="3" />
+          <Property Name="establisheddate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Landmark121" Relationship="Models.FK_Landmark121_movieshop" FromRole="movieshop" ToRole="Landmark121" />
+        </EntityType>
+        <Association Name="FK_barcodeT_Movie_Item">
+          <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
+          <End Type="Models.barcodeT" Role="barcodeT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie_Item">
+              <PropertyRef Name="movie_id" />
+            </Principal>
+            <Dependent Role="barcodeT">
+              <PropertyRef Name="movieid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Landmark121_movieshop">
+          <End Type="Models.movieshop" Role="movieshop" Multiplicity="0..1" />
+          <End Type="Models.Landmark121" Role="Landmark121" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movieshop">
+              <PropertyRef Name="shopid" />
+            </Principal>
+            <Dependent Role="Landmark121">
+              <PropertyRef Name="shopid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_castratingsT_castratingsT1">
+          <End Type="Models.movieCastcrew" Role="movieCastcrew" Multiplicity="0..1" />
+          <End Type="Models.castratingsT" Role="castratingsT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movieCastcrew">
+              <PropertyRef Name="cast_id" />
+            </Principal>
+            <Dependent Role="castratingsT">
+              <PropertyRef Name="castid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1735,6 +1863,7 @@
           <EntitySetMapping Name="Landmark121">
             <EntityTypeMapping TypeName="Models.Landmark121">
               <MappingFragment StoreEntitySet="Landmark121">
+                <ScalarProperty Name="shopid" ColumnName="shopid" />
                 <ScalarProperty Name="MovieId" ColumnName="MovieId" />
                 <ScalarProperty Name="GeoLocation" ColumnName="GeoLocation" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
@@ -1919,6 +2048,26 @@
                 <ScalarProperty Name="rating" ColumnName="rating" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="review_id" ColumnName="review_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="barcodeTs">
+            <EntityTypeMapping TypeName="Models.barcodeT">
+              <MappingFragment StoreEntitySet="barcodeT">
+                <ScalarProperty Name="movieid" ColumnName="movieid" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="barcodeid" ColumnName="barcodeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="movieshops">
+            <EntityTypeMapping TypeName="Models.movieshop">
+              <MappingFragment StoreEntitySet="movieshop">
+                <ScalarProperty Name="establisheddate" ColumnName="establisheddate" />
+                <ScalarProperty Name="registredDate" ColumnName="registredDate" />
+                <ScalarProperty Name="ownername" ColumnName="ownername" />
+                <ScalarProperty Name="shopname" ColumnName="shopname" />
+                <ScalarProperty Name="shopid" ColumnName="shopid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

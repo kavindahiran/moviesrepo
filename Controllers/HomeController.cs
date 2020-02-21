@@ -22,6 +22,7 @@ namespace RatingApp.Controllers
             model.reviewtbl = db.Review_Table.ToList();
             model.castlist = db.movieCastcrews.ToList().ToPagedList(page2 ?? 1, 6);
             model.trailertbList = db.trailertbs.ToList();
+            model.reviewtbl = db.Review_Table.ToList();
             List<Movie_Item> mv = db.Movie_Item.ToList();
             List<Review_Table> rv = db.Review_Table.ToList();
 

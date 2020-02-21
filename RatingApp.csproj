@@ -159,6 +159,9 @@
     </Compile>
     <Compile Include="Helper\PagedData.cs" />
     <Compile Include="Helper\Pagination.cs" />
+    <Compile Include="Models\barcodeT.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\billviewmodel\billVM.cs" />
     <Compile Include="Models\billviewmodel\invoiceVM.cs" />
     <Compile Include="Models\billviewmodel\orderVM.cs" />
@@ -185,6 +188,7 @@
     <Compile Include="Models\customizablenowshowing.cs" />
     <Compile Include="Models\customizableshopmoviemodal.cs" />
     <Compile Include="Models\customizableviewmodel.cs" />
+    <Compile Include="Models\customshopmodel.cs" />
     <Compile Include="Models\customshowmodel.cs" />
     <Compile Include="Models\google.Context.cs">
       <AutoGen>True</AutoGen>
@@ -257,6 +261,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MovieM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\movieshop.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\movietbl1.cs">
       <DependentUpon>movieadd.tt</DependentUpon>
@@ -413,6 +420,17 @@
     <Content Include="Content\addmovie\favicon.ico" />
     <Content Include="Content\addmovie\font-awesome.min.css" />
     <Content Include="Content\addmovie\main.css" />
+    <Content Include="Content\addnewtime\bootstrap.min.js" />
+    <Content Include="Content\addnewtime\jquery.zoom.min.js" />
+    <Content Include="Content\addnewtime\main.js" />
+    <Content Include="Content\addnewtime\newtime.css" />
+    <Content Include="Content\addnewtime\nouislider.min.css" />
+    <Content Include="Content\addnewtime\nouislider.min.js" />
+    <Content Include="Content\addnewtime\slick-theme.css" />
+    <Content Include="Content\addnewtime\slick.css" />
+    <Content Include="Content\addnewtime\slick.min.js" />
+    <Content Include="Content\addnewtime\style.css" />
+    <Content Include="Content\addnewtime\style1.css" />
     <Content Include="Content\billingF\billing.css" />
     <Content Include="Content\billingF\paypal_logo.jpg" />
     <Content Include="Content\billingF\verified.png" />
@@ -470,6 +488,10 @@
     <Content Include="Content\registrationtemplate\nouislider.min.js" />
     <Content Include="Content\registrationtemplate\style.css" />
     <Content Include="Content\registrationtemplate\wNumb.js" />
+    <Content Include="Content\shopcollection\as.jpg" />
+    <Content Include="Content\shopcollection\main.js" />
+    <Content Include="Content\shopcollection\plugins.js" />
+    <Content Include="Content\shopcollection\style.css" />
     <Content Include="Content\time selector\timeplan.css" />
     <Content Include="Content\vertical nav bar\jquery-ui.min.css" />
     <Content Include="facerecodnision\face-api.min.js" />
@@ -1086,6 +1108,8 @@
     <Content Include="Views\loadfaceapi\Index.cshtml" />
     <Content Include="Views\Booktickets\addfooditems.cshtml" />
     <Content Include="Views\dashboard\print.cshtml" />
+    <Content Include="Views\Booktickets\newtime.cshtml" />
+    <Content Include="Views\Booktickets\registershops.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,83 @@
+﻿@model List<RatingApp.Models.showtime>
+@{
+    ViewBag.Title = "newtime";
+     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+
+<script src="~/Content/addnewtime/bootstrap.min.js"></script>
+
+<link href="~/Content/addnewtime/style.css" rel="stylesheet" />
+<link href="~/Content/addnewtime/style1.css" rel="stylesheet" />
+
+<table class="responstable">
+
+    <tr>
+          
+            <th data-th="Driver details"><span>Hall name</span></th>
+        <th>Show Time</th>
+        <th>Ticket Price</th>
+       
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+       
+     
+        <td>@item.halltable.hallname</td>
+        <td>@item.showtime1</td>
+        <td>@item.halltable.ticketprice</td>
+    </tr>
+    }
+
+</table>
+
+
+
+<div id="hot-deal" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hot-deal">
+                    <ul class="hot-deal-countdown">
+                        <li>
+                            <div>
+                                <h3>02</h3>
+                                <span>Days</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>10</h3>
+                                <span>Hours</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>34</h3>
+                                <span>Mins</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>60</h3>
+                                <span>Secs</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <h2 class="text-uppercase">hot deal this week</h2>
+                    <p>New Collection Up to 50% OFF</p>
+                    <a class="primary-btn cta-btn" href="#">Shop now</a>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /HOT DEAL SECTION -->

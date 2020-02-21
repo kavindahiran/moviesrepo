@@ -209,8 +209,9 @@ namespace RatingApp.Controllers
                 ViewBag.test = moviItem;
             }
 
+           var rt1 = db.Review_Table.Where(x => x.movieT_ID == id).Select(x => x.rating).Average();
 
-
+            ViewBag.getratings = rt1;
             ViewBag.gall = ph;
             ViewBag.product = movieI;
             var review = new Review_Table()
@@ -772,7 +773,7 @@ namespace RatingApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Generate(string prodectId)
+        public ActionResult Generate(string prodectId, Movie_Item mi, string movieid)
         {
             var barcodeWriterPixelData = new BarcodeWriterPixelData
             {
@@ -833,9 +834,18 @@ namespace RatingApp.Controllers
                     ViewBag.barcode = "data:image/png;base64," + Convert.ToBase64String(memoryStream.ToArray());
                 }
             }
+
+
             ViewBag.prodectId = prodectId;
 
+
             moviedetailsdb1 db = new moviedetailsdb1();
+
+            barcodeT bt = new barcodeT();
+            bt.barcode = prodectId;
+            bt.movieid =Convert.ToInt32(movieid);
+            db.barcodeTs.Add(bt);
+            db.SaveChanges();
             List<Movie_Item> x = db.Movie_Item.ToList();
             return View("print",x);
         }
