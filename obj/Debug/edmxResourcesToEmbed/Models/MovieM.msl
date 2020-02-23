@@ -314,6 +314,17 @@
     <EntitySetMapping Name="movieshops">
       <EntityTypeMapping TypeName="Models.movieshop">
         <MappingFragment StoreEntitySet="movieshop">
+          <ScalarProperty Name="shopimage" ColumnName="shopimage" />
+          <ScalarProperty Name="businessinquery" ColumnName="businessinquery" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="fax" ColumnName="fax" />
+          <ScalarProperty Name="mobileno" ColumnName="mobileno" />
+          <ScalarProperty Name="landno" ColumnName="landno" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
           <ScalarProperty Name="establisheddate" ColumnName="establisheddate" />
           <ScalarProperty Name="registredDate" ColumnName="registredDate" />
           <ScalarProperty Name="ownername" ColumnName="ownername" />

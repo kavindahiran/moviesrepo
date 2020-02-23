@@ -879,6 +879,17 @@
     <Property Name="registredDate" Type="DateTime" Precision="3" />
     <Property Name="establisheddate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Landmark121" Relationship="Models.FK_Landmark121_movieshop" FromRole="movieshop" ToRole="Landmark121" />
+    <Property Name="address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="landno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="mobileno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="fax" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="businessinquery" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="shopimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_barcodeT_Movie_Item">
     <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />

@@ -158,6 +158,17 @@
     <Property Name="ownername" Type="nchar" MaxLength="100" />
     <Property Name="registredDate" Type="datetime" />
     <Property Name="establisheddate" Type="datetime" />
+    <Property Name="address1" Type="varchar(max)" />
+    <Property Name="address2" Type="varchar(max)" />
+    <Property Name="landno" Type="varchar" MaxLength="20" />
+    <Property Name="mobileno" Type="varchar" MaxLength="20" />
+    <Property Name="fax" Type="varchar" MaxLength="100" />
+    <Property Name="country" Type="varchar" MaxLength="20" />
+    <Property Name="state" Type="varchar" MaxLength="20" />
+    <Property Name="city" Type="varchar" MaxLength="20" />
+    <Property Name="zipcode" Type="varchar" MaxLength="20" />
+    <Property Name="businessinquery" Type="varchar(max)" />
+    <Property Name="shopimage" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="newsforum">
     <Key>

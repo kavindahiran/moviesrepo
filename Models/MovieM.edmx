@@ -163,6 +163,17 @@
           <Property Name="ownername" Type="nchar" MaxLength="100" />
           <Property Name="registredDate" Type="datetime" />
           <Property Name="establisheddate" Type="datetime" />
+          <Property Name="address1" Type="varchar(max)" />
+          <Property Name="address2" Type="varchar(max)" />
+          <Property Name="landno" Type="varchar" MaxLength="20" />
+          <Property Name="mobileno" Type="varchar" MaxLength="20" />
+          <Property Name="fax" Type="varchar" MaxLength="100" />
+          <Property Name="country" Type="varchar" MaxLength="20" />
+          <Property Name="state" Type="varchar" MaxLength="20" />
+          <Property Name="city" Type="varchar" MaxLength="20" />
+          <Property Name="zipcode" Type="varchar" MaxLength="20" />
+          <Property Name="businessinquery" Type="varchar(max)" />
+          <Property Name="shopimage" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="newsforum">
           <Key>
@@ -1707,6 +1718,17 @@
           <Property Name="registredDate" Type="DateTime" Precision="3" />
           <Property Name="establisheddate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Landmark121" Relationship="Models.FK_Landmark121_movieshop" FromRole="movieshop" ToRole="Landmark121" />
+          <Property Name="address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="landno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mobileno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fax" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="businessinquery" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="shopimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_barcodeT_Movie_Item">
           <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
@@ -2063,6 +2085,17 @@
           <EntitySetMapping Name="movieshops">
             <EntityTypeMapping TypeName="Models.movieshop">
               <MappingFragment StoreEntitySet="movieshop">
+                <ScalarProperty Name="shopimage" ColumnName="shopimage" />
+                <ScalarProperty Name="businessinquery" ColumnName="businessinquery" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="mobileno" ColumnName="mobileno" />
+                <ScalarProperty Name="landno" ColumnName="landno" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
                 <ScalarProperty Name="establisheddate" ColumnName="establisheddate" />
                 <ScalarProperty Name="registredDate" ColumnName="registredDate" />
                 <ScalarProperty Name="ownername" ColumnName="ownername" />

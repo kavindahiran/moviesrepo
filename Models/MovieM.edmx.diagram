@@ -59,7 +59,7 @@
         <AssociationConnector Association="Models.FK_Review_Table_Movie_Item" />
         <AssociationConnector Association="Models.FK_Review_Table_usertbl" />
         <EntityTypeShape EntityType="Models.barcodeT" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="Models.movieshop" Width="1.5" PointX="10.5" PointY="1.75" />
+        <EntityTypeShape EntityType="Models.movieshop" Width="1.5" PointX="10.125" PointY="1.5" />
         <AssociationConnector Association="Models.FK_barcodeT_Movie_Item" />
         <AssociationConnector Association="Models.FK_Landmark121_movieshop" />
         <AssociationConnector Association="Models.FK_castratingsT_castratingsT1" />

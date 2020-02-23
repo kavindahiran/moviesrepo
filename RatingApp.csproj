@@ -61,6 +61,9 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -152,6 +155,7 @@
     <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\loadfaceapiController.cs" />
+    <Compile Include="Controllers\LoadShopsController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Controllers\TEMPController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,6 +193,7 @@
     <Compile Include="Models\customizableshopmoviemodal.cs" />
     <Compile Include="Models\customizableviewmodel.cs" />
     <Compile Include="Models\customshopmodel.cs" />
+    <Compile Include="Models\customshopregistration.cs" />
     <Compile Include="Models\customshowmodel.cs" />
     <Compile Include="Models\google.Context.cs">
       <AutoGen>True</AutoGen>
@@ -283,6 +288,7 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\partialclasses.cs" />
+    <Compile Include="Models\PaypalConfiguration.cs" />
     <Compile Include="Models\PhotoGallery.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -420,6 +426,9 @@
     <Content Include="Content\addmovie\favicon.ico" />
     <Content Include="Content\addmovie\font-awesome.min.css" />
     <Content Include="Content\addmovie\main.css" />
+    <Content Include="Content\addnewshoptoregister\bg1.jpg" />
+    <Content Include="Content\addnewshoptoregister\style.css" />
+    <Content Include="Content\addnewshoptoregister\wp4440509.jpg" />
     <Content Include="Content\addnewtime\bootstrap.min.js" />
     <Content Include="Content\addnewtime\jquery.zoom.min.js" />
     <Content Include="Content\addnewtime\main.js" />
@@ -973,6 +982,7 @@
     <Content Include="Scripts\plugins.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="shopimages\as201529653.jpg" />
     <Content Include="videofiles\00f348fcc8c0492bb3bd3a083fdcc162110309193448257.jpg" />
     <Content Include="videofiles\202867193336793.jpg" />
     <Content Include="videofiles\giphy190428158.mp4" />
@@ -1110,6 +1120,7 @@
     <Content Include="Views\dashboard\print.cshtml" />
     <Content Include="Views\Booktickets\newtime.cshtml" />
     <Content Include="Views\Booktickets\registershops.cshtml" />
+    <Content Include="Views\LoadShops\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

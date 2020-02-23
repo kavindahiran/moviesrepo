@@ -72,3 +72,5 @@ C:\Users\NoizyBoy\source\repos\RatingApp\bin\zxing.pdb
 C:\Users\NoizyBoy\source\repos\RatingApp\bin\zxing.xml
 C:\Users\NoizyBoy\source\repos\RatingApp\bin\zxing.presentation.pdb
 C:\Users\NoizyBoy\source\repos\RatingApp\bin\zxing.presentation.xml
+C:\Users\NoizyBoy\source\repos\RatingApp\bin\PayPal.dll
+C:\Users\NoizyBoy\source\repos\RatingApp\bin\PayPal.xml

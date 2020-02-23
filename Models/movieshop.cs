@@ -25,6 +25,17 @@ namespace RatingApp.Models
         public string ownername { get; set; }
         public Nullable<System.DateTime> registredDate { get; set; }
         public Nullable<System.DateTime> establisheddate { get; set; }
+        public string address1 { get; set; }
+        public string address2 { get; set; }
+        public string landno { get; set; }
+        public string mobileno { get; set; }
+        public string fax { get; set; }
+        public string country { get; set; }
+        public string state { get; set; }
+        public string city { get; set; }
+        public string zipcode { get; set; }
+        public string businessinquery { get; set; }
+        public string shopimage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Landmark121> Landmark121 { get; set; }
