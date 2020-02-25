@@ -77,9 +77,11 @@
                                 <button class="btn-secondary like-review">
                                     <i class="fa fa-heart" aria-hidden="true"></i> Like
                                 </button>
+
                                 @if (Model.rv != null)
                                 {
-                                    <a href="#">Likes <span class="badge">@Model.rv.movielikes</span></a><br>
+                                    @*<a href="#">Likes <span class="badge">@Model.rv.movielikes</span></a><br>*@
+                                    <a href="#">Likes <span class="badge">@ViewBag.totallikes</span></a><br>
                                 }
                                 else
                                 {
@@ -89,6 +91,9 @@
                                 }
 
                             </div>
+                           
+                            @Html.HiddenFor(Model => Model.rv.rating)
+                            @Html.HiddenFor(Model => Model.rv.Content)
                             @Html.HiddenFor(x => x.rv.movielikes)
                             @Html.HiddenFor(x => x.movieitems.imgpath)
                             @*<div data-thumb="img/product_details/prodect_details_2.png">

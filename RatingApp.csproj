@@ -169,6 +169,7 @@
     <Compile Include="Models\billviewmodel\billVM.cs" />
     <Compile Include="Models\billviewmodel\invoiceVM.cs" />
     <Compile Include="Models\billviewmodel\orderVM.cs" />
+    <Compile Include="Models\bookingtempcart.cs" />
     <Compile Include="Models\castComment.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -186,12 +187,15 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\commentsandreplies.cs" />
+    <Compile Include="Models\customfoodtbl.cs" />
     <Compile Include="Models\customimagemodel.cs" />
     <Compile Include="Models\customizablecast.cs" />
     <Compile Include="Models\customizableCastAndMovie.cs" />
     <Compile Include="Models\customizablenowshowing.cs" />
     <Compile Include="Models\customizableshopmoviemodal.cs" />
     <Compile Include="Models\customizableviewmodel.cs" />
+    <Compile Include="Models\customnewforum.cs" />
+    <Compile Include="Models\customnewscontainer.cs" />
     <Compile Include="Models\customshopmodel.cs" />
     <Compile Include="Models\customshopregistration.cs" />
     <Compile Include="Models\customshowmodel.cs" />
@@ -210,6 +214,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>google.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HallFoodTbl.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\hallLocation.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -220,6 +227,7 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\heroarenatables.cs" />
+    <Compile Include="Models\indexnewsforum.cs" />
     <Compile Include="Models\IndexPageViewModel.cs" />
     <Compile Include="Models\inovice.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
@@ -277,6 +285,9 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Movie_Items.cs" />
+    <Compile Include="Models\newscontainer.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\newsforum.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
@@ -339,8 +350,10 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usertbls.cs" />
+    <Compile Include="Models\ViewModels\BookNowVM.cs" />
     <Compile Include="Models\ViewModels\ChartVM.cs" />
     <Compile Include="Models\ViewModels\DashboardVM.cs" />
+    <Compile Include="Models\ViewModels\foodordercustommodel.cs" />
     <Compile Include="Models\ViewModels\MovieVM.cs" />
     <Compile Include="Models\ViewModels\ReviewVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -430,6 +443,21 @@
     <Content Include="Content\addnewshoptoregister\style.css" />
     <Content Include="Content\addnewshoptoregister\wp4440509.jpg" />
     <Content Include="Content\addnewtime\bootstrap.min.js" />
+    <Content Include="Content\addnewtime\img\hotdeal.png" />
+    <Content Include="Content\addnewtime\img\logo.png" />
+    <Content Include="Content\addnewtime\img\product01.png" />
+    <Content Include="Content\addnewtime\img\product02.png" />
+    <Content Include="Content\addnewtime\img\product03.png" />
+    <Content Include="Content\addnewtime\img\product04.png" />
+    <Content Include="Content\addnewtime\img\product05.png" />
+    <Content Include="Content\addnewtime\img\product06.png" />
+    <Content Include="Content\addnewtime\img\product07.png" />
+    <Content Include="Content\addnewtime\img\product08.png" />
+    <Content Include="Content\addnewtime\img\product09.png" />
+    <Content Include="Content\addnewtime\img\shop01.png" />
+    <Content Include="Content\addnewtime\img\shop02.png" />
+    <Content Include="Content\addnewtime\img\shop03.png" />
+    <Content Include="Content\addnewtime\jquery.min.js" />
     <Content Include="Content\addnewtime\jquery.zoom.min.js" />
     <Content Include="Content\addnewtime\main.js" />
     <Content Include="Content\addnewtime\newtime.css" />
@@ -487,6 +515,8 @@
     <Content Include="Content\fooditemorder\food-bg.png" />
     <Content Include="Content\fooditemorder\food1.css" />
     <Content Include="Content\fooditemorder\menu-bg.jpg" />
+    <Content Include="Content\fooditemorder\style.css" />
+    <Content Include="Content\newfoodordering\book1.css" />
     <Content Include="Content\registrationtemplate\additional-methods.min.js" />
     <Content Include="Content\registrationtemplate\form-img.jpg" />
     <Content Include="Content\registrationtemplate\jquery-ui.min.js" />
@@ -522,6 +552,10 @@
     <Content Include="facerecodnision\test_images\1.png" />
     <Content Include="facerecodnision\test_images\2.jpg" />
     <Content Include="facerecodnision\test_images\3.jpg" />
+    <Content Include="hallfoodlist\app205005063.jpg" />
+    <Content Include="hallfoodlist\bis205450457.jpg" />
+    <Content Include="hallfoodlist\pas205553539.jpg" />
+    <Content Include="hallfoodlist\pepsi205645616.jpg" />
     <Content Include="images\avatars\user-01.jpg" />
     <Content Include="images\avatars\user-02.jpg" />
     <Content Include="images\avatars\user-03.jpg" />
@@ -784,6 +818,14 @@
     <Content Include="movieIcons\heroarena\9bdb7df9bc721a1fd58f5b78cbd0d391192850681.jpg" />
     <Content Include="movieIcons\heroarena\Harry-Potter-Philiosophers-stone193301507.jpg" />
     <Content Include="movieIcons\heroarena\harry_potter_and_the_deathly_hallows_movie_poster_daniel_radcliffe_hi-res_01193222774.jpg" />
+    <Content Include="newsfolder\1202625774.jpg" />
+    <Content Include="newsfolder\1306973-semi-truck-desktop-wallpaper-1920x1080-xiaomi205436229.jpg" />
+    <Content Include="newsfolder\1ed70cf18fff4bc48efd961cd5563ab1192719204819321.jpg" />
+    <Content Include="newsfolder\273323204738217.jpg" />
+    <Content Include="newsfolder\3cd2b89d6e2145a583839db935b131a6112902204831617.jpg" />
+    <Content Include="newsfolder\4ff22dd929064b518d355cfc10d3e838000315204846126.jpg" />
+    <Content Include="newsfolder\FAE204917464.jpg" />
+    <Content Include="newsfolder\images205532708.jpg" />
     <Content Include="script.js" />
     <Content Include="Scripts\active.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1121,6 +1163,17 @@
     <Content Include="Views\Booktickets\newtime.cshtml" />
     <Content Include="Views\Booktickets\registershops.cshtml" />
     <Content Include="Views\LoadShops\Index.cshtml" />
+    <Content Include="Views\Home\NewsSlider.cshtml" />
+    <Content Include="Views\Home\loadnews.cshtml" />
+    <Content Include="Views\dashboard\addnewsforum.cshtml" />
+    <Content Include="Views\dashboard\newsdetails.cshtml" />
+    <Content Include="Views\dashboard\addnewscontainer.cshtml" />
+    <Content Include="Views\Shared\newsphotogalleryload.cshtml" />
+    <Content Include="Views\Shared\newsphotogallery2.cshtml" />
+    <Content Include="Views\Booktickets\orderfood.cshtml" />
+    <Content Include="Views\dashboard\addfood.cshtml" />
+    <Content Include="Views\Booktickets\foodview.cshtml" />
+    <Content Include="Views\Booktickets\foodorder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

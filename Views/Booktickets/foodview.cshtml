@@ -1,0 +1,40 @@
+﻿@model List<RatingApp.Models.HallFoodTbl>
+
+
+
+@foreach (var item in Model)
+{
+
+
+    @*@Html.HiddenFor(model => Model.ToGroups[i].RowId)*@
+
+<div class="col-sm-6 col-md-4 col-lg-4">
+    <div class="shop-item">
+        <div class="shop-item-image">
+           
+            <img src="@Url.Content(item.foodimage)" alt="Accessories Pack" style="width:300px; height:300px;"/>
+            <div class="shop-item-detail"><span class="icon-basket">@Html.ActionLink("add-to-cart", "foodorder", new { id = item.foodID },new { @class = "btn btn-round btn-b" })</span></div>
+        </div>
+        <h4 class="shop-item-title font-alt"><a href="#">@item.foodName</a></h4>@item.Fprice
+    </div>
+</div>
+
+
+}
+
+
+
+@*<div class="col-md-4 col-sm-6">
+        <div class="single-food">
+            <div class="food-img">
+                <img src="@Url.Content(item.foodimage)" class="img-fluid" alt="">
+            </div>
+            <div class="food-content">
+                <div class="d-flex justify-content-between">
+                    <h5>@item.foodName</h5>
+                    <span class="style-change">@item.Fprice</span>
+                </div>
+                <p class="pt-3">@item.foodDiscription</p>
+            </div>
+        </div>
+    </div>*@

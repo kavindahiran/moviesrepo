@@ -1,38 +1,39 @@
-﻿@model RatingApp.Models.showingmodelcollection
+﻿@model RatingApp.Models.ViewModels.BookNowVM
 
 <div class="container" style="margin-top:50px;">
 
-    @using (Html.BeginForm("", "Booktickets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("newtime", "Booktickets", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         <div class="form-group">
             <div class="form-destination">
                 <label for="destination">Movie Name</label>
                 @*<input type="text" id="destination" name="destination" placeholder="EG. HAWAII" />*@
-                @Html.DropDownListFor(model => model.cm.id, ViewBag.movielists as SelectList, "--select--", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.MovieId, ViewBag.movielists as SelectList, "--select--", new { @class = "form-control" })
 
             </div>
             <div class="form-date-from form-icon">
                 <label for="date_from">Hall Name</label>
                 @*<input type="text" id="date_from" class="date_from" placeholder="Pick a date" />*@
-                @Html.DropDownListFor(model => model.cm.hallid, ViewBag.hallname as SelectList, "--select--", new { @class = "form-control",  @onchange="FillCity()"})
+                @Html.DropDownListFor(model => model.HallId, ViewBag.hallname as SelectList, "--select--", new { @class = "form-control", @onchange = "FillCity()" })
                 <!-- <span class="icon"><i class="zmdi zmdi-calendar-alt"></i></span> -->
             </div>
             <div class="form-date-to form-icon">
                 <label for="date_to">Hall Location</label>
                 <input type="text" id="date_to" class="date_to" placeholder="Pick a date" />
-                @Html.DropDownListFor(model => model.cm.locationid, ViewBag.hallLocation as SelectList, "--select--", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.LocationId, ViewBag.hallLocation as SelectList, "--select--", new { @class = "form-control" })
                 <!-- <span class="icon"><i class="zmdi zmdi-calendar-alt"></i></span> -->
             </div>
             <div class="form-quantity">
                 <label for="quantity">Quantity</label>
                 <span class="modify-qty plus" onClick="Tang()"><i class="zmdi zmdi-chevron-up"></i></span>
-                <input type="number" name="quantity" id="quantity" value="0" min="0" class="nput-text qty text">
+                @*<input type="number" name="quantity" id="quantity" value="0" min="0" class="nput-text qty text">*@
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @type = "number", @name = "quantity", @id = "quantity", @class = "nput-text qty text" } })
                 <span class="modify-qty minus" onClick="Giam()"><i class="zmdi zmdi-chevron-down"></i></span>
             </div>
 
             <div class="form-group">
                 <label for="quantity">Ticket Price</label>
-              @*@Html.LabelFor(x=>x.ht.Select(x=>x.ticketprice))*@
+                @Html.EditorFor(x => x.Price, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="form-submit">
                 <input type="submit" id="submit" class="submit" value="Book now" />
@@ -42,23 +43,95 @@
     }
 </div>
 
-
-
 <script>
-function FillCity() {
-    var stateId = $('#locationid').val();
-    $.ajax({
-        url: '/Booktickets/getdrop',
-        type: "GET",
-        dataType: "JSON",
-        data: { locationid: stateId},
-        success: function (cities) {                    
-            $("#City").html(""); // clear before appending new list 
-            $.each(cities, function (i, city) {
-                $("#City").append(
-                    $('<option></option>').val(city.CityId).html(city.CityName));
-            });
-        }
+
+    $(document).ready(function () {
+        $("#Price").prop("readonly", true);
     });
-  }
+
+    function FillCity() {
+        var stateId = $('#locationid').val();
+        $.ajax({
+            url: '/Booktickets/getdrop',
+            type: "GET",
+            dataType: "JSON",
+            data: { locationid: stateId },
+            success: function (cities) {
+                $("#City").html(""); // clear before appending new list
+                $.each(cities, function (i, city) {
+                    $("#City").append(
+                        $('<option></option>').val(city.CityId).html(city.CityName));
+                });
+            }
+        });
+    }
+
+    $("body").on("change", "#MovieId", function () {
+        //debugger;
+        var movieId = $(this).children("option:selected").val();
+        $.ajax({
+            url: '/RatingApp/Booktickets/GetHallsForMovie?movieId=' + movieId,
+            type: "GET",
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            success: function (halls) {
+                $("#HallId").children().remove(); // clear before appending new list
+                $('#HallId').append('<option>--select--</option>');
+                $('#HallId').focus();
+
+                $.each(halls, function (i, hall) {
+                    $("#HallId").append(
+                        $('<option></option>').val(hall.hallid).html(hall.hallname));
+                });
+            }
+        });
+
+    });
+
+    $("body").on("change", "#HallId", function () {
+        //debugger;
+        $("#quantity").val('0');
+        $("#Price").val('0');
+
+        var hallId = $(this).children("option:selected").val();
+        $.ajax({
+            url: '/RatingApp/Booktickets/GetHallLocation?hallId=' + hallId,
+            type: "GET",
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            success: function (locations) {
+                $("#LocationId").children().remove(); // clear before appending new list
+                $('#LocationId').append('<option>--select--</option>');
+                $('#LocationId').focus();
+
+                $.each(locations, function (i, location) {
+                    $("#LocationId").append(
+                        $('<option></option>').val(location.locationid).html(location.locationname));
+                });
+            }
+        });
+
+    });
+
+    $("#quantity").on("input", function () {
+        //debugger;
+        var hallId = $("#HallId").children("option:selected").val();
+        var quantity = $(this).val();
+        $.ajax({
+            url: '/RatingApp/Booktickets/GetPrice?hallId=' + hallId + '&quantity=' + quantity,
+            type: "GET",
+            dataType: "json",
+            contentType: false,
+            processData: false,
+            success: function (price) {
+                $("#Price").val(price);
+                $("#Price").prop("disabled", true);
+            }
+        });
+
+    });
+
+
 </script>

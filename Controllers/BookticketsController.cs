@@ -1,5 +1,6 @@
 ﻿using PayPal.Api;
 using RatingApp.Models;
+using RatingApp.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,12 @@ using System.Web.Mvc;
 
 namespace RatingApp.Controllers
 {
+   
     public class BookticketsController : Controller
     {
+        float x = 0;
+        int hallidv;
+        int movieidv;
         // GET: Booktickets
         public ActionResult Index()
         {
@@ -40,6 +45,9 @@ namespace RatingApp.Controllers
             ViewBag.hallLocation = new SelectList(list2, "locationid", "locationname");
 
             return View(model);
+
+
+        
         }
 
         public ActionResult getdrop(showingmodelcollection sc, string hallname)
@@ -56,19 +64,149 @@ namespace RatingApp.Controllers
         {
             return View();
         }
-        public ActionResult newtime()
+        List<bookingtempcart> carty = new List<bookingtempcart>();
+        public ActionResult newtime(int? id, BookNowVM bookingData)
+        {
+            List<bookingtempcart> tc1 = TempData["tempcart2"] as List<bookingtempcart>;
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<showtime> sh = db.showtimes.Where(x=>x.hallid==bookingData.HallId).ToList();
+            List<halltable> hall = db.halltables.ToList();
+            List<hallLocation> loc = db.hallLocations.ToList();
+            bookingtempcart tc = new bookingtempcart();
+            tc.bookid = bookingData.MovieId;
+            tc.hallname = hall.Where(x => x.hallid == bookingData.HallId).FirstOrDefault().hallname;
+            tc.ticketprice =(float)(bookingData.Price);
+            tc.ticketqty = bookingData.Quantity;
+            tc.hallid = bookingData.HallId;
+           tc.hallLocation= loc.Where(x => x.locationid == bookingData.LocationId).FirstOrDefault().locationname;
+            tc.bill = tc.ticketprice;
+            ViewBag.temphallid = bookingData.HallId;
+            hallidv = bookingData.HallId;
+            ViewBag.ticketprice = tc.bill;
+            if (TempData["tempcart2"] == null)
+            {
+                carty.Add(tc);
+                TempData["tempcart2"] = carty;
+            }
+            else
+            {
+                List<bookingtempcart> carty2 = TempData["tempcart2"] as List<bookingtempcart>;
+                int flag = 0;
+                foreach (var item in carty2)
+                {
+                    if (item.bookid == tc.bookid)
+                    {
+                        item.ticketqty += tc.ticketqty;
+                        item.bill += tc.bill;
+                        flag = 1;
+
+                    }
+                   
+                }
+              
+                if (flag == 0)
+                {
+                    carty2.Add(tc);
+                }
+
+                TempData["tempcart2"] = carty2;
+            }
+            TempData.Keep();
+            return View(sh);
+        }
+
+        [HttpGet]
+        public JsonResult GetHallsForMovie(int movieId)
         {
             moviedetailsdb1 db = new moviedetailsdb1();
-            List<showtime> sh = db.showtimes.ToList();
-           
-            return View(sh);
+            var list = db.halltables.Where(m => m.movieShid == movieId).Select(m => new { m.hallid, m.hallname }).ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+            //ViewBag.hallname = new SelectList(halls, "hallid", "hallname");
+        }
+
+        [HttpGet]
+        public JsonResult GetHallLocation(int hallId)
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            var list = db.hallLocations.Where(m => m.hallid == hallId).Select(m => new { m.locationid, m.locationname }).ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+            //ViewBag.hallname = new SelectList(halls, "hallid", "hallname");
+        }
+
+        [HttpGet]
+        public ActionResult GetPrice(int hallId, int quantity)
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            var price = db.halltables.Where(m => m.hallid == hallId).Select(m => m.ticketprice).FirstOrDefault();
+            price = price * quantity;
+            return Json(price, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult BookNow(BookNowVM bookingData)
+        {
+            return View();
         }
         public ActionResult selectseats()
         {
             return View();
         }
 
-        public ActionResult addfooditems()
+        public ActionResult addfooditems(int? id)
+        {
+            if (TempData["tempcart2"] != null)
+            {
+
+                List<bookingtempcart> tc = TempData["tempcart2"] as List<bookingtempcart>;
+                foreach (var item in tc)
+                {
+                    x += item.bill;
+                }
+                TempData["total2"] = x;
+
+            }
+            TempData.Keep();
+            moviedetailsdb1 db = new moviedetailsdb1();
+            showingmodelcollection model = new showingmodelcollection();
+            model.food = db.HallFoodTbls.Where(x=>x.hallid==id).ToList();
+            return View(model);
+        }
+
+        public ActionResult foodorder(int id,HallFoodTbl food)
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+
+            if (TempData["tempcart2"] != null)
+            {
+
+                List<bookingtempcart> tc = TempData["tempcart2"] as List<bookingtempcart>;
+                foreach (var item in tc)
+                {
+                    hallidv = item.hallid;
+                    movieidv = item.bookid;
+                }
+                TempData["total2"] = x;
+
+            }
+            TempData.Keep();
+
+
+            HallFoodTbl it = db.HallFoodTbls.Where(x => x.foodID ==id).SingleOrDefault();
+            bookingtempcart cart = TempData["tempcart2"] as bookingtempcart;
+            halltable halltb1 = db.halltables.Where(x => x.hallid == hallidv).SingleOrDefault();
+           // nowshowing ns = db.nowshowings.Where(x => x.id == movieidv).SingleOrDefault();
+
+            foodordercustommodel shop = new foodordercustommodel();
+            int userid = Convert.ToInt32(Session["id"].ToString());
+            shop.foodsingle = it;
+          //  shop.showing = ns;
+            shop.hallt = halltb1;
+            return View(shop);
+        }
+        [HttpPost]
+        public ActionResult foodorder(foodordercustommodel model, int qty )
         {
             return View();
         }
@@ -78,6 +216,11 @@ namespace RatingApp.Controllers
             moviedetailsdb1 db = new moviedetailsdb1();
             List<movieshop> ms = db.movieshops.ToList();
             return View(ms);
+        }
+
+        public ActionResult orderfood()
+        {
+            return View();
         }
 
         public ActionResult PaymentWithPaypal(string Cancel = null)
@@ -209,5 +352,7 @@ namespace RatingApp.Controllers
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
         }
+
+
     }
 }

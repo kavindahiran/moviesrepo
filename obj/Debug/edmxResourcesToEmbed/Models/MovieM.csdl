@@ -42,9 +42,13 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="discription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="discription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="date" Type="DateTime" Precision="0" />
     <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="category" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Double" />
+    <Property Name="highlightedevent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="newscontainers" Relationship="Models.FK_newscontainer_newsforum" FromRole="newsforum" ToRole="newscontainer" />
   </EntityType>
   <EntityType Name="trailertb">
     <Key>
@@ -241,6 +245,16 @@
     <AssociationSet Name="FK_castratingsT_castratingsT1" Association="Models.FK_castratingsT_castratingsT1">
       <End Role="movieCastcrew" EntitySet="movieCastcrews" />
       <End Role="castratingsT" EntitySet="castratingsTs" />
+    </AssociationSet>
+    <EntitySet Name="newscontainers" EntityType="Models.newscontainer" />
+    <AssociationSet Name="FK_newscontainer_newsforum" Association="Models.FK_newscontainer_newsforum">
+      <End Role="newsforum" EntitySet="newsforums" />
+      <End Role="newscontainer" EntitySet="newscontainers" />
+    </AssociationSet>
+    <EntitySet Name="HallFoodTbls" EntityType="Models.HallFoodTbl" />
+    <AssociationSet Name="FK_HallFoodTbl_halltable" Association="Models.FK_HallFoodTbl_halltable">
+      <End Role="halltable" EntitySet="halltables" />
+      <End Role="HallFoodTbl" EntitySet="HallFoodTbls" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="PhotoGallery">
@@ -662,6 +676,8 @@
     <NavigationProperty Name="showtimes" Relationship="Models.FK_showtimes_halltable" FromRole="halltable" ToRole="showtime" />
     <Property Name="ticketprice" Type="Double" />
     <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_halltable" FromRole="halltable" ToRole="tickettbl" />
+    <Property Name="quantity" Type="Int32" />
+    <NavigationProperty Name="HallFoodTbls" Relationship="Models.FK_HallFoodTbl_halltable" FromRole="halltable" ToRole="HallFoodTbl" />
   </EntityType>
   <Association Name="FK_hallLocation_halltable">
     <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
@@ -924,6 +940,51 @@
       </Principal>
       <Dependent Role="castratingsT">
         <PropertyRef Name="castid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="newscontainer">
+    <Key>
+      <PropertyRef Name="conID" />
+    </Key>
+    <Property Name="conID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="newTid" Type="Int32" />
+    <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="newsforum" Relationship="Models.FK_newscontainer_newsforum" FromRole="newscontainer" ToRole="newsforum" />
+  </EntityType>
+  <Association Name="FK_newscontainer_newsforum">
+    <End Type="Models.newsforum" Role="newsforum" Multiplicity="0..1" />
+    <End Type="Models.newscontainer" Role="newscontainer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="newsforum">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="newscontainer">
+        <PropertyRef Name="newTid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HallFoodTbl">
+    <Key>
+      <PropertyRef Name="foodID" />
+    </Key>
+    <Property Name="foodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="foodName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="foodDiscription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="foodimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="hallid" Type="Int32" />
+    <Property Name="Fprice" Type="Double" />
+    <NavigationProperty Name="halltable" Relationship="Models.FK_HallFoodTbl_halltable" FromRole="HallFoodTbl" ToRole="halltable" />
+  </EntityType>
+  <Association Name="FK_HallFoodTbl_halltable">
+    <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
+    <End Type="Models.HallFoodTbl" Role="HallFoodTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="halltable">
+        <PropertyRef Name="hallid" />
+      </Principal>
+      <Dependent Role="HallFoodTbl">
+        <PropertyRef Name="hallid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

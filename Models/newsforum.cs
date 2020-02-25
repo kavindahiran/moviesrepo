@@ -14,10 +14,22 @@ namespace RatingApp.Models
     
     public partial class newsforum
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public newsforum()
+        {
+            this.newscontainers = new HashSet<newscontainer>();
+        }
+    
         public int id { get; set; }
         public string title { get; set; }
         public string discription { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string imagepath { get; set; }
+        public string category { get; set; }
+        public Nullable<double> price { get; set; }
+        public string highlightedevent { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<newscontainer> newscontainers { get; set; }
     }
 }

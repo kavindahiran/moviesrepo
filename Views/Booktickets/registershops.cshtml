@@ -18,8 +18,11 @@
     
     <div class="titan-caption">
         <div class="caption-content">
-            <div class="font-alt mb-30 titan-title-size-1">@item.ownername</div>
-            <div class="font-alt mb-40 titan-title-size-4">@item.shopname</div><a class="section-scroll btn btn-border-w btn-round" href="#demos">@item.registredDate</a>
+            <div class="font-alt mb-30 titan-title-size-1">Shop Owner: @item.ownername</div>
+            <div class="font-alt mb-40 titan-title-size-4">Shop Name: @item.shopname</div><a class="section-scroll btn btn-border-w btn-round" href="#">Address: @item.address1</a>
+            <div class="font-alt mb-30 titan-title-size-1">Mobile NO: @item.mobileno</div>
+            @*<div class="font-alt mb-30 titan-title-size-1">@item.landno</div>
+            <div class="font-alt mb-30 titan-title-size-1">@item.mobileno</div>*@
         </div>
     </div>
 </section>
@@ -30,14 +33,20 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-8 col-lg-9">
                         <div class="callout-text font-alt">
-                            <h4 style="margin-top: 0px; font-;">@item.ownername</h4>
-                            <p style="margin-bottom: 0px;">Download Titan Free today!</p>
+                            <h4 style="margin-top: 0px; font-;">Fax No:  @item.fax</h4>
+
+                            <p style="margin-bottom: 0px;">Country :@item.country</p>
+                            <h4 style="margin-top: 0px; font-;">State:  @item.state</h4>
                         </div>
                     </div>
                     
                     <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="callout-btn-box"><a class="btn btn-border-w btn-circle" href="https://themewagon.com/themes/titan/">Downlaod Free</a></div>
-                    </div>
+                        <div class="callout-btn-box">
+                            <h4 style="margin-top: 0px; font-;">Land No:  @item.landno</h4>
+                            <h4 style="margin-top: 0px; font-;">Address 2:  @item.address2</h4>
+                            </div>
+                            @*<div class="callout-btn-box"><a class="btn btn-border-w btn-circle" href="https://themewagon.com/themes/titan/">Downlaod Free</a></div>*@
+                        </div>
                 </div>
             </div>
         </section>

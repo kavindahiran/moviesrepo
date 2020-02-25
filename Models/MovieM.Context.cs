@@ -50,5 +50,7 @@ namespace RatingApp.Models
         public virtual DbSet<Review_Table> Review_Table { get; set; }
         public virtual DbSet<barcodeT> barcodeTs { get; set; }
         public virtual DbSet<movieshop> movieshops { get; set; }
+        public virtual DbSet<newscontainer> newscontainers { get; set; }
+        public virtual DbSet<HallFoodTbl> HallFoodTbls { get; set; }
     }
 }

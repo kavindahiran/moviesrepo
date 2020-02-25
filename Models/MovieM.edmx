@@ -66,6 +66,17 @@
           <Property Name="movieid" Type="int" />
           <Property Name="commentdate" Type="datetime" />
         </EntityType>
+        <EntityType Name="HallFoodTbl">
+          <Key>
+            <PropertyRef Name="foodID" />
+          </Key>
+          <Property Name="foodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="foodName" Type="varchar" MaxLength="20" />
+          <Property Name="foodDiscription" Type="varchar(max)" />
+          <Property Name="foodimage" Type="varchar(max)" />
+          <Property Name="hallid" Type="int" />
+          <Property Name="Fprice" Type="float" />
+        </EntityType>
         <EntityType Name="hallLocation">
           <Key>
             <PropertyRef Name="locationid" />
@@ -82,6 +93,7 @@
           <Property Name="hallname" Type="varchar" MaxLength="50" />
           <Property Name="movieShid" Type="int" />
           <Property Name="ticketprice" Type="float" />
+          <Property Name="quantity" Type="int" />
         </EntityType>
         <EntityType Name="heroarenatable">
           <Key>
@@ -175,15 +187,26 @@
           <Property Name="businessinquery" Type="varchar(max)" />
           <Property Name="shopimage" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="newscontainer">
+          <Key>
+            <PropertyRef Name="conID" />
+          </Key>
+          <Property Name="conID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="newTid" Type="int" />
+          <Property Name="imagepath" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="newsforum">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="title" Type="varchar" MaxLength="100" />
-          <Property Name="discription" Type="varchar" MaxLength="100" />
+          <Property Name="discription" Type="varchar(max)" />
           <Property Name="date" Type="date" />
           <Property Name="imagepath" Type="nvarchar(max)" />
+          <Property Name="category" Type="varchar" MaxLength="20" />
+          <Property Name="price" Type="float" />
+          <Property Name="highlightedevent" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="nowshowing">
           <Key>
@@ -432,6 +455,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HallFoodTbl_halltable">
+          <End Role="halltable" Type="Self.halltable" Multiplicity="0..1" />
+          <End Role="HallFoodTbl" Type="Self.HallFoodTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="halltable">
+              <PropertyRef Name="hallid" />
+            </Principal>
+            <Dependent Role="HallFoodTbl">
+              <PropertyRef Name="hallid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_hallLocation_halltable">
           <End Role="halltable" Type="Self.halltable" Multiplicity="0..1" />
           <End Role="hallLocation" Type="Self.hallLocation" Multiplicity="*" />
@@ -513,6 +548,18 @@
             </Principal>
             <Dependent Role="movieCastcrew">
               <PropertyRef Name="movie_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_newscontainer_newsforum">
+          <End Role="newsforum" Type="Self.newsforum" Multiplicity="0..1" />
+          <End Role="newscontainer" Type="Self.newscontainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="newsforum">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="newscontainer">
+              <PropertyRef Name="newTid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -691,6 +738,7 @@
           <EntitySet Name="castratingsT" EntityType="Self.castratingsT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="castreply" EntityType="Self.castreply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="comments" EntityType="Self.comments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HallFoodTbl" EntityType="Self.HallFoodTbl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="hallLocation" EntityType="Self.hallLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="halltable" EntityType="Self.halltable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="heroarenatable" EntityType="Self.heroarenatable" Schema="dbo" store:Type="Tables" />
@@ -699,6 +747,7 @@
           <EntitySet Name="Movie_Item" EntityType="Self.Movie_Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="movieCastcrew" EntityType="Self.movieCastcrew" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="movieshop" EntityType="Self.movieshop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="newscontainer" EntityType="Self.newscontainer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="newsforum" EntityType="Self.newsforum" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nowshowing" EntityType="Self.nowshowing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ordertable" EntityType="Self.ordertable" Schema="dbo" store:Type="Tables" />
@@ -750,6 +799,10 @@
             <End Role="usertbl" EntitySet="usertbl" />
             <End Role="comments" EntitySet="comments" />
           </AssociationSet>
+          <AssociationSet Name="FK_HallFoodTbl_halltable" Association="Self.FK_HallFoodTbl_halltable">
+            <End Role="halltable" EntitySet="halltable" />
+            <End Role="HallFoodTbl" EntitySet="HallFoodTbl" />
+          </AssociationSet>
           <AssociationSet Name="FK_hallLocation_halltable" Association="Self.FK_hallLocation_halltable">
             <End Role="halltable" EntitySet="halltable" />
             <End Role="hallLocation" EntitySet="hallLocation" />
@@ -777,6 +830,10 @@
           <AssociationSet Name="FK_movieCastcrew_Movie_Item" Association="Self.FK_movieCastcrew_Movie_Item">
             <End Role="Movie_Item" EntitySet="Movie_Item" />
             <End Role="movieCastcrew" EntitySet="movieCastcrew" />
+          </AssociationSet>
+          <AssociationSet Name="FK_newscontainer_newsforum" Association="Self.FK_newscontainer_newsforum">
+            <End Role="newsforum" EntitySet="newsforum" />
+            <End Role="newscontainer" EntitySet="newscontainer" />
           </AssociationSet>
           <AssociationSet Name="FK_ordertable_inovice" Association="Self.FK_ordertable_inovice">
             <End Role="inovice" EntitySet="inovice" />
@@ -881,9 +938,13 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="discription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="discription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="date" Type="DateTime" Precision="0" />
           <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" />
+          <Property Name="highlightedevent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="newscontainers" Relationship="Models.FK_newscontainer_newsforum" FromRole="newsforum" ToRole="newscontainer" />
         </EntityType>
         <EntityType Name="trailertb">
           <Key>
@@ -1080,6 +1141,16 @@
           <AssociationSet Name="FK_castratingsT_castratingsT1" Association="Models.FK_castratingsT_castratingsT1">
             <End Role="movieCastcrew" EntitySet="movieCastcrews" />
             <End Role="castratingsT" EntitySet="castratingsTs" />
+          </AssociationSet>
+          <EntitySet Name="newscontainers" EntityType="Models.newscontainer" />
+          <AssociationSet Name="FK_newscontainer_newsforum" Association="Models.FK_newscontainer_newsforum">
+            <End Role="newsforum" EntitySet="newsforums" />
+            <End Role="newscontainer" EntitySet="newscontainers" />
+          </AssociationSet>
+          <EntitySet Name="HallFoodTbls" EntityType="Models.HallFoodTbl" />
+          <AssociationSet Name="FK_HallFoodTbl_halltable" Association="Models.FK_HallFoodTbl_halltable">
+            <End Role="halltable" EntitySet="halltables" />
+            <End Role="HallFoodTbl" EntitySet="HallFoodTbls" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="PhotoGallery">
@@ -1501,6 +1572,8 @@
           <NavigationProperty Name="showtimes" Relationship="Models.FK_showtimes_halltable" FromRole="halltable" ToRole="showtime" />
           <Property Name="ticketprice" Type="Double" />
           <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_halltable" FromRole="halltable" ToRole="tickettbl" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="HallFoodTbls" Relationship="Models.FK_HallFoodTbl_halltable" FromRole="halltable" ToRole="HallFoodTbl" />
         </EntityType>
         <Association Name="FK_hallLocation_halltable">
           <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
@@ -1766,6 +1839,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="newscontainer">
+          <Key>
+            <PropertyRef Name="conID" />
+          </Key>
+          <Property Name="conID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="newTid" Type="Int32" />
+          <Property Name="imagepath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="newsforum" Relationship="Models.FK_newscontainer_newsforum" FromRole="newscontainer" ToRole="newsforum" />
+        </EntityType>
+        <Association Name="FK_newscontainer_newsforum">
+          <End Type="Models.newsforum" Role="newsforum" Multiplicity="0..1" />
+          <End Type="Models.newscontainer" Role="newscontainer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="newsforum">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="newscontainer">
+              <PropertyRef Name="newTid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HallFoodTbl">
+          <Key>
+            <PropertyRef Name="foodID" />
+          </Key>
+          <Property Name="foodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="foodName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="foodDiscription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="foodimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="hallid" Type="Int32" />
+          <Property Name="Fprice" Type="Double" />
+          <NavigationProperty Name="halltable" Relationship="Models.FK_HallFoodTbl_halltable" FromRole="HallFoodTbl" ToRole="halltable" />
+        </EntityType>
+        <Association Name="FK_HallFoodTbl_halltable">
+          <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
+          <End Type="Models.HallFoodTbl" Role="HallFoodTbl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="halltable">
+              <PropertyRef Name="hallid" />
+            </Principal>
+            <Dependent Role="HallFoodTbl">
+              <PropertyRef Name="hallid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1804,6 +1922,9 @@
           <EntitySetMapping Name="newsforums">
             <EntityTypeMapping TypeName="Models.newsforum">
               <MappingFragment StoreEntitySet="newsforum">
+                <ScalarProperty Name="highlightedevent" ColumnName="highlightedevent" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="category" ColumnName="category" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="discription" ColumnName="discription" />
@@ -2020,6 +2141,7 @@
           <EntitySetMapping Name="halltables">
             <EntityTypeMapping TypeName="Models.halltable">
               <MappingFragment StoreEntitySet="halltable">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="ticketprice" ColumnName="ticketprice" />
                 <ScalarProperty Name="movieShid" ColumnName="movieShid" />
                 <ScalarProperty Name="hallname" ColumnName="hallname" />
@@ -2101,6 +2223,27 @@
                 <ScalarProperty Name="ownername" ColumnName="ownername" />
                 <ScalarProperty Name="shopname" ColumnName="shopname" />
                 <ScalarProperty Name="shopid" ColumnName="shopid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="newscontainers">
+            <EntityTypeMapping TypeName="Models.newscontainer">
+              <MappingFragment StoreEntitySet="newscontainer">
+                <ScalarProperty Name="imagepath" ColumnName="imagepath" />
+                <ScalarProperty Name="newTid" ColumnName="newTid" />
+                <ScalarProperty Name="conID" ColumnName="conID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HallFoodTbls">
+            <EntityTypeMapping TypeName="Models.HallFoodTbl">
+              <MappingFragment StoreEntitySet="HallFoodTbl">
+                <ScalarProperty Name="Fprice" ColumnName="Fprice" />
+                <ScalarProperty Name="hallid" ColumnName="hallid" />
+                <ScalarProperty Name="foodimage" ColumnName="foodimage" />
+                <ScalarProperty Name="foodDiscription" ColumnName="foodDiscription" />
+                <ScalarProperty Name="foodName" ColumnName="foodName" />
+                <ScalarProperty Name="foodID" ColumnName="foodID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

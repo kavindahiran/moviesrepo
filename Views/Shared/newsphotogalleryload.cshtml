@@ -1,0 +1,31 @@
+﻿@model List<RatingApp.Models.newscontainer>
+
+
+
+
+
+
+    <div id="product-main-img">
+        @if (Model.Select(y=>y.imagepath) != null)
+        {
+            foreach (var item in Model)
+            {
+
+                <div class="product-preview">
+
+
+                    <img src="@Url.Content(item.imagepath)" />
+                </div>
+
+            }
+        }
+        else
+        {
+            <div class="product-preview">
+
+
+                <img src=@Url.Content(Model[0].newsforum.imagepath)/>
+            </div>
+            
+        }
+    </div>

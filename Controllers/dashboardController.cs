@@ -106,8 +106,82 @@ namespace RatingApp.Controllers
             return Json(file.FileName, JsonRequestBehavior.AllowGet);
 
         }
+        [HttpGet]
+        public ActionResult addnewsforum()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult addnewsforum(newsforum imageModel)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
+            string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            imageModel.imagepath = "~/newsfolder/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/newsfolder/"), fileName);
+            //BinaryReader reader = new BinaryReader(imageModel.ImageFile.InputStream);
+            //imagebyte = reader.ReadBytes(imageModel.ImageFile.ContentLength);
+            imageModel.ImageFile.SaveAs(fileName);
+
+            using (moviedetailsdb1 db = new moviedetailsdb1())
+            {
+
+               
+                db.newsforums.Add(imageModel);
+                db.SaveChanges();
+                string mess = "submitted successfully";
+                ViewBag.message = mess;
+            }
+                return View();
+        }
+        [HttpGet]
+        public ActionResult addnewscontainer()
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<newsforum> list = db.newsforums.ToList();
 
 
+            ViewBag.list1 = new SelectList(list, "id", "title");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult addnewscontainer(newscontainer imageModel)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
+            string extension = Path.GetExtension(imageModel.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            imageModel.imagepath = "~/newsfolder/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/newsfolder/"), fileName);
+            //BinaryReader reader = new BinaryReader(imageModel.ImageFile.InputStream);
+            //imagebyte = reader.ReadBytes(imageModel.ImageFile.ContentLength);
+            imageModel.ImageFile.SaveAs(fileName);
+
+            using (moviedetailsdb1 db = new moviedetailsdb1())
+            {
+
+
+                db.newscontainers.Add(imageModel);
+                db.SaveChanges();
+                string mess = "submitted successfully";
+                ViewBag.message = mess;
+            }
+            moviedetailsdb1 db1 = new moviedetailsdb1();
+            List<newsforum> list = db1.newsforums.ToList();
+
+
+            ViewBag.list1 = new SelectList(list, "id", "title");
+            return View();
+        }
+
+        public ActionResult newsdetails(int? id)
+        {
+            indexnewsforum model = new indexnewsforum();
+            moviedetailsdb1 db = new moviedetailsdb1();
+          
+           model.nf = db.newsforums.Find(id);
+            model.con = db.newscontainers.Where(x=>x.newTid==id).ToList();
+            return View(model);
+        }
 
         public ActionResult addArena()
         {
@@ -269,7 +343,7 @@ namespace RatingApp.Controllers
             string username = Session["regname"].ToString();
            // rev.DatePost = DateTime.Now;
             rev.userID = db.usertbls.Single(x => x.username.Equals(username)).user_id;
-
+            rev.DatePost = DateTime.Now;
 
             var searchdata = db.Review_Table.Where(x => x.userID == rev.userID && x.movieT_ID == rev.movieT_ID).AsNoTracking().FirstOrDefault();
             if (searchdata == null)
@@ -599,6 +673,47 @@ namespace RatingApp.Controllers
             return View();
         }
 
+
+        public ActionResult addfood()
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<halltable> list = db.halltables.ToList();
+
+
+            ViewBag.list1 = new SelectList(list, "hallid", "hallname");
+
+
+         
+            return View();
+        }
+        [HttpPost]
+        public ActionResult addfood(HallFoodTbl cast)
+        {
+            string fileName = Path.GetFileNameWithoutExtension(cast.ImageFile.FileName);
+            string extension = Path.GetExtension(cast.ImageFile.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            cast.foodimage = "~/hallfoodlist/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/hallfoodlist/"), fileName);
+            cast.ImageFile.SaveAs(fileName);
+
+            //file.SaveAs(Server.MapPath("~/movieIcons/" + file.FileName));
+            using (moviedetailsdb1 db = new moviedetailsdb1())
+            {
+                
+
+                db.HallFoodTbls.Add(cast);
+                db.SaveChanges();
+                string mess = "submitted successfully";
+                ViewBag.message = mess;
+            }
+            ModelState.Clear();
+            moviedetailsdb1 db1 = new moviedetailsdb1();
+            List<halltable> list = db1.halltables.ToList();
+
+
+            ViewBag.list1 = new SelectList(list, "hallid", "hallname");
+            return View();
+        }
 
         public ActionResult castphotogalley()
         {

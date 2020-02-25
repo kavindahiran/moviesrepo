@@ -1,0 +1,22 @@
+﻿@model List<RatingApp.Models.newscontainer>
+
+
+
+    <div id="product-imgs" style="height:300px;">
+        @foreach (var item in Model)
+        {
+
+            <div class="product-preview" style="height:150px;">
+
+                <img src="@Url.Content(item.imagepath)" />
+            </div>
+
+
+
+
+        }
+        <div class="product-preview">
+
+
+        </div>
+    </div>

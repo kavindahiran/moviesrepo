@@ -63,6 +63,10 @@
         <AssociationConnector Association="Models.FK_barcodeT_Movie_Item" />
         <AssociationConnector Association="Models.FK_Landmark121_movieshop" />
         <AssociationConnector Association="Models.FK_castratingsT_castratingsT1" />
+        <EntityTypeShape EntityType="Models.newscontainer" Width="1.5" PointX="5" PointY="24.5" />
+        <AssociationConnector Association="Models.FK_newscontainer_newsforum" />
+        <EntityTypeShape EntityType="Models.HallFoodTbl" Width="1.5" PointX="15" PointY="14.375" />
+        <AssociationConnector Association="Models.FK_HallFoodTbl_halltable" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

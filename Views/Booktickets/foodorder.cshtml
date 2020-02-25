@@ -1,0 +1,120 @@
+﻿
+@model RatingApp.Models.ViewModels.foodordercustommodel
+@{
+    ViewBag.Title = "foodorder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/movieshopcss/StyleSheet1.css" rel="stylesheet" />
+
+
+@*@using (Html.BeginForm("getfoodorder","Booktickets",  FormMethod.Post, new { enctype = "multipart/form-data" }))
+{*@
+    <form id="myform" >
+
+
+        <div class="product_image_area section_padding">
+            <div class="container">
+                <div class="row s_product_inner">
+                    <div class="col-lg-5">
+                        <div class="product_slider_img">
+                            <div id="vertical">
+                                <div data-thumb="">
+                                    <img style="min-height:400px; width:500px;" src="@Url.Content(Model.foodsingle.foodimage)" />
+                                </div>
+
+
+
+                                @*@Html.HiddenFor(x => x.foodsingle.foodimage)*@
+                                @*@Html.HiddenFor(x => x.movieitems.imgpath)*@
+                                @*<div data-thumb="img/product_details/prodect_details_2.png">
+                                        <img src="img/product_details/prodect_details_2.png" />
+                                    </div>
+                                    <div data-thumb="img/product_details/prodect_details_3.png">
+                                        <img src="img/product_details/prodect_details_3.png" />
+                                    </div>
+                                    <div data-thumb="img/product_details/prodect_details_4.png">
+                                        <img src="img/product_details/prodect_details_4.png" />
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 offset-lg-1">
+                        <div class="s_product_text">
+                            <h3>
+                                <span class="badge badge-pill badge-light">Movie Name</span>
+                                @Html.DisplayFor(Model => Model.foodsingle.foodName)
+                            </h3>
+                            <h2> <span class="badge badge-pill badge-light">Price</span>  @Html.DisplayFor(Model => Model.foodsingle.Fprice)</h2>
+
+                            <ul class="list">
+                                <li>
+                                    <a class="active" href="#">
+                                        <span>Category</span> : Household
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"> <span>Availibility</span> : In Stock</a>
+                                </li>
+                            </ul>
+                            <p>
+                                @Model.foodsingle.foodDiscription
+                            </p>
+                            @Html.HiddenFor(Model => Model.showing.id)
+                            @Html.HiddenFor(Model => Model.foodsingle.foodID)
+                            @Html.HiddenFor(Model => Model.hallt.hallid)
+                            @Html.HiddenFor(Model => Model.foodsingle.foodName)
+                            @Html.HiddenFor(Model => Model.foodsingle.Fprice)
+                            <div class="card_area">
+                                <div class="product_count d-inline-block">
+                                    <span class="badge badge-pill badge-light">Quantity</span>
+                                    <span class="inumber-decrement"> <i class="ti-minus"></i></span>
+                                    <input type="number" name="qty" value="0" id="qty" min="1" max="5" />
+                                    <span class="number-increment"> <i class="ti-plus"></i></span>
+                                </div>
+                                <div class="add_to_cart">
+                                    <input type="submit" value="Submit" class="btn_3" id="bt1" />
+                                    @*<a href="#" class="btn_3">add to cart</a>
+                                        <a href="#" class="like_us"> <i class="ti-heart"></i> </a>*@
+                                </div>
+                                <div class="social_icon">
+                                    <a href="#" class="fb"><i class="ti-facebook"></i></a>
+                                    <a href="#" class="tw"><i class="ti-twitter-alt"></i></a>
+                                    <a href="#" class="li"><i class="ti-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+@*}*@
+
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+        $(document).ready(function () {
+            $("#bt1").click(function () {
+
+
+                var data = $("#myform").serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "/Booktickets/foodorder",
+                    data: data,
+                    success: function (response) {
+                        window.location = "Index";
+
+                    }
+
+                })
+
+            })
+        })
+
+</script>

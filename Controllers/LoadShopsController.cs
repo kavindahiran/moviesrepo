@@ -42,7 +42,7 @@ namespace RatingApp.Controllers
 
 
 
-          
+            mvc.registredDate=DateTime.Now;
             mvc.shopname = sh.shopname;
             mvc.ownername = sh.ownername;
             mvc.address1 = sh.address1;

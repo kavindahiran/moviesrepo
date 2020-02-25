@@ -58,8 +58,11 @@ namespace RatingApp.Controllers
            int userid= Convert.ToInt32(Session["id"].ToString());
             shop.movieitems = it;
             shoppingcart sc = db.shoppingcarts.Where(x => x.movieItemDis == movie_id).SingleOrDefault();
-            Review_Table rv1 = db.Review_Table.Where(x => x.movieT_ID == movie_id).FirstOrDefault();
+            Review_Table rv1 = db.Review_Table.Where(x => x.movieT_ID == movie_id && x.userID==userid).FirstOrDefault();
+            var countlikes = db.Review_Table.Where(x => x.movieT_ID == movie_id).Select(x => x.movielikes).Count();
             
+            var testc=db.Review_Table.Where(x=>x.movieT_ID==movie_id).Count(p => p.movielikes != null);
+            ViewBag.totallikes = testc;
             shop.rv = rv1;
 
             List <reply> rep = db.replies.ToList();
@@ -127,7 +130,7 @@ namespace RatingApp.Controllers
             
             db.inovices.Add(inv);
             db.SaveChanges();
-
+            
             foreach(var item in li)
             {
                 ordertable ord = new ordertable();
@@ -159,6 +162,7 @@ namespace RatingApp.Controllers
             tc.productname = sm.movieitems.Movie_name;
             tc.price = (float)sm.cart.price;
             tc.qty = Convert.ToInt32(qty);
+           
             tc.bill = (float)sm.cart.price * tc.qty;
 
             if (TempData["tempcart"] == null)
@@ -198,10 +202,23 @@ namespace RatingApp.Controllers
             int userid = Convert.ToInt32(Session["id"].ToString());
             var data = db.Review_Table.AsNoTracking().ToList().Find(x => x.movieT_ID == sm.movieitems.movie_id && x.userID == userid);
             Review_Table riv = new Review_Table();
-            riv.movielikes = 0;
+            
+            riv.rating = sm.rv.rating;
+            riv.DatePost = DateTime.Now;
+            riv.Content = sm.rv.Content;
             riv.movieT_ID = sm.movieitems.movie_id;
             riv.userID = db.usertbls.Single(x => x.user_id.Equals(userid)).user_id;
             riv.DatePost = DateTime.Now;
+            var countlikes = db.Review_Table.Where(x => x.movieT_ID == sm.movieitems.movie_id).Select(x => x.movielikes).Count();
+            ViewBag.totallikes = countlikes;
+            if (riv.movielikes == null)
+            {
+                riv.movielikes = 1;
+            }
+            else
+            {
+                riv.movielikes = 0;
+            }
             riv.movielikes = sm.rv.movielikes + 1;
             if (data == null)
             {

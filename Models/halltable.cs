@@ -20,12 +20,14 @@ namespace RatingApp.Models
             this.hallLocations = new HashSet<hallLocation>();
             this.showtimes = new HashSet<showtime>();
             this.tickettbls = new HashSet<tickettbl>();
+            this.HallFoodTbls = new HashSet<HallFoodTbl>();
         }
     
         public int hallid { get; set; }
         public string hallname { get; set; }
         public Nullable<int> movieShid { get; set; }
         public Nullable<double> ticketprice { get; set; }
+        public Nullable<int> quantity { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<hallLocation> hallLocations { get; set; }
@@ -34,5 +36,7 @@ namespace RatingApp.Models
         public virtual ICollection<showtime> showtimes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tickettbl> tickettbls { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HallFoodTbl> HallFoodTbls { get; set; }
     }
 }
