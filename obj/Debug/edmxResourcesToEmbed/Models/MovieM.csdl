@@ -87,6 +87,10 @@
     <Property Name="confirmpass" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="bookinvoicetbls" Relationship="Models.FK_bookinvoicetbl_usertbl" FromRole="usertbl" ToRole="bookinvoicetbl" />
+    <NavigationProperty Name="foodInvoices" Relationship="Models.FK_foodInvoice_usertbl" FromRole="usertbl" ToRole="foodInvoice" />
+    <NavigationProperty Name="chatmessages" Relationship="Models.FK_chatmessage_usertbl" FromRole="usertbl" ToRole="chatmessage" />
+    <NavigationProperty Name="castlikes" Relationship="Models.FK_castlikes_usertbl" FromRole="usertbl" ToRole="castlike" />
   </EntityType>
   <EntityContainer Name="moviedetailsdb1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="heroarenatables" EntityType="Self.heroarenatable" />
@@ -255,6 +259,61 @@
     <AssociationSet Name="FK_HallFoodTbl_halltable" Association="Models.FK_HallFoodTbl_halltable">
       <End Role="halltable" EntitySet="halltables" />
       <End Role="HallFoodTbl" EntitySet="HallFoodTbls" />
+    </AssociationSet>
+    <EntitySet Name="bookinvoicetbls" EntityType="Models.bookinvoicetbl" />
+    <EntitySet Name="bookordertbls" EntityType="Models.bookordertbl" />
+    <EntitySet Name="foodOrderTbls" EntityType="Models.foodOrderTbl" />
+    <AssociationSet Name="FK_bookinvoicetbl_usertbl" Association="Models.FK_bookinvoicetbl_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="bookinvoicetbl" EntitySet="bookinvoicetbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bookordertbl_bookinvoicetbl" Association="Models.FK_bookordertbl_bookinvoicetbl">
+      <End Role="bookinvoicetbl" EntitySet="bookinvoicetbls" />
+      <End Role="bookordertbl" EntitySet="bookordertbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bookordertbl_halltable" Association="Models.FK_bookordertbl_halltable">
+      <End Role="halltable" EntitySet="halltables" />
+      <End Role="bookordertbl" EntitySet="bookordertbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bookordertbl_nowshowing" Association="Models.FK_bookordertbl_nowshowing">
+      <End Role="nowshowing" EntitySet="nowshowings" />
+      <End Role="bookordertbl" EntitySet="bookordertbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_foodOrderTbl_halltable" Association="Models.FK_foodOrderTbl_halltable">
+      <End Role="halltable" EntitySet="halltables" />
+      <End Role="foodOrderTbl" EntitySet="foodOrderTbls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_foodOrderTbl_nowshowing" Association="Models.FK_foodOrderTbl_nowshowing">
+      <End Role="nowshowing" EntitySet="nowshowings" />
+      <End Role="foodOrderTbl" EntitySet="foodOrderTbls" />
+    </AssociationSet>
+    <EntitySet Name="foodInvoices" EntityType="Models.foodInvoice" />
+    <AssociationSet Name="FK_foodInvoice_usertbl" Association="Models.FK_foodInvoice_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="foodInvoice" EntitySet="foodInvoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_foodOrderTbl_foodInvoice" Association="Models.FK_foodOrderTbl_foodInvoice">
+      <End Role="foodInvoice" EntitySet="foodInvoices" />
+      <End Role="foodOrderTbl" EntitySet="foodOrderTbls" />
+    </AssociationSet>
+    <EntitySet Name="chatmessages" EntityType="Models.chatmessage" />
+    <AssociationSet Name="FK_chatmessage_usertbl" Association="Models.FK_chatmessage_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="chatmessage" EntitySet="chatmessages" />
+    </AssociationSet>
+    <EntitySet Name="coupentbls" EntityType="Models.coupentbl" />
+    <AssociationSet Name="FK_coupentbl_movieshop" Association="Models.FK_coupentbl_movieshop">
+      <End Role="movieshop" EntitySet="movieshops" />
+      <End Role="coupentbl" EntitySet="coupentbls" />
+    </AssociationSet>
+    <EntitySet Name="castlikes" EntityType="Models.castlike" />
+    <AssociationSet Name="FK_castlikes_movieCastcrew" Association="Models.FK_castlikes_movieCastcrew">
+      <End Role="movieCastcrew" EntitySet="movieCastcrews" />
+      <End Role="castlike" EntitySet="castlikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_castlikes_usertbl" Association="Models.FK_castlikes_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="castlike" EntitySet="castlikes" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="PhotoGallery">
@@ -653,6 +712,8 @@
     <Property Name="moviename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="halltables" Relationship="Models.FK_halltable_nowshowing" FromRole="nowshowing" ToRole="halltable" />
     <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_nowshowing" FromRole="nowshowing" ToRole="tickettbl" />
+    <NavigationProperty Name="bookordertbls" Relationship="Models.FK_bookordertbl_nowshowing" FromRole="nowshowing" ToRole="bookordertbl" />
+    <NavigationProperty Name="foodOrderTbls" Relationship="Models.FK_foodOrderTbl_nowshowing" FromRole="nowshowing" ToRole="foodOrderTbl" />
   </EntityType>
   <EntityType Name="showtime">
     <Key>
@@ -678,6 +739,8 @@
     <NavigationProperty Name="tickettbls" Relationship="Models.FK_tickettbl_halltable" FromRole="halltable" ToRole="tickettbl" />
     <Property Name="quantity" Type="Int32" />
     <NavigationProperty Name="HallFoodTbls" Relationship="Models.FK_HallFoodTbl_halltable" FromRole="halltable" ToRole="HallFoodTbl" />
+    <NavigationProperty Name="bookordertbls" Relationship="Models.FK_bookordertbl_halltable" FromRole="halltable" ToRole="bookordertbl" />
+    <NavigationProperty Name="foodOrderTbls" Relationship="Models.FK_foodOrderTbl_halltable" FromRole="halltable" ToRole="foodOrderTbl" />
   </EntityType>
   <Association Name="FK_hallLocation_halltable">
     <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
@@ -813,6 +876,7 @@
     <Property Name="nickname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="castratingsTs" Relationship="Models.FK_castratingsT_castratingsT1" FromRole="movieCastcrew" ToRole="castratingsT" />
+    <NavigationProperty Name="castlikes" Relationship="Models.FK_castlikes_movieCastcrew" FromRole="movieCastcrew" ToRole="castlike" />
   </EntityType>
   <EntityType Name="Review_Table">
     <Key>
@@ -906,6 +970,8 @@
     <Property Name="zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="businessinquery" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="shopimage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="passW" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="coupentbls" Relationship="Models.FK_coupentbl_movieshop" FromRole="movieshop" ToRole="coupentbl" />
   </EntityType>
   <Association Name="FK_barcodeT_Movie_Item">
     <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
@@ -985,6 +1051,249 @@
       </Principal>
       <Dependent Role="HallFoodTbl">
         <PropertyRef Name="hallid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="bookinvoicetbl">
+    <Key>
+      <PropertyRef Name="bookinvoiceid" />
+    </Key>
+    <Property Name="bookinvoiceid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="orderdate" Type="DateTime" Precision="3" />
+    <Property Name="totalbill" Type="Double" />
+    <Property Name="firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="zipcode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_bookinvoicetbl_usertbl" FromRole="bookinvoicetbl" ToRole="usertbl" />
+    <NavigationProperty Name="bookordertbls" Relationship="Models.FK_bookordertbl_bookinvoicetbl" FromRole="bookinvoicetbl" ToRole="bookordertbl" />
+  </EntityType>
+  <EntityType Name="bookordertbl">
+    <Key>
+      <PropertyRef Name="bookorderid" />
+    </Key>
+    <Property Name="bookorderid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="movieid" Type="Int32" />
+    <Property Name="invoiceid" Type="Int32" />
+    <Property Name="hallid" Type="Int32" />
+    <Property Name="orderdate" Type="DateTime" Precision="3" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="bill" Type="Double" />
+    <Property Name="unitprice" Type="Double" />
+    <Property Name="cardnumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="expiredate" Type="DateTime" Precision="3" />
+    <Property Name="cardcode" Type="Int32" />
+    <NavigationProperty Name="bookinvoicetbl" Relationship="Models.FK_bookordertbl_bookinvoicetbl" FromRole="bookordertbl" ToRole="bookinvoicetbl" />
+    <NavigationProperty Name="halltable" Relationship="Models.FK_bookordertbl_halltable" FromRole="bookordertbl" ToRole="halltable" />
+    <NavigationProperty Name="nowshowing" Relationship="Models.FK_bookordertbl_nowshowing" FromRole="bookordertbl" ToRole="nowshowing" />
+  </EntityType>
+  <EntityType Name="foodOrderTbl">
+    <Key>
+      <PropertyRef Name="foodOrdId" />
+    </Key>
+    <Property Name="foodOrdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="movieid" Type="Int32" />
+    <Property Name="foodInvoiceid" Type="Int32" />
+    <Property Name="hallid" Type="Int32" />
+    <Property Name="orderdate" Type="DateTime" Precision="3" />
+    <Property Name="quantity" Type="Int32" />
+    <Property Name="bill" Type="Double" />
+    <Property Name="unitprice" Type="Double" />
+    <NavigationProperty Name="halltable" Relationship="Models.FK_foodOrderTbl_halltable" FromRole="foodOrderTbl" ToRole="halltable" />
+    <NavigationProperty Name="nowshowing" Relationship="Models.FK_foodOrderTbl_nowshowing" FromRole="foodOrderTbl" ToRole="nowshowing" />
+    <NavigationProperty Name="foodInvoice" Relationship="Models.FK_foodOrderTbl_foodInvoice" FromRole="foodOrderTbl" ToRole="foodInvoice" />
+  </EntityType>
+  <Association Name="FK_bookinvoicetbl_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.bookinvoicetbl" Role="bookinvoicetbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="bookinvoicetbl">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bookordertbl_bookinvoicetbl">
+    <End Type="Models.bookinvoicetbl" Role="bookinvoicetbl" Multiplicity="0..1" />
+    <End Type="Models.bookordertbl" Role="bookordertbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bookinvoicetbl">
+        <PropertyRef Name="bookinvoiceid" />
+      </Principal>
+      <Dependent Role="bookordertbl">
+        <PropertyRef Name="invoiceid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bookordertbl_halltable">
+    <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
+    <End Type="Models.bookordertbl" Role="bookordertbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="halltable">
+        <PropertyRef Name="hallid" />
+      </Principal>
+      <Dependent Role="bookordertbl">
+        <PropertyRef Name="hallid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bookordertbl_nowshowing">
+    <End Type="Models.nowshowing" Role="nowshowing" Multiplicity="0..1" />
+    <End Type="Models.bookordertbl" Role="bookordertbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nowshowing">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="bookordertbl">
+        <PropertyRef Name="movieid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_foodOrderTbl_halltable">
+    <End Type="Models.halltable" Role="halltable" Multiplicity="0..1" />
+    <End Type="Models.foodOrderTbl" Role="foodOrderTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="halltable">
+        <PropertyRef Name="hallid" />
+      </Principal>
+      <Dependent Role="foodOrderTbl">
+        <PropertyRef Name="hallid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_foodOrderTbl_nowshowing">
+    <End Type="Models.nowshowing" Role="nowshowing" Multiplicity="0..1" />
+    <End Type="Models.foodOrderTbl" Role="foodOrderTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nowshowing">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="foodOrderTbl">
+        <PropertyRef Name="movieid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="foodInvoice">
+    <Key>
+      <PropertyRef Name="cartInvId" />
+    </Key>
+    <Property Name="cartInvId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="orderdate" Type="DateTime" Precision="3" />
+    <Property Name="totalbill" Type="Double" />
+    <Property Name="firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_foodInvoice_usertbl" FromRole="foodInvoice" ToRole="usertbl" />
+    <NavigationProperty Name="foodOrderTbls" Relationship="Models.FK_foodOrderTbl_foodInvoice" FromRole="foodInvoice" ToRole="foodOrderTbl" />
+  </EntityType>
+  <Association Name="FK_foodInvoice_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.foodInvoice" Role="foodInvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="foodInvoice">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_foodOrderTbl_foodInvoice">
+    <End Type="Models.foodInvoice" Role="foodInvoice" Multiplicity="0..1" />
+    <End Type="Models.foodOrderTbl" Role="foodOrderTbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="foodInvoice">
+        <PropertyRef Name="cartInvId" />
+      </Principal>
+      <Dependent Role="foodOrderTbl">
+        <PropertyRef Name="foodInvoiceid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="chatmessage">
+    <Key>
+      <PropertyRef Name="chatid" />
+    </Key>
+    <Property Name="chatid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="chattime" Type="DateTime" Precision="3" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="chatmessage1" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_chatmessage_usertbl" FromRole="chatmessage" ToRole="usertbl" />
+  </EntityType>
+  <Association Name="FK_chatmessage_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.chatmessage" Role="chatmessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="chatmessage">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="coupentbl">
+    <Key>
+      <PropertyRef Name="codeid" />
+    </Key>
+    <Property Name="codeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="coupenNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="shopid" Type="Int32" />
+    <Property Name="discount" Type="Double" />
+    <Property Name="genDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="movieshop" Relationship="Models.FK_coupentbl_movieshop" FromRole="coupentbl" ToRole="movieshop" />
+  </EntityType>
+  <Association Name="FK_coupentbl_movieshop">
+    <End Type="Models.movieshop" Role="movieshop" Multiplicity="0..1" />
+    <End Type="Models.coupentbl" Role="coupentbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movieshop">
+        <PropertyRef Name="shopid" />
+      </Principal>
+      <Dependent Role="coupentbl">
+        <PropertyRef Name="shopid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="castlike">
+    <Key>
+      <PropertyRef Name="likeid" />
+    </Key>
+    <Property Name="likeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="castid" Type="Int32" />
+    <Property Name="likecount" Type="Int32" />
+    <NavigationProperty Name="movieCastcrew" Relationship="Models.FK_castlikes_movieCastcrew" FromRole="castlike" ToRole="movieCastcrew" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_castlikes_usertbl" FromRole="castlike" ToRole="usertbl" />
+  </EntityType>
+  <Association Name="FK_castlikes_movieCastcrew">
+    <End Type="Models.movieCastcrew" Role="movieCastcrew" Multiplicity="0..1" />
+    <End Type="Models.castlike" Role="castlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="movieCastcrew">
+        <PropertyRef Name="cast_id" />
+      </Principal>
+      <Dependent Role="castlike">
+        <PropertyRef Name="castid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_castlikes_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.castlike" Role="castlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="castlike">
+        <PropertyRef Name="userid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

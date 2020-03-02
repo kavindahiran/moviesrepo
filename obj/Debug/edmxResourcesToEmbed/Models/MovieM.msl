@@ -318,6 +318,7 @@
     <EntitySetMapping Name="movieshops">
       <EntityTypeMapping TypeName="Models.movieshop">
         <MappingFragment StoreEntitySet="movieshop">
+          <ScalarProperty Name="passW" ColumnName="passW" />
           <ScalarProperty Name="shopimage" ColumnName="shopimage" />
           <ScalarProperty Name="businessinquery" ColumnName="businessinquery" />
           <ScalarProperty Name="zipcode" ColumnName="zipcode" />
@@ -355,6 +356,98 @@
           <ScalarProperty Name="foodDiscription" ColumnName="foodDiscription" />
           <ScalarProperty Name="foodName" ColumnName="foodName" />
           <ScalarProperty Name="foodID" ColumnName="foodID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bookinvoicetbls">
+      <EntityTypeMapping TypeName="Models.bookinvoicetbl">
+        <MappingFragment StoreEntitySet="bookinvoicetbl">
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="totalbill" ColumnName="totalbill" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="bookinvoiceid" ColumnName="bookinvoiceid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bookordertbls">
+      <EntityTypeMapping TypeName="Models.bookordertbl">
+        <MappingFragment StoreEntitySet="bookordertbl">
+          <ScalarProperty Name="cardcode" ColumnName="cardcode" />
+          <ScalarProperty Name="expiredate" ColumnName="expiredate" />
+          <ScalarProperty Name="cardnumber" ColumnName="cardnumber" />
+          <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+          <ScalarProperty Name="bill" ColumnName="bill" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="hallid" ColumnName="hallid" />
+          <ScalarProperty Name="invoiceid" ColumnName="invoiceid" />
+          <ScalarProperty Name="movieid" ColumnName="movieid" />
+          <ScalarProperty Name="bookorderid" ColumnName="bookorderid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="foodOrderTbls">
+      <EntityTypeMapping TypeName="Models.foodOrderTbl">
+        <MappingFragment StoreEntitySet="foodOrderTbl">
+          <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+          <ScalarProperty Name="bill" ColumnName="bill" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="hallid" ColumnName="hallid" />
+          <ScalarProperty Name="foodInvoiceid" ColumnName="foodInvoiceid" />
+          <ScalarProperty Name="movieid" ColumnName="movieid" />
+          <ScalarProperty Name="foodOrdId" ColumnName="foodOrdId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="foodInvoices">
+      <EntityTypeMapping TypeName="Models.foodInvoice">
+        <MappingFragment StoreEntitySet="foodInvoice">
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="totalbill" ColumnName="totalbill" />
+          <ScalarProperty Name="orderdate" ColumnName="orderdate" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="cartInvId" ColumnName="cartInvId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chatmessages">
+      <EntityTypeMapping TypeName="Models.chatmessage">
+        <MappingFragment StoreEntitySet="chatmessage">
+          <ScalarProperty Name="chatmessage1" ColumnName="chatmessage" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="chattime" ColumnName="chattime" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="chatid" ColumnName="chatid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="coupentbls">
+      <EntityTypeMapping TypeName="Models.coupentbl">
+        <MappingFragment StoreEntitySet="coupentbl">
+          <ScalarProperty Name="genDate" ColumnName="genDate" />
+          <ScalarProperty Name="discount" ColumnName="discount" />
+          <ScalarProperty Name="shopid" ColumnName="shopid" />
+          <ScalarProperty Name="coupenNo" ColumnName="coupenNo" />
+          <ScalarProperty Name="codeid" ColumnName="codeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="castlikes">
+      <EntityTypeMapping TypeName="Models.castlike">
+        <MappingFragment StoreEntitySet="castlikes">
+          <ScalarProperty Name="likecount" ColumnName="likecount" />
+          <ScalarProperty Name="castid" ColumnName="castid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="likeid" ColumnName="likeid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

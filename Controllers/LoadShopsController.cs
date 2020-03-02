@@ -62,7 +62,37 @@ namespace RatingApp.Controllers
        
         }
 
+        public ActionResult shoplogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult loginS(string username, string pass)
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
 
+            movieshop sh = db.movieshops.FirstOrDefault(x => x.shopname == username && x.passW == pass);
+           
+            if (sh != null)
+            {
+                Session["shopid"] = sh.shopid;
+                Session["shopname"] = sh.shopname;
+                Session["ownername"] = sh.ownername;
+                //Session["roleid"] = emp.roleid;
+                return RedirectToAction("registershops", "Booktickets");
+            }
+            else
+            {
+                return RedirectToAction("loginfailed", "errors");
+            }
+            
+         
+        }
+
+        public ActionResult dashboardshop()
+        {
+            return View();
+        }
 
     }
 }

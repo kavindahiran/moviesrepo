@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "bookingcomplete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/movieshopcss/cartcheck.css" rel="stylesheet" />
+
+<section class="page-wrapper success-msg" >
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3" >
+                <div class="block text-center">
+                    <i class="tf-ion-android-checkmark-circle" ></i>
+                    <h2 class="text-center">Thank you! For your booking</h2>
+                    <p>your booking has been recorded successfully.! Arrive at the terminal  gatehall with a copy of the receipt generated</p>
+                    <a href="@Url.Action("Index","Booktickets")" class="btn btn-main mt-20">Return Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

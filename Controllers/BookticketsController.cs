@@ -1,5 +1,6 @@
 ﻿using PayPal.Api;
 using RatingApp.Models;
+using RatingApp.Models.billviewmodel;
 using RatingApp.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,7 @@ namespace RatingApp.Controllers
         {
             List<bookingtempcart> tc1 = TempData["tempcart2"] as List<bookingtempcart>;
             moviedetailsdb1 db = new moviedetailsdb1();
+            var movieurl = db.nowshowings.Where(x => x.id == bookingData.MovieId).Select(x => new {x.imagepath }).FirstOrDefault();
             List<showtime> sh = db.showtimes.Where(x=>x.hallid==bookingData.HallId).ToList();
             List<halltable> hall = db.halltables.ToList();
             List<hallLocation> loc = db.hallLocations.ToList();
@@ -77,6 +79,7 @@ namespace RatingApp.Controllers
             tc.hallname = hall.Where(x => x.hallid == bookingData.HallId).FirstOrDefault().hallname;
             tc.ticketprice =(float)(bookingData.Price);
             tc.ticketqty = bookingData.Quantity;
+            tc.imagepath = movieurl.ToString();
             tc.hallid = bookingData.HallId;
            tc.hallLocation= loc.Where(x => x.locationid == bookingData.LocationId).FirstOrDefault().locationname;
             tc.bill = tc.ticketprice;
@@ -94,7 +97,7 @@ namespace RatingApp.Controllers
                 int flag = 0;
                 foreach (var item in carty2)
                 {
-                    if (item.bookid == tc.bookid)
+                    if (item.hallid == tc.hallid)
                     {
                         item.ticketqty += tc.ticketqty;
                         item.bill += tc.bill;
@@ -164,6 +167,15 @@ namespace RatingApp.Controllers
                 {
                     x += item.bill;
                 }
+                if (TempData["tempcart3"] != null)
+                {
+                    List<bookingfoodtempcart> tc2 = TempData["tempcart3"] as List<bookingfoodtempcart>;
+                    foreach (var item in tc2)
+                    {
+                        x += item.bill;
+                    }
+                }
+
                 TempData["total2"] = x;
 
             }
@@ -173,7 +185,7 @@ namespace RatingApp.Controllers
             model.food = db.HallFoodTbls.Where(x=>x.hallid==id).ToList();
             return View(model);
         }
-
+        [HttpGet]
         public ActionResult foodorder(int id,HallFoodTbl food)
         {
             moviedetailsdb1 db = new moviedetailsdb1();
@@ -205,18 +217,176 @@ namespace RatingApp.Controllers
             shop.hallt = halltb1;
             return View(shop);
         }
+        List<bookingfoodtempcart> cartybokking = new List<bookingfoodtempcart>();
         [HttpPost]
-        public ActionResult foodorder(foodordercustommodel model, int qty )
+        public ActionResult foodorder(foodordercustommodel model, int qty, string foodname, int foodid, int hallid, float foodprice, string foodimage)
         {
+            bookingfoodtempcart tc = new bookingfoodtempcart();
+
+          
+            tc.foodname = foodname;
+            tc.foodqty = qty;
+            tc.foodprice = (float)foodprice;
+            tc.foodid = foodid;
+            tc.prodimagepath = foodimage;
+            tc.bill = (float)qty * foodprice;
+           
+
+
+            if (TempData["tempcart3"] == null)
+            {
+                cartybokking.Add(tc);
+                TempData["tempcart3"] = cartybokking;
+            }
+            else
+            {
+                List<bookingfoodtempcart> carty3 = TempData["tempcart3"] as List<bookingfoodtempcart>;
+                int flag = 0;
+                foreach (var item in carty3)
+                {
+                    if (item.foodid == foodid)
+                    {
+                        item.foodqty += tc.foodqty;
+                      
+                       
+                      
+                        item.bill += tc.bill;
+                        flag = 1;
+                    }
+                }
+                if (flag == 0)
+                {
+                    carty3.Add(tc);
+                }
+
+                TempData["tempcart3"] = carty3;
+            }
+            TempData.Keep();
+            return RedirectToAction("addfooditems", new { id = hallid});
+        }
+
+        public ActionResult listbookingcart()
+        {
+            TempData.Keep();
             return View();
         }
 
-        public ActionResult registershops()
+        public ActionResult Bookbilling()
+        {
+            TempData.Keep();
+            ViewBag.userN = Session["regname"];
+            return View();
+        }
+        [HttpPost]
+        public ActionResult getbilling(string firstname, string lastname, string address, string zipcode, string city, string country, string cnum, System.DateTime expdate, string code)
+        {
+            var z = TempData["total2"];
+            int movieT=0;
+            int invoiceT=0;
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<bookingtempcart> li = TempData["tempcart2"] as List<bookingtempcart>;
+            bookinvoicetbl inv = new bookinvoicetbl();
+            inv.userid = Convert.ToInt32(Session["id"].ToString());
+            inv.orderdate = System.DateTime.Now;
+            //inv.orderid = o.orderid;
+            inv.totalbill = (float)(z);
+            inv.firstname = firstname;
+            inv.lastname = lastname;
+            inv.address = address;
+            inv.zipcode = zipcode;
+            inv.city = city;
+            inv.country = country;
+
+            db.bookinvoicetbls.Add(inv);
+            db.SaveChanges();
+            TempData["invoiceno"] = inv.bookinvoiceid;
+            foreach (var item in li)
+            {
+                bookordertbl ord = new bookordertbl();
+                ord.movieid = item.bookid;
+                ord.invoiceid = inv.bookinvoiceid;
+                ord.hallid = item.hallid;
+                ord.orderdate = DateTime.Now;
+                ord.quantity = item.ticketqty;
+                ord.unitprice = (int)item.ticketprice;
+                ord.bill = (int)item.bill;
+                ord.cardnumber = cnum;
+                ord.expiredate = expdate;
+                ord.cardcode = Convert.ToInt32(code);
+                movieT= item.bookid;
+                invoiceT= inv.bookinvoiceid;
+                db.bookordertbls.Add(ord);
+                db.SaveChanges();
+            }
+
+            List<bookingfoodtempcart> li2 = TempData["tempcart3"] as List<bookingfoodtempcart>;
+            foodInvoice foodinv = new foodInvoice();
+            foodinv.userid = Convert.ToInt32(Session["id"].ToString());
+            foodinv.orderdate = System.DateTime.Now;
+            //inv.orderid = o.orderid;
+            foodinv.totalbill = (float)(z);
+            foodinv.firstname = firstname;
+            foodinv.lastname = lastname;
+            foodinv.address = address;
+           
+
+            db.foodInvoices.Add(foodinv);
+            db.SaveChanges();
+            TempData["foodinvoiceno"] = foodinv.cartInvId;
+            foreach (var item in li2)
+            {
+                foodOrderTbl ordF = new foodOrderTbl();
+                ordF.movieid = movieT;
+                ordF.foodInvoiceid = invoiceT;
+                ordF.orderdate = DateTime.Now;
+                ordF.quantity = item.foodqty;
+                ordF.unitprice = (int)item.foodprice;
+                ordF.bill = (int)item.bill;
+              
+                db.foodOrderTbls.Add(ordF);
+                db.SaveChanges();
+            }
+
+            TempData["msg"] = "Transaction Completed...";
+            TempData.Keep();
+
+
+
+            return RedirectToAction("testimo");
+
+        }
+
+        public ActionResult testimo()
         {
             moviedetailsdb1 db = new moviedetailsdb1();
-            List<movieshop> ms = db.movieshops.ToList();
-            return View(ms);
+            bookingvm vm = new bookingvm();
+          
+            var orderdata = new List<bookordertbl>();
+           
+           
+            int inid = Convert.ToInt32(TempData["invoiceno"]);
+            var invo = (from i in db.bookinvoicetbls
+                        where i.bookinvoiceid == inid
+                        select i).ToList();
+            TempData.Keep();
+            var order = (from y in db.bookordertbls
+                         where y.invoiceid == inid
+                         select y).ToList().FirstOrDefault();
+            vm.inotbl = invo;
+            vm.ordert = order;
+            return View(vm);
         }
+
+        public ActionResult bookingcomplete()
+        {
+            TempData.Remove("tempcart2");
+            TempData.Remove("tempcart3");
+            TempData.Remove("total2");
+            return View();
+           
+        }
+
+      
 
         public ActionResult orderfood()
         {
@@ -351,6 +521,14 @@ namespace RatingApp.Controllers
             };
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
+        }
+
+
+        public ActionResult registershops()
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<movieshop> ms = db.movieshops.ToList();
+            return View(ms);
         }
 
 

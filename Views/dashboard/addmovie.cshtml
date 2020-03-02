@@ -11,7 +11,32 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 
 
+<style>
+      #dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #000;
+	border-radius:7px; 
+	width:550px;
+	z-index: 10;
+}
+#dialogbox > div{ background:#FFF; margin:8px; }
+#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:#CCC; }
+#dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
+#dialogbox > div > #dialogboxfoot{ background: #666; padding:10px; text-align:right; }
 
+
+</style>
 
 
 
@@ -23,11 +48,11 @@
         @*<input type="submit" name="" value="Login" /><br />*@
     </div>
     <div class="col-md-9 register-right">
-      
+
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                 <h3 class="register-heading">Apply as a Employee</h3>
-                
+
                 <div class="row register-form">
                     <div class="col-md-9">
                         <br /><br />  <br /><br />  <br /><br />  <br /><br />
@@ -36,138 +61,159 @@
                         {
                             @Html.AntiForgeryToken()
 
-                    <div class="form-horizontal" style="margin-left:30px;">
-                        <hr />
-
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Movie_name, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.Movie_name, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Movie_name, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Movie_director, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.Movie_director, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Movie_director, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Movie_release, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.Movie_release, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Movie_release, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.movieDis, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.movieDis, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.movieDis, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.category, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-9">
-                                @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.awardnominated, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-9">
-
-                                <select id='ddlTrueFalse' name='awardnominated'  class="form-control" style="height:40px;">
-                                    <option value='1'>True</option>
-                                    <option value='0'>False</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.banned, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-9">
-
-                                <select id='ddlTrueFalse' name='banned' class="form-control" style="height:40px;">
-                                    <option value='1'>True</option>
-                                    <option value='0'>False</option>
-                                </select>
-
-                            </div>
-                        </div>
-
-                        @*<div class="form-group">
-            @Html.LabelFor(model => model.Movie_Ratigs, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Movie_Ratigs, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Movie_Ratigs, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-
-
-                        @Html.LabelFor(model => model.imgpath, htmlAttributes: new { @class = "control-label col-md-2" })
-                        @*<div class="col-md-10">
-            <input type="file" name="ImageFile" required>
-        </div>*@
-
-                        <div class="panel panel-body" style="min-height:256px">
-
-
-
-                            <div class="col-md-7">
-                                <div class="btn btn-primary">
-                                    <input type="file" id="imageBrowes" name="ImageFile" />
-                                </div>
+                            <div class="form-horizontal" style="margin-left:30px;">
                                 <hr />
 
-                                <div id="imgPreview" class="thumbnail" style="display:none">
-                                    <img class="img-responsive" id="targetImg" />
-                                    <div class="caption">
-                                        <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                                        <span id="description"></span>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Movie_name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(model => model.Movie_name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Movie_name, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Movie_director, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(model => model.Movie_director, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Movie_director, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Movie_release, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(model => model.Movie_release, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Movie_release, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.movieDis, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(model => model.movieDis, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.movieDis, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.category, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-9">
+                                        @Html.EditorFor(model => model.category, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.category, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.awardnominated, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-9">
+
+                                        <select id='ddlTrueFalse' name='awardnominated' class="form-control" style="height:40px;">
+                                            <option value='1'>True</option>
+                                            <option value='0'>False</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.banned, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-9">
+
+                                        <select id='ddlTrueFalse' name='banned' class="form-control" style="height:40px;">
+                                            <option value='1'>True</option>
+                                            <option value='0'>False</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+                    @Html.LabelFor(model => model.Movie_Ratigs, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Movie_Ratigs, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Movie_Ratigs, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+
+
+                                @Html.LabelFor(model => model.imgpath, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @*<div class="col-md-10">
+                    <input type="file" name="ImageFile" required>
+                </div>*@
+
+                                <div class="panel panel-body" style="min-height:256px">
+
+
+
+                                    <div class="col-md-7">
+                                        <div class="btn btn-primary">
+                                            <input type="file" id="imageBrowes" name="ImageFile" />
+                                        </div>
+                                        <hr />
+
+                                        <div id="imgPreview" class="thumbnail" style="display:none">
+                                            <img class="img-responsive" id="targetImg" />
+                                            <div class="caption">
+                                                <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                                                <span id="description"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-3 thumbnail" id="uploadedImage">
+
+                                    </div>
+                                </div>
+                                @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-9">
+                        <a href="#"><i class="glyphicon glyphicon-eye-open" onclick="Uploadimage()"></i>Preview</a>
+                    </div>
+                </div>*@
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-9">
+                                        <input type="submit" value="Create" class="btn btn-primary btn-lg active" aria-pressed="true" style="margin-left:10px;" />
+                                    </div>
+                                </div>
+
+
+
                             </div>
+                        }
 
+                        @if (ViewBag.message != null)
+                        {
+                            <script>
+            window.onload = function () {
+            Alert.render("@ViewBag.message")
 
-                            <div class="col-md-3 thumbnail" id="uploadedImage">
+        };
+                            </script>
+                        }
 
+                        <div id="dialogoverlay"></div>
+                        <div id="dialogbox">
+                            <div>
+                                <div id="dialogboxhead"></div>
+                                <div id="dialogboxbody"></div>
+                                <div id="dialogboxfoot"></div>
                             </div>
                         </div>
+
+
+
                         @*<div class="form-group">
-            <div class="col-md-offset-2 col-md-9">
-                <a href="#"><i class="glyphicon glyphicon-eye-open" onclick="Uploadimage()"></i>Preview</a>
+            <div class="col-md-offset-2 col-md-10">
+
+                <input type="submit" value="preview" class="btn btn-secondary btn-lg active" aria-pressed="true" onclick="Uploadimage()"  />
             </div>
         </div>*@
 
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-9">
-                                <input type="submit" value="Create" class="btn btn-primary btn-lg active" aria-pressed="true" style="margin-left:10px;" />
-                            </div>
-                        </div>
 
-
-                        @ViewBag.message
                     </div>
-                            }
-
-                            @*<div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-
-                                    <input type="submit" value="preview" class="btn btn-secondary btn-lg active" aria-pressed="true" onclick="Uploadimage()"  />
-                                </div>
-                            </div>*@
-
-                           
-                        </div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -253,5 +299,27 @@
 
         //
     }
+
+     function CustomAlert(){
+    this.render = function(dialog){
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var dialogoverlay = document.getElementById('dialogoverlay');
+        var dialogbox = document.getElementById('dialogbox');
+        dialogoverlay.style.display = "block";
+        dialogoverlay.style.height = winH+"px";
+        dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+        dialogbox.style.top = "100px";
+        dialogbox.style.display = "block";
+        document.getElementById('dialogboxhead').innerHTML = "Acknowledge This Message";
+        document.getElementById('dialogboxbody').innerHTML = dialog;
+        document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+    }
+	this.ok = function(){
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+	}
+}
+var Alert = new CustomAlert();
 
 </script>

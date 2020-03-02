@@ -1,0 +1,163 @@
+﻿@model RatingApp.Models.tempcart
+@{
+    ViewBag.Title = "Bookbilling";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/billingF/billing.css" rel="stylesheet" />
+<div class="container-fluid">
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content">
+                        <h1 class="page-name">Checkout</h1>
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home</a></li>
+                            <li class="active">checkout</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="page-wrapper">
+        <div class="checkout shopping">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        @using (Html.BeginForm("getbilling", "Booktickets", FormMethod.Post))
+                        {
+                            <div class="block billing-details">
+                                <h4 class="widget-title">Billing Details</h4>
+
+                                <div class="form-group">
+                                    <label for="full_name">Full Name</label>
+                                    <input type="text" class="form-control" id="full_name" name="firstname" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_address">Last Name</label>
+                                    <input type="text" class="form-control" id="user_address" name="lastname" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_address">Address</label>
+                                    <input type="text" class="form-control" id="user_address2" name="address" placeholder="">
+                                </div>
+                                <div class="checkout-country-code clearfix">
+                                    <div class="form-group">
+                                        <label for="user_post_code">Zip Code</label>
+                                        <input type="text" class="form-control" id="user_post_code" name="zipcode" value="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_city">City</label>
+                                        <input type="text" class="form-control" id="user_city" name="city" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user_country">Country</label>
+                                    <input type="text" class="form-control" id="user_country" name="country" placeholder="">
+                                </div>
+
+                            </div>
+                            <div class="block">
+                                <h4 class="widget-title">Payment Method</h4>
+                                <p>Credit Cart Details (Secure payment)</p>
+                                <div class="checkout-product-details">
+                                    <div class="payment">
+                                        <div class="card-details">
+
+                                            <div class="form-group">
+                                                <label for="card-number">Card Number <span class="required">*</span></label>
+                                                <input id="card-number" class="form-control" name="cnum" type="tel" placeholder="•••• •••• •••• ••••">
+                                            </div>
+                                            <div class="form-group half-width padding-right">
+                                                <div class="input-group date" data-provide="datepicker">
+                                                    <label for="card-expiry">Expiry (MM/YY) <span class="required">*</span></label>
+                                                    <input id="datepicker" class="form-control" type="date" name="expdate" placeholder="MM / YY">
+                                                </div>
+                                            </div>
+                                            <div class="form-group half-width padding-left">
+                                                <label for="card-cvc">Card Code <span class="required">*</span></label>
+                                                <input id="card-cvc" class="form-control" type="tel" name="code" maxlength="4" placeholder="CVC">
+                                            </div>
+                                            <input type="submit" value="place order" class="btn btn-primary" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-checkout-details">
+                            <div class="block">
+                                <h4 class="widget-title">Order Summary</h4>
+                                <div class="media product-card">
+                                    <a class="pull-left" href="product-single.html">
+                                        <img class="media-object" src="~/Content/billingF/paypal_logo.jpg" alt="Image" />
+
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a href="product-single.html">@ViewBag.userN </a></h4>
+
+
+                                    </div>
+                                </div>
+                                <div class="discount-code">
+                                    <p>Have a discount ? <a data-toggle="modal" data-target="#coupon-modal" href="">enter it here</a></p>
+                                </div>
+                                <ul class="summary-prices">
+                                    @foreach (var item in TempData["tempcart2"] as List<RatingApp.Models.bookingtempcart>)
+                                    {
+                                        <li>
+                                            <span>@item.hallname</span>
+                                            <span>@item.ticketprice</span>
+                                                
+                                            <span>
+                                                <img src="~/nowShowing/3200432690.jpg" width="30" height="30" /></span>
+</li>
+                                    }
+
+                                    @foreach (var item in TempData["tempcart3"] as List<RatingApp.Models.bookingfoodtempcart>)
+                                    {
+                                        <li>
+                                            <span>@item.foodname</span>
+                                            <span>@item.foodprice</span>
+                                            
+                                            <span> <img width="30" height="30" src="@Url.Content(item.prodimagepath)" alt="" /></span>
+                                        </li>
+                                    }
+                                    <li>
+                                        <span>Shipping:</span>
+                                        <span>Free</span>
+                                    </li>
+                                </ul>
+                                <div class="summary-total">
+                                    <span>Total</span>
+                                    <span>@TempData["total2"] Rs</span>
+                                </div>
+                                <div class="verified-icon">
+
+                                    <img src="~/Content/billingF/verified.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/daterangepicker.js"></script>
+<script type="text/javascript">
+    (function ($) {
+        $('#datepicker').datepicker({
+            format: 'mm/dd/yyyy',
+            startDate: '-3d'
+        });
+    }
+    )
+</script>
+

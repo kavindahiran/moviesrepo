@@ -153,6 +153,7 @@
     <Compile Include="Controllers\chartsController.cs" />
     <Compile Include="Controllers\dashboardController.cs" />
     <Compile Include="Controllers\DownloadController.cs" />
+    <Compile Include="Controllers\errorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\loadfaceapiController.cs" />
     <Compile Include="Controllers\LoadShopsController.cs" />
@@ -167,10 +168,21 @@
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\billviewmodel\billVM.cs" />
+    <Compile Include="Models\billviewmodel\bookingvm.cs" />
     <Compile Include="Models\billviewmodel\invoiceVM.cs" />
     <Compile Include="Models\billviewmodel\orderVM.cs" />
+    <Compile Include="Models\bookingfoodtempcart.cs" />
     <Compile Include="Models\bookingtempcart.cs" />
+    <Compile Include="Models\bookinvoicetbl.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bookordertbl.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\castComment.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\castlike.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\castphotogallery.cs">
@@ -183,10 +195,16 @@
     <Compile Include="Models\castreply.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\chatmessage.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\comment.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\commentsandreplies.cs" />
+    <Compile Include="Models\coupentbl.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\customfoodtbl.cs" />
     <Compile Include="Models\customimagemodel.cs" />
     <Compile Include="Models\customizablecast.cs" />
@@ -199,6 +217,12 @@
     <Compile Include="Models\customshopmodel.cs" />
     <Compile Include="Models\customshopregistration.cs" />
     <Compile Include="Models\customshowmodel.cs" />
+    <Compile Include="Models\foodInvoice.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\foodOrderTbl.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\google.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -504,10 +528,15 @@
     <Content Include="Content\booktickets\css\micons\fonts\icomoon.svg" />
     <Content Include="Content\booktickets\css\micons\micons.css" />
     <Content Include="Content\booktickets\css\vendor.css" />
+    <Content Include="Content\codepen\code.css" />
+    <Content Include="Content\custom404error\custom2.css" />
+    <Content Include="Content\custom404error\customerror.css" />
     <Content Include="Content\DataTable\dataTables.bootstrap.min.js" />
     <Content Include="Content\DataTable\dataTables.dataTables.js" />
     <Content Include="Content\DataTable\jquery.dataTables.css" />
     <Content Include="Content\DataTable\jquery.dataTables.js" />
+    <Content Include="Content\errormessagecss\bg.jpg" />
+    <Content Include="Content\errormessagecss\style.css" />
     <Content Include="Content\fooditemorder\about-bg.jpg" />
     <Content Include="Content\fooditemorder\animate-3.7.0.css" />
     <Content Include="Content\fooditemorder\banner-bg.jpg" />
@@ -516,7 +545,9 @@
     <Content Include="Content\fooditemorder\food1.css" />
     <Content Include="Content\fooditemorder\menu-bg.jpg" />
     <Content Include="Content\fooditemorder\style.css" />
+    <Content Include="Content\junk folder\d-avatar.jpg" />
     <Content Include="Content\newfoodordering\book1.css" />
+    <Content Include="Content\popchat\popstyles.css" />
     <Content Include="Content\registrationtemplate\additional-methods.min.js" />
     <Content Include="Content\registrationtemplate\form-img.jpg" />
     <Content Include="Content\registrationtemplate\jquery-ui.min.js" />
@@ -528,9 +559,16 @@
     <Content Include="Content\registrationtemplate\style.css" />
     <Content Include="Content\registrationtemplate\wNumb.js" />
     <Content Include="Content\shopcollection\as.jpg" />
+    <Content Include="Content\shopcollection\buy..JPG" />
     <Content Include="Content\shopcollection\main.js" />
     <Content Include="Content\shopcollection\plugins.js" />
     <Content Include="Content\shopcollection\style.css" />
+    <Content Include="Content\shoplogin\avatar-01.jpg" />
+    <Content Include="Content\shoplogin\font-awesome.min.css" />
+    <Content Include="Content\shoplogin\img-01.jpg" />
+    <Content Include="Content\shoplogin\main.css" />
+    <Content Include="Content\shoplogin\util.css" />
+    <Content Include="Content\shopownerDash\theme.css" />
     <Content Include="Content\time selector\timeplan.css" />
     <Content Include="Content\vertical nav bar\jquery-ui.min.css" />
     <Content Include="facerecodnision\face-api.min.js" />
@@ -818,6 +856,7 @@
     <Content Include="movieIcons\heroarena\9bdb7df9bc721a1fd58f5b78cbd0d391192850681.jpg" />
     <Content Include="movieIcons\heroarena\Harry-Potter-Philiosophers-stone193301507.jpg" />
     <Content Include="movieIcons\heroarena\harry_potter_and_the_deathly_hallows_movie_poster_daniel_radcliffe_hi-res_01193222774.jpg" />
+    <Content Include="movieIcons\malang title track lyrics 203808643.JPG" />
     <Content Include="newsfolder\1202625774.jpg" />
     <Content Include="newsfolder\1306973-semi-truck-desktop-wallpaper-1920x1080-xiaomi205436229.jpg" />
     <Content Include="newsfolder\1ed70cf18fff4bc48efd961cd5563ab1192719204819321.jpg" />
@@ -826,6 +865,8 @@
     <Content Include="newsfolder\4ff22dd929064b518d355cfc10d3e838000315204846126.jpg" />
     <Content Include="newsfolder\FAE204917464.jpg" />
     <Content Include="newsfolder\images205532708.jpg" />
+    <Content Include="nowShowing\3200432690.jpg" />
+    <Content Include="nowShowing\3205727207.jpg" />
     <Content Include="script.js" />
     <Content Include="Scripts\active.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1174,11 +1215,21 @@
     <Content Include="Views\dashboard\addfood.cshtml" />
     <Content Include="Views\Booktickets\foodview.cshtml" />
     <Content Include="Views\Booktickets\foodorder.cshtml" />
+    <Content Include="Views\Booktickets\listbookingcart.cshtml" />
+    <Content Include="Views\Booktickets\Bookbilling.cshtml" />
+    <Content Include="Views\Booktickets\testimo.cshtml" />
+    <Content Include="Views\Booktickets\bookingcomplete.cshtml" />
+    <Content Include="Views\dashboard\chatpopup.cshtml" />
+    <Content Include="Views\errors\usernotfound.cshtml" />
+    <Content Include="Views\errors\custom404error.cshtml" />
+    <Content Include="Views\errors\custom404.cshtml" />
+    <Content Include="Views\errors\loginfailed.cshtml" />
+    <Content Include="Views\LoadShops\shoplogin.cshtml" />
+    <Content Include="Views\LoadShops\dashboardshop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="castImage\" />
-    <Folder Include="nowShowing\" />
     <Folder Include="UploadedImage\" />
   </ItemGroup>
   <ItemGroup>

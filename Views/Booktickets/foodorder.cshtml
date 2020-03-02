@@ -7,7 +7,7 @@
 <link href="~/Content/movieshopcss/StyleSheet1.css" rel="stylesheet" />
 
 
-@using (Html.BeginForm("getfoodorder","Booktickets",  FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("foodorder","Booktickets",  FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @*<form id="myform" >*@
 
@@ -42,7 +42,9 @@
                         <div class="s_product_text">
                             <h3>
                                 <span class="badge badge-pill badge-light">Movie Name</span>
+
                                 @Html.DisplayFor(Model => Model.foodsingle.foodName)
+
                             </h3>
                             <h2> <span class="badge badge-pill badge-light">Price</span>  @Html.DisplayFor(Model => Model.foodsingle.Fprice)</h2>
 
@@ -59,11 +61,18 @@
                             <p>
                                 @Model.foodsingle.foodDiscription
                             </p>
-                            @Html.HiddenFor(Model => Model.showing.id)
-                            @Html.HiddenFor(Model => Model.foodsingle.foodID)
-                            @Html.HiddenFor(Model => Model.hallt.hallid)
-                            @Html.HiddenFor(Model => Model.foodsingle.foodName)
-                            @Html.HiddenFor(Model => Model.foodsingle.Fprice)
+                            @*@Html.HiddenFor(Model => Model.showing.id)
+        @Html.HiddenFor(Model => Model.foodsingle.foodID)
+        @Html.HiddenFor(Model => Model.hallt.hallid)
+        @Html.HiddenFor(Model => Model.foodsingle.foodName)
+        @Html.HiddenFor(Model => Model.foodsingle.Fprice)*@
+                            <input type="hidden" name="foodname" value="@Model.foodsingle.foodName" />
+                            <input type="hidden" name="foodimage" value="@Model.foodsingle.foodimage" />
+                            @*<input type="hidden" name="movieid" value="@Model.showing.id" />*@
+                            <input type="hidden" name="foodid" value="@Model.foodsingle.foodID" />
+                            <input type="hidden" name="hallid" value="@Model.hallt.hallid" />
+
+                            <input type="hidden" name="foodprice" value="@Model.foodsingle.Fprice" />
                             <div class="card_area">
                                 <div class="product_count d-inline-block">
                                     <span class="badge badge-pill badge-light">Quantity</span>
@@ -74,7 +83,7 @@
                                 <div class="add_to_cart">
                                     <input type="submit" value="Submit" class="btn_3" id="bt1" />
                                     @*<a href="#" class="btn_3">add to cart</a>
-                                        <a href="#" class="like_us"> <i class="ti-heart"></i> </a>*@
+                <a href="#" class="like_us"> <i class="ti-heart"></i> </a>*@
                                 </div>
                                 <div class="social_icon">
                                     <a href="#" class="fb"><i class="ti-facebook"></i></a>

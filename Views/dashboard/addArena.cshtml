@@ -4,6 +4,30 @@
     ViewBag.Title = "addArena";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    #dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #000;
+	border-radius:7px; 
+	width:550px;
+	z-index: 10;
+}
+#dialogbox > div{ background:#FFF; margin:8px; }
+#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:#CCC; }
+#dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
+#dialogbox > div > #dialogboxfoot{ background: #666; padding:10px; text-align:right; }
+</style>
 
 <h2>addArena</h2>
 
@@ -11,11 +35,11 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>heroarenatable</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
+<div class="form-horizontal">
+    <h4>heroarenatable</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*<div class="form-group">
             @Html.LabelFor(model => model.arenaid, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.arenaid, new { htmlAttributes = new { @class = "form-control" } })
@@ -23,70 +47,86 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ratings, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ratings, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ratings, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ratings, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ratings, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ratings, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
         </div>
+    </div>
 
 
 
-        @Html.LabelFor(model => model.imagepath, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="panel panel-body" style="min-height:256px">
+    @Html.LabelFor(model => model.imagepath, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="panel panel-body" style="min-height:256px">
 
-            <div class="col-md-7">
+        <div class="col-md-7">
 
-                <div class="col-md-4">
-                    <div class="btn btn-primary">
-                        <input type="file" id="imageBrowes" name="ImageFile" />
+            <div class="col-md-4">
+                <div class="btn btn-primary">
+                    <input type="file" id="imageBrowes" name="ImageFile" />
+                </div>
+                <hr />
+
+                <div id="imgPreview" class="thumbnail" style="display:none">
+                    <img class="img-responsive" id="targetImg" />
+                    <div class="caption">
+                        <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+                        <span id="description"></span>
                     </div>
-                    <hr />
-
-                    <div id="imgPreview" class="thumbnail" style="display:none">
-                        <img class="img-responsive" id="targetImg" />
-                        <div class="caption">
-                            <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                            <span id="description"></span>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
 
         </div>
 
-
-
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-        @ViewBag.message
     </div>
-}
 
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" @*onclick="Alert.render('Movie Added Successfully')"*@ />
+        </div>
+    </div>
+    @if (ViewBag.message != null)
+    {
+        <script>
+            window.onload = function () {
+            Alert.render("@ViewBag.message")
+            
+        };
+        </script>
+    }
+
+</div>
+}
+<div id="dialogoverlay"></div>
+<div id="dialogbox">
+    <div>
+        <div id="dialogboxhead"></div>
+        <div id="dialogboxbody"></div>
+        <div id="dialogboxfoot"></div>
+    </div>
+</div>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
@@ -96,7 +136,7 @@
 <script>
 
 
- $(document).ready(function () {
+    $(document).ready(function () {
 
         $("#imageBrowes").change(function () {
 
@@ -144,6 +184,26 @@
         $("#imgPreview").hide();
 
     }
-
+    function CustomAlert(){
+    this.render = function(dialog){
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var dialogoverlay = document.getElementById('dialogoverlay');
+        var dialogbox = document.getElementById('dialogbox');
+        dialogoverlay.style.display = "block";
+        dialogoverlay.style.height = winH+"px";
+        dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+        dialogbox.style.top = "100px";
+        dialogbox.style.display = "block";
+        document.getElementById('dialogboxhead').innerHTML = "Acknowledge This Message";
+        document.getElementById('dialogboxbody').innerHTML = dialog;
+        document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+    }
+	this.ok = function(){
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+	}
+}
+var Alert = new CustomAlert();
 
 </script>

@@ -52,5 +52,12 @@ namespace RatingApp.Models
         public virtual DbSet<movieshop> movieshops { get; set; }
         public virtual DbSet<newscontainer> newscontainers { get; set; }
         public virtual DbSet<HallFoodTbl> HallFoodTbls { get; set; }
+        public virtual DbSet<bookinvoicetbl> bookinvoicetbls { get; set; }
+        public virtual DbSet<bookordertbl> bookordertbls { get; set; }
+        public virtual DbSet<foodOrderTbl> foodOrderTbls { get; set; }
+        public virtual DbSet<foodInvoice> foodInvoices { get; set; }
+        public virtual DbSet<chatmessage> chatmessages { get; set; }
+        public virtual DbSet<coupentbl> coupentbls { get; set; }
+        public virtual DbSet<castlike> castlikes { get; set; }
     }
 }

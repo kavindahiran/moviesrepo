@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "listbookingcart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/movieshopcss/cartcheck.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+
+                    <ol class="breadcrumb">
+                        <li> <h1 class="page-name">Cinema Booking Cart</h1></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="page-wrapper">
+    <div class="cart shopping">
+        <div class="container">
+            @if (TempData["tempcart2"] != null)
+            {
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="block">
+                            <div class="product-list">
+                                <form method="post">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="">Profile Pic</th>
+                                                <th class="">Hall Name</th>
+                                                <th class="">Hall Location</th>
+                                                <th class="">Ticket Price</th>
+                                                <th class="">Quantity</th>
+                                                <th class="">Bill</th>
+                                                <th class="">Total Bill</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in TempData["tempcart2"] as List<RatingApp.Models.bookingtempcart>)
+                                            {
+                                                <tr class="">
+                                                    <td class="">
+                                                        <div class="product-info">
+                                                            @*<img width="80" src="@Url.Content(item.imagepath)" alt="" />*@
+                                                            <img src="~/nowShowing/3200432690.jpg" img width="80" />
+                                                            <a href=""><b></b></a>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="">@item.hallname</td>
+                                                    <td class="">@item.hallLocation</td>
+                                                    <td class="">@item.ticketprice</td>
+                                                    <td class="">@item.ticketqty</td>
+                                                    <td class="">@item.bill</td>
+                                                    <td class="">
+                                                        @if (TempData["total2"] != null)
+                                                        {
+                                                            @TempData["total2"]
+                                                        }
+                                                    </td>
+                                                    <td class="">
+                                                        <a class="product-remove" href="">Remove</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+            @*@if (TempData["tempcart2"] != null)
+            {
+                using (Html.BeginForm())
+                {
+                  
+                    <a href="@Url.Action("billing","Shop")" class="button">Shop Now</a>
+                }
+            }*@
+
+        </div>
+    </div>
+</div>
+
+
+
+<section class="page-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+
+                    <ol class="breadcrumb">
+                        <li> <h1 class="page-name">Cinema Food Shopping Cart</h1></li>
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="page-wrapper">
+    <div class="cart shopping">
+        <div class="container">
+            @if (TempData["tempcart3"] != null)
+            {
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="block">
+                            <div class="product-list">
+                                <form method="post">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="">Profile Pic</th>
+                                                <th class="">Hall Name</th>
+                                                <th class="">Hall Location</th>
+                                                <th class="">Ticket Price</th>
+                                                <th class="">Quantity</th>
+                                                <th class="">Bill</th>
+                                                <th class="">Total Bill</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in TempData["tempcart3"] as List<RatingApp.Models.bookingfoodtempcart>)
+                                            {
+                                                <tr class="">
+                                                    <td class="">
+                                                        <div class="product-info">
+                                                            <img width="80" src="@Url.Content(item.prodimagepath)" alt="" />
+
+                                                            <a href=""><b></b></a>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="">@item.foodname</td>
+                                                    <td class="">@item.foodprice</td>
+                                                    <td class="">@item.foodqty</td>
+                                                    @*<td class=""></td>*@
+                                                    <td class="">@item.bill</td>
+                                                    <td class="">
+                                                        @if (TempData["total2"] != null)
+                                                        {
+                                                            @TempData["total2"]
+                                                        }
+                                                    </td>
+                                                    <td class="">
+                                                        <a class="product-remove" href="">Remove</a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <a href="checkout.html" class="btn btn-main pull-right">Checkout</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h2 style="color:red"> Cart is empty....</h2>
+                @Html.ActionLink("go Back", "Index", "Home")
+            }
+
+            @if (TempData["tempcart3"] != null)
+            {
+                using (Html.BeginForm())
+                {
+                    @*<input type="submit" value="Shop Now" class="btn btn-primary" onclick="window.location.href = '@Url.Action("billing","Shop")';"/>*@
+                    <a href="@Url.Action("Bookbilling","Booktickets")" class="button">Shop Now</a>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+

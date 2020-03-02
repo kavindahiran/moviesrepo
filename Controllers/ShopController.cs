@@ -415,6 +415,7 @@ namespace RatingApp.Controllers
             return View();
         }
 
+      
 
         public ActionResult mapLocation(int movieId)
         {

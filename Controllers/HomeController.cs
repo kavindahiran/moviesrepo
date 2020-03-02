@@ -126,10 +126,12 @@ namespace RatingApp.Controllers
                 {
                     return RedirectToAction("Index");
                 }
-                    ViewBag.message = "login success";
+                ViewBag.message = "login success";
             }
             else
-                ViewBag.message = "login unsuccess";
+            {
+                return RedirectToAction("loginfailed", "errors");
+            }
             return Json(result,JsonRequestBehavior.AllowGet);
 
         }

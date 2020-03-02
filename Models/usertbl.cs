@@ -25,6 +25,10 @@ namespace RatingApp.Models
             this.castreplies = new HashSet<castreply>();
             this.tickettbls = new HashSet<tickettbl>();
             this.Review_Table = new HashSet<Review_Table>();
+            this.bookinvoicetbls = new HashSet<bookinvoicetbl>();
+            this.foodInvoices = new HashSet<foodInvoice>();
+            this.chatmessages = new HashSet<chatmessage>();
+            this.castlikes = new HashSet<castlike>();
         }
     
         public int user_id { get; set; }
@@ -60,5 +64,13 @@ namespace RatingApp.Models
         public virtual ICollection<tickettbl> tickettbls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review_Table> Review_Table { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<bookinvoicetbl> bookinvoicetbls { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<foodInvoice> foodInvoices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chatmessage> chatmessages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<castlike> castlikes { get; set; }
     }
 }

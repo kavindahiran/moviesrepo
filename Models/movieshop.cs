@@ -18,6 +18,7 @@ namespace RatingApp.Models
         public movieshop()
         {
             this.Landmark121 = new HashSet<Landmark121>();
+            this.coupentbls = new HashSet<coupentbl>();
         }
     
         public int shopid { get; set; }
@@ -36,8 +37,11 @@ namespace RatingApp.Models
         public string zipcode { get; set; }
         public string businessinquery { get; set; }
         public string shopimage { get; set; }
+        public string passW { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Landmark121> Landmark121 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<coupentbl> coupentbls { get; set; }
     }
 }

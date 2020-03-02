@@ -62,7 +62,9 @@
 
 
                         </div>
-                        @ViewBag.message
+
+
+                       
                         <span>Or Via Social</span>
                         <div class="login-social">
                             <a href="#"><i class="icofont icofont-social-facebook"></i></a>
@@ -81,31 +83,41 @@
                 <div class="responsive-menu"></div>
                 <div class="mainmenu">
                     <ul id="primary-menu">
-                        <li><a class="active" href="@Url.Action("Index", "Download")">Downloading Page</a></li>
-
+                      
                         @if (Session["roleid"] != null)
                         {
-                            <li><a href="@Url.Action("Index", "charts")">My Dashboard</a></li>
+                            if (Convert.ToBoolean(Session["roleid"]) == true)
+                            {
+                                <li><a href="@Url.Action("Index", "charts")">My Dashboard</a></li>
+                            }
+                            else if (Convert.ToBoolean(Session["roleid"]) == false)
+                            {
+                                <li><a href="@Url.Action("viewprofile", "dashboard")">My Dashboard</a></li>
+                            }
                         }
                         @if (Session["roleid"] != null)
                         {
                             if ((bool)Session["roleid"] == false)
                             {
-                                <li><a href="@Url.Action("Index", "charts")">Ticket Booking</a></li>
+                                @*<li><a href="@Url.Action("Index", "charts")">Ticket Booking</a></li>*@
                                 <li><a href="@Url.Action("Index", "Shop")">Movie Shop</a></li>
+                                <li><a class="active" href="@Url.Action("Index", "Download")">Downloading Page</a></li>
+                                <li><a href="@Url.Action("chatpopup", "dashboard")">Message US</a></li>
+                                <li><a class="theme-active" href="@Url.Action("Index","Booktickets")"><i class="icofont icofont-ticket"></i> Book Tickets</a></li>
+
                             }
                         }
-                        <li><a class="theme-active" href="@Url.Action("Index","Booktickets")"><i class="icofont icofont-ticket"></i> Book Tickets</a></li>
+
                         @*<li><a href="celebrities.html">CelebritiesList</a></li>
-                            <li><a href="top-movies.html">Top Movies</a></li>
-                            <li><a href="blog.html">News</a></li>*@
+        <li><a href="top-movies.html">Top Movies</a></li>
+        <li><a href="blog.html">News</a></li>*@
                         @*<li>
-                                <a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
-                                <ul>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                    <li><a href="movie-details.html">Movie Details</a></li>
-                                </ul>
-                            </li>*@
+            <a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
+            <ul>
+                <li><a href="blog-details.html">Blog Details</a></li>
+                <li><a href="movie-details.html">Movie Details</a></li>
+            </ul>
+        </li>*@
                         @*<li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>*@
                     </ul>
                 </div>

@@ -27,11 +27,28 @@ namespace RatingApp.Controllers
         [HttpGet]
         public ActionResult addmovie()
         {
-            return View();
+            if (Session["id"] != null)
+            {
+
+                if ((bool)Session["roleid"] == true)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("custom404", "errors");
+                }
+            }
+            else
+            {
+                return RedirectToAction("usernotfound", "errors");
+            }
+
         }
         [HttpPost]
         public ActionResult addmovie(Movie_Item imageModel, string awardnominated, string banned)
         {
+
             byte[] imagebyte = null;
             // var file = imageModel.ImageFile;
             string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
@@ -65,7 +82,7 @@ namespace RatingApp.Controllers
                 imageModel.imageCover = imagebyte;
                 db.Movie_Item.Add(imageModel);
                 db.SaveChanges();
-                string mess = "submitted successfully";
+                string mess = "Content Created successfully";
                 ViewBag.message = mess;
             }
             ModelState.Clear();
@@ -109,10 +126,28 @@ namespace RatingApp.Controllers
         [HttpGet]
         public ActionResult addnewsforum()
         {
-            return View();
+            if (Session["id"] != null)
+            {
+
+                if ((bool)Session["roleid"] == true)
+                {
+
+                    return View();
+
+                }
+                else
+                {
+                    return RedirectToAction("custom404", "errors");
+                }
+            }
+            else
+            {
+                return RedirectToAction("usernotfound", "errors");
+            }
+         
         }
         [HttpPost]
-        public ActionResult addnewsforum(newsforum imageModel)
+        public ActionResult addnewsforum(newsforum imageModel, DateTime ndate)
         {
             string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
             string extension = Path.GetExtension(imageModel.ImageFile.FileName);
@@ -126,13 +161,13 @@ namespace RatingApp.Controllers
             using (moviedetailsdb1 db = new moviedetailsdb1())
             {
 
-               
+                imageModel.date = ndate;
                 db.newsforums.Add(imageModel);
                 db.SaveChanges();
                 string mess = "submitted successfully";
                 ViewBag.message = mess;
             }
-                return View();
+            return View();
         }
         [HttpGet]
         public ActionResult addnewscontainer()
@@ -142,7 +177,27 @@ namespace RatingApp.Controllers
 
 
             ViewBag.list1 = new SelectList(list, "id", "title");
-            return View();
+
+            if (Session["id"] != null)
+            {
+
+                if ((bool)Session["roleid"] == true)
+                {
+
+                    return View();
+
+                }
+                else
+                {
+                    return RedirectToAction("custom404", "errors");
+                }
+            }
+            else
+            {
+                return RedirectToAction("usernotfound", "errors");
+            }
+
+          
         }
         [HttpPost]
         public ActionResult addnewscontainer(newscontainer imageModel)
@@ -177,36 +232,63 @@ namespace RatingApp.Controllers
         {
             indexnewsforum model = new indexnewsforum();
             moviedetailsdb1 db = new moviedetailsdb1();
-          
-           model.nf = db.newsforums.Find(id);
-            model.con = db.newscontainers.Where(x=>x.newTid==id).ToList();
+
+            model.nf = db.newsforums.Find(id);
+            model.con = db.newscontainers.Where(x => x.newTid == id).ToList();
             return View(model);
         }
 
         public ActionResult addArena()
         {
-            return View();
+            if (Session["id"] != null)
+            {
+
+                if ((bool)Session["roleid"] == true)
+                {
+
+                    return View();
+
+                }
+                else
+                {
+                    return RedirectToAction("custom404", "errors");
+                }
+            }
+            else
+            {
+                return RedirectToAction("usernotfound", "errors");
+            }
+          
         }
         [HttpPost]
         public ActionResult addArena(heroarenatable ha)
         {
-
-
-            string fileName = Path.GetFileNameWithoutExtension(ha.ImageFile.FileName);
-            string extension = Path.GetExtension(ha.ImageFile.FileName);
-            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-            ha.imagepath = "~/movieIcons/heroarena" + fileName;
-            fileName = Path.Combine(Server.MapPath("~/movieIcons/heroarena"), fileName);
-            ha.ImageFile.SaveAs(fileName);
-            using (moviedetailsdb1 db = new moviedetailsdb1())
+            try
             {
-                db.heroarenatables.Add(ha);
-                db.SaveChanges();
-                string mess = "submitted successfully";
-                ViewBag.message = mess;
+                if (ModelState.IsValid)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(ha.ImageFile.FileName);
+                    string extension = Path.GetExtension(ha.ImageFile.FileName);
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    ha.imagepath = "~/movieIcons/heroarena/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/movieIcons/heroarena/"), fileName);
+                    ha.ImageFile.SaveAs(fileName);
+                    using (moviedetailsdb1 db = new moviedetailsdb1())
+                    {
+                        db.heroarenatables.Add(ha);
+                        db.SaveChanges();
+                        string mess = "submitted successfully";
+                        ViewBag.message = mess;
+                    }
+                }
+                ModelState.Clear();
+                return View();
             }
-            ModelState.Clear();
-            return View();
+            catch(Exception ex)
+            {
+                throw new Exception("Something went wrong");
+            }
+
         }
 
 
@@ -283,7 +365,7 @@ namespace RatingApp.Controllers
                 ViewBag.test = moviItem;
             }
 
-           var rt1 = db.Review_Table.Where(x => x.movieT_ID == id).Select(x => x.rating).Average();
+            var rt1 = db.Review_Table.Where(x => x.movieT_ID == id).Select(x => x.rating).Average();
 
             ViewBag.getratings = rt1;
             ViewBag.gall = ph;
@@ -293,7 +375,7 @@ namespace RatingApp.Controllers
                 movieT_ID = movieI.movie_id
             };
             return View("newview", review);
-         
+
         }
 
         public ActionResult details(int id)
@@ -305,7 +387,7 @@ namespace RatingApp.Controllers
 
             List<PhotoGallery> ph = db.PhotoGalleries.Where(x => x.moviPhotoId == id).Take(4).ToList();
             var moviegallery = db.PhotoGalleries.FirstOrDefault(x => x.moviPhotoId == id);
-            int userid =Convert.ToInt32(Session["id"]);
+            int userid = Convert.ToInt32(Session["id"]);
             if (userid == 0)
             {
                 var moviItem = db.Review_Table.Where(x => x.movieT_ID == id).ToList();
@@ -313,10 +395,10 @@ namespace RatingApp.Controllers
             }
             else
             {
-                var moviItem = db.Review_Table.Where(x => x.userID == userid & x.movieT_ID==id).ToList();
+                var moviItem = db.Review_Table.Where(x => x.userID == userid & x.movieT_ID == id).ToList();
                 ViewBag.test = moviItem;
             }
-         
+
 
 
             ViewBag.gall = ph;
@@ -339,9 +421,9 @@ namespace RatingApp.Controllers
             // var searchdata = db.Review_Table.Where(x => x.userID == rev.userID && x.movieT_ID == rev.movieT_ID).SingleOrDefault();
             // if (searchdata == null)
 
-           rev.rating = rating;
+            rev.rating = rating;
             string username = Session["regname"].ToString();
-           // rev.DatePost = DateTime.Now;
+            // rev.DatePost = DateTime.Now;
             rev.userID = db.usertbls.Single(x => x.username.Equals(username)).user_id;
             rev.DatePost = DateTime.Now;
 
@@ -408,7 +490,7 @@ namespace RatingApp.Controllers
 
 
 
-            
+
         }
 
 
@@ -421,7 +503,7 @@ namespace RatingApp.Controllers
             List<castphotogallery> ph = db.castphotogalleries.Where(x => x.castTableid == id).Take(4).ToList();
             var moviegallery = db.castphotogalleries.FirstOrDefault(x => x.castTableid == id);
             List<movieCastcrew> mvc = new List<movieCastcrew>();
-         
+
 
             ViewBag.gall = ph;
             ViewBag.product = movieI;
@@ -429,7 +511,7 @@ namespace RatingApp.Controllers
             var cstatus = db.movieCastcrews.Where(x => x.cast_id == id).Select(x => x.cast_name).First();
 
             ViewBag.gallerycastname = cstatus;
-            
+
             int userid = Convert.ToInt32(Session["id"]);
             if (userid == 0)
             {
@@ -452,7 +534,7 @@ namespace RatingApp.Controllers
             ViewBag.countC = db.castComments.Count();
 
             List<castComment> com = db.castComments.Include(y => y.castreplies).Where(x => x.castrid == id).OrderByDescending(x => x.comdate).ToList();
-            PagedList<castComment> model = new PagedList<castComment>(com,page?? 1,4);
+            PagedList<castComment> model = new PagedList<castComment>(com, page ?? 1, 4);
             ViewBag.comments = model;
 
             var review = new castratingsT()
@@ -475,7 +557,7 @@ namespace RatingApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult castreplies(int cid, string replys, int userid,int castid)
+        public ActionResult castreplies(int cid, string replys, int userid, int castid)
         {
 
             if (Session["id"] != null)
@@ -487,7 +569,7 @@ namespace RatingApp.Controllers
                 rip.replydate = DateTime.Now;
                 rip.replys = replys;
                 db.castreplies.Add(rip);
-               
+
                 db.SaveChanges();
             }
             int casti = Convert.ToInt32(castid);
@@ -495,7 +577,7 @@ namespace RatingApp.Controllers
             //new { controller ="Shop", action = "Adtocart", Id = movieid }));
             return RedirectToAction("castdetails", "dashboard", new { id = castid });
             //return RedirectToAction("castdetails", new movieCastcrew { id = casti });
-          
+
         }
 
         public ActionResult postcom(string cimtxt, castratingsT ct)
@@ -507,7 +589,7 @@ namespace RatingApp.Controllers
                 cm.comments = cimtxt;
                 cm.castrid = ct.castid;
                 cm.comdate = DateTime.Now;
-                cm.userid =Convert.ToInt32(Session["id"]);
+                cm.userid = Convert.ToInt32(Session["id"]);
                 db.castComments.Add(cm);
                 db.SaveChanges();
 
@@ -621,7 +703,7 @@ namespace RatingApp.Controllers
 
             ViewBag.list1 = new SelectList(list, "movie_id", "Movie_name");
 
-           
+
             return View();
         }
 
@@ -636,7 +718,7 @@ namespace RatingApp.Controllers
             cast.cast_profile = "~/castImage/" + fileName;
             fileName = Path.Combine(Server.MapPath("~/castImage/"), fileName);
             cast.ImageFile.SaveAs(fileName);
-          
+
             //file.SaveAs(Server.MapPath("~/movieIcons/" + file.FileName));
             using (moviedetailsdb1 db = new moviedetailsdb1())
             {
@@ -656,7 +738,7 @@ namespace RatingApp.Controllers
                 {
                     cast.died = false;
                 }
-               
+
                 db.movieCastcrews.Add(cast);
                 db.SaveChanges();
                 string mess = "submitted successfully";
@@ -683,7 +765,7 @@ namespace RatingApp.Controllers
             ViewBag.list1 = new SelectList(list, "hallid", "hallname");
 
 
-         
+
             return View();
         }
         [HttpPost]
@@ -699,7 +781,7 @@ namespace RatingApp.Controllers
             //file.SaveAs(Server.MapPath("~/movieIcons/" + file.FileName));
             using (moviedetailsdb1 db = new moviedetailsdb1())
             {
-                
+
 
                 db.HallFoodTbls.Add(cast);
                 db.SaveChanges();
@@ -796,13 +878,13 @@ namespace RatingApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult addShopitem(shoppingcart imageModel,Movie_Item md)
+        public ActionResult addShopitem(shoppingcart imageModel, Movie_Item md)
         {
             moviedetailsdb1 db1 = new moviedetailsdb1();
             List<Movie_Item> mi = db1.Movie_Item.ToList();
             ViewBag.itemlist = new SelectList(mi, "movie_id", "movie_id");
 
-            
+
             string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
 
             string extension = Path.GetExtension(imageModel.ImageFile.FileName);
@@ -831,14 +913,14 @@ namespace RatingApp.Controllers
         public ActionResult viewprofile()
         {
             int userid = Convert.ToInt32(Session["id"]);
-            if(userid==0)
+            if (userid == 0)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("usernotfound", "errors");
             }
             moviedetailsdb1 db = new moviedetailsdb1();
-          
+
             var show = db.usertbls.Find(userid);
-            return View(show); 
+            return View(show);
         }
 
         public ActionResult identifyA()
@@ -850,7 +932,7 @@ namespace RatingApp.Controllers
         {
             moviedetailsdb1 db = new moviedetailsdb1();
             showingmodelcollection col = new showingmodelcollection();
-            
+
             return View();
         }
         [HttpPost]
@@ -880,10 +962,68 @@ namespace RatingApp.Controllers
             return RedirectToAction("addnewmovieshow");
         }
 
+        bool val;
+
+        public ActionResult chatpopup()
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+
+            if (Session["id"] != null)
+            {
+                int x = Convert.ToInt32(Session["id"]);
+                var chats = db.chatmessages.Where(y => y.userid == x).ToList();
+                ViewBag.image = Session["profpic"].ToString();
+                ViewBag.responce = val;
+                var text = "Your message has been recoreded we will contact you as soon as possible";
+                ViewBag.mess = text;
+
+                return View(chats);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+
+
+        }
+        [HttpPost]
+        public ActionResult replyadmin(chatmessage ms, string message)
+        {
+
+            moviedetailsdb1 db = new moviedetailsdb1();
+            if (Session["id"] != null)
+            {
+                int x = Convert.ToInt32(Session["id"]);
+                string username = Session["regname"].ToString();
+                chatmessage chat = new chatmessage();
+                chat.chatmessage1 = message;
+                chat.userid = x;
+                chat.username = username;
+                chat.chattime = DateTime.Now;
+                db.chatmessages.Add(chat);
+                db.SaveChanges();
+                val = true;
+                TempData["signal"] = "okey";
+                ViewBag.responce = val;
+                var text = "Your message has been recorede we will contact you as soon as possible";
+                ViewBag.mess = text;
+                return RedirectToAction("chatpopup", "dashboard");
+            }
+            else
+            {
+                return RedirectToAction("chatpopup", "dashboard");
+            }
+        }
+
+
+
+
         public ActionResult print()
         {
             moviedetailsdb1 db = new moviedetailsdb1();
-           List<Movie_Item> x = db.Movie_Item.ToList();
+            List<Movie_Item> x = db.Movie_Item.ToList();
             return View(x);
         }
 
@@ -958,11 +1098,11 @@ namespace RatingApp.Controllers
 
             barcodeT bt = new barcodeT();
             bt.barcode = prodectId;
-            bt.movieid =Convert.ToInt32(movieid);
+            bt.movieid = Convert.ToInt32(movieid);
             db.barcodeTs.Add(bt);
             db.SaveChanges();
             List<Movie_Item> x = db.Movie_Item.ToList();
-            return View("print",x);
+            return View("print", x);
         }
 
 

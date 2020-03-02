@@ -19,6 +19,7 @@ namespace RatingApp.Models
         {
             this.castComments = new HashSet<castComment>();
             this.castratingsTs = new HashSet<castratingsT>();
+            this.castlikes = new HashSet<castlike>();
         }
     
         public int cast_id { get; set; }
@@ -37,5 +38,7 @@ namespace RatingApp.Models
         public virtual Movie_Item Movie_Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<castratingsT> castratingsTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<castlike> castlikes { get; set; }
     }
 }

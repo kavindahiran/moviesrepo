@@ -1,0 +1,207 @@
+﻿@model RatingApp.Models.billviewmodel.bookingvm
+@{
+    ViewBag.Title = "testimo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <link href="~/Content/invoice bill/invoice1.css" rel="stylesheet" />
+<div id="invoice">
+
+    <div class="toolbar hidden-print">
+        <div class="text-right">
+            <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+            <button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+        </div>
+        <hr>
+    </div>
+    <div class="invoice overflow-auto">
+        <div style="min-width: 600px">
+            <header>
+                <div class="row">
+                    <div class="col">
+                        <a target="_blank" href="#">
+                            <img src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png" data-holder-rendered="true" />
+                            @*<img src="@Url.Content(temp.Ipath)" data-holder-rendered="true" />*@
+                        </a>
+                    </div>
+                    @foreach (var item in Model.inotbl)
+                    {
+                        <h1> @item.bookinvoiceid</h1>
+                        <h1>   @item.usertbl.username</h1>
+                        <h1>  @item.address</h1>
+
+
+
+                        <div class="col company-details">
+                            <h2 class="name">
+                                <a target="_blank" href="https://lobianijs.com">
+                                    @item.usertbl.username
+                                </a>
+                            </h2>
+                            <div> @item.lastname</div>
+                            <div>@item.city</div>
+                            <div>@item.usertbl.email</div>
+                        </div>
+                    }
+                </div>
+            </header>
+            <main>
+                <div class="row contacts">
+                    @foreach (var item in Model.inotbl)
+                    {
+                        <div class="col invoice-to">
+                            <div class="text-gray-light">secondary address</div>
+
+                            <h2 class="to">@item.usertbl.username</h2>
+                            @if (@item.lastname != null)
+                            {
+                                <div class="address">@item.lastname</div>
+                            }
+
+                        </div>
+                        <div class="col invoice-details">
+                            <h1 class="invoice-id">@item.bookinvoiceid</h1>
+                            <div class="date">Date of Invoice: @item.orderdate</div>
+
+                        </div>
+                    }
+                </div>
+
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="text-left">ITEM NAME</th>
+                            <th class="text-right">HALL LOCATION</th>
+                            <th class="text-right">TICKET PRICE</th>
+                            <th class="text-right">TICKET QUANTITY</th>
+                            <th class="text-right">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in TempData["tempcart2"] as List<RatingApp.Models.bookingtempcart>)
+                        {
+                        <tr>
+                            <td class="no">@item.hallid</td>
+                            <td class="text-left">
+                                <h3>
+                                    <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
+                                        @item.hallname
+                                    </a>
+                                </h3>
+
+
+
+                            </td>
+
+                            <td class="total">@item.hallLocation</td>
+                            <td class="unit">@item.ticketprice</td>
+                            <td class="qty">@item.ticketqty</td>
+                            <td class="qty">@item.bill</td>
+
+                        </tr>
+                        }
+                        @foreach (var item in TempData["tempcart3"] as List<RatingApp.Models.bookingfoodtempcart>)
+                        {
+
+                    <tr>
+                        <td class="no">@item.foodid</td>
+                        <td class="text-left">
+                            <h3>
+                                <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
+                                    @item.foodname
+                                </a>
+                            </h3>
+
+
+
+                        </td>
+                        <td class="total"></td>
+                        <td class="unit">@item.foodprice</td>
+                        <td class="qty">@item.foodqty</td>
+                        <td class="qty">@item.bill</td>
+
+                    </tr>
+                        }
+                        @*<tr>
+            <td class="no">01</td>
+            <td class="text-left"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
+            <td class="unit">$40.00</td>
+            <td class="qty">30</td>
+            <td class="total">$1,200.00</td>
+        </tr>
+        <tr>
+            <td class="no">02</td>
+            <td class="text-left"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
+            <td class="unit">$40.00</td>
+            <td class="qty">80</td>
+            <td class="total">$3,200.00</td>
+        </tr>
+        <tr>
+            <td class="no">03</td>
+            <td class="text-left"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
+            <td class="unit">$40.00</td>
+            <td class="qty">20</td>
+            <td class="total">$800.00</td>
+        </tr>*@
+
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">SUBTOTAL</td>
+                            <td>@Model.ordert.unitprice</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">GRAND TOTAL</td>
+                            <td>@TempData["total2"]</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="thanks">Thank you!</div>
+                <div class="notices">
+                    <div>NOTICE:</div>
+                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                </div>
+            </main>
+            <footer>
+
+                @using (Html.BeginForm())
+                {
+
+                    <a href="@Url.Action("bookingcomplete","Booktickets ")" class="button">Exit</a>
+                }
+
+
+
+                Invoice was created on a computer and is valid without the signature and seal.
+            </footer>
+        </div>
+        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+        <div></div>
+    </div>
+</div>
+        }
+    }
+
+
+<script>
+
+    $('#printInvoice').click(function () {
+        Popup($('.invoice')[0].outerHTML);
+        function Popup(data) {
+            window.print();
+            return true;
+        }
+    });
+
+
+</script>
+
+
+
+
+
+

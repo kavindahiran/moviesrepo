@@ -20,11 +20,10 @@ namespace RatingApp.Models
 
         public float bill { get; set; }
 
-        public int foodqty { get; set; }
+      
+        public string imagepath { get; set; }
 
-        public string foodname { get; set; }
-
-        public  float foodprice { get; set; }
+      
 
     }
 }

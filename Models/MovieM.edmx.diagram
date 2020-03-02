@@ -67,6 +67,25 @@
         <AssociationConnector Association="Models.FK_newscontainer_newsforum" />
         <EntityTypeShape EntityType="Models.HallFoodTbl" Width="1.5" PointX="15" PointY="14.375" />
         <AssociationConnector Association="Models.FK_HallFoodTbl_halltable" />
+        <EntityTypeShape EntityType="Models.bookinvoicetbl" Width="1.5" PointX="3" PointY="28" />
+        <EntityTypeShape EntityType="Models.bookordertbl" Width="1.5" PointX="15" PointY="18.75" />
+        <EntityTypeShape EntityType="Models.foodOrderTbl" Width="1.5" PointX="15" PointY="23.875" />
+        <AssociationConnector Association="Models.FK_bookinvoicetbl_usertbl" />
+        <AssociationConnector Association="Models.FK_bookordertbl_bookinvoicetbl" />
+        <AssociationConnector Association="Models.FK_bookordertbl_halltable" />
+        <AssociationConnector Association="Models.FK_bookordertbl_nowshowing" />
+        <AssociationConnector Association="Models.FK_foodOrderTbl_halltable" />
+        <AssociationConnector Association="Models.FK_foodOrderTbl_nowshowing" />
+        <EntityTypeShape EntityType="Models.foodInvoice" Width="1.5" PointX="3" PointY="33" />
+        <AssociationConnector Association="Models.FK_foodInvoice_usertbl" />
+        <AssociationConnector Association="Models.FK_foodOrderTbl_foodInvoice" />
+        <EntityTypeShape EntityType="Models.chatmessage" Width="1.5" PointX="3.125" PointY="37.375" />
+        <AssociationConnector Association="Models.FK_chatmessage_usertbl" />
+        <EntityTypeShape EntityType="Models.coupentbl" Width="1.5" PointX="12.5" PointY="0.75" />
+        <AssociationConnector Association="Models.FK_coupentbl_movieshop" />
+        <EntityTypeShape EntityType="Models.castlike" Width="1.5" PointX="11.25" PointY="14.5" />
+        <AssociationConnector Association="Models.FK_castlikes_movieCastcrew" />
+        <AssociationConnector Association="Models.FK_castlikes_usertbl" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "usernotfound";
+    Layout = "~/Views/Shared/registrationpage.cshtml";
+}
+
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+<link href="~/Content/errormessagecss/style.css" rel="stylesheet" />
+
+
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>Oops!</h1>
+        </div>
+        <h2>Registration unsuccessful</h2>
+        <p>The page you are looking for cannot be accessed due to the lack of user validation</p>
+        <a href="@Url.Action("Index", "Home")">Go To Homepage</a>
+    </div>
+</div>
+
+
+@if (ViewBag.mess != null)
+{
+    <script>
+        window.onload = function () {
+            alert("@ViewBag.mess")
+        };
+    </script>
+}
