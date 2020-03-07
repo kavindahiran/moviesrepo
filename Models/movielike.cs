@@ -12,16 +12,14 @@ namespace RatingApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class coupentbl
+    public partial class movielike
     {
-        public int codeid { get; set; }
-        public string coupenNo { get; set; }
-        public Nullable<int> shopid { get; set; }
-        public Nullable<double> discount { get; set; }
-        public Nullable<System.DateTime> genDate { get; set; }
+        public int movielike1 { get; set; }
         public Nullable<int> userid { get; set; }
+        public Nullable<int> movieid { get; set; }
+        public Nullable<int> likecount { get; set; }
     
-        public virtual movieshop movieshop { get; set; }
+        public virtual Movie_Item Movie_Item { get; set; }
         public virtual usertbl usertbl { get; set; }
     }
 }

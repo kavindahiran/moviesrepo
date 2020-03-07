@@ -1,0 +1,69 @@
+﻿@model RatingApp.Models.movieshop
+@{
+    ViewBag.Title = "generatecoupen";
+    Layout = "~/Views/Shared/layoutwithoutH.cshtml";
+}
+
+
+
+
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/select shop coupen/style1.css" rel="stylesheet" />
+<link href="~/Content/bookhall/x.css" rel="stylesheet" />
+
+<style>
+    .form-control{
+        height:100%;
+        box-sizing: border-box;
+         border-radius: 4px;
+    }
+
+</style>
+
+
+
+@*<h2>Navigation dropdown with unfold effect</h2>
+@using (Html.BeginForm("newtime", "Booktickets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <div class="form-destination">
+            <label for="destination">Movie Name</label>
+            <ul class="navigation">
+
+                @Html.DropDownListFor(model => model.shopid, ViewBag.movielists as SelectList, "--select--", new { @class = "n1" })
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="form-submit">
+        <input type="submit" id="submit" class="submit" value="Book now" />
+    </div>
+}*@
+
+
+
+<div class="container" style="margin-top:50px;">
+
+    @using (Html.BeginForm("getcoupen", "LoadShops", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <div class="form-destination">
+                <label for="destination">Movie Name</label>
+                @*<input type="text" id="destination" name="destination" placeholder="EG. HAWAII" />*@
+                @Html.DropDownListFor(model => model.shopid, ViewBag.movielists as SelectList, "--select--", new { @class = "form-control", size = "1" })
+                @Html.HiddenFor(x => x.shopid)
+                @Html.HiddenFor(x => x.shopname)
+            </div>
+           
+            <div class="form-submit">
+                <input type="submit" id="submit" class="submit" value="Book now" />
+            </div>
+
+        </div>
+    }
+</div>
+

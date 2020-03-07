@@ -83,7 +83,13 @@
                 <div class="responsive-menu"></div>
                 <div class="mainmenu">
                     <ul id="primary-menu">
-                      
+                        @if (Session["premiumuser"] != null)
+                        {
+                            if (Convert.ToBoolean(Session["premiumuser"]) == true)
+                            {
+                        <li><a href="@Url.Action("generatecoupen", "LoadShops")">Get A Coupen</a></li>
+                            }
+                        }
                         @if (Session["roleid"] != null)
                         {
                             if (Convert.ToBoolean(Session["roleid"]) == true)
@@ -92,7 +98,7 @@
                             }
                             else if (Convert.ToBoolean(Session["roleid"]) == false)
                             {
-                                <li><a href="@Url.Action("viewprofile", "dashboard")">My Dashboard</a></li>
+                                <li><a class="active" href="@Url.Action("viewprofile", "dashboard")">My Dashboard</a></li>
                             }
                         }
                         @if (Session["roleid"] != null)
@@ -101,9 +107,9 @@
                             {
                                 @*<li><a href="@Url.Action("Index", "charts")">Ticket Booking</a></li>*@
                                 <li><a href="@Url.Action("Index", "Shop")">Movie Shop</a></li>
-                                <li><a class="active" href="@Url.Action("Index", "Download")">Downloading Page</a></li>
+                                <li><a class="theme-active" href="@Url.Action("Index", "Download")">Downloading Page</a></li>
                                 <li><a href="@Url.Action("chatpopup", "dashboard")">Message US</a></li>
-                                <li><a class="theme-active" href="@Url.Action("Index","Booktickets")"><i class="icofont icofont-ticket"></i> Book Tickets</a></li>
+                                <li><a href="@Url.Action("Index","Booktickets")"><i class="icofont icofont-ticket"></i> Book Tickets</a></li>
 
                             }
                         }

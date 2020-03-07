@@ -120,6 +120,7 @@
     <Property Name="shopid" Type="int" />
     <Property Name="discount" Type="float" />
     <Property Name="genDate" Type="datetime" />
+    <Property Name="userid" Type="int" />
   </EntityType>
   <EntityType Name="foodInvoice">
     <Key>
@@ -245,6 +246,15 @@
     <Property Name="died" Type="bit" />
     <Property Name="nickname" Type="varchar" MaxLength="100" />
     <Property Name="status" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="movielikes">
+    <Key>
+      <PropertyRef Name="movielike" />
+    </Key>
+    <Property Name="movielike" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="int" />
+    <Property Name="movieid" Type="int" />
+    <Property Name="likecount" Type="int" />
   </EntityType>
   <EntityType Name="movieshop">
     <Key>
@@ -632,6 +642,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_coupentbl_usertbl">
+    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
+    <End Role="coupentbl" Type="Self.coupentbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="coupentbl">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_foodInvoice_usertbl">
     <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
     <End Role="foodInvoice" Type="Self.foodInvoice" Multiplicity="*" />
@@ -773,6 +795,30 @@
       </Principal>
       <Dependent Role="movieCastcrew">
         <PropertyRef Name="movie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_movielikes_Movie_Item">
+    <End Role="Movie_Item" Type="Self.Movie_Item" Multiplicity="0..1" />
+    <End Role="movielikes" Type="Self.movielikes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="movielikes">
+        <PropertyRef Name="movieid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_movielikes_usertbl">
+    <End Role="usertbl" Type="Self.usertbl" Multiplicity="0..1" />
+    <End Role="movielikes" Type="Self.movielikes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="movielikes">
+        <PropertyRef Name="userid" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -978,6 +1024,7 @@
     <EntitySet Name="Landmark121" EntityType="Self.Landmark121" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Movie_Item" EntityType="Self.Movie_Item" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="movieCastcrew" EntityType="Self.movieCastcrew" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="movielikes" EntityType="Self.movielikes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="movieshop" EntityType="Self.movieshop" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="newscontainer" EntityType="Self.newscontainer" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="newsforum" EntityType="Self.newsforum" Schema="dbo" store:Type="Tables" />
@@ -1063,6 +1110,10 @@
       <End Role="movieshop" EntitySet="movieshop" />
       <End Role="coupentbl" EntitySet="coupentbl" />
     </AssociationSet>
+    <AssociationSet Name="FK_coupentbl_usertbl" Association="Self.FK_coupentbl_usertbl">
+      <End Role="usertbl" EntitySet="usertbl" />
+      <End Role="coupentbl" EntitySet="coupentbl" />
+    </AssociationSet>
     <AssociationSet Name="FK_foodInvoice_usertbl" Association="Self.FK_foodInvoice_usertbl">
       <End Role="usertbl" EntitySet="usertbl" />
       <End Role="foodInvoice" EntitySet="foodInvoice" />
@@ -1110,6 +1161,14 @@
     <AssociationSet Name="FK_movieCastcrew_Movie_Item" Association="Self.FK_movieCastcrew_Movie_Item">
       <End Role="Movie_Item" EntitySet="Movie_Item" />
       <End Role="movieCastcrew" EntitySet="movieCastcrew" />
+    </AssociationSet>
+    <AssociationSet Name="FK_movielikes_Movie_Item" Association="Self.FK_movielikes_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="movielikes" EntitySet="movielikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_movielikes_usertbl" Association="Self.FK_movielikes_usertbl">
+      <End Role="usertbl" EntitySet="usertbl" />
+      <End Role="movielikes" EntitySet="movielikes" />
     </AssociationSet>
     <AssociationSet Name="FK_newscontainer_newsforum" Association="Self.FK_newscontainer_newsforum">
       <End Role="newsforum" EntitySet="newsforum" />

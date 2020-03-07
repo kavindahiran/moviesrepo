@@ -35,6 +35,7 @@
     <NavigationProperty Name="movieCastcrews" Relationship="Models.FK_movieCastcrew_Movie_Item" FromRole="Movie_Item" ToRole="movieCastcrew" />
     <NavigationProperty Name="Review_Table" Relationship="Models.FK_Review_Table_Movie_Item" FromRole="Movie_Item" ToRole="Review_Table" />
     <NavigationProperty Name="barcodeTs" Relationship="Models.FK_barcodeT_Movie_Item" FromRole="Movie_Item" ToRole="barcodeT" />
+    <NavigationProperty Name="movielikes" Relationship="Models.FK_movielikes_Movie_Item" FromRole="Movie_Item" ToRole="movielike" />
   </EntityType>
   <EntityType Name="newsforum">
     <Key>
@@ -91,6 +92,8 @@
     <NavigationProperty Name="foodInvoices" Relationship="Models.FK_foodInvoice_usertbl" FromRole="usertbl" ToRole="foodInvoice" />
     <NavigationProperty Name="chatmessages" Relationship="Models.FK_chatmessage_usertbl" FromRole="usertbl" ToRole="chatmessage" />
     <NavigationProperty Name="castlikes" Relationship="Models.FK_castlikes_usertbl" FromRole="usertbl" ToRole="castlike" />
+    <NavigationProperty Name="coupentbls" Relationship="Models.FK_coupentbl_usertbl" FromRole="usertbl" ToRole="coupentbl" />
+    <NavigationProperty Name="movielikes" Relationship="Models.FK_movielikes_usertbl" FromRole="usertbl" ToRole="movielike" />
   </EntityType>
   <EntityContainer Name="moviedetailsdb1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="heroarenatables" EntityType="Self.heroarenatable" />
@@ -314,6 +317,19 @@
     <AssociationSet Name="FK_castlikes_usertbl" Association="Models.FK_castlikes_usertbl">
       <End Role="usertbl" EntitySet="usertbls" />
       <End Role="castlike" EntitySet="castlikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_coupentbl_usertbl" Association="Models.FK_coupentbl_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="coupentbl" EntitySet="coupentbls" />
+    </AssociationSet>
+    <EntitySet Name="movielikes" EntityType="Models.movielike" />
+    <AssociationSet Name="FK_movielikes_Movie_Item" Association="Models.FK_movielikes_Movie_Item">
+      <End Role="Movie_Item" EntitySet="Movie_Item" />
+      <End Role="movielike" EntitySet="movielikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_movielikes_usertbl" Association="Models.FK_movielikes_usertbl">
+      <End Role="usertbl" EntitySet="usertbls" />
+      <End Role="movielike" EntitySet="movielikes" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="PhotoGallery">
@@ -1249,6 +1265,8 @@
     <Property Name="discount" Type="Double" />
     <Property Name="genDate" Type="DateTime" Precision="3" />
     <NavigationProperty Name="movieshop" Relationship="Models.FK_coupentbl_movieshop" FromRole="coupentbl" ToRole="movieshop" />
+    <Property Name="userid" Type="Int32" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_coupentbl_usertbl" FromRole="coupentbl" ToRole="usertbl" />
   </EntityType>
   <Association Name="FK_coupentbl_movieshop">
     <End Type="Models.movieshop" Role="movieshop" Multiplicity="0..1" />
@@ -1293,6 +1311,53 @@
         <PropertyRef Name="user_id" />
       </Principal>
       <Dependent Role="castlike">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_coupentbl_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.coupentbl" Role="coupentbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="coupentbl">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="movielike">
+    <Key>
+      <PropertyRef Name="movielike1" />
+    </Key>
+    <Property Name="movielike1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="movieid" Type="Int32" />
+    <Property Name="likecount" Type="Int32" />
+    <NavigationProperty Name="Movie_Item" Relationship="Models.FK_movielikes_Movie_Item" FromRole="movielike" ToRole="Movie_Item" />
+    <NavigationProperty Name="usertbl" Relationship="Models.FK_movielikes_usertbl" FromRole="movielike" ToRole="usertbl" />
+  </EntityType>
+  <Association Name="FK_movielikes_Movie_Item">
+    <End Type="Models.Movie_Item" Role="Movie_Item" Multiplicity="0..1" />
+    <End Type="Models.movielike" Role="movielike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie_Item">
+        <PropertyRef Name="movie_id" />
+      </Principal>
+      <Dependent Role="movielike">
+        <PropertyRef Name="movieid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_movielikes_usertbl">
+    <End Type="Models.usertbl" Role="usertbl" Multiplicity="0..1" />
+    <End Type="Models.movielike" Role="movielike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertbl">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="movielike">
         <PropertyRef Name="userid" />
       </Dependent>
     </ReferentialConstraint>

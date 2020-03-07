@@ -433,6 +433,7 @@
     <EntitySetMapping Name="coupentbls">
       <EntityTypeMapping TypeName="Models.coupentbl">
         <MappingFragment StoreEntitySet="coupentbl">
+          <ScalarProperty Name="userid" ColumnName="userid" />
           <ScalarProperty Name="genDate" ColumnName="genDate" />
           <ScalarProperty Name="discount" ColumnName="discount" />
           <ScalarProperty Name="shopid" ColumnName="shopid" />
@@ -448,6 +449,16 @@
           <ScalarProperty Name="castid" ColumnName="castid" />
           <ScalarProperty Name="userid" ColumnName="userid" />
           <ScalarProperty Name="likeid" ColumnName="likeid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="movielikes">
+      <EntityTypeMapping TypeName="Models.movielike">
+        <MappingFragment StoreEntitySet="movielikes">
+          <ScalarProperty Name="likecount" ColumnName="likecount" />
+          <ScalarProperty Name="movieid" ColumnName="movieid" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="movielike1" ColumnName="movielike" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

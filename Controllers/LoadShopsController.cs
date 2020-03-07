@@ -79,7 +79,7 @@ namespace RatingApp.Controllers
                 Session["shopname"] = sh.shopname;
                 Session["ownername"] = sh.ownername;
                 //Session["roleid"] = emp.roleid;
-                return RedirectToAction("registershops", "Booktickets");
+                return RedirectToAction("dashboardshop", "LoadShops");
             }
             else
             {
@@ -91,7 +91,72 @@ namespace RatingApp.Controllers
 
         public ActionResult dashboardshop()
         {
+            int shopid =Convert.ToInt32(Session["shopid"]);
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<Landmark121> l = new List<Landmark121>();
+            List<Movie_Item> mov = new List<Movie_Item>();
+            shopandmovieModel model = new shopandmovieModel();
+            model.ms = db.movieshops.Where(x => x.shopid == shopid).SingleOrDefault();
+            
+            model.movie_id = db.Landmark121.Where(x => x.shopid == shopid).Count();
+            model.moviecount=db.Landmark121.Where(x => x.shopid == shopid).GroupBy(x=>x.MovieId).Count();
+            model.coupencount = db.coupentbls.Where(x => x.shopid == shopid).Count();
+            //model.land = (from lnd in l
+            //              join movie in mov on lnd.MovieId equals movie.movie_id
+            //              where lnd.shopid == shopid
+            //              select new shopandmovieModel { shopid = lnd.shopid }).ToList();
+
+            model.land = db.Landmark121.Where(x=>x.shopid==shopid).ToList();
+
+            return View(model);  
+        }
+
+        public ActionResult generatecoupen()
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            List<movieshop> sh = db.movieshops.ToList();
+            ViewBag.movielists = new SelectList(sh, "shopid", "shopname");
             return View();
+        }
+        [HttpPost]
+        public ActionResult getcoupen(movieshop ms)
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            customcoupenmodel cou = new customcoupenmodel();
+            movieshop sh = db.movieshops.Where(x=>x.shopid==ms.shopid).FirstOrDefault();
+            cou.shopname = sh.shopname;
+            cou.ownername = sh.ownername;
+            cou.mobileno = sh.mobileno;
+            cou.shopimage = sh.shopimage;
+            cou.address1 = sh.address1;
+            cou.city = sh.city;
+            cou.state = sh.state;
+
+            var random = new Random();
+            string s = string.Empty;
+            for (int i = 0; i < 10; i++)
+            {
+                s = String.Concat(s, random.Next(10).ToString());
+            }
+            int userid =Convert.ToInt32(Session["id"]);
+            string username = Session["regname"].ToString();
+            coupentbl ctb = new coupentbl();
+            ctb.coupenNo = s;
+            ctb.shopid = ms.shopid;
+            ctb.genDate = DateTime.Now;
+            ctb.discount = (15 * 10) / 10;
+            ctb.userid = userid;
+            db.coupentbls.Add(ctb);
+            db.SaveChanges();
+
+            coupentbl cp= db.coupentbls.Where(x => x.shopid == ms.shopid && x.userid==userid).OrderByDescending(x=>x.genDate).FirstOrDefault();
+
+            cou.discount = cp.discount;
+            cou.genDate = cp.genDate;
+            cou.coupenNo = cp.coupenNo;
+            cou.username = username;
+
+            return View(cou);
         }
 
     }

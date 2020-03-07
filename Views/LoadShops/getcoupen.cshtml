@@ -1,0 +1,75 @@
+﻿@model RatingApp.Models.customcoupenmodel
+@{
+    ViewBag.Title = "getcoupen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+<link href="~/Content/coupencss/coupcss.css" rel="stylesheet" />
+<style>
+         .label {
+  color: white;
+  padding: 8px;
+}
+     .danger {background-color: #f44336;} /* Red */ 
+
+</style>
+
+<div class="container">
+
+    <div class="row">
+        <h1 class="text-center" style="margin-left:200px;">Coupons for buying movies from <span style="color:red; font-size:50px; ">@Model.shopname</span></h1>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-success coupon">
+                <div class="panel-heading" id="head">
+                    <div class="panel-title" id="title">
+                        <img src="https://i.imgur.com/IOL5F9T.png">
+                        <span class="hidden-xs">Save @Model.discount% Off For Any Movie You Puchase From The Store</span>
+                        <span class="visible-xs">Save @Model.discount% Off For Any Movie You Puchase From The Store</span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <img src="@Url.Content(Model.shopimage)" class="coupon-img img-rounded" style="width:500px; height:200px;">
+                    <div class="col-md-9">
+                        <ul class="items">
+                            <li> <span class="label danger">User Name: </span><span style="margin-left:30px; font-weight:bold;">@Model.username</span></li>
+                            <li><span class="label danger">Shop Owner: </span><span style="margin-left:30px; font-weight:bold;">@Model.ownername</span></li>
+                           
+                            <li><span class="label danger">Contact NO: </span><span style="margin-left:30px; font-weight:bold;">@Model.mobileno</span></li>
+                            <li><span class="label danger">State: </span><span style="margin-left:30px; font-weight:bold;">@Model.state</span></li>
+                            <li><span class="label danger">City: </span><span style="margin-left:30px; font-weight:bold;">@Model.city</span></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="offer text-success">
+                            <span class="usd"><sup>$</sup></span>
+                            <span class="number">@Model.discount</span>
+                            <span class="cents"><sup>.95</sup></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <p class="disclosure" style="color:black; font-weight:bold;">Use the Coupen above to get a discount rate for any movie item that you purchase from the store at <span class="label danger" style="margin-top:50px;">@Model.address1</span> </p>
+                    </div>
+                </div>
+                <div class="panel-footer ">
+                    <div class="coupon-code">
+                        Code: @Model.coupenNo
+                        <span class="print">
+                            <a href="#" class="btn btn-link"><i class="fa fa-lg fa-print"></i> Print Coupon</a>
+                        </span>
+                    </div>
+                    <div class="exp">Expires: @Model.genDate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

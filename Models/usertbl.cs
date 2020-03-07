@@ -29,6 +29,8 @@ namespace RatingApp.Models
             this.foodInvoices = new HashSet<foodInvoice>();
             this.chatmessages = new HashSet<chatmessage>();
             this.castlikes = new HashSet<castlike>();
+            this.coupentbls = new HashSet<coupentbl>();
+            this.movielikes = new HashSet<movielike>();
         }
     
         public int user_id { get; set; }
@@ -72,5 +74,9 @@ namespace RatingApp.Models
         public virtual ICollection<chatmessage> chatmessages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<castlike> castlikes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<coupentbl> coupentbls { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<movielike> movielikes { get; set; }
     }
 }

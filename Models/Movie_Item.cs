@@ -26,6 +26,7 @@ namespace RatingApp.Models
             this.movieCastcrews = new HashSet<movieCastcrew>();
             this.Review_Table = new HashSet<Review_Table>();
             this.barcodeTs = new HashSet<barcodeT>();
+            this.movielikes = new HashSet<movielike>();
         }
     
         public int movie_id { get; set; }
@@ -34,7 +35,7 @@ namespace RatingApp.Models
         public string Movie_director { get; set; }
         public string imgpath { get; set; }
         public byte[] imageCover { get; set; }
-        //public Nullable<System.DateTime> Posted_date { get; set; }
+     //   public Nullable<System.DateTime> Posted_date { get; set; }
         public string movieDis { get; set; }
         public string category { get; set; }
         public Nullable<bool> awardnominated { get; set; }
@@ -58,5 +59,7 @@ namespace RatingApp.Models
         public virtual ICollection<Review_Table> Review_Table { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<barcodeT> barcodeTs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<movielike> movielikes { get; set; }
     }
 }

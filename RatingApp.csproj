@@ -205,6 +205,7 @@
     <Compile Include="Models\coupentbl.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\customcoupenmodel.cs" />
     <Compile Include="Models\customfoodtbl.cs" />
     <Compile Include="Models\customimagemodel.cs" />
     <Compile Include="Models\customizablecast.cs" />
@@ -284,6 +285,9 @@
     <Compile Include="Models\movieCastcrew.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\movielike.cs">
+      <DependentUpon>MovieM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MovieM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -352,6 +356,7 @@
     <Compile Include="Models\Review_Table.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\shopandmovieModel.cs" />
     <Compile Include="Models\shoppingc.cs" />
     <Compile Include="Models\shoppingcart.cs">
       <DependentUpon>MovieM.tt</DependentUpon>
@@ -529,6 +534,7 @@
     <Content Include="Content\booktickets\css\micons\micons.css" />
     <Content Include="Content\booktickets\css\vendor.css" />
     <Content Include="Content\codepen\code.css" />
+    <Content Include="Content\coupencss\coupcss.css" />
     <Content Include="Content\custom404error\custom2.css" />
     <Content Include="Content\custom404error\customerror.css" />
     <Content Include="Content\DataTable\dataTables.bootstrap.min.js" />
@@ -558,6 +564,7 @@
     <Content Include="Content\registrationtemplate\nouislider.min.js" />
     <Content Include="Content\registrationtemplate\style.css" />
     <Content Include="Content\registrationtemplate\wNumb.js" />
+    <Content Include="Content\select shop coupen\style1.css" />
     <Content Include="Content\shopcollection\as.jpg" />
     <Content Include="Content\shopcollection\buy..JPG" />
     <Content Include="Content\shopcollection\main.js" />
@@ -1226,6 +1233,10 @@
     <Content Include="Views\errors\loginfailed.cshtml" />
     <Content Include="Views\LoadShops\shoplogin.cshtml" />
     <Content Include="Views\LoadShops\dashboardshop.cshtml" />
+    <Content Include="Views\LoadShops\shopmovieslist.cshtml" />
+    <Content Include="Views\LoadShops\generatecoupen.cshtml" />
+    <Content Include="Views\Shared\layoutwithoutH.cshtml" />
+    <Content Include="Views\LoadShops\getcoupen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

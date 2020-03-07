@@ -367,6 +367,13 @@ namespace RatingApp.Controllers
 
             var rt1 = db.Review_Table.Where(x => x.movieT_ID == id).Select(x => x.rating).Average();
 
+          
+            var userliked = db.movielikes.Where(x => x.movieid == id && x.userid == userid && x.likecount == 1).Count();
+            ViewBag.liked = userliked;
+            var likecount = db.movielikes.Where(x => x.movieid == id).Count();
+            ViewBag.likesc = likecount;
+
+
             ViewBag.getratings = rt1;
             ViewBag.gall = ph;
             ViewBag.product = movieI;
@@ -376,6 +383,50 @@ namespace RatingApp.Controllers
             };
             return View("newview", review);
 
+        }
+        [HttpPost]
+        public ActionResult movielikes(Review_Table rt)
+        {
+            moviedetailsdb1 db = new moviedetailsdb1();
+            movielike lk = new movielike();
+            var likecount = db.movielikes.Where(x => x.movieid == rt.movieT_ID).Count();
+            ViewBag.likesc = likecount;
+            int userid = Convert.ToInt32(Session["id"]);
+            lk.movieid = rt.movieT_ID;
+            lk.userid = userid;
+            if (lk.likecount == null)
+            {
+                lk.likecount = 1;
+            }
+            else
+            {
+                lk.likecount = lk.likecount + 1;
+
+            }
+            var searchdata = db.movielikes.Where(x => x.userid == userid && x.movieid == rt.movieT_ID).AsNoTracking().FirstOrDefault();
+            if (searchdata == null)
+            {
+                db.movielikes.Add(lk);
+                db.SaveChanges();
+                return RedirectToAction("newview", "dashboard", new { id = rt.movieT_ID });
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    lk.movielike1 = searchdata.movielike1;
+                    db.Entry(lk).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("newview", "dashboard", new { id = rt.movieT_ID });
+                }
+                else
+                {
+                    Response.StatusCode = 400;
+                    return Content("Naughty");
+                }
+            }
+
+          
         }
 
         public ActionResult details(int id)
@@ -532,6 +583,11 @@ namespace RatingApp.Controllers
                        };
 
             ViewBag.countC = db.castComments.Count();
+            var userliked = db.castlikes.Where(x => x.castid == id && x.userid == userid && x.likecount == 1).Count();
+            ViewBag.liked = userliked;
+           var likecount = db.castlikes.Where(x=>x.castid==id).Count();
+            ViewBag.likesc = likecount;
+
 
             List<castComment> com = db.castComments.Include(y => y.castreplies).Where(x => x.castrid == id).OrderByDescending(x => x.comdate).ToList();
             PagedList<castComment> model = new PagedList<castComment>(com, page ?? 1, 4);
@@ -545,6 +601,51 @@ namespace RatingApp.Controllers
 
 
 
+        }
+
+        public ActionResult castlikes(castratingsT rt)
+        {
+           
+            moviedetailsdb1 db = new moviedetailsdb1();
+            castlike lk = new castlike();
+            var likecount = db.castlikes.Where(x => x.castid == rt.castid).Count();
+            ViewBag.likesc = likecount;
+            int userid =Convert.ToInt32(Session["id"]);
+            lk.castid = rt.castid;
+            lk.userid = userid;
+            if (lk.likecount == null)
+            {
+                lk.likecount = 1;
+            }
+            else
+            {
+                lk.likecount = lk.likecount + 1;
+
+            }
+            var searchdata = db.castlikes.Where(x => x.userid == userid && x.castid == rt.castid).AsNoTracking().FirstOrDefault();
+            if (searchdata == null)
+            {
+                db.castlikes.Add(lk);
+                db.SaveChanges();
+                return RedirectToAction("castdetails", "dashboard", new { id = rt.castid });
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    lk.likeid = searchdata.likeid;
+                    db.Entry(lk).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("castdetails", "dashboard", new { id = rt.castid });
+                }
+                else
+                {
+                    Response.StatusCode = 400;
+                    return Content("Naughty");
+                }
+            }
+
+               
         }
 
 

@@ -111,6 +111,7 @@ namespace RatingApp.Controllers
                 Session["regname"] = emp.username;
                 Session["profpic"] = emp.profile_pic;
                 Session["roleid"] = emp.roleid;
+                Session["premiumuser"] = emp.premiumuser;
 
                 if (emp.roleid == true)
                 {

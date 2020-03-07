@@ -70,7 +70,7 @@
                             <div data-thumb="@Url.Content(Model.movieitems.imgpath)">
                                 <img style="min-height:400px; width:500px;" src="@Url.Content(Model.movieitems.imgpath)" />
                             </div>
-                            <div class="like-content">
+                            @*<div class="like-content">
 
 
 
@@ -80,7 +80,7 @@
 
                                 @if (Model.rv != null)
                                 {
-                                    @*<a href="#">Likes <span class="badge">@Model.rv.movielikes</span></a><br>*@
+                                   
                                     <a href="#">Likes <span class="badge">@ViewBag.totallikes</span></a><br>
                                 }
                                 else
@@ -90,7 +90,7 @@
                                     </a><br>
                                 }
 
-                            </div>
+                            </div>*@
                            
                             @Html.HiddenFor(Model => Model.rv.rating)
                             @Html.HiddenFor(Model => Model.rv.Content)

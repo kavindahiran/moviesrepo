@@ -59,5 +59,6 @@ namespace RatingApp.Models
         public virtual DbSet<chatmessage> chatmessages { get; set; }
         public virtual DbSet<coupentbl> coupentbls { get; set; }
         public virtual DbSet<castlike> castlikes { get; set; }
+        public virtual DbSet<movielike> movielikes { get; set; }
     }
 }

@@ -19,12 +19,11 @@
                 <a href="@Url.Action("castdetails","dashboard",new { id=obj.cast_id})">     <h2>@obj.cast_name</h2></a>
                 <div class="review">
                     <div class="author-review">
-                        <i class="icofont icofont-star"></i>
-                        <i class="icofont icofont-star"></i>
-                        <i class="icofont icofont-star"></i>
-                        <i class="icofont icofont-star"></i>
-                        <i class="icofont icofont-star"></i>
-                    </div>
+                        @for (int z = 0; z < obj.castratingsTs.Average(x => x.castratings); z++)
+                        {
+                            <i class="icofont icofont-star"></i>
+                        }
+                        </div>
                     <h4>@obj.castratingsTs.Average(e => e.castratings)</h4>
                 </div>
             </div>

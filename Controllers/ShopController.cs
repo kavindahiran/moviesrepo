@@ -195,63 +195,58 @@ namespace RatingApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult like(shopviewmodel sm)
-        {
+        //public ActionResult like(shopviewmodel sm)
+        //{
 
-            moviedetailsdb1 db = new moviedetailsdb1();
-            int userid = Convert.ToInt32(Session["id"].ToString());
-            var data = db.Review_Table.AsNoTracking().ToList().Find(x => x.movieT_ID == sm.movieitems.movie_id && x.userID == userid);
-            Review_Table riv = new Review_Table();
+        //    moviedetailsdb1 db = new moviedetailsdb1();
+        //    int userid = Convert.ToInt32(Session["id"].ToString());
+        //    var data = db.Review_Table.AsNoTracking().ToList().Find(x => x.movieT_ID == sm.movieitems.movie_id && x.userID == userid);
+        //    Review_Table riv = new Review_Table();
             
-            riv.rating = sm.rv.rating;
-            riv.DatePost = DateTime.Now;
-            riv.Content = sm.rv.Content;
-            riv.movieT_ID = sm.movieitems.movie_id;
-            riv.userID = db.usertbls.Single(x => x.user_id.Equals(userid)).user_id;
-            riv.DatePost = DateTime.Now;
-            var countlikes = db.Review_Table.Where(x => x.movieT_ID == sm.movieitems.movie_id).Select(x => x.movielikes).Count();
-            ViewBag.totallikes = countlikes;
-            if (riv.movielikes == null)
-            {
-                riv.movielikes = 1;
-            }
-            else
-            {
-                riv.movielikes = 0;
-            }
-            riv.movielikes = sm.rv.movielikes + 1;
-            if (data == null)
-            {
-                db.Review_Table.Add(riv);
-                db.SaveChanges();
+        //    riv.rating = sm.rv.rating;
+        //    riv.DatePost = DateTime.Now;
+        //    riv.Content = sm.rv.Content;
+        //    riv.movieT_ID = sm.movieitems.movie_id;
+        //    riv.userID = db.usertbls.Single(x => x.user_id.Equals(userid)).user_id;
+        //    riv.DatePost = DateTime.Now;
+        //    var countlikes = db.Review_Table.Where(x => x.movieT_ID == sm.movieitems.movie_id).Select(x => x.movielikes).Count();
+        //    ViewBag.totallikes = countlikes;
+        //    if (riv.movielikes == null)
+        //    {
+        //        riv.movielikes = 1;
+        //    }
+        //    else
+        //    {
+        //        riv.movielikes = 0;
+        //    }
+        //    riv.movielikes = sm.rv.movielikes + 1;
+        //    if (data == null)
+        //    {
+        //        db.Review_Table.Add(riv);
+        //        db.SaveChanges();
 
 
-            }
-            else
-            {
-                if (ModelState.IsValid)
-                {
+        //    }
+        //    else
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
 
 
 
                     
-                    riv.review_id = data.review_id;
-                    db.Entry(riv).State = EntityState.Modified;
-                    db.SaveChanges();
+        //            riv.review_id = data.review_id;
+        //            db.Entry(riv).State = EntityState.Modified;
+        //            db.SaveChanges();
 
-                }
-            }
+        //        }
+        //    }
 
 
-/*
-            moviedetailsdb1 db = new moviedetailsdb1();
-            int userid = Convert.ToInt32(Session["id"].ToString());
-            Review_Table rt = db.Review_Table.ToList().Find(x => x.movieT_ID == sm.movieitems.movie_id && x.userID== userid);
-            rt.movielikes=rt.movielikes+1;
-            db.Review_Table.Add(rt);
-            db.SaveChanges();*/
-            return RedirectToAction("Adtocart", new { movie_id = sm.movieitems.movie_id });
-        }
+
+    
+        //    return RedirectToAction("Adtocart", new { movie_id = sm.movieitems.movie_id });
+        //}
 
         public ActionResult addcom()
         {

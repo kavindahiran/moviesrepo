@@ -14,6 +14,58 @@
 @*<link href="~/Content/movie details view/yummycs.css" rel="stylesheet" />*@
 <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
 <link href="~/Content/movie details view/details2.css" rel="stylesheet" />
+<style>
+   
+
+    .like-content {
+        display: inline-block;
+        width: 100%;
+        margin: 2px 0 0;
+        padding: 10px 0 0;
+        font-size: 18px;
+        border-top: 10px dashed #eee;
+        text-align: center;
+    }
+
+    .like-content span {
+        color: #9d9da4;
+        font-family: monospace;
+    }
+
+    .like-content .btn-secondary {
+        display: block;
+        margin: 2px auto 0px;
+        text-align: center;
+        background: #ed2553;
+        border-radius: 3px;
+        box-shadow: 0 10px 20px -8px rgb(240, 75, 113);
+        padding: 10px 17px;
+        font-size: 18px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        color: #ffffff;
+        text-decoration: none;
+        -webkit-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+
+        .like-content .btn-secondary:hover {
+            transform: translateY(-3px);
+        }
+
+        .like-content .btn-secondary .fa {
+            margin-right: 5px;
+        }
+
+    .animate-like {
+        animation-name: likeAnimation;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-duration: 0.65s;
+    }
+</style>
+
 
 <script>
 
@@ -274,7 +326,7 @@
                                                 <input type="hidden" id="rating" name="rating" class="form-control" />
                                                 <span class="focus-input100"></span>
                                                 @*<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>*@
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>*@
                                             </div>
                                             <div class="form-group">
                                                 @Html.LabelFor(model => model.comments, htmlAttributes: new { @class = "label-input100" })
@@ -291,360 +343,383 @@
                             </div>
                         </div>
                     </div>
+                    <form id="myform">
+                        <div class="like-content">
 
+                            @Html.HiddenFor(model => model.userid);
+                            @Html.HiddenFor(model => model.castid);
 
+                            <button class="btn-secondary like-review" style="margin-left:40px; margin-top:0px; margin-bottom:10px;">
+                                <i class="fa fa-heart" aria-hidden="true"></i> Like
+                            </button>
 
-
-                    @*<div class="container-contact100">
-                            <section>
-                                <div class="wrap-contact100">
-
-                                    <span class="contact100-form-title">
-                                        add your ratings and comments
-                                    </span>
-                                    @if (Session["regname"] == null)
-                                    {
-                                        <span class="contact100-form">
-                                            <a href="@Url.Action("index", "Home")">Login here to add ratings</a>
-                                        </span>
-
-                                    }
-                                    else
-                                    {
-                                        using (Html.BeginForm("sendcastReview", "dashboard", FormMethod.Post, htmlAttributes: new { @class = "contact100-form validate-form" }))
-                                        {
-                                            <label class="label-input100" for="first-name">Tell us your name *</label>
-                                            @Html.LabelFor(model => model.castratings, htmlAttributes: new { @class = "label-input100" })
-                                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                                                <input id="first-name" class="input100" type="text" name="first-name" placeholder="First name">
-                                                <div id="rateYo"></div>
-                                                <input type="hidden" id="rating" name="rating" class="form-control" />
-                                                <span class="focus-input100"></span>
-                                            </div>
-                                            <div class="wrap-input100 rs2-wrap-input100 validate-input" data-validate="Type last name">
-                                                    <input class="input100" type="text" name="last-name" placeholder="Last name">
-                                                    <span class="focus-input100"></span>
-                                                </div>
-
-                                            <label class="label-input100" for="email">Enter your email *</label>
-                                            @Html.LabelFor(model => model.comments, htmlAttributes: new { @class = "label-input100" })
-                                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                                                <input id="email" class="input100" type="text" name="email" placeholder="Eg. example@email.com">
-                                                @Html.TextAreaFor(model => model.comments,new { cols = 20, rows = 5 } new { htmlAttributes = new { @class = "form-control", cols = 20, rows = 5 } })
-                                                <span class="focus-input100"></span>
-                                            </div>
-
-                                            @Html.HiddenFor(model => model.userid);
-                                            @Html.HiddenFor(model => model.castid);
-
-                                            @Html.DisplayFor(model => model.userID)
-                                                @Html.DisplayFor(model => model.movieT_ID)
-                                            <label class="label-input100" for="phone">Enter phone number</label>
-                                                <div class="wrap-input100">
-                                                    <input id="phone" class="input100" type="text" name="phone" placeholder="Eg. +1 800 000000">
-                                                    <span class="focus-input100"></span>
-                                                </div>
-
-                                                <label class="label-input100" for="message">Message *</label>
-                                                <div class="wrap-input100 validate-input" data-validate="Message is required">
-                                                    <textarea id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
-                                                    <span class="focus-input100"></span>
-                                                </div>
-
-                                            <div class="container-contact100-form-btn">
-                                                <button class="contact100-form-btn">
-                                                        Send Message
-                                                    </button>
-                                                <input type="submit" value="submit" name="bt2" class="contact100-form-btn" />
-                                                @Html.HiddenFor(model => model.movieT_ID)
-                                            </div>
-                                        }
-                                    }
-                                    </form>
-
-
-                                    <div class="contact100-more flex-col-c-m" style="background-image: url('@Url.Content(ViewBag.product.cast_profile)');">
-
-                                        <div class="flex-w size1 p-b-47">
-                                            <div class="txt1 p-r-25">
-                                                <span class="lnr lnr-map-marker"></span>
-                                            </div>
-
-                                            <div class="flex-col size2">
-                                                <span class="txt1 p-b-20">
-                                                    Movie Name
-                                                </span>
-
-                                                <span class="txt2">
-                                                    @ViewBag.product.cast_name
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="dis-flex size1 p-b-47">
-                                            <div class="txt1 p-r-25">
-                                                <span class="lnr lnr-phone-handset"></span>
-                                            </div>
-
-                                            <div class="flex-col size2">
-                                                <span class="txt1 p-b-20">
-                                                    Movie Realaase Date
-                                                </span>
-
-                                                <span class="txt3">
-                                                    @ViewBag.product.Movie_release
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="dis-flex size1 p-b-47">
-                                            <div class="txt1 p-r-25">
-                                                <span class="lnr lnr-envelope"></span>
-                                            </div>
-
-                                            <div class="flex-col size2">
-                                                <span class="txt1 p-b-20">
-                                                    Movie Ratings
-                                                </span>
-                                                @{int i = 1; }
-                                                @foreach (var rev in ViewBag.test)
-                                                {
-
-
-
-                                                    <tr>
-                                                            <td>username</td>
-                                                            <td>@rev.account.username</td>
-                                                        </tr>
-
-                                                    <script>
-                           $(function(){
-                               $('#@("rating" +i)').rateYo({
-                                   rating:@rev.castratings,
-                                   readOnly: true
-                               });
-                           });
-                                                    </script>
-                                                    <div id="@("rating" +i)"></div>
-
-
-
-
-
-                                                    i++;
-
-
-
-                                                }
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>*@
-
-
-
-
-
-
-
-
-
-
-
-
-                    @*<div class="post-social-share">
-                            <h3 class="post-sub-heading">Share this post</h3>
-                            <div class="social-media-icons">
-                                <ul>
-                                    <li><a class="facebook" href=""><i class="tf-ion-social-facebook"></i></a></li>
-                                    <li><a class="twitter" href=""><i class="tf-ion-social-twitter"></i></a></li>
-                                    <li><a class="dribbble" href=""><i class="tf-ion-social-dribbble-outline"></i></a></li>
-                                    <li><a class="instagram" href=""><i class="tf-ion-social-instagram"></i></a></li>
-                                    <li><a class="googleplus" href=""><i class="tf-ion-social-googleplus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>*@
-
-                    <div class="post-comments">
-                        <h3 class="post-sub-heading">@ViewBag.countC Comments</h3>
-                        <br />
-                        <ul class="media-list comments-list m-bot-50 clearlist">
-                            @foreach (var comi in ViewBag.comments)
+                            @if (ViewBag.likesc != 0)
                             {
-                                <!-- Comment Item start-->
-                                <li class="media">
-                                    @if (comi.usertbl.profile_pic != null)
+                                @*<a href="#">Likes <span class="badge">@Model.rv.movielikes</span></a><br>*@
+                                <a href="#">Likes <span class="badge">@ViewBag.likesc</span></a><br>
+                            }
+                            else
+                            {
+                                <a href="#">
+                                    Likes <span class="badge">Currently there aren't any Likes available</span>
+                                </a><br>
+                            }
+
+                        </div>
+                    </form>
+
+
+
+                        @*<div class="container-contact100">
+                <section>
+                    <div class="wrap-contact100">
+
+                        <span class="contact100-form-title">
+                            add your ratings and comments
+                        </span>
+                        @if (Session["regname"] == null)
+                        {
+                            <span class="contact100-form">
+                                <a href="@Url.Action("index", "Home")">Login here to add ratings</a>
+                            </span>
+
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("sendcastReview", "dashboard", FormMethod.Post, htmlAttributes: new { @class = "contact100-form validate-form" }))
+                            {
+                                <label class="label-input100" for="first-name">Tell us your name *</label>
+                                @Html.LabelFor(model => model.castratings, htmlAttributes: new { @class = "label-input100" })
+                                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                    <input id="first-name" class="input100" type="text" name="first-name" placeholder="First name">
+                                    <div id="rateYo"></div>
+                                    <input type="hidden" id="rating" name="rating" class="form-control" />
+                                    <span class="focus-input100"></span>
+                                </div>
+                                <div class="wrap-input100 rs2-wrap-input100 validate-input" data-validate="Type last name">
+                                        <input class="input100" type="text" name="last-name" placeholder="Last name">
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                <label class="label-input100" for="email">Enter your email *</label>
+                                @Html.LabelFor(model => model.comments, htmlAttributes: new { @class = "label-input100" })
+                                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                    <input id="email" class="input100" type="text" name="email" placeholder="Eg. example@email.com">
+                                    @Html.TextAreaFor(model => model.comments,new { cols = 20, rows = 5 } new { htmlAttributes = new { @class = "form-control", cols = 20, rows = 5 } })
+                                    <span class="focus-input100"></span>
+                                </div>
+
+                                @Html.HiddenFor(model => model.userid);
+                                @Html.HiddenFor(model => model.castid);
+
+                                @Html.DisplayFor(model => model.userID)
+                                    @Html.DisplayFor(model => model.movieT_ID)
+                                <label class="label-input100" for="phone">Enter phone number</label>
+                                    <div class="wrap-input100">
+                                        <input id="phone" class="input100" type="text" name="phone" placeholder="Eg. +1 800 000000">
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                    <label class="label-input100" for="message">Message *</label>
+                                    <div class="wrap-input100 validate-input" data-validate="Message is required">
+                                        <textarea id="message" class="input100" name="message" placeholder="Write us a message"></textarea>
+                                        <span class="focus-input100"></span>
+                                    </div>
+
+                                <div class="container-contact100-form-btn">
+                                    <button class="contact100-form-btn">
+                                            Send Message
+                                        </button>
+                                    <input type="submit" value="submit" name="bt2" class="contact100-form-btn" />
+                                    @Html.HiddenFor(model => model.movieT_ID)
+                                </div>
+                            }
+                        }
+                        </form>
+
+
+                        <div class="contact100-more flex-col-c-m" style="background-image: url('@Url.Content(ViewBag.product.cast_profile)');">
+
+                            <div class="flex-w size1 p-b-47">
+                                <div class="txt1 p-r-25">
+                                    <span class="lnr lnr-map-marker"></span>
+                                </div>
+
+                                <div class="flex-col size2">
+                                    <span class="txt1 p-b-20">
+                                        Movie Name
+                                    </span>
+
+                                    <span class="txt2">
+                                        @ViewBag.product.cast_name
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="dis-flex size1 p-b-47">
+                                <div class="txt1 p-r-25">
+                                    <span class="lnr lnr-phone-handset"></span>
+                                </div>
+
+                                <div class="flex-col size2">
+                                    <span class="txt1 p-b-20">
+                                        Movie Realaase Date
+                                    </span>
+
+                                    <span class="txt3">
+                                        @ViewBag.product.Movie_release
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="dis-flex size1 p-b-47">
+                                <div class="txt1 p-r-25">
+                                    <span class="lnr lnr-envelope"></span>
+                                </div>
+
+                                <div class="flex-col size2">
+                                    <span class="txt1 p-b-20">
+                                        Movie Ratings
+                                    </span>
+                                    @{int i = 1; }
+                                    @foreach (var rev in ViewBag.test)
                                     {
-                                        <a class="pull-left" href="#">
-                                            <img class="media-object comment-avatar" src="@Url.Content(comi.usertbl.profile_pic)" alt="" width="50" height="50">
-                                            <h4>@comi.usertbl.profile_pic</h4>
-                                        </a>
+
+
+
+                                        <tr>
+                                                <td>username</td>
+                                                <td>@rev.account.username</td>
+                                            </tr>
+
+                                        <script>
+               $(function(){
+                   $('#@("rating" +i)').rateYo({
+                       rating:@rev.castratings,
+                       readOnly: true
+                   });
+               });
+                                        </script>
+                                        <div id="@("rating" +i)"></div>
+
+
+
+
+
+                                        i++;
+
+
+
                                     }
-                                    else
-                                    {
-                                        <a class="pull-left" href="#">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>*@
 
-                                            <img class="media-object comment-avatar" src="~/castImageFolder/blank-picture-holder.png" alt="" width="50" height="50">
-                                        </a>
-                                    }
-                                    <div class="media-body">
-                                        <div class="comment-info">
-                                            <h4 class="comment-author">
-                                                <a href="#">@comi.usertbl.username</a>
 
-                                            </h4>
-                                            <time>@comi.comdate</time>
-                                            <a class="comment-button" href="#"><i class="tf-ion-chatbubbles"></i>Reply</a>
-                                        </div>
 
-                                        <p>
-                                            @comi.comments
-                                        </p>
 
-                                        <!--  second level Comment start-->
-                                        @foreach (var rep in comi.castreplies)
+
+
+
+
+
+
+
+
+                        @*<div class="post-social-share">
+                <h3 class="post-sub-heading">Share this post</h3>
+                <div class="social-media-icons">
+                    <ul>
+                        <li><a class="facebook" href=""><i class="tf-ion-social-facebook"></i></a></li>
+                        <li><a class="twitter" href=""><i class="tf-ion-social-twitter"></i></a></li>
+                        <li><a class="dribbble" href=""><i class="tf-ion-social-dribbble-outline"></i></a></li>
+                        <li><a class="instagram" href=""><i class="tf-ion-social-instagram"></i></a></li>
+                        <li><a class="googleplus" href=""><i class="tf-ion-social-googleplus"></i></a></li>
+                    </ul>
+                </div>
+            </div>*@
+
+                        <div class="post-comments" style="margin-top:30px;">
+                            <h3 class="post-sub-heading">@ViewBag.countC Comments</h3>
+                            <br />
+                            <ul class="media-list comments-list m-bot-50 clearlist">
+                                @foreach (var comi in ViewBag.comments)
+                                {
+                                    <!-- Comment Item start-->
+                                    <li class="media">
+                                        @if (comi.usertbl.profile_pic != null)
                                         {
-                                            <div class="media">
-                                                @if (rep.usertbl.profile_pic != null)
-                                                {
-                                                    <a class="pull-left" href="#">
-                                                        <img class="media-object comment-avatar" src="images/blog/avater-2.jpg" alt="" width="50" height="50">
-                                                    </a>
-                                                }
-                                                else
-                                                {
-                                                    <a class="pull-left" href="#">
+                                            <a class="pull-left" href="#">
+                                                <img class="media-object comment-avatar" src="@Url.Content(comi.usertbl.profile_pic)" alt="" width="50" height="50">
+                                                <h4>@comi.usertbl.profile_pic</h4>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a class="pull-left" href="#">
 
-                                                        <img class="media-object comment-avatar" src="~/castImageFolder/blank-picture-holder.png" alt="" width="50" height="50">
-                                                    </a>
-                                                }
+                                                <img class="media-object comment-avatar" src="~/castImageFolder/blank-picture-holder.png" alt="" width="50" height="50">
+                                            </a>
+                                        }
+                                        <div class="media-body">
+                                            <div class="comment-info">
+                                                <h4 class="comment-author">
+                                                    <a href="#">@comi.usertbl.username</a>
+
+                                                </h4>
+                                                <time>@comi.comdate</time>
+                                                <a class="comment-button" href="#"><i class="tf-ion-chatbubbles"></i>Reply</a>
+                                            </div>
+
+                                            <p>
+                                                @comi.comments
+                                            </p>
+
+                                            <!--  second level Comment start-->
+                                            @foreach (var rep in comi.castreplies)
+                                            {
+                                                <div class="media">
+                                                    @if (rep.usertbl.profile_pic != null)
+                                                    {
+                                                        <a class="pull-left" href="#">
+                                                            <img class="media-object comment-avatar" src="images/blog/avater-2.jpg" alt="" width="50" height="50">
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="pull-left" href="#">
+
+                                                            <img class="media-object comment-avatar" src="~/castImageFolder/blank-picture-holder.png" alt="" width="50" height="50">
+                                                        </a>
+                                                    }
+                                                    <div class="media-body">
+
+                                                        <div class="comment-info">
+                                                            <div class="comment-author">
+                                                                <a href="#">@rep.usertbl.username</a>
+                                                            </div>
+                                                            <time>@rep.replydate</time>
+                                                            <a class="comment-button" href="#"><i class="tf-ion-chatbubbles"></i>Reply</a>
+                                                        </div>
+
+                                                        <p>
+                                                            @rep.replys
+                                                        </p>
+
+
+                                                        <!-- third level Comment start -->
+                                                        @*<div class="media">
+
+                                                <a class="pull-left" href="#">
+                                                    <img class="media-object comment-avatar" src="images/blog/avater-3.jpg" alt="" width="50" height="50">
+                                                </a>
+
                                                 <div class="media-body">
 
                                                     <div class="comment-info">
                                                         <div class="comment-author">
                                                             <a href="#">@rep.usertbl.username</a>
                                                         </div>
-                                                        <time>@rep.replydate</time>
+                                                        <time>July 02, 2015, at 11:34</time>
                                                         <a class="comment-button" href="#"><i class="tf-ion-chatbubbles"></i>Reply</a>
                                                     </div>
 
                                                     <p>
-                                                        @rep.replys
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
                                                     </p>
 
 
-                                                    <!-- third level Comment start -->
-                                                    @*<div class="media">
-
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object comment-avatar" src="images/blog/avater-3.jpg" alt="" width="50" height="50">
-                                    </a>
-
-                                    <div class="media-body">
-
-                                        <div class="comment-info">
-                                            <div class="comment-author">
-                                                <a href="#">@rep.usertbl.username</a>
-                                            </div>
-                                            <time>July 02, 2015, at 11:34</time>
-                                            <a class="comment-button" href="#"><i class="tf-ion-chatbubbles"></i>Reply</a>
-                                        </div>
-
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque at magna ut ante eleifend eleifend.
-                                        </p>
-
-
-                                    </div>
-
-                                </div>*@
-                                                    <!-- third level Comment end -->
                                                 </div>
 
-                                            </div>
-                                        }
-                                        @if (Session["id"] != null)
-                                        {
-                                            using (Html.BeginForm("castreplies", "dashboard", FormMethod.Post))
-                                            {
-                                                <div class="row">
-
-                                                    <div class="col-md-6 form-group">
-                                                        <!-- Name -->
-
-                                                        <input type="hidden" name="cid" value="@comi.ccid" />
-                                                        @*<input type="hidden" name="movieid" value="@com.movieid" />*@
-                                                        <input type="hidden" name="userid" value="@comi.userid" />
-                                                        <input type="text" name="replys" id="name" class=" form-control" placeholder="Reply *" maxlength="100" required="">
-                                                        <input type="hidden" name="castid" value="@comi.castrid" />
+                                            </div>*@
+                                                        <!-- third level Comment end -->
                                                     </div>
 
                                                 </div>
-                                                <div class="col-md-6 form-group">
-                                                    <input type="submit" value="Post" class="btn btn-success" style="margin-top:10px;" />
-                                                </div>
-
                                             }
-                                        }
-                                        else
-                                        {
-                                            <h4><span class="label label-default">Login Here To Reply</span></h4>
-                                        }
+                                            @if (Session["id"] != null)
+                                            {
+                                                using (Html.BeginForm("castreplies", "dashboard", FormMethod.Post))
+                                                {
+                                                    <div class="row">
 
-                                        <!-- second level Comment end -->
+                                                        <div class="col-md-6 form-group">
+                                                            <!-- Name -->
 
-                                    </div>
+                                                            <input type="hidden" name="cid" value="@comi.ccid" />
+                                                            @*<input type="hidden" name="movieid" value="@com.movieid" />*@
+                                                            <input type="hidden" name="userid" value="@comi.userid" />
+                                                            <input type="text" name="replys" id="name" class=" form-control" placeholder="Reply *" maxlength="100" required="">
+                                                            <input type="hidden" name="castid" value="@comi.castrid" />
+                                                        </div>
 
-                                </li>
-                                @*<div class="">
-                                    @Html.PagedListPager( ,page => Url.Action("Index", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
-                                </div>*@
-                            }
+                                                    </div>
+                                                    <div class="col-md-6 form-group">
+                                                        <input type="submit" value="Post" class="btn btn-success" style="margin-top:10px;" />
+                                                    </div>
 
-                        </ul>
-                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <h4><span class="label label-default">Login Here To Reply</span></h4>
+                                            }
 
-                   
+                                            <!-- second level Comment end -->
 
-                    <div class="post-comments-form">
-                        <h3 class="post-sub-heading">Leave You Comments</h3>
-                        <br />
-                        @if (Session["id"] != null)
-                        {
-                            using (Html.BeginForm("postcom", "dashboard", FormMethod.Post))
+                                        </div>
+
+                                    </li>
+                                    @*<div class="">
+                            @Html.PagedListPager( ,page => Url.Action("Index", new { page }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded })
+                        </div>*@
+                                }
+
+                            </ul>
+                        </div>
+
+
+
+                        <div class="post-comments-form">
+                            <h3 class="post-sub-heading">Leave You Comments</h3>
+                            <br />
+                            @if (Session["id"] != null)
                             {
+                                using (Html.BeginForm("postcom", "dashboard", FormMethod.Post))
+                                {
 
-                                <div class="row">
+                                    <div class="row">
 
 
 
 
-                                    <div class="form-group col-md-7">
-                                        <!-- Website -->
-                                        <input type="text" name="cimtxt" id="website" class=" form-control" placeholder="Website" maxlength="100">
+                                        <div class="form-group col-md-7">
+                                            <!-- Website -->
+                                            <input type="text" name="cimtxt" id="website" class=" form-control" placeholder="Website" maxlength="100">
+                                        </div>
+
+                                        @Html.HiddenFor(Model => Model.castid)
+
+                                        <!-- Send Button -->
+                                        <div class="form-group col-md-12">
+                                            <button type="submit" class="btn btn-small btn-main ">
+                                                Send comment
+                                            </button>
+                                        </div>
+
+
                                     </div>
 
-                                    @Html.HiddenFor(Model => Model.castid)
-
-                                    <!-- Send Button -->
-                                    <div class="form-group col-md-12">
-                                        <button type="submit" class="btn btn-small btn-main ">
-                                            Send comment
-                                        </button>
-                                    </div>
-
-
-                                </div>
-
+                                }
                             }
-                        }
-                        else
-                        {
-                            <h4><span class="label label-default">you Need To Login To Add Comments</span></h4>
-                        }
-                    </div>
+                            else
+                            {
+                                <h4><span class="label label-default">you Need To Login To Add Comments</span></h4>
+                            }
+                        </div>
 
 
                 </div>
@@ -711,6 +786,35 @@
             el: '.swiper-pagination',
         },
     });
+
+
+     $(function(){
+	$(document).one('click', '.like-review', function(e) {
+		$(this).html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
+        $(this).children('.fa-heart').addClass('animate-like');
+
+          var data = $("#myform").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/dashboard/castlikes",
+                data: data,
+                success: function () {
+                    
+
+                }
+
+            })
+
+    });
+
+
+
+
+
+});
+
+
+
 </script>
 
 

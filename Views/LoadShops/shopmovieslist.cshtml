@@ -1,0 +1,40 @@
+﻿@model List<RatingApp.Models.Landmark121>
+
+
+<table class="table table-data2">
+    <thead>
+        <tr>
+           
+            <th>Movie Name</th>
+            <th>Director</th>
+            <th>Location Name</th>
+            <th>Released Date</th>
+            <th>Category</th>
+            <th>Shop Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr class="tr-shadow">
+        
+            <td>@item.Movie_Item.Movie_name</td>
+            <td>
+                <span class="block-email">@item.Movie_Item.Movie_director</span>
+            </td>
+            <td class="desc">@item.LandmarkName</td>
+            <td>@item.Movie_Item.Movie_release</td>
+            <td>
+                <span class="status--process">@item.Movie_Item.category</span>
+            </td>
+            <td>@item.movieshop.shopname</td>
+           
+        </tr>
+        <tr class="spacer"></tr>
+
+        }
+
+
+    </tbody>
+</table>

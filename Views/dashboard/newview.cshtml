@@ -46,6 +46,57 @@
         overflow: visible;
         clip: auto;
     }
+
+    
+    .like-content {
+        display: inline-block;
+        width: 100%;
+        margin: 2px 0 0;
+        padding: 10px 0 0;
+        font-size: 18px;
+        border-top: 10px dashed #eee;
+        text-align: center;
+    }
+
+    .like-content span {
+        color: #9d9da4;
+        font-family: monospace;
+    }
+
+    .like-content .btn-secondary {
+        display: block;
+        margin: 2px auto 0px;
+        text-align: center;
+        background: #ed2553;
+        border-radius: 3px;
+        box-shadow: 0 10px 20px -8px rgb(240, 75, 113);
+        padding: 10px 17px;
+        font-size: 18px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        color: #ffffff;
+        text-decoration: none;
+        -webkit-transition: 0.3s ease;
+        transition: 0.3s ease;
+    }
+
+        .like-content .btn-secondary:hover {
+            transform: translateY(-3px);
+        }
+
+        .like-content .btn-secondary .fa {
+            margin-right: 5px;
+        }
+
+    .animate-like {
+        animation-name: likeAnimation;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-duration: 0.65s;
+    }
+
+
 </style>
 <script>
 
@@ -207,7 +258,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 col-xl-5">
                 <div class="section_tittle">
-                 
+
                     <h2>Sample Scenes from the movie</h2>
                     @*<span>Stars fowl deep she greater bearing to seed dont is let you're appear first thing saying it years abundantly fowl tree you shall also</span>*@
                 </div>
@@ -235,6 +286,7 @@
                     }
                 }
 
+
             </div>
         </div>
 
@@ -250,6 +302,8 @@
 
         </div>
     </div>
+
+
     <div class="col-md-4">
         <div class="panel panel-default">
 
@@ -446,4 +500,57 @@
 
 
 
+<form id="myform">
+    <div class="like-content">
 
+        @Html.HiddenFor(model => model.userID)
+        @Html.HiddenFor(model => model.movieT_ID)
+
+        <button class="btn-secondary like-review" style="margin-left:40px; margin-top:0px; margin-bottom:10px;">
+            <i class="fa fa-heart" aria-hidden="true"></i> Like
+        </button>
+
+        @if (ViewBag.likesc != 0)
+        {
+            @*<a href="#">Likes <span class="badge">@Model.rv.movielikes</span></a><br>*@
+            <a href="#">Likes <span class="badge">@ViewBag.likesc</span></a><br>
+        }
+        else
+        {
+            <a href="#">
+                Likes <span class="badge">Currently there aren't any Likes available</span>
+            </a><br>
+        }
+
+    </div>
+</form>
+
+
+<script>
+
+
+      $(function(){
+	$(document).one('click', '.like-review', function(e) {
+		$(this).html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
+        $(this).children('.fa-heart').addClass('animate-like');
+
+          var data = $("#myform").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/dashboard/movielikes",
+                data: data,
+                success: function () {
+                    
+
+                }
+
+            })
+
+    });
+
+
+
+
+
+});
+</script>
