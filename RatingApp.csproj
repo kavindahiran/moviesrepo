@@ -534,6 +534,25 @@
     <Content Include="Content\booktickets\css\micons\micons.css" />
     <Content Include="Content\booktickets\css\vendor.css" />
     <Content Include="Content\codepen\code.css" />
+    <Content Include="Content\commision_software\bg1.jpg" />
+    <Content Include="Content\commision_software\bt-next.png" />
+    <Content Include="Content\commision_software\bt-prev.png" />
+    <Content Include="Content\commision_software\custom.js" />
+    <Content Include="Content\commision_software\jquery-hover-effect.js" />
+    <Content Include="Content\commision_software\jquery.prettyPhoto.js" />
+    <Content Include="Content\commision_software\prettyPhoto.css" />
+    <Content Include="Content\commision_software\Screenshot %28241%29.png" />
+    <Content Include="Content\commision_software\Screenshot %28242%29.png" />
+    <Content Include="Content\commision_software\Screenshot %28243%29.png" />
+    <Content Include="Content\commision_software\Screenshot %28244%29.png" />
+    <Content Include="Content\commision_software\Screenshot %28245%29.png" />
+    <Content Include="Content\commision_software\Screenshot %28246%29.png" />
+    <Content Include="Content\commision_software\sequence.css" />
+    <Content Include="Content\commision_software\sequence.jquery.js" />
+    <Content Include="Content\commision_software\style.css" />
+    <Content Include="Content\commision_software\thumb1.png" />
+    <Content Include="Content\commision_software\thumb2.png" />
+    <Content Include="Content\commision_software\thumb3.png" />
     <Content Include="Content\coupencss\coupcss.css" />
     <Content Include="Content\custom404error\custom2.css" />
     <Content Include="Content\custom404error\customerror.css" />
@@ -570,6 +589,17 @@
     <Content Include="Content\shopcollection\main.js" />
     <Content Include="Content\shopcollection\plugins.js" />
     <Content Include="Content\shopcollection\style.css" />
+    <Content Include="Content\shoploadhomepage\a.jpg" />
+    <Content Include="Content\shoploadhomepage\jquery.easing.1.3.min.js" />
+    <Content Include="Content\shoploadhomepage\jquery.sticky.js" />
+    <Content Include="Content\shoploadhomepage\land.jpg" />
+    <Content Include="Content\shoploadhomepage\main.js" />
+    <Content Include="Content\shoploadhomepage\owl.carousel.css" />
+    <Content Include="Content\shoploadhomepage\owl.carousel.min.js" />
+    <Content Include="Content\shoploadhomepage\qq.jpg" />
+    <Content Include="Content\shoploadhomepage\responsive.css" />
+    <Content Include="Content\shoploadhomepage\style.css" />
+    <Content Include="Content\shoploadhomepage\UWPdYN.jpg" />
     <Content Include="Content\shoplogin\avatar-01.jpg" />
     <Content Include="Content\shoplogin\font-awesome.min.css" />
     <Content Include="Content\shoplogin\img-01.jpg" />
@@ -1237,10 +1267,13 @@
     <Content Include="Views\LoadShops\generatecoupen.cshtml" />
     <Content Include="Views\Shared\layoutwithoutH.cshtml" />
     <Content Include="Views\LoadShops\getcoupen.cshtml" />
+    <Content Include="Views\LoadShops\downloadsoftware.cshtml" />
+    <Content Include="Views\LoadShops\homepage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="castImage\" />
+    <Folder Include="publishes\" />
     <Folder Include="UploadedImage\" />
   </ItemGroup>
   <ItemGroup>

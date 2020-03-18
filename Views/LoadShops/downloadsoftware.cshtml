@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "downloadsoftware";
+    Layout = "~/Views/Shared/downloadpage.cshtml";
+}
+
+
+<a href="#header" id="back-to-top" class="top"><i class="fa fa-chevron-up"></i></a>
+<section id="header" class="header">
+    <div class="top-bar">
+        <div class="container">
+            <div class="navigation" id="navigation-scroll">
+                <div class="row">
+                    <div class="col-md-11 col-xs-10">
+                        <a href="index.html"><span id="logo"><strong class="strong">MOVIES</strong>.LK APPS</span></a>
+                    </div>
+                
+                </div><!-- /.row -->
+            </div><!-- /.navigation -->
+        </div><!--/.container-->
+    </div><!--/.top-bar-->
+
+    <div class="container">
+        <div class="starting">
+            <div class="row">
+                <div class="col-md-6">
+                   
+                    <img src="~/Content/commision_software/Screenshot (246).png" alt="LUCY" class="wow flipInY animated animated">
+                </div>
+                <div class="col-md-6">
+                    <div class="banner-text">
+                        <h2 class="animation-box wow bounceIn animated">
+                            <strong class="strong">Shop Commision</strong><br>
+                            System
+                        </h2>
+                        <p>
+                            This is windows based Dot Net desktop application used to manege sales within the store.The applicaion automatically calculates the 
+                            commision required for the vendors and the profit for the business based on total sales. 
+                        </p>
+                        <a href="~/publishes/publishapps.zip" download="Commision Application" class="btn btn-download wow animated fadeInLeft">
+                            <i class="fa fa-download pull-left"></i>
+                            <strong>Download Setup </strong>
+                            <br />Dot Net
+                        </a>
+                        <a href="#" class="btn btn-download wow animated fadeInRight">
+                            <i class="fa fa-phone pull-left"></i>
+                            <strong>Contact Us</strong>
+                            <br />
+                        </a>
+                    </div> <!-- /.banner-text -->
+                </div>
+            </div>
+        </div>
+        <!-- /.starting -->
+    </div>
+    <!-- /.container -->
+</section>
+
+
+<script src="~/Content/download page/js/bootstrap.min.js"></script>
+<script src="~/Content/download page/js/classie.js"></script>
+<script src="~/Content/download page/js/jquery-1.11.2.min.js"></script>
+
+<script src="~/Content/download page/js/nivo-lightbox.min.js"></script>
+<script src="~/Content/download page/js/owl-carousel.js"></script>
+<script src="~/Content/download page/js/script.js"></script>
+<script src="~/Content/download page/js/smoothscroll.js"></script>
+<script src="~/Content/download page/js/wow.min.js"></script>
+
+
+<script>
+    new WOW().init();
+</script>
+<script>
+    $(document).ready(function () {
+        $(".hideit").click(function () {
+            $(".overlay").hide();
+        });
+        $("#trigger-overlay").click(function () {
+            $(".overlay").show();
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+
+        var kawa = $('.top-bar');
+        var back = $('#back-to-top');
+        function scroll() {
+            if ($(window).scrollTop() > 700) {
+                kawa.addClass('fixed');
+                back.addClass('show-top');
+
+            } else {
+                kawa.removeClass('fixed');
+                back.removeClass('show-top');
+            }
+        }
+
+        document.onscroll = scroll;
+    });
+</script>
+<!--HHHHHHHHHHHH        Smooth Scrooling     HHHHHHHHHHHHHHHH-->
+<script>
+    $(function () {
+        $('a[href*=#]:not([href=#])').click(function () {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+</script>

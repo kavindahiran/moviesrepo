@@ -1,4 +1,4 @@
-﻿
+﻿@model RatingApp.Models.bookingtempcart
 @{
     ViewBag.Title = "listbookingcart";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +6,40 @@
 
 <link href="~/Content/movieshopcss/cartcheck.css" rel="stylesheet" />
 
+<style>
+    .button {
+        background-color: mediumblue; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
 
+    .button1 {
+        background-color: red; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 11px;
+    }
+
+    .btn {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+</style>
 
 
 
@@ -134,22 +167,24 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="block">
                             <div class="product-list">
-                                <form method="post">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="">Profile Pic</th>
-                                                <th class="">Hall Name</th>
-                                                <th class="">Hall Location</th>
-                                                <th class="">Ticket Price</th>
-                                                <th class="">Quantity</th>
-                                                <th class="">Bill</th>
-                                                <th class="">Total Bill</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in TempData["tempcart3"] as List<RatingApp.Models.bookingfoodtempcart>)
-                                            {
+                                @using (Html.BeginForm("removeitem", "Booktickets", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                  
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="">Profile Pic</th>
+                                                    <th class="">Hall Name</th>
+                                                    <th class="">Hall Location</th>
+                                                    <th class="">Ticket Price</th>
+                                                    <th class="">Quantity</th>
+                                                    <th class="">Bill</th>
+                                                    <th class="">Total Bill</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in TempData["tempcart3"] as List<RatingApp.Models.bookingfoodtempcart>)
+                                                {
                                                 <tr class="">
                                                     <td class="">
                                                         <div class="product-info">
@@ -170,16 +205,18 @@
                                                             @TempData["total2"]
                                                         }
                                                     </td>
+                                                    @Html.Hidden("foodid", item.foodid)
                                                     <td class="">
-                                                        <a class="product-remove" href="">Remove</a>
+                                                        <input type="submit" class="button1" value="Remove">
                                                     </td>
                                                 </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                    <a href="checkout.html" class="btn btn-main pull-right">Checkout</a>
-                                </form>
-                            </div>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        <a href="@Url.Action("addfooditems","Booktickets",new { id=ViewBag.hallidno})" class="btn btn-main pull-right">Shop Now</a>
+                                    
+                                }
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -187,7 +224,7 @@
             else
             {
                 <h2 style="color:red"> Cart is empty....</h2>
-                @Html.ActionLink("go Back", "Index", "Home")
+                <a href="@Url.Action("addfooditems","Booktickets",new { id=ViewBag.hallidno})" class="b4">Return To Add Beaverage</a>
             }
 
             @if (TempData["tempcart3"] != null)
@@ -195,7 +232,7 @@
                 using (Html.BeginForm())
                 {
                     @*<input type="submit" value="Shop Now" class="btn btn-primary" onclick="window.location.href = '@Url.Action("billing","Shop")';"/>*@
-                    <a href="@Url.Action("Bookbilling","Booktickets")" class="button">Shop Now</a>
+                    <a href="@Url.Action("Bookbilling","Booktickets")" class="button">Checkout</a>
                 }
             }
 

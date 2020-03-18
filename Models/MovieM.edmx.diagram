@@ -4,86 +4,86 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="53662190922649e29f10fe99a74e4bfd" Name="Diagram1" ZoomLevel="71">
-        <EntityTypeShape EntityType="Models.heroarenatable" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.Movie_Item" Width="1.5" PointX="0.625" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.newsforum" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.trailertb" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.usertbl" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Models.PhotoGallery" Width="1.5" PointX="3" PointY="10.5" />
+      <Diagram DiagramId="53662190922649e29f10fe99a74e4bfd" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="Models.heroarenatable" Width="1.5" PointX="5.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.Movie_Item" Width="1.5" PointX="0.875" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.newsforum" Width="1.5" PointX="7" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.trailertb" Width="1.5" PointX="5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.usertbl" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.PhotoGallery" Width="1.5" PointX="5" PointY="5.625" />
         <AssociationConnector Association="Models.FK_PhotoGallery_PhotoGallery" />
-        <EntityTypeShape EntityType="Models.shoppingcart" Width="1.5" PointX="3" PointY="14" />
+        <EntityTypeShape EntityType="Models.shoppingcart" Width="1.5" PointX="2.875" PointY="7.875" />
         <AssociationConnector Association="Models.FK_shoppingcart_shoppingcart" />
-        <EntityTypeShape EntityType="Models.castphotogallery" Width="1.5" PointX="2.875" PointY="17.375" />
-        <EntityTypeShape EntityType="Models.Landmark121" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="Models.castphotogallery" Width="1.5" PointX="9.125" PointY="9.625" />
+        <EntityTypeShape EntityType="Models.Landmark121" Width="1.5" PointX="11.125" PointY="3.5" />
         <AssociationConnector Association="Models.FK_castphotogallery_castphotogallery" />
-        <EntityTypeShape EntityType="Models.inovice" Width="1.5" PointX="5.25" PointY="11" />
+        <EntityTypeShape EntityType="Models.inovice" Width="1.5" PointX="9.125" PointY="5.5" />
         <AssociationConnector Association="Models.FK_inovice_shoppingcart" />
         <AssociationConnector Association="Models.FK_inovice_usertbl" />
-        <EntityTypeShape EntityType="Models.ordertable" Width="1.5" PointX="8.5" PointY="4.25" />
+        <EntityTypeShape EntityType="Models.ordertable" Width="1.5" PointX="13.25" PointY="3.25" />
         <AssociationConnector Association="Models.FK_ordertable_inovice" />
         <AssociationConnector Association="Models.FK_ordertable_Movie_Item" />
-        <EntityTypeShape EntityType="Models.comment" Width="1.5" PointX="8.125" PointY="0.75" />
-        <EntityTypeShape EntityType="Models.reply" Width="1.5" PointX="11.375" PointY="4.625" />
+        <EntityTypeShape EntityType="Models.comment" Width="1.5" PointX="7.125" PointY="0.625" />
+        <EntityTypeShape EntityType="Models.reply" Width="1.5" PointX="13.125" PointY="0.625" />
         <AssociationConnector Association="Models.FK_comments_Movie_Item" />
         <AssociationConnector Association="Models.FK_comments_usertbl" />
         <AssociationConnector Association="Models.FK_replies_comments" />
         <AssociationConnector Association="Models.FK_replies_usertbl" />
-        <EntityTypeShape EntityType="Models.castratingsT" Width="1.5" PointX="3" PointY="20.75" />
+        <EntityTypeShape EntityType="Models.castratingsT" Width="1.5" PointX="18.875" PointY="6.375" />
         <AssociationConnector Association="Models.FK_castratingsT_castratingsT" />
         <AssociationConnector Association="Models.FK_castratingsT_usertbl" />
         <AssociationConnector Association="Models.FK_Landmark121_Movie_Item" />
-        <EntityTypeShape EntityType="Models.castComment" Width="1.5" PointX="5.25" PointY="16.125" />
-        <EntityTypeShape EntityType="Models.castreply" Width="1.5" PointX="7.5" PointY="14.875" />
+        <EntityTypeShape EntityType="Models.castComment" Width="1.5" PointX="18.875" PointY="0.5" />
+        <EntityTypeShape EntityType="Models.castreply" Width="1.5" PointX="18.875" PointY="3.625" />
         <AssociationConnector Association="Models.FK_castComments_castratingsT" />
         <AssociationConnector Association="Models.FK_castComments_usertbl" />
         <AssociationConnector Association="Models.FK_castreply_castComments" />
         <AssociationConnector Association="Models.FK_castreply_usertbl" />
-        <EntityTypeShape EntityType="Models.hallLocation" Width="1.5" PointX="15" PointY="9" />
-        <EntityTypeShape EntityType="Models.nowshowing" Width="1.5" PointX="10.5" PointY="10" />
-        <EntityTypeShape EntityType="Models.showtime" Width="1.5" PointX="15" PointY="11.625" />
-        <EntityTypeShape EntityType="Models.halltable" Width="1.5" PointX="12.75" PointY="10.125" />
+        <EntityTypeShape EntityType="Models.hallLocation" Width="1.5" PointX="15.125" PointY="0.625" />
+        <EntityTypeShape EntityType="Models.nowshowing" Width="1.5" PointX="11.125" PointY="6.75" />
+        <EntityTypeShape EntityType="Models.showtime" Width="1.5" PointX="15" PointY="3" />
+        <EntityTypeShape EntityType="Models.halltable" Width="1.5" PointX="13.25" PointY="7" />
         <AssociationConnector Association="Models.FK_hallLocation_halltable" />
         <AssociationConnector Association="Models.FK_halltable_nowshowing" />
         <AssociationConnector Association="Models.FK_showtimes_halltable" />
-        <EntityTypeShape EntityType="Models.tickettbl" Width="1.5" PointX="17.25" PointY="8.5" />
+        <EntityTypeShape EntityType="Models.tickettbl" Width="1.5" PointX="17" PointY="0.625" />
         <AssociationConnector Association="Models.FK_tickettbl_hallLocation" />
         <AssociationConnector Association="Models.FK_tickettbl_halltable" />
         <AssociationConnector Association="Models.FK_tickettbl_nowshowing" />
         <AssociationConnector Association="Models.FK_tickettbl_showtimes" />
         <AssociationConnector Association="Models.FK_tickettbl_usertbl" />
         <EntityTypeShape EntityType="Models.movieCastcrew" Width="1.5" PointX="3" PointY="3.375" />
-        <EntityTypeShape EntityType="Models.Review_Table" Width="1.5" PointX="8.125" PointY="11.25" />
+        <EntityTypeShape EntityType="Models.Review_Table" Width="1.5" PointX="7" PointY="6.875" />
         <AssociationConnector Association="Models.FK_castComments_movieCastcrew" />
         <AssociationConnector Association="Models.FK_movieCastcrew_Movie_Item" />
         <AssociationConnector Association="Models.FK_Review_Table_Movie_Item" />
         <AssociationConnector Association="Models.FK_Review_Table_usertbl" />
         <EntityTypeShape EntityType="Models.barcodeT" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="Models.movieshop" Width="1.5" PointX="10.125" PointY="1.5" />
+        <EntityTypeShape EntityType="Models.movieshop" Width="1.5" PointX="9.125" PointY="0.625" />
         <AssociationConnector Association="Models.FK_barcodeT_Movie_Item" />
         <AssociationConnector Association="Models.FK_Landmark121_movieshop" />
         <AssociationConnector Association="Models.FK_castratingsT_castratingsT1" />
-        <EntityTypeShape EntityType="Models.newscontainer" Width="1.5" PointX="5" PointY="24.5" />
+        <EntityTypeShape EntityType="Models.newscontainer" Width="1.5" PointX="11.125" PointY="10" />
         <AssociationConnector Association="Models.FK_newscontainer_newsforum" />
-        <EntityTypeShape EntityType="Models.HallFoodTbl" Width="1.5" PointX="15" PointY="14.375" />
+        <EntityTypeShape EntityType="Models.HallFoodTbl" Width="1.5" PointX="17" PointY="5.125" />
         <AssociationConnector Association="Models.FK_HallFoodTbl_halltable" />
-        <EntityTypeShape EntityType="Models.bookinvoicetbl" Width="1.5" PointX="3" PointY="28" />
-        <EntityTypeShape EntityType="Models.bookordertbl" Width="1.5" PointX="15" PointY="18.75" />
-        <EntityTypeShape EntityType="Models.foodOrderTbl" Width="1.5" PointX="15" PointY="23.875" />
+        <EntityTypeShape EntityType="Models.bookinvoicetbl" Width="1.5" PointX="7" PointY="9.875" />
+        <EntityTypeShape EntityType="Models.bookordertbl" Width="1.5" PointX="15.125" PointY="7.75" />
+        <EntityTypeShape EntityType="Models.foodOrderTbl" Width="1.5" PointX="17.125" PointY="7.875" />
         <AssociationConnector Association="Models.FK_bookinvoicetbl_usertbl" />
         <AssociationConnector Association="Models.FK_bookordertbl_bookinvoicetbl" />
         <AssociationConnector Association="Models.FK_bookordertbl_halltable" />
         <AssociationConnector Association="Models.FK_bookordertbl_nowshowing" />
         <AssociationConnector Association="Models.FK_foodOrderTbl_halltable" />
         <AssociationConnector Association="Models.FK_foodOrderTbl_nowshowing" />
-        <EntityTypeShape EntityType="Models.foodInvoice" Width="1.5" PointX="3" PointY="33" />
+        <EntityTypeShape EntityType="Models.foodInvoice" Width="1.5" PointX="4.875" PointY="8" />
         <AssociationConnector Association="Models.FK_foodInvoice_usertbl" />
         <AssociationConnector Association="Models.FK_foodOrderTbl_foodInvoice" />
-        <EntityTypeShape EntityType="Models.chatmessage" Width="1.5" PointX="3.125" PointY="37.375" />
+        <EntityTypeShape EntityType="Models.chatmessage" Width="1.5" PointX="13.25" PointY="10.625" />
         <AssociationConnector Association="Models.FK_chatmessage_usertbl" />
-        <EntityTypeShape EntityType="Models.coupentbl" Width="1.5" PointX="12.5" PointY="0.75" />
+        <EntityTypeShape EntityType="Models.coupentbl" Width="1.5" PointX="11.125" PointY="0.625" />
         <AssociationConnector Association="Models.FK_coupentbl_movieshop" />
-        <EntityTypeShape EntityType="Models.castlike" Width="1.5" PointX="11.25" PointY="14.5" />
+        <EntityTypeShape EntityType="Models.castlike" Width="1.5" PointX="15" PointY="5.25" />
         <AssociationConnector Association="Models.FK_castlikes_movieCastcrew" />
         <AssociationConnector Association="Models.FK_castlikes_usertbl" />
         <AssociationConnector Association="Models.FK_coupentbl_usertbl" />

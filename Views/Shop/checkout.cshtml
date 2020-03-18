@@ -6,7 +6,42 @@
 <link href="~/Content/movieshopcss/cartcheck.css" rel="stylesheet" />
 <h2>checkout</h2>
 
+<style>
+    .button {
+        background-color: mediumblue; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
 
+    .button1 {
+        background-color: red; /* Green */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 11px;
+    }
+    .btn
+    {
+         background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+    
+</style>
 
 
 
@@ -17,10 +52,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="content">
-                   
+
                     <ol class="breadcrumb">
                         <li> <h1 class="page-name">Cart</h1></li>
-                        
+
                     </ol>
                 </div>
             </div>
@@ -30,75 +65,83 @@
 
 
 
-    <div class="page-wrapper">
-        <div class="cart shopping">
-            <div class="container">
-                @if (TempData["tempcart"] != null)
-                {
+<div class="page-wrapper">
+    <div class="cart shopping">
+        <div class="container">
+            @if (TempData["tempcart"] != null)
+            {
 
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
-                            <div class="block">
-                                <div class="product-list">
-                                    <form method="post">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th class="">Profile Pic</th>
-                                                    <th class="">ID</th>
-                                                    <th class="">Name</th>
-                                                    <th class="">Price</th>
-                                                    <th class="">Quantity</th>
-                                                    <th class="">Bill</th>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="block">
+                            <div class="product-list">
+                                @using (Html.BeginForm("removeitem", "Shop", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="">Profile Pic</th>
+                                                <th class="">ID</th>
+                                                <th class="">Name</th>
+                                                <th class="">Price</th>
+                                                <th class="">Quantity</th>
+                                                <th class="">Bill</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in TempData["tempcart"] as List<RatingApp.Models.tempcart>)
+                                            {
+                                                <tr class="">
+                                                    <td class="">
+                                                        <div class="product-info">
+                                                            <img width="80" src="@Url.Content(item.Ipath)" alt="" />
+                                                            <a href=""><b>@item.productname</b></a>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="">@item.productid</td>
+                                                    <td class="">@item.productname</td>
+                                                    <td class="">@item.price</td>
+                                                    <td class="">@item.qty</td>
+                                                    <td class="">@item.bill</td>
+
+                                                    @Html.Hidden("productid", item.productid)
+                                                    <td class="">
+                                                        <input type="submit" class="button1" value="Remove">
+                                                    </td>
+
+
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in TempData["tempcart"] as List<RatingApp.Models.tempcart>)
-                                                {
-                                                    <tr class="">
-                                                        <td class="">
-                                                            <div class="product-info">
-                                                                <img width="80" src="@Url.Content(item.Ipath)" alt="" />
-                                                                <a href=""><b>@item.productname</b></a>
-                                                            </div>
-                                                        </td>
+                                            }
+                                        </tbody>
+                                    </table>
+                                    <a href="@Url.Action("Index", "Shop")" class="btn btn-main pull-right">Shop Now</a>
+                                   
 
-                                                        <td class="">@item.productid</td>
-                                                        <td class="">@item.productname</td>
-                                                        <td class="">@item.price</td>
-                                                        <td class="">@item.qty</td>
-                                                        <td class="">@item.bill</td>
-                                                        <td class="">
-                                                            <a class="product-remove" href="">Remove</a>
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                        <a href="checkout.html" class="btn btn-main pull-right">Checkout</a>
-                                    </form>
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
-                }
-                else
-                {
-                    <h2 style="color:red"> Cart is empty....</h2>
-                    @Html.ActionLink("go Back", "Index", "Home")
-                }
+                </div>
+            }
+            else
+            {
+                <h2 style="color:red"> Cart is empty....</h2>
+                @Html.ActionLink("go Back", "Index", "Shop")
+            }
 
-                @if (TempData["tempcart"] != null)
+            @if (TempData["tempcart"] != null)
+            {
+                using (Html.BeginForm())
                 {
-                    using (Html.BeginForm())
-                    {
-                        @*<input type="submit" value="Shop Now" class="btn btn-primary" onclick="window.location.href = '@Url.Action("billing","Shop")';"/>*@
-            <a href="@Url.Action("billing","Shop")" class="button">Shop Now</a>
-                    }
+                    @*<input type="submit" value="Shop Now" class="btn btn-primary" onclick="window.location.href = '@Url.Action("billing","Shop")';"/>*@
+                    <a href="@Url.Action("billing","Shop")" class="button">Checkout</a>
                 }
+            }
 
-            </div>
         </div>
     </div>
+</div>
 
 

@@ -35,7 +35,7 @@ namespace RatingApp.Models
         public string Movie_director { get; set; }
         public string imgpath { get; set; }
         public byte[] imageCover { get; set; }
-     //   public Nullable<System.DateTime> Posted_date { get; set; }
+      //  public Nullable<System.DateTime> Posted_date { get; set; }
         public string movieDis { get; set; }
         public string category { get; set; }
         public Nullable<bool> awardnominated { get; set; }

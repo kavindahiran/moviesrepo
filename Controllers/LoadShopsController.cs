@@ -159,5 +159,15 @@ namespace RatingApp.Controllers
             return View(cou);
         }
 
+        public ActionResult downloadsoftware()
+        {
+            return View();
+        }
+
+        public ActionResult homepage()
+        {
+            return View();
+        }
+
     }
 }

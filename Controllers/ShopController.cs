@@ -118,6 +118,24 @@ namespace RatingApp.Controllers
             return View();
         }
         [HttpPost]
+        public ActionResult removeitem(int productid)
+        {
+            float pt =(float)TempData["total"];
+
+            List<tempcart> li = TempData["tempcart"] as List<tempcart>;
+            var itemToRemove = li.Single(x=>x.productid==productid);
+            float cartprice = itemToRemove.price;
+            pt = pt - cartprice;
+            li.Remove(itemToRemove);
+            TempData["total"] = pt;
+           if(li.Count()==0)
+            {
+                TempData["tempcart"] = null;
+                TempData["total"] = 0;
+            }
+            return RedirectToAction("checkout","Shop");
+        }
+        [HttpPost]
         public ActionResult checkout(ordertable o)
         {
             moviedetailsdb1 db = new moviedetailsdb1();

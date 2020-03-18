@@ -17,11 +17,12 @@
 
                 @if (Session["id"] == null)
                 {
-                    <ul>
-                        <li><a href="#">Welcome Guest!</a></li>
-                        <li><a class="login-popup" href="#">Login</a></li>
+                <ul>
+                    <li><a href="#">Welcome Guest!</a></li>
+                    <li><a class="login-popup" href="#">Login</a></li>
+                    <li><a  href="@Url.Action("homepage","LoadShops")">Register Your Shops Here!</a></li>
 
-                    </ul>
+                </ul>
                 }
                 else if (Session["id"] != null)
                 {

@@ -16,6 +16,7 @@ namespace RatingApp.Controllers
         float x = 0;
         int hallidv;
         int movieidv;
+        int hallno;
         // GET: Booktickets
         public ActionResult Index()
         {
@@ -183,6 +184,7 @@ namespace RatingApp.Controllers
             moviedetailsdb1 db = new moviedetailsdb1();
             showingmodelcollection model = new showingmodelcollection();
             model.food = db.HallFoodTbls.Where(x=>x.hallid==id).ToList();
+            TempData["hallno"] =Convert.ToInt32(id);
             return View(model);
         }
         [HttpGet]
@@ -267,8 +269,31 @@ namespace RatingApp.Controllers
 
         public ActionResult listbookingcart()
         {
+
+
+            ViewBag.hallidno = TempData["hallno"];
             TempData.Keep();
             return View();
+        }
+
+        public ActionResult removeitem(int foodid)
+        {
+            float pt = (float)TempData["total2"];
+
+            List<bookingfoodtempcart> li = TempData["tempcart3"] as List<bookingfoodtempcart>;
+            var itemToRemove = li.Single(x => x.foodid == foodid);
+            float cartprice = itemToRemove.foodprice;
+            pt = pt - cartprice;
+            li.Remove(itemToRemove);
+           // int foodTid =;
+            TempData["total2"] = pt;
+            if (li.Count() == 0)
+            {
+                TempData["tempcart3"] = null;
+               
+            }
+            return RedirectToAction("listbookingcart", "Booktickets"/*,new { id= hallnum } */);
+          
         }
 
         public ActionResult Bookbilling()

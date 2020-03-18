@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "homepage";
+    Layout = "~/Views/Shared/registrationpage.cshtml";
+}
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+<!-- Bootstrap -->
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="~/Content/shoploadhomepage/owl.carousel.css" rel="stylesheet" />
+<link href="~/Content/shoploadhomepage/style.css" rel="stylesheet" />
+<link href="~/Content/shoploadhomepage/responsive.css" rel="stylesheet" />
+
+
+
+
+
+<div class="slider-area">
+    <div class="zigzag-bottom"></div>
+    <div id="slide-list" class="carousel carousel-fade slide" data-ride="carousel">
+
+        <div class="slide-bulletz">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <ol class="carousel-indicators slide-indicators">
+                            <li data-target="#slide-list" data-slide-to="0" class="active"></li>
+                            <li data-target="#slide-list" data-slide-to="1"></li>
+                            <li data-target="#slide-list" data-slide-to="2"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <div class="single-slide">
+                    <div class="slide-bg slide-one"></div>
+                    <div class="slide-text-wrapper">
+                        <div class="slide-text">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="slide-content">
+                                            <h2>Why You should Register</h2>
+                                            <p>We are ready to most kindly welcome all the movie shop owners to register with our site and expand their terriotary!</p>
+                                            @*<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi ab molestiae minus reiciendis! Pariatur ab rerum, sapiente ex nostrum laudantium.</p>*@
+                                            <a href="@Url.Action("Index","LoadShops")" class="readmore">Register Here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-slide">
+                    <div class="slide-bg slide-two"></div>
+                    <div class="slide-text-wrapper">
+                        <div class="slide-text">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="slide-content">
+                                            <h2>What Are The Benefits</h2>
+                                            <p>We offer 365 * 24 hours advertising and marketting services to your shops to help you in increasing sales prior to your previous sales. </p>
+                                            <p>We show the geographical locations of the your physical shops related to each an every movie product available depicting is availablity</p>
+                                            <p>We offer coupens to clients at a discounted price to purchase movies from your subsidiary shops</p>
+                                            <a href="@Url.Action("registershops","Booktickets")" class="readmore">Check Out Our Shops</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="single-slide">
+                    <div class="slide-bg slide-three"></div>
+                    <div class="slide-text-wrapper">
+                        <div class="slide-text">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-6">
+                                        <div class="slide-content">
+                                            <h2>What 3rd Party Softwares We Offer</h2>
+                                            <p>We offer a sales manegement system software for your personal workshops to help in generating sales reports and  calculating profits</p>
+                                            <p>We offer registered shop owners with an interactive dashboard option which shows analyzed data</p>
+                                            <a href="@Url.Action("shoplogin","LoadShops")" class="readmore">Login To Your Shop Acc</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> <!-- End slider area -->
+
+<div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo">
+                    <i class="fa fa-refresh"></i>
+                    <p>Location Based Servies</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo">
+                    <i class="fa fa-truck"></i>
+                    <p>Free Advertising</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo">
+                    <i class="fa fa-lock"></i>
+                    <p>Offer Coupens</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="single-promo">
+                    <i class="fa fa-gift"></i>
+                    <p>Offer 3rd Party Softwares</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Content/shoploadhomepage/jquery.easing.1.3.min.js"></script>
+<script src="~/Content/shoploadhomepage/jquery.sticky.js"></script>
+<script src="~/Content/shoploadhomepage/main.js"></script>
+<script src="~/Content/shoploadhomepage/owl.carousel.min.js"></script>
